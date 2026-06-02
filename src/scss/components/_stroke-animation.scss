@@ -1,0 +1,25 @@
+/* Стиль запуска анимации отрисовки фонового вектора */
+.stroke-anim {
+  display: block;
+  width: auto;
+  height: 84.5rem;
+  transform: rotate(108.74deg);
+
+  position: absolute;
+  top: 55rem;
+  right: -35rem;
+  z-index: 1;
+
+  &-path {
+    stroke-dasharray: 2847;
+    // stroke-dasharray: 4 4;
+    stroke-dashoffset: 2847;
+    animation: stroke 6s linear forwards;
+  }
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

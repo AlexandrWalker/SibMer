@@ -1,0 +1,11 @@
+@use './../mixins' as *;
+
+.typewriter {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+
+  &__cursor {
+    transition: 0s !important;
+  }
+}

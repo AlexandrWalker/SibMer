@@ -1,0 +1,69 @@
+@use './../mixins' as *;
+
+.burger {
+
+  &-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    width: var(--header-inner-height);
+    height: var(--header-inner-height);
+    background-color: var(--black);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    pointer-events: all;
+
+    position: relative;
+
+    @include sm {
+      grid-column: 3/4;
+    }
+
+    .tender--open & {
+      background-color: var(--red);
+    }
+
+    &.burger--open {
+      gap: 0;
+    }
+
+    * {
+      transition: all 0.3s ease;
+    }
+
+    &__line {
+      width: 2rem;
+      height: 0.3rem;
+      background-color: var(--white);
+
+      position: absolute;
+      top: 50%;
+
+      // .tender--open & {
+      //   background-color: var(--black);
+      // }
+
+      &--first {
+        transform: translateY(calc(-50% - 0.5rem));
+
+        .tender--open &,
+        .callback--open &,
+        .burger--open & {
+          transform: rotate(45deg);
+        }
+      }
+
+      &--second {
+        transform: translateY(calc(-50% + 0.5rem));
+
+        .tender--open &,
+        .callback--open &,
+        .burger--open & {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}

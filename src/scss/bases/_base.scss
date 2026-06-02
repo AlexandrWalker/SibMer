@@ -1,0 +1,91 @@
+@use './../mixins' as *;
+
+html {
+  --refRes: 1920;
+
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  font-size: calc(100vw / var(--refRes) * 10);
+  font-size: calc(100dvw / var(--refRes) * 10);
+  scroll-behavior: smooth;
+  // will-change: font-size;
+
+  @include sm {
+    --refRes: 402;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+body {
+  min-width: 320px;
+  background-color: var(--body-bg);
+
+  font-family: var(--font-family);
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
+  color: var(--black);
+  cursor: default;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @include sm {
+    font-size: 1.4rem;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  overflow: clip;
+  padding-top: env(safe-area-inset-top, 20px);
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+
+  position: relative;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
+.footer {
+  // padding: var(--section-padding-top) 0 var(--section-padding-bottom);
+  flex: 0 0 auto;
+}
+
+section {
+  padding: var(--section-padding-top) 0 var(--section-padding-bottom);
+  overflow-x: hidden;
+  overflow-y: visible;
+  will-change: transform;
+}
+
+a {
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  section {
+    animation: none !important;
+  }
+}

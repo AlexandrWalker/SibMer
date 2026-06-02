@@ -1,0 +1,29 @@
+@use './../mixins' as *;
+
+.object-shadow {
+  display: block;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  background-color: var(--btn-background);
+
+  transform: rotate(-4.07deg);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  filter: brightness(0) saturate(100%) invert(7%) sepia(8%) saturate(400%) hue-rotate(202deg) brightness(94%);
+}
+
+.object-body {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), -webkit-transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  position: relative;
+  z-index: 2;
+}

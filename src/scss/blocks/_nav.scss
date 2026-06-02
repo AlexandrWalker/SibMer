@@ -1,0 +1,22 @@
+@use './../mixins' as *;
+
+.nav {
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+  }
+
+  li {}
+
+  a {
+    line-height: 130%;
+    text-transform: uppercase;
+    color: var(--white);
+
+    &:hover {
+      font-weight: 700;
+    }
+  }
+}

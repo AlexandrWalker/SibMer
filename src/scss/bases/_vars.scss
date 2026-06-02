@@ -1,0 +1,43 @@
+@use './../mixins' as *;
+
+:root {
+  --font-family: "Roboto", Arial, Verdana, sans-serif;
+  --second-family: "RobotoCondensed", Arial, Verdana, sans-serif;
+
+  --container-padding: 20rem;
+  --container-width: 152rem;
+  --header-height: 23rem;
+  --section-padding-top: 6rem;
+  --section-padding-bottom: 6rem;
+
+  --body-bg: linear-gradient(270deg, rgba(250, 251, 254, 0.47) 9.58%, rgba(218, 230, 252, 0.47) 100%), #F3F3F3;
+
+  --white: #FFFFFF;
+  --white-05: rgba(250, 255, 255, 0.05);
+  --white-10: rgba(250, 255, 255, 0.1);
+  --white-50: rgba(250, 255, 255, 0.5);
+  --white-80: rgba(250, 255, 255, 0.8);
+
+  --black: #142637;
+  --black-05: #1426370d;
+  --black-10: #1426371a;
+  --black-20: #14263733;
+  --black-50: #14263780;
+
+  --gray: #F6F6F8;
+
+  --accent: #DC2340;
+  --accent-50: #DC234080;
+
+  @include md {
+    // --container-padding: 1.5rem;
+    // --header-height: 9.5rem;
+  }
+
+  @include sm {
+    --container-padding: 1.5rem;
+    --header-height: 9rem;
+    --section-padding-top: 2rem;
+    --section-padding-bottom: 2rem;
+  }
+}

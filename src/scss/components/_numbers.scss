@@ -1,0 +1,49 @@
+@use './../mixins' as *;
+
+.numbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  white-space: nowrap;
+
+  &-x {
+    display: flex;
+    margin-top: auto;
+    margin-right: 0.5ch;
+
+    font-size: 6rem;
+    line-height: 1.1;
+
+    @include sm {
+      font-size: 3rem;
+      line-height: 1.15;
+    }
+  }
+}
+
+.digit-container {
+  display: inline-block;
+  overflow: hidden;
+  width: 0.62em;
+  height: 1em;
+  vertical-align: bottom;
+}
+
+.digit {
+  display: block;
+  transform: translateY(0);
+
+  text-align: right;
+}
+
+.digit span {
+  display: block;
+  // line-height: 1em;
+  line-height: 1;
+  height: 1em;
+
+  @include sm {
+    line-height: 100%;
+  }
+}

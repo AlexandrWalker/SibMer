@@ -1,0 +1,24 @@
+@use './../mixins' as *;
+
+.general {
+
+  &__head {}
+
+  &__suptitle {
+
+    br {
+
+      @include sm {
+        display: none;
+      }
+    }
+  }
+
+  &__title {}
+
+  &__text {}
+
+  &__btns {}
+
+  &__control {}
+}

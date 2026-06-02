@@ -1,0 +1,81 @@
+@use './../mixins' as *;
+
+.header {
+  width: 100%;
+  padding: 4.5rem 0 5.4rem;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  @include sm {
+    padding: 2.5rem 0 1.1rem;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &-contacts {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2.8rem;
+      padding-top: 0.3rem;
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    &-link {
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 130%;
+      color: var(--white);
+    }
+  }
+
+  &__mid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @include sm {
+      display: none;
+    }
+
+    &-control {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    &-social {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+
+      a {
+        width: 5.6rem;
+        height: 5.6rem;
+
+        i {
+          color: var(--gray);
+        }
+      }
+    }
+  }
+}
