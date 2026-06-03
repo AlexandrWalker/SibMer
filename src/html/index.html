@@ -6,15 +6,92 @@
   <div class="wrapper">
     <!-- Шапка -->
     @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
     <main class="main">
 
       <section class="hero">
         <div class="hero__bg">
-          <img src="./../images/temp/hero-bg.png" alt="">
+          <!-- <img src="./../images/temp/hero-bg.png" alt=""> -->
+          <video src="./video/timelapse.mp4" autoplay loop muted playsinline preload="auto"></video>
         </div>
         <div class="container">
           <div class="hero__inner">
-
+            <div class="hero__content">
+              <div class="hero__title">
+                <h1>
+                  Доставка <br>
+                  сборных грузов <br>
+                  из Китая в Россию
+                </h1>
+              </div>
+              <div class="hero__suptitle">
+                <p>
+                  От 50 кг до 20 тонн за 15 дней. <br>
+                  Официально, без переплат и скрытых платежей. <br>
+                  Стоимость доставки сопоставима с ценой морских или Ж/Д перевозок, только быстрее
+                </p>
+              </div>
+              <div class="hero__btn">
+                <button class="btn">
+                  <i class="icon-arrow-right-thin"></i>
+                  <span class="btn-text">
+                    Получить быстрый расчет
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="hero__items">
+              <a class="hero__item" href="/" download="#">
+                <div class="hero__item-title">
+                  Презентация о нас
+                </div>
+                <div class="hero__item-btn">
+                  <div class="GlassContainer">
+                    <div class="GlassContent">
+                      <i class="icon-download"></i>
+                    </div>
+                    <div class="GlassMaterial">
+                      <div class="GlassEdgeReflection"></div>
+                      <div class="GlassEmbossReflection"></div>
+                      <div class="GlassRefraction"></div>
+                      <div class="GlassBlur"></div>
+                      <div class="BlendLayers"></div>
+                      <div class="Highlight"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero__item-icon">
+                  <i class="icon-presentation"></i>
+                </div>
+              </a>
+              <a class="hero__item" href="/" download="#">
+                <div class="hero__item-title">
+                  Кейсы
+                </div>
+                <div class="hero__item-btn">
+                  <div class="GlassContainer">
+                    <div class="GlassContent">
+                      <i class="icon-down"></i>
+                    </div>
+                    <div class="GlassMaterial">
+                      <div class="GlassEdgeReflection"></div>
+                      <div class="GlassEmbossReflection"></div>
+                      <div class="GlassRefraction"></div>
+                      <div class="GlassBlur"></div>
+                      <div class="BlendLayers"></div>
+                      <div class="Highlight"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero__item-icon">
+                  <i class="icon-cases"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="hero__subtitle">
+            Работаем только для юридическими лицами ИП
           </div>
         </div>
       </section>

@@ -37,11 +37,24 @@
 
   position: relative;
 
+  @include sm {
+    --btn-height: 4.6rem;
+    --btn-padding-x: 2rem;
+
+    gap: 2rem;
+
+    font-size: 1.2rem;
+  }
+
   &-text {
+    line-height: 100%;
+
     z-index: 3;
   }
 
   i {
+    --font-size: 1.5rem;
+
     z-index: 3;
   }
 

@@ -1,22 +1,54 @@
 @use './../mixins' as *;
 
 .nav {
+  position: relative;
 
   ul {
     display: flex;
     flex-direction: row;
     gap: 5rem;
+
+    &:hover {
+
+      &+.nav__indicator {
+        opacity: 1;
+      }
+    }
   }
 
   li {}
 
   a {
+    display: flex;
+    justify-content: center;
+    width: calc(100% + 5px);
+    padding: 1rem 0;
+
     line-height: 130%;
     text-transform: uppercase;
     color: var(--white);
 
     &:hover {
       font-weight: 700;
+    }
+  }
+
+  &__indicator {
+    display: block;
+    width: 100%;
+    height: 0.7rem;
+    border-radius: 0.7rem;
+    background-color: var(--accent);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+
+    position: absolute;
+    bottom: -6.4rem;
+    z-index: 1;
+
+    &.active {
+      opacity: 1;
     }
   }
 }

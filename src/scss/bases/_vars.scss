@@ -6,7 +6,8 @@
 
   --container-padding: 20rem;
   --container-width: 152rem;
-  --header-height: 23rem;
+  // --header-height: 23rem;
+  --header-height: 23.4rem;
   --section-padding-top: 6rem;
   --section-padding-bottom: 6rem;
 
@@ -15,6 +16,7 @@
   --white: #FFFFFF;
   --white-05: rgba(250, 255, 255, 0.05);
   --white-10: rgba(250, 255, 255, 0.1);
+  --white-15: rgba(250, 255, 255, 0.15);
   --white-50: rgba(250, 255, 255, 0.5);
   --white-80: rgba(250, 255, 255, 0.8);
 
@@ -36,7 +38,7 @@
 
   @include sm {
     --container-padding: 1.5rem;
-    --header-height: 9rem;
+    --header-height: 8rem;
     --section-padding-top: 2rem;
     --section-padding-bottom: 2rem;
   }

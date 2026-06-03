@@ -1,0 +1,105 @@
+@use './../mixins' as *;
+
+.social {
+  display: none;
+  opacity: 0;
+  transition: 0.3s ease;
+
+  padding-bottom: 6.1rem;
+
+  position: fixed;
+  top: 59.8rem;
+  right: 6rem;
+  z-index: 20;
+
+  @include dosm {
+    display: block;
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  &.active {
+    pointer-events: all;
+    transform: translateY(-50%);
+
+    .social__item-btn {
+      top: 24.4rem;
+    }
+
+    .social__item {
+      transition: 0.3s ease;
+
+      &:not(.social__item-btn) {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      &:nth-child(1) {
+        transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+      }
+
+      &:nth-child(2) {
+        transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease;
+      }
+
+      &:nth-child(3) {
+        transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s, background-color 0.3s ease;
+      }
+
+      &:nth-child(4) {
+        transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease;
+      }
+    }
+  }
+
+  .menu--open & {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5.6rem;
+    height: 5.6rem;
+    background-color: var(--black);
+    border-radius: 50%;
+
+    text-align: center;
+    color: var(--white);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: background-color 0.3s ease, all 0.1s ease;
+
+    &:hover {
+      background-color: var(--accent);
+    }
+
+    i {
+      --font-size: 3rem;
+    }
+
+    &-btn {
+      background: var(--accent);
+      transition: all 0.3s ease;
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+      cursor: pointer;
+
+      position: absolute;
+      top: 0;
+    }
+  }
+}

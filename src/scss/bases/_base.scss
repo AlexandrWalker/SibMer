@@ -8,7 +8,6 @@ html {
   font-size: calc(100vw / var(--refRes) * 10);
   font-size: calc(100dvw / var(--refRes) * 10);
   scroll-behavior: smooth;
-  // will-change: font-size;
 
   @include sm {
     --refRes: 402;
@@ -58,6 +57,8 @@ body {
 
 .main {
   flex: 1 0 auto;
+
+  margin-top: calc(var(--header-height) * -1);
 }
 
 .footer {

@@ -313,6 +313,573 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
+   * Код для индикатора навигации
+   */
+  (function () {
+    const nav = document.querySelector('.nav');
+    const items = document.querySelectorAll('.nav li');
+    const indicator = document.querySelector('.nav__indicator');
+
+    // Функция установки индикатора под элементом
+    function setIndicator(item) {
+      const link = item.querySelector('a');
+      const navRect = nav.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+
+      // Вычисляем позицию относительно nav
+      const left = linkRect.left - navRect.left;
+      const width = linkRect.width;
+
+      indicator.style.left = `${left}px`;
+      indicator.style.width = `${width}px`;
+    }
+
+    // Инициализация: ставим индикатор под активным пунктом
+    const activeItem = document.querySelector('.nav__active');
+    if (activeItem) {
+      setIndicator(activeItem);
+    }
+
+    // Обработчик наведения на пункты меню
+    items.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        setIndicator(item);
+      });
+
+      // Обработчик клика: переключаем активный класс
+      item.addEventListener('click', (e) => {
+        // Убираем активный класс со всех пунктов
+        items.forEach(i => i.classList.remove('nav__active'));
+
+        // Добавляем активный класс на кликнутый пункт
+        item.classList.add('nav__active');
+
+        setIndicator(item);
+      });
+    });
+
+    // При уходе курсора возвращаем к активному пункту
+    // nav.addEventListener('mouseleave', () => {
+    //   const currentActive = document.querySelector('.nav__active');
+    //   if (currentActive) {
+    //     setIndicator(currentActive);
+    //   }
+    // });
+  })();
+
+  /**
+   * Функция управления поведением меню-бургера.
+   */
+  (function () {
+    const burgerBtn = document.getElementById('burger-btn');
+    const burgerMenu = document.getElementById('burger-menu');
+    const menuNav = document.querySelector('#burger-menu .menu__nav');
+
+    const openMenu = () => {
+      burgerBtn.classList.add('burger--open');
+      document.documentElement.classList.add('menu--open');
+      lenis.stop();
+    };
+
+    const closeMenu = () => {
+      burgerBtn.classList.remove('burger--open');
+      document.documentElement.classList.remove('menu--open');
+      lenis.start();
+      document.dispatchEvent(new CustomEvent('menu:close'));
+    };
+
+    const toggleMenu = (e) => {
+      e.preventDefault();
+      const isMenuOpen = document.documentElement.classList.contains('menu--open');
+
+      if (isMenuOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    };
+
+    burgerBtn.addEventListener('click', toggleMenu);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && document.documentElement.classList.contains('menu--open')) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      const isMenuOpen = document.documentElement.classList.contains('menu--open');
+      const clickInsideMenu = burgerMenu.contains(event.target);
+      const clickOnButton = burgerBtn.contains(event.target);
+
+      // Проверяем, кликнули ли по ссылке внутри menu__list
+      const clickOnMenuLink = menuNav && menuNav.contains(event.target) && event.target.tagName === 'A';
+
+      if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
+        closeMenu();
+      }
+
+      // Дополнительно: закрываем меню при клике по ссылке внутри меню
+      if (isMenuOpen && clickOnMenuLink) {
+        closeMenu();
+      }
+    });
+  })();
+
+  /**
+   * Функция для поведения шапки
+   */
+  (function () {
+
+    // 
+    // НАСТРОЙКИ
+    // 
+    const CONFIG = {
+
+      // 
+      // СЕЛЕКТОРЫ
+      // 
+      headerSelector: '.header',
+      sectionsSelector: 'section',
+      firstSectionSelector: null,      // null = используем высоту хедера
+      footerSelector: '.footer',
+
+      // 
+      // ТЕМА (светлая / тёмная секция под хедером)
+      // Атрибут на секции: data-header-theme="dark" или "light"
+      // Добавляет класс на <html>: header-theme-dark / header-theme-light
+      // 
+      themeAttribute: 'data-header-theme',
+      classThemeDark: 'header-theme-dark',
+      classThemeLight: 'header-theme-light',
+
+      // 
+      // КЛАССЫ НА <html> ДЛЯ СОСТОЯНИЙ СКРОЛЛА
+      // 
+      classFixed: 'header-fixed',         // прошли 1px скролла
+      classOffTop: 'header-off-top',      // прошли первую секцию
+      classAtFooter: 'header-at-footer',  // хедер у футера
+      classHidden: 'header-hidden',       // хедер скрыт
+
+      // 
+      // СКРЫТИЕ ХЕДЕРА ПРИ СКРОЛЛЕ ВНИЗ
+      // 
+      hideOnScroll: false,                // true = скрывать, false = всегда видим
+
+      hideFixed: true,
+
+      // Настройки скрытия (работают только если hideOnScroll: true)
+      hideDuration: 0.4,
+      showDuration: 0.4,
+      hideEase: 'power2.in',
+      showEase: 'power2.out',
+      scrollThreshold: 5,                 // минимальный скролл для реакции (px)
+
+      // 
+      // АНИМАЦИЯ ФОНА ХЕДЕРА ПРИ СКРОЛЛЕ
+      // 
+      animateBg: false,                    // true = менять фон, false = не менять
+      bgInitial: 'transparent',
+      bgScrolled: 'rgba(20, 38, 55, 1)',
+
+      // 
+      // АНИМАЦИЯ ТЕНИ ХЕДЕРА ПРИ СКРОЛЛЕ
+      // 
+      animateShadow: false,                // true = менять тень, false = не менять
+      shadowInitial: '0px 0px 0px rgba(0, 0, 0, 0)',
+      shadowScrolled: '0px 0px 20px rgba(0, 0, 0, 0.3)',
+
+      // 
+      // АНИМАЦИЯ ВЫСОТЫ ХЕДЕРА ПРИ СКРОЛЛЕ
+      // 
+      animateHeight: false,                // true = менять высоту, false = не менять
+      heightMultiplier: 1,              // во сколько раз уменьшить (0.7 = 63.53%)
+      // heightMultiplier: 0.342,
+
+      // Множитель высоты для мобильной версии
+      // Используется когда ширина окна меньше mobileBreakpoint
+      // Если null - используется heightMultiplier (общее значение)
+      heightMultiplierMobile: 1,
+
+      // Брейкпоинт мобильной версии в px
+      // При window.innerWidth < mobileBreakpoint применяется heightMultiplierMobile
+      mobileBreakpoint: 600,
+
+      // Классы попапов на <html> при которых нужно принудительно показывать шапку
+      // Если шапка скрыта (header-hidden) и появляется один из этих классов -
+      // шапка опускается обратно чтобы пользователь мог по ней кликнуть
+      // (например закрыть попап через кнопку в шапке)
+      forceShowOnClasses: [],
+      // forceShowOnClasses: ['callback--open', 'tender--open'],
+    };
+
+    // 
+    // ЭЛЕМЕНТЫ
+    // 
+    const header = document.querySelector(CONFIG.headerSelector);
+    if (!header) return;
+
+    const footer = document.querySelector(CONFIG.footerSelector);
+    const htmlEl = document.documentElement;
+    const headerHeight = header.offsetHeight;
+
+    const firstSection = CONFIG.firstSectionSelector
+      ? document.querySelector(CONFIG.firstSectionSelector)
+      : null;
+
+    // Проверка мобильной версии по ширине окна
+    // Вызывается каждый раз при инициализации scrub-анимации
+    // и при resize чтобы пересобрать анимацию с актуальным множителем
+    const isMobile = () => window.innerWidth < CONFIG.mobileBreakpoint;
+
+    // Возвращает актуальный множитель высоты в зависимости от ширины экрана
+    // Если для мобильной версии множитель не задан (null) - возвращает общий
+    const getHeightMultiplier = () => {
+      if (isMobile() && CONFIG.heightMultiplierMobile !== null) {
+        return CONFIG.heightMultiplierMobile;
+      }
+      return CONFIG.heightMultiplier;
+    };
+
+    // Зона скролла для scrub-анимации
+    const scrollZone = firstSection
+      ? firstSection.offsetHeight
+      : headerHeight;
+
+    // 
+    // ОПРЕДЕЛЕНИЕ ТЕМЫ ПОД ХЕДЕРОМ
+    // Проходим по секциям, находим ту что пересекается с хедером,
+    // берём её data-header-theme и ставим класс на <html>
+    // 
+    const updateTheme = () => {
+      const sections = document.querySelectorAll(CONFIG.sectionsSelector);
+      const headerBottom = header.getBoundingClientRect().bottom;
+      let foundTheme = null;
+
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+
+        // Секция пересекается с хедером:
+        // верх секции выше нижней границы хедера И низ секции ниже верха viewport
+        const intersects = rect.top <= headerBottom && rect.bottom >= 0;
+
+        if (intersects) {
+          const theme = section.getAttribute(CONFIG.themeAttribute);
+          if (theme) {
+            foundTheme = theme;
+            break;
+          }
+        }
+      }
+
+      // Сбрасываем оба класса и ставим нужный
+      htmlEl.classList.remove(CONFIG.classThemeDark, CONFIG.classThemeLight);
+
+      if (foundTheme === 'dark') {
+        htmlEl.classList.add(CONFIG.classThemeDark);
+      } else if (foundTheme === 'light') {
+        htmlEl.classList.add(CONFIG.classThemeLight);
+      }
+    };
+
+    // 
+    // НАЧАЛЬНЫЕ СТИЛИ ХЕДЕРА
+    // Устанавливаем только те свойства которые включены в CONFIG
+    // 
+    const initialStyles = {
+      yPercent: 0,
+      // Высоту всегда устанавливаем чтобы GSAP знал начальное значение
+      height: headerHeight,
+    };
+
+    if (CONFIG.animateBg) {
+      initialStyles.backgroundColor = CONFIG.bgInitial;
+    }
+
+    if (CONFIG.animateShadow) {
+      initialStyles.boxShadow = CONFIG.shadowInitial;
+    }
+
+    gsap.set(header, initialStyles);
+
+    // 
+    // GSAP SCRUB - анимация хедера при скролле
+    // Собираем объект анимации только из включённых свойств
+    // 
+
+    // Объект с целевыми значениями для scrub-анимации
+    const animateTo = {
+      ease: 'none',
+      duration: 1,
+    };
+
+    if (CONFIG.animateBg) {
+      animateTo.backgroundColor = CONFIG.bgScrolled;
+    }
+
+    if (CONFIG.animateShadow) {
+      animateTo.boxShadow = CONFIG.shadowScrolled;
+    }
+
+    if (CONFIG.animateHeight) {
+      // Берём множитель через функцию - она сама решает мобильный или десктопный
+      animateTo.height = headerHeight * getHeightMultiplier();
+    }
+
+    // Запускаем scrub только если есть хотя бы одно включённое свойство
+    const hasScrubAnimation = CONFIG.animateBg || CONFIG.animateShadow || CONFIG.animateHeight || CONFIG.hideFixed;
+
+    if (hasScrubAnimation) {
+      const tlScrub = gsap.timeline({
+        scrollTrigger: {
+          trigger: document.documentElement,
+          start: 'top top',
+          end: `+=${scrollZone}`,
+          scrub: true,
+          onEnter: () => htmlEl.classList.add(CONFIG.classFixed),
+          onLeaveBack: () => {
+            htmlEl.classList.remove(CONFIG.classFixed);
+            htmlEl.classList.remove(CONFIG.classOffTop);
+          },
+        }
+      });
+
+      tlScrub.to(header, animateTo);
+    }
+
+    // 
+    // КЛАСС header-off-top - прошли зону анимации
+    // 
+    ScrollTrigger.create({
+      trigger: document.documentElement,
+      start: `top+=${scrollZone} top`,
+      onEnter: () => htmlEl.classList.add(CONFIG.classOffTop),
+      onLeaveBack: () => htmlEl.classList.remove(CONFIG.classOffTop),
+    });
+
+    // 
+    // КЛАСС header-at-footer - хедер достиг футера
+    // 
+    if (footer) {
+      ScrollTrigger.create({
+        trigger: footer,
+        start: 'top bottom',
+        onEnter: () => htmlEl.classList.add(CONFIG.classAtFooter),
+        onLeaveBack: () => htmlEl.classList.remove(CONFIG.classAtFooter),
+      });
+    }
+
+    // 
+    // HIDE / SHOW ХЕДЕРА
+    // Работает только если CONFIG.hideOnScroll: true
+    // 
+    let lastScrollY = window.scrollY || window.pageYOffset;
+    let isHidden = false;
+    let ticking = false;
+
+    // Нижняя граница первой секции в координатах страницы
+    const getFirstSectionBottom = () => {
+      if (!firstSection) return scrollZone;
+      return firstSection.getBoundingClientRect().bottom + window.scrollY;
+    };
+
+    const hideHeader = () => {
+      if (isHidden) return;
+      isHidden = true;
+      htmlEl.classList.add(CONFIG.classHidden);
+      gsap.to(header, {
+        yPercent: -100,
+        duration: CONFIG.hideDuration,
+        ease: CONFIG.hideEase,
+        overwrite: 'auto',
+      });
+    };
+
+    const showHeader = () => {
+      if (!isHidden) return;
+      isHidden = false;
+      htmlEl.classList.remove(CONFIG.classHidden);
+      gsap.to(header, {
+        yPercent: 0,
+        duration: CONFIG.showDuration,
+        ease: CONFIG.showEase,
+        overwrite: 'auto',
+      });
+    };
+
+    // 
+    // ОСНОВНОЙ ОБРАБОТЧИК СКРОЛЛА
+    // 
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY || window.pageYOffset;
+      const delta = currentScrollY - lastScrollY;
+      const absDelta = Math.abs(delta);
+
+      // Тему обновляем всегда - не зависит от threshold
+      updateTheme();
+
+      // Дальше - только если включено скрытие хедера
+      if (CONFIG.hideOnScroll) {
+
+        // Микро-скроллы игнорируем
+        if (absDelta >= CONFIG.scrollThreshold) {
+          const scrollingDown = delta > 0;
+          const firstSectionBottom = getFirstSectionBottom();
+
+          // Скролл вниз после первой секции - прячем
+          // if (scrollingDown && currentScrollY > firstSectionBottom) {
+          if (scrollingDown && currentScrollY > 0) {
+            hideHeader();
+          }
+
+          // Скролл вверх - показываем
+          if (!scrollingDown) {
+            showHeader();
+          }
+
+          // Самый верх - всегда показываем
+          if (currentScrollY <= 0) {
+            showHeader();
+          }
+
+          lastScrollY = currentScrollY;
+        }
+      } else {
+        // Скрытие выключено - просто обновляем lastScrollY
+        lastScrollY = currentScrollY;
+      }
+
+      ticking = false;
+    };
+
+    // rAF обёртка - не чаще одного раза за кадр
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // iOS Safari
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('scroll', onScroll, { passive: true });
+      window.visualViewport.addEventListener('resize', () => {
+        lastScrollY = window.scrollY || window.pageYOffset;
+      });
+    }
+
+    // Пересчёт высоты при ресайзе окна
+    // Когда пользователь переходит через брейкпоинт (например, поворот телефона
+    // или ресайз окна разработчиком), множитель высоты должен пересчитаться
+    // Используем дебаунс чтобы не дёргать пересборку на каждый пиксель ресайза
+    if (CONFIG.animateHeight) {
+      let resizeTimer = null;
+      let lastIsMobile = isMobile();
+
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(() => {
+          const currentIsMobile = isMobile();
+
+          // Реагируем только если реально пересекли брейкпоинт
+          // Иначе при каждом мини-ресайзе будем без нужды пересобирать анимацию
+          if (currentIsMobile === lastIsMobile) return;
+          lastIsMobile = currentIsMobile;
+
+          // Находим scrub-таймлайн нашего хедера и обновляем целевую высоту
+          // ScrollTrigger.getAll() возвращает все триггеры на странице -
+          // фильтруем по trigger === document.documentElement
+          const newHeight = headerHeight * getHeightMultiplier();
+
+          ScrollTrigger.getAll().forEach(st => {
+            // Ищем именно scrub-триггер хедера
+            if (st.trigger === document.documentElement && st.animation) {
+              // Меняем целевое значение height в текущем твине
+              const tween = st.animation.getChildren()[0];
+              if (tween && tween.vars) {
+                tween.vars.height = newHeight;
+                // Инвалидируем чтобы GSAP перечитал from/to значения
+                tween.invalidate();
+                st.refresh();
+              }
+            }
+          });
+        }, 200);
+      }, { passive: true });
+    }
+
+    // 
+    // ПРИНУДИТЕЛЬНЫЙ ПОКАЗ ШАПКИ ПРИ ОТКРЫТИИ ПОПАПОВ
+    // 
+    // Когда на <html> появляется класс из forceShowOnClasses (callback--open,
+    // tender--open и т.д.) - принудительно показываем шапку если она скрыта
+    // Это нужно чтобы пользователь мог взаимодействовать с шапкой при открытом попапе
+    // Используем MutationObserver - он реагирует только на изменения класса
+    // и не дёргается при скролле, в отличие от глобальных слушателей
+    // 
+    if (CONFIG.forceShowOnClasses && CONFIG.forceShowOnClasses.length > 0) {
+
+      // Проверяет есть ли на <html> хотя бы один из "форсирующих" классов
+      const hasForceClass = () => {
+        return CONFIG.forceShowOnClasses.some(cls => htmlEl.classList.contains(cls));
+      };
+
+      // Запоминаем предыдущее состояние - чтобы реагировать только на переход
+      // false -> true (попап открылся), а не на каждое изменение класса
+      let wasForced = hasForceClass();
+
+      // Если попап уже открыт при инициализации скрипта - сразу показываем шапку
+      if (wasForced && isHidden) {
+        showHeader();
+      }
+
+      const popupObserver = new MutationObserver(() => {
+        const isForced = hasForceClass();
+
+        // Реагируем только в момент когда попап ОТКРЫЛСЯ
+        // (раньше форс-классов не было, теперь появился)
+        // На закрытие попапа не реагируем - дальше работает обычная логика hide/show
+        if (isForced && !wasForced) {
+          // Если шапка скрыта - принудительно показываем её
+          // Если уже видна - ничего не делаем (условие внутри showHeader)
+          if (isHidden) {
+            showHeader();
+          }
+        }
+
+        wasForced = isForced;
+      });
+
+      popupObserver.observe(htmlEl, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    }
+
+    // 
+    // ИНИЦИАЛИЗАЦИЯ - определяем тему сразу при загрузке страницы
+    // 
+    updateTheme();
+
+  })();
+
+  (function () {
+    const social = document.querySelector('.social');
+    const btn = document.querySelector('.social__item-btn');
+
+    btn.addEventListener('mouseenter', () => {
+      social.classList.add('active');
+    })
+
+    social.addEventListener('mouseleave', () => {
+      social.classList.remove('active');
+    })
+  })();
+
+  /**
    * Инициализация Fancybox
    */
   Fancybox.bind('[data-fancybox]', {

@@ -3,14 +3,13 @@
 .burger {
 
   &-btn {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.7rem;
-    width: var(--header-inner-height);
-    height: var(--header-inner-height);
-    background-color: var(--black);
+    width: 5.6rem;
+    height: 5.6rem;
     flex-shrink: 0;
     transition: all 0.3s ease;
     pointer-events: all;
@@ -18,52 +17,48 @@
     position: relative;
 
     @include sm {
-      grid-column: 3/4;
-    }
-
-    .tender--open & {
-      background-color: var(--red);
+      display: flex;
     }
 
     &.burger--open {
-      gap: 0;
-    }
 
-    * {
-      transition: all 0.3s ease;
-    }
-
-    &__line {
-      width: 2rem;
-      height: 0.3rem;
-      background-color: var(--white);
-
-      position: absolute;
-      top: 50%;
-
-      // .tender--open & {
-      //   background-color: var(--black);
-      // }
-
-      &--first {
-        transform: translateY(calc(-50% - 0.5rem));
-
-        .tender--open &,
-        .callback--open &,
-        .burger--open & {
-          transform: rotate(45deg);
-        }
+      .burger__line {
+        background-color: var(--accent);
       }
 
-      &--second {
-        transform: translateY(calc(-50% + 0.5rem));
-
-        .tender--open &,
-        .callback--open &,
-        .burger--open & {
-          transform: rotate(-45deg);
-        }
+      .burger__line--first {
+        transform: rotate(45deg) translateY(0);
       }
+
+      .burger__line--second {
+        width: 0;
+      }
+
+      .burger__line--third {
+        transform: rotate(-45deg) translateY(0);
+      }
+    }
+  }
+
+  &__line {
+    width: 3rem;
+    height: 0.2rem;
+    border-radius: 0.1rem;
+    background-color: var(--white);
+    transition: width 0.3s ease, transform 0.3s ease;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &--first {
+      transform: translateY(calc(-50% - 0.8rem));
+    }
+
+    &--second {}
+
+    &--third {
+      transform: translateY(calc(-50% + 0.8rem));
     }
   }
 }

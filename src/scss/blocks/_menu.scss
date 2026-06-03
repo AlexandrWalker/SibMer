@@ -1,3 +1,121 @@
 @use './../mixins' as *;
 
-.menu {}
+.menu {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--black);
+  mix-blend-mode: normal;
+  padding-top: var(--header-height);
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease;
+
+  color: var(--white);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+
+  .menu--open & {
+    transform: translateY(0%);
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  &__nav {
+    padding: 4rem 0;
+    border-bottom: 0.1rem solid var(--white-15);
+
+    &-inner {
+
+      ul {}
+
+      li {
+        margin-bottom: 3rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      a {
+        font-weight: 400;
+        font-size: 2.2rem;
+        line-height: 130%;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__contacts {
+    padding: 4rem 0;
+    border-bottom: 0.1rem solid var(--white-15);
+
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    &-phone {
+      width: fit-content;
+
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 130%;
+      text-transform: uppercase;
+    }
+
+    &-mail {
+      width: fit-content;
+
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 130%;
+      text-decoration-line: underline;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+  }
+
+  &__social {
+    padding: 3.2rem 0;
+
+    &-inner {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+
+      a {
+        width: 5.6rem;
+        height: 5.6rem;
+      }
+
+      i {
+        color: var(--accent);
+      }
+
+      .GlassContainer {
+        --invert: 1%;
+      }
+
+      .GlassMaterial:after {
+        background: none;
+      }
+
+      .GlassMaterial .GlassBlur {
+        backdrop-filter: unset;
+      }
+    }
+  }
+}
