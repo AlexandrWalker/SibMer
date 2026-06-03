@@ -38,21 +38,28 @@
     <div class="header__inner">
 
       <div class="header__top">
-        <div class="header__top-logo">
-          <a class="logo" href="/">
-            <img src="./images/logo/logo.svg" alt="">
-          </a>
-        </div>
-        <div class="header__top-contacts">
-          <div class="header__top-link">
-            <a href="tel:+73832875087">
-              +7 (383) 287‒50‒87
+        <div class="header__top-wrap">
+          <div class="header__top-logo">
+            <a class="logo" href="/">
+              <img src="./images/logo/logo.svg" alt="">
             </a>
           </div>
-          <div class="header__top-link">
-            <a href="emailto:offer@sb-mer.ru">
-              offer@sb-mer.ru
-            </a>
+          <div class="header__top-contacts">
+            <div class="header__top-link">
+              <a href="tel:+73832875087">
+                +7 (383) 287‒50‒87
+              </a>
+            </div>
+            <div class="header__top-link">
+              <a href="emailto:offer@sb-mer.ru">
+                offer@sb-mer.ru
+              </a>
+            </div>
+          </div>
+          <div id="burger-btn" class="burger-btn">
+            <span class="burger__line burger__line--first"></span>
+            <span class="burger__line burger__line--second"></span>
+            <span class="burger__line burger__line--third"></span>
           </div>
         </div>
       </div>
@@ -61,7 +68,7 @@
         <div class="header__mid-nav">
           <nav class="nav">
   <ul>
-    <li>
+    <li class="nav__active">
       <a href="/">
         О компании
       </a>
@@ -87,6 +94,7 @@
       </a>
     </li>
   </ul>
+  <span class="nav__indicator"></span>
 </nav>
         </div>
         <div class="header__mid-control">
@@ -111,7 +119,6 @@
                 <div class="GlassRefraction"></div>
                 <div class="GlassBlur"></div>
                 <div class="BlendLayers"></div>
-                <div class="BlendEdge"></div>
                 <div class="Highlight"></div>
               </div>
             </a>
@@ -125,7 +132,6 @@
                 <div class="GlassRefraction"></div>
                 <div class="GlassBlur"></div>
                 <div class="BlendLayers"></div>
-                <div class="BlendEdge"></div>
                 <div class="Highlight"></div>
               </div>
             </a>
@@ -139,7 +145,6 @@
                 <div class="GlassRefraction"></div>
                 <div class="GlassBlur"></div>
                 <div class="BlendLayers"></div>
-                <div class="BlendEdge"></div>
                 <div class="Highlight"></div>
               </div>
             </a>
@@ -156,18 +161,216 @@
         </div>
       </div>
 
+      <div class="social">
+        <div class="social__items">
+          <a class="social__item" href="/">
+            <i class="icon-wa"></i>
+          </a>
+          <a class="social__item" href="/">
+            <i class="icon-tg"></i>
+          </a>
+          <a class="social__item" href="/">
+            <i class="icon-max"></i>
+          </a>
+          <a class="social__item" href="/">
+            <i class="icon-pochta"></i>
+          </a>
+          <button class="social__item social__item-btn">
+            <i class="icon-contacts"></i>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 </header>
+    <!-- Меню -->
+    <div id="burger-menu" class="menu lenis" data-lenis-prevent>
+  <div class="menu__inner">
+
+    <div class="menu__nav">
+      <div class="container">
+        <div class="menu__nav-inner">
+          <ul>
+            <li>
+              <a href="/">
+                О компании
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                Как мы работаем
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                Услуги
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                Кейсы
+              </a>
+            </li>
+            <li>
+              <a href="/">
+                Контакты
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu__contacts">
+      <div class="container">
+        <div class="menu__contacts-inner">
+          <div class="menu__contacts-phone">
+            <a href="tel:+73832875087">
+              +7 (383) 287‒50‒87
+            </a>
+          </div>
+          <div class="menu__contacts-mail">
+            <a href="emailto:offer@sb-mer.ru">
+              offer@sb-mer.ru
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu__social">
+      <div class="container">
+        <div class="menu__social-inner">
+          <a class="GlassContainer" href="/">
+            <div class="GlassContent">
+              <i class="icon-max"></i>
+            </div>
+            <div class="GlassMaterial">
+              <div class="GlassEdgeReflection"></div>
+              <div class="GlassEmbossReflection"></div>
+              <div class="GlassRefraction"></div>
+              <div class="GlassBlur"></div>
+              <div class="BlendLayers"></div>
+              <div class="Highlight"></div>
+            </div>
+          </a>
+          <a class="GlassContainer" href="/">
+            <div class="GlassContent">
+              <i class="icon-tg"></i>
+            </div>
+            <div class="GlassMaterial">
+              <div class="GlassEdgeReflection"></div>
+              <div class="GlassEmbossReflection"></div>
+              <div class="GlassRefraction"></div>
+              <div class="GlassBlur"></div>
+              <div class="BlendLayers"></div>
+              <div class="Highlight"></div>
+            </div>
+          </a>
+          <a class="GlassContainer" href="/">
+            <div class="GlassContent">
+              <i class="icon-wa"></i>
+            </div>
+            <div class="GlassMaterial">
+              <div class="GlassEdgeReflection"></div>
+              <div class="GlassEmbossReflection"></div>
+              <div class="GlassRefraction"></div>
+              <div class="GlassBlur"></div>
+              <div class="BlendLayers"></div>
+              <div class="Highlight"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
     <main class="main">
 
       <section class="hero">
         <div class="hero__bg">
-          <img src="./images/temp/hero-bg.png" alt="">
+          <!-- <img src="./images/temp/hero-bg.png" alt=""> -->
+          <video src="./video/timelapse.mp4" autoplay loop muted playsinline preload="auto"></video>
         </div>
         <div class="container">
           <div class="hero__inner">
-
+            <div class="hero__content">
+              <div class="hero__title">
+                <h1>
+                  Доставка <br>
+                  сборных грузов <br>
+                  из Китая в Россию
+                </h1>
+              </div>
+              <div class="hero__suptitle">
+                <p>
+                  От 50 кг до 20 тонн за 15 дней. <br>
+                  Официально, без переплат и скрытых платежей. <br>
+                  Стоимость доставки сопоставима с ценой морских или Ж/Д перевозок, только быстрее
+                </p>
+              </div>
+              <div class="hero__btn">
+                <button class="btn">
+                  <i class="icon-arrow-right-thin"></i>
+                  <span class="btn-text">
+                    Получить быстрый расчет
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="hero__items">
+              <a class="hero__item" href="/" download="#">
+                <div class="hero__item-title">
+                  Презентация о нас
+                </div>
+                <div class="hero__item-btn">
+                  <div class="GlassContainer">
+                    <div class="GlassContent">
+                      <i class="icon-download"></i>
+                    </div>
+                    <div class="GlassMaterial">
+                      <div class="GlassEdgeReflection"></div>
+                      <div class="GlassEmbossReflection"></div>
+                      <div class="GlassRefraction"></div>
+                      <div class="GlassBlur"></div>
+                      <div class="BlendLayers"></div>
+                      <div class="Highlight"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero__item-icon">
+                  <i class="icon-presentation"></i>
+                </div>
+              </a>
+              <a class="hero__item" href="/" download="#">
+                <div class="hero__item-title">
+                  Кейсы
+                </div>
+                <div class="hero__item-btn">
+                  <div class="GlassContainer">
+                    <div class="GlassContent">
+                      <i class="icon-down"></i>
+                    </div>
+                    <div class="GlassMaterial">
+                      <div class="GlassEdgeReflection"></div>
+                      <div class="GlassEmbossReflection"></div>
+                      <div class="GlassRefraction"></div>
+                      <div class="GlassBlur"></div>
+                      <div class="BlendLayers"></div>
+                      <div class="Highlight"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero__item-icon">
+                  <i class="icon-cases"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="hero__subtitle">
+            Работаем только для юридическими лицами ИП
           </div>
         </div>
       </section>
@@ -274,12 +477,12 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <a href="/" download="#">
                     Скачать презентацию
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <a href="/" download="#">
                     Скачать реквизиты
                   </a>
                 </li>
@@ -303,7 +506,6 @@
               <div class="GlassRefraction"></div>
               <div class="GlassBlur"></div>
               <div class="BlendLayers"></div>
-              <div class="BlendEdge"></div>
               <div class="Highlight"></div>
             </div>
           </a>
@@ -317,7 +519,6 @@
               <div class="GlassRefraction"></div>
               <div class="GlassBlur"></div>
               <div class="BlendLayers"></div>
-              <div class="BlendEdge"></div>
               <div class="Highlight"></div>
             </div>
           </a>
@@ -331,7 +532,6 @@
               <div class="GlassRefraction"></div>
               <div class="GlassBlur"></div>
               <div class="BlendLayers"></div>
-              <div class="BlendEdge"></div>
               <div class="Highlight"></div>
             </div>
           </a>
