@@ -880,6 +880,58 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
+   * Функция для присвоения класса filled для заполненных форм
+   */
+  (function () {
+
+    const form = document.querySelector('form');
+
+    if (form) {
+      const inputElements = document.querySelectorAll('.form-input');
+      const textareaElements = document.querySelectorAll('.form-textarea');
+      const className = 'filled';
+
+      inputElements.forEach(element => {
+        element.addEventListener('input', function () {
+          if (this.value.trim() !== '') {
+            element.classList.add(className);
+          } else {
+            element.classList.remove(className);
+          }
+        });
+      });
+
+      textareaElements.forEach(element => {
+        element.addEventListener('input', function () {
+          if (this.value.trim() !== '') {
+            element.classList.add(className);
+          } else {
+            element.classList.remove(className);
+          }
+        });
+      });
+    }
+
+  })();
+
+  (function () {
+    const advanItems = document.querySelectorAll('.advan__item');
+
+    if (!advanItems.length) return;
+
+    advanItems.forEach(advanItem => {
+      const icon = advanItem.querySelector('.icon-video');
+
+      if (!icon) return;
+      
+      // Запуск при наведении
+      advanItem.addEventListener('mouseenter', () => {
+        icon.play();
+      });
+    });
+  })();
+
+  /**
    * Инициализация Fancybox
    */
   Fancybox.bind('[data-fancybox]', {

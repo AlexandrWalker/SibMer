@@ -1,0 +1,107 @@
+@use './../mixins' as *;
+
+.services {
+  background-color: var(--black);
+
+  .general__head {
+    padding: 1rem 0 3rem;
+
+    @include sm {
+      padding: 0;
+    }
+  }
+
+  .general__title {
+    color: var(--white);
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include sm {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    height: fit-content;
+    min-height: 47.1rem;
+    padding: 5rem 3rem 3rem 3rem;
+    border: 0.1rem solid var(--white-05);
+    border-radius: 1rem;
+    background-color: var(--black-50);
+    box-shadow: 0px 55px 93px rgba(36, 93, 157, 0.06);
+
+    color: var(--white);
+
+    position: relative;
+
+    @include sm {
+      padding: 2rem 1.5rem;
+      min-height: 14.9rem;
+    }
+
+    &-title {
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      @include sm {
+        max-width: 27.4rem;
+
+        font-size: 1.6rem;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      color: var(--white-10);
+
+      @include sm {
+        top: unset;
+        bottom: 2rem;
+        left: 1.5rem;
+        transform: unset;
+      }
+
+      i {
+        --font-size: 10rem;
+
+        @include sm {
+          --font-size: 4rem;
+        }
+      }
+    }
+
+    &-btn {
+      width: 5.6rem;
+      height: 5.6rem;
+
+      margin-left: auto;
+
+      @include sm {
+        width: 4.6rem;
+        height: 4.6rem;
+      }
+
+      i {
+
+        @include sm {
+          --font-size: 3rem;
+        }
+      }
+    }
+  }
+}

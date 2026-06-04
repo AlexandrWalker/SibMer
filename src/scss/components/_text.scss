@@ -1,87 +1,25 @@
 @use './../mixins' as *;
 
 /* Главный заголовок страницы */
-.h1, h1 {
-  font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 6rem;
-  line-height: 120%;
-
-  @include sm {
-    font-size: 3rem;
-  }
-}
+.h1,
+h1 {}
 
 /* Заголовок блока */
 .h2,
-h2 {
-  font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 3.5rem;
-  line-height: 120%;
-
-  @include sm {
-    font-size: 2.5rem;
-  }
-}
+h2 {}
 
 /* Подзаголовок блока */
 .h3,
-h3 {
-  font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 2.4rem;
-  line-height: 120%;
-
-  @include sm {
-    font-size: 2rem;
-  }
-}
+h3 {}
 
 .h4,
-h4 {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 2.4rem;
-  line-height: 120%;
-
-  @include sm {
-    font-size: 1.6rem;
-  }
-}
+h4 {}
 
 .h5,
-h5 {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 120%;
-
-  @include sm {
-    font-size: 1.4rem;
-  }
-}
+h5 {}
 
 .h6,
-h6 {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 1.4rem;
-  line-height: 120%;
-
-  @include sm {
-    font-size: 1.2rem;
-  }
-}
+h6 {}
 
 /* Текст */
-p {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 1.4rem;
-  line-height: 120%;
-
-  @include sm {
-    font-size: 1.2rem;
-  }
-}
+p {}

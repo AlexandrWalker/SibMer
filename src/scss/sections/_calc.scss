@@ -1,0 +1,78 @@
+@use './../mixins' as *;
+
+.calc {
+  --section-padding-bottom: 10rem;
+
+  background-color: var(--white);
+
+  @include sm {
+    --section-padding-bottom: 4.5rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      margin-bottom: 1.2rem;
+
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 130%;
+
+      @include sm {
+        margin-bottom: 1.5rem;
+
+        font-size: 1.4rem;
+      }
+    }
+
+    &-price {
+      margin-bottom: 1rem;
+
+      font-weight: 700;
+      font-size: 3rem;
+      line-height: 130%;
+    }
+
+    &-subtitle {
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 130%;
+      color: var(--accent);
+    }
+  }
+
+  .form {
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+
+      @include sm {
+        gap: 2.5rem;
+      }
+    }
+
+    &-block {
+      gap: 3rem;
+
+      @include sm {
+        gap: 1rem;
+      }
+    }
+
+    &-item {
+      gap: 3rem;
+
+      @include sm {
+        gap: 1rem;
+      }
+    }
+  }
+
+  .form-input {
+    background-color: var(--gray);
+  }
+}

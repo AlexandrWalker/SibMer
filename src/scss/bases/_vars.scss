@@ -27,6 +27,7 @@
   --black-50: #14263780;
 
   --gray: #F6F6F8;
+  --gray-2: #E6EBEC;
 
   --accent: #DC2340;
   --accent-50: #DC234080;
@@ -39,7 +40,7 @@
   @include sm {
     --container-padding: 1.5rem;
     --header-height: 8rem;
-    --section-padding-top: 2rem;
-    --section-padding-bottom: 2rem;
+    --section-padding-top: 4rem;
+    --section-padding-bottom: 4rem;
   }
 }
