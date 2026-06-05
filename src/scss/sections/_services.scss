@@ -29,8 +29,7 @@
   &__item {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 4rem;
     height: fit-content;
     min-height: 47.1rem;
     padding: 5rem 3rem 3rem 3rem;
@@ -38,14 +37,31 @@
     border-radius: 1rem;
     background-color: var(--black-50);
     box-shadow: 0px 55px 93px rgba(36, 93, 157, 0.06);
+    transition: all 0.3s ease;
 
     color: var(--white);
 
     position: relative;
 
     @include sm {
-      padding: 2rem 1.5rem;
+      gap: 2rem;
       min-height: 14.9rem;
+      padding: 2rem 1.5rem 7rem 1.5rem;
+    }
+
+    &:hover {
+      background-color: var(--white);
+      min-height: 78.9rem;
+
+      color: var(--black);
+
+      @include sm {
+        min-height: unset;
+      }
+
+      .btn {
+        opacity: 1;
+      }
     }
 
     &-title {
@@ -88,12 +104,33 @@
     &-btn {
       width: 5.6rem;
       height: 5.6rem;
+      transition: all 0.3s ease;
 
-      margin-left: auto;
+      position: absolute;
+      right: 3rem;
+      bottom: 3rem;
+      z-index: 1;
 
       @include sm {
         width: 4.6rem;
         height: 4.6rem;
+      }
+
+      .services__item:hover & {
+
+        @include dosm {
+          opacity: 0;
+        }
+
+        i {
+          
+          &::before {
+
+            @include sm {
+              content: "\e915";
+            }
+          }
+        }
       }
 
       i {
@@ -101,6 +138,59 @@
         @include sm {
           --font-size: 3rem;
         }
+      }
+    }
+
+    .btn {
+      opacity: 0;
+
+      position: absolute;
+      bottom: 3rem;
+      left: 3rem;
+      z-index: 1;
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    &-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+
+      .services__item:hover & {
+        grid-template-rows: 1fr;
+      }
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+      height: 100%;
+      overflow: hidden;
+
+      ul {}
+
+      li {
+        margin-bottom: 2rem;
+
+        @include sm {
+          margin-bottom: 1.5rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      a {
+        text-decoration-line: underline;
+        color: var(--accent);
       }
     }
   }

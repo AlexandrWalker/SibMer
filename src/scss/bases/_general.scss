@@ -62,6 +62,18 @@
     }
   }
 
+  &__suptitle {
+
+    p {
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 130%;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+  }
+
   &__text {
 
     @include sm {
@@ -87,7 +99,96 @@
     }
   }
 
+  &__feat {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem 5rem;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding-left: 3rem;
+      border-left: 0.5rem solid var(--white);
+
+      color: var(--white);
+    }
+
+    &-title {
+      font-weight: 700;
+      font-size: 4rem;
+      line-height: 100%;
+    }
+
+    &-text {}
+  }
+
+  &__tabs {
+
+    &-items {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    &-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3.6rem;
+      padding: 0.8rem 2rem;
+      background-color: var(--white);
+      border-radius: 3.3rem;
+      transition: color 0.3s ease;
+
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: 20px;
+      text-align: center;
+      color: var(--black-50);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--black);
+      }
+    }
+
+    &-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3.6rem;
+      padding: 0.8rem 2rem;
+      background-color: var(--accent);
+      border-radius: 3.3rem;
+      transition: color 0.3s ease;
+
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: 20px;
+      text-align: center;
+      color: var(--white);
+      cursor: pointer;
+    }
+  }
+
   &__btns {}
 
   &__control {}
+}
+
+.svg {
+
+  &-block {}
+
+  &-stroke {
+    clip-path: inset(100% 100% 0 0);
+    transition: all 1s ease 0.2s;
+
+    .svg-active & {
+      clip-path: inset(0 0 0 0);
+    }
+  }
 }

@@ -1,0 +1,178 @@
+@use './../mixins' as *;
+
+.algorithm {
+  --section-padding-top: 7rem;
+  --section-padding-bottom: 6rem;
+
+  background-color: var(--black);
+
+  @include sm {
+    --section-padding-top: 4rem;
+    --section-padding-bottom: 4rem;
+  }
+
+  .general {
+
+    &__content {
+
+      @include sm {
+        gap: 3rem;
+      }
+    }
+
+    &__head {
+
+      @include dosm {
+        gap: 2rem;
+        grid-column: 1/6;
+      }
+    }
+
+    &__title {
+      color: var(--white);
+
+      span {
+
+        @include sm {
+          display: block;
+        }
+      }
+    }
+
+    &__suptitle {
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    &__body {
+
+      @include dosm {
+        grid-column: 6/13;
+      }
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 26.5rem;
+    padding: 6rem;
+    border-radius: 1rem;
+    background-color: var(--accent);
+    overflow: hidden;
+
+    color: var(--white);
+
+    @include sm {
+      gap: 2rem;
+      margin-top: 0;
+      padding: 2rem 1.5rem 4rem 1.5rem;
+    }
+  }
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 300;
+    font-size: 4rem;
+    line-height: 130%;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+
+    @include sm {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 140%;
+      letter-spacing: 0;
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 2rem 5rem;
+
+    @include dosm {
+      grid-auto-flow: column;
+    }
+
+    @include sm {
+      grid-template-columns: 1fr;
+      grid-template-rows: unset;
+      gap: 1.5rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid var(--gray-3-20);
+
+    @include sm {
+      padding-bottom: 1.5rem;
+    }
+
+    &:last-child {
+
+      @include sm {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+    }
+
+    &:nth-child(4) {
+
+      @include dosm {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+    }
+
+    &-count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 3.6rem;
+      height: 3.6rem;
+      border-radius: 50%;
+      border: 0.1rem solid var(--white-50);
+      flex-shrink: 0;
+
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 130%;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--white);
+    }
+
+    &-text {
+      max-width: 25rem;
+    }
+  }
+}
