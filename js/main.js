@@ -867,6 +867,29 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   (function () {
+    const svgBlocks = document.querySelectorAll('.svg-block');
+    if (svgBlocks.length) {
+      svgBlocks.forEach(svgBlock => {
+        gsap.from(svgBlock, {
+          ease: "none",
+          scrollTrigger: {
+            trigger: svgBlock,
+            start: `top 90%`,
+            end: `top top`,
+            scrub: true,
+          },
+          onStart: function () {
+            svgBlock.classList.add('svg-active');
+          },
+        });
+      });
+    }
+  })();
+
+  /**
+   * Функция для фикс. кнопки связи
+   */
+  (function () {
     const social = document.querySelector('.social');
     const btn = document.querySelector('.social__item-btn');
 
@@ -914,6 +937,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  /**
+   * Функция для проигрывания видео-иконки при наведении у блока advan
+   */
   (function () {
     const advanItems = document.querySelectorAll('.advan__item');
 
@@ -923,7 +949,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const icon = advanItem.querySelector('.icon-video');
 
       if (!icon) return;
-      
+
       // Запуск при наведении
       advanItem.addEventListener('mouseenter', () => {
         icon.play();
