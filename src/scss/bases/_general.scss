@@ -105,14 +105,35 @@
     flex-wrap: wrap;
     gap: 4rem 5rem;
 
+    @include sm {
+      gap: 1.5rem;
+    }
+
     &-item {
       display: flex;
       flex-direction: column;
       gap: 2rem;
       padding-left: 3rem;
-      border-left: 0.5rem solid var(--white);
 
       color: var(--white);
+
+      position: relative;
+
+      @include sm {
+        gap: 1.5rem;
+        padding-left: 2.7rem;
+      }
+
+      &::before {
+        content: "";
+        width: 0.5rem;
+        height: 100%;
+        background-color: var(--white);
+
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
     }
 
     &-title {
@@ -121,7 +142,9 @@
       line-height: 100%;
     }
 
-    &-text {}
+    &-text {
+      color: var(--white-50);
+    }
   }
 
   &__tabs {
@@ -152,6 +175,10 @@
 
       &:hover {
         color: var(--black);
+      }
+
+      @include sm {
+        display: none;
       }
     }
 

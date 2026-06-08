@@ -250,6 +250,7 @@
     }
 
     &-item {
+      display: flex;
       width: 1.6rem;
       height: 1.6rem;
       border-radius: 50%;
@@ -266,6 +267,7 @@
         background-color: var(--black);
         border-radius: 50%;
         transition: background-color 0.15s ease;
+        flex-shrink: 0;
 
         position: absolute;
         top: 50%;
