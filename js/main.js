@@ -957,6 +957,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  const casesItems = document.querySelectorAll('.cases__item');
+
+  if (casesItems.length) {
+    casesItems.forEach(casesItem => {
+      casesItem.addEventListener('click', () => {
+        casesItem.classList.toggle('cases__item--active');
+      })
+    });
+  }
+
   /**
    * Инициализация Fancybox
    */
