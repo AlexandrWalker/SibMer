@@ -957,15 +957,167 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  const casesItems = document.querySelectorAll('.cases__item');
+  (function () {
+    const mobileBreakpoint = 600;
+    const casesJs = document.querySelector('.cases--js');
 
-  if (casesItems.length) {
-    casesItems.forEach(casesItem => {
-      casesItem.addEventListener('click', () => {
-        casesItem.classList.toggle('cases__item--active');
-      })
-    });
+    if (!casesJs) return;
+
+    const casesTabsJs = document.querySelector('.cases-tabs--js');
+    const casesTabsItemsJs = casesTabsJs.querySelectorAll('.general__tabs-item');
+    const casesItemsJs = document.querySelectorAll('.cases-item--js');
+
+    if (casesTabsItemsJs.length) {
+      casesTabsItemsJs.forEach(tab => {
+
+        tab.addEventListener('click', () => {
+          casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
+
+          tab.classList.add('tabs--active');
+
+          const data = tab.dataset.value;
+          console.log(data);
+
+          const casesItem = document.querySelector(`[data-cases="${data}"]`);
+          console.log(casesItem);
+
+          casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+          casesItem.classList.add('cases-item--active');
+        })
+
+      });
+    }
+
+    if (casesItemsJs.length) {
+      casesItemsJs.forEach((item, index) => {
+        item.style.zIndex = 100 - index;
+      });
+
+      const isMobile = () => window.innerWidth < mobileBreakpoint;
+
+      if (isMobile) {
+        casesItemsJs.forEach(item => {
+
+          item.addEventListener('click', () => {
+            if (item.classList.contains('cases-item--active')) {
+              item.classList.remove('cases-item--active');
+            } else {
+              // casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+              item.classList.add('cases-item--active');
+            }
+          })
+        });
+      }
+    }
+
+  })();
+
+  /**
+   * Sticky функция
+   */
+  function stickyReveal() {
+    let scrollHandler = null;
+    let resizeHandler = null;
+    let ticking = false;
+    let destroyed = false;
+    let items = [];
+    let offsets = [];
+
+    const removeOffset = 31;
+    const MOBILE_BREAKPOINT = 600;
+
+    function cacheOffsets() {
+      offsets = items.map(item => item.getBoundingClientRect().top + window.scrollY);
+    }
+
+    function init() {
+      if (window.innerWidth > MOBILE_BREAKPOINT) return;
+
+      items = Array.from(document.querySelectorAll('.sticky__item'));
+      if (!items.length) return;
+
+      cacheOffsets();
+
+      const checkItems = () => {
+        if (destroyed || window.innerWidth > MOBILE_BREAKPOINT) return;
+
+        const scrollY = window.scrollY;
+
+        try {
+          items.forEach((item, index) => {
+            if (index === items.length - 1) return;
+
+            const top = offsets[index] - scrollY;
+            const isActive = item.classList.contains('sticky__item-active');
+
+            if (!isActive && top <= 0) {
+              item.classList.add('sticky__item-active');
+              item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
+            }
+
+            if (isActive && top > removeOffset) {
+              item.classList.remove('sticky__item-active');
+              item.style.top = '';
+            }
+          });
+        } catch (e) {
+          console.warn('stickyReveal checkItems error:', e);
+        } finally {
+          ticking = false;
+        }
+      };
+
+      scrollHandler = () => {
+        if (!ticking) {
+          requestAnimationFrame(checkItems);
+          ticking = true;
+        }
+      };
+
+      resizeHandler = () => {
+        clearTimeout(resizeHandler._timer);
+        resizeHandler._timer = setTimeout(() => {
+          if (window.innerWidth > MOBILE_BREAKPOINT) {
+            destroy();
+          } else if (destroyed) {
+            destroyed = false;
+            init();
+          } else {
+            cacheOffsets();
+            checkItems();
+          }
+        }, 100);
+      };
+
+      window.addEventListener('scroll', scrollHandler, { passive: true });
+      window.addEventListener('resize', resizeHandler, { passive: true });
+
+      checkItems();
+    }
+
+    function destroy() {
+      destroyed = true;
+      if (scrollHandler) {
+        window.removeEventListener('scroll', scrollHandler);
+        scrollHandler = null;
+      }
+
+      document.querySelectorAll('.sticky__item-active').forEach(el => {
+        el.classList.remove('sticky__item-active');
+        el.style.top = '';
+      });
+    }
+
+    init();
+
+    return {
+      destroy,
+      reinit: () => { destroy(); destroyed = false; init(); }
+    };
   }
+
+  let globalStickyInstance = stickyReveal();
+
 
   /**
    * Инициализация Fancybox

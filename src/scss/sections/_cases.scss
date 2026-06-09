@@ -5,6 +5,8 @@
   @include dosm {
     --section-padding-top: 0;
     --section-padding-bottom: 0;
+
+    background: linear-gradient(90deg, var(--black) 0 41.8%, transparent 41.8% 70%);
   }
 
   .general {
@@ -56,15 +58,34 @@
 
   &__body {}
 
+  &__items {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    @include sm {
+      gap: 0.8rem;
+    }
+  }
+
   &__item {
     display: flex;
     flex-direction: column;
     gap: 0;
 
+    z-index: 100;
+
     @include dosm {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 2rem;
+
+      grid-column: 1/2;
+      grid-row: 1/2;
+
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
     }
 
     @include sm {
@@ -73,10 +94,17 @@
       background-color: var(--white);
       transition: all 0.3s ease;
 
+      position: relative;
+
       cursor: pointer;
     }
 
-    &.cases__item--active {
+    &.cases-item--active {
+
+      @include dosm {
+        opacity: 1;
+        visibility: visible;
+      }
 
       @include sm {
         gap: 1.5rem;
@@ -96,6 +124,17 @@
           i::before {
             content: "\e915";
           }
+        }
+      }
+
+      .cases__item-head {
+        clip-path: inset(0 0 0 calc(var(--container-padding) * -1));
+      }
+
+      .cases__item-img {
+
+        img {
+          transform: scale(1);
         }
       }
     }
@@ -186,6 +225,9 @@
         grid-column: 1/6;
 
         padding: 5rem 0 6rem;
+
+        transition: clip-path 0.8s ease;
+        clip-path: inset(0 0 0 100%);
       }
     }
 
@@ -197,6 +239,7 @@
         width: 41.93vw;
         // width: calc(100vw/(1920/805));
         height: 100%;
+        overflow: hidden;
 
         position: absolute;
         top: 0;
@@ -218,6 +261,8 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transform: scale(1.2);
+          transition: transform 0.8s ease;
         }
       }
     }
