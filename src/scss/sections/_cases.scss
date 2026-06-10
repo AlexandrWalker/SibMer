@@ -110,7 +110,6 @@
         gap: 1.5rem;
 
         .general__head {
-          grid-template-rows: 1fr auto auto;
           gap: 2rem;
         }
 
@@ -149,8 +148,6 @@
         }
 
         @include sm {
-          display: grid;
-          grid-template-rows: 1fr 0 0;
           gap: 0;
           transition: all 0.3s ease;
         }
@@ -175,10 +172,12 @@
       }
 
       &__feat {
+        position: relative;
         z-index: 2;
 
         @include sm {
           flex-direction: column;
+          flex-wrap: nowrap;
           gap: 2rem;
           overflow: hidden;
           transition: all 0.3s ease;
@@ -188,6 +187,7 @@
 
           @include sm {
             gap: 1rem;
+            width: 100%;
             padding-left: 1rem;
 
             color: var(--accent);
@@ -228,6 +228,32 @@
 
         transition: clip-path 0.8s ease;
         clip-path: inset(0 0 0 100%);
+      }
+    }
+
+    &-wrap {
+      z-index: 1;
+
+      @include sm {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        transition: all 0.3s ease;
+
+        .cases-item--active & {
+          grid-template-rows: 1fr;
+        }
+      }
+
+      &--content {
+        overflow: hidden;
+        transition: all 0.3s ease;
+
+        @include sm {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+        }
       }
     }
 

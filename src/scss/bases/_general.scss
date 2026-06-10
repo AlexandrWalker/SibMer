@@ -6,6 +6,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    min-width: 0;
 
     @include dosm {
       grid-template-columns: repeat(12, 1fr);
@@ -204,7 +205,12 @@
 
   &__btns {}
 
-  &__control {}
+  &__control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .svg {
@@ -226,7 +232,7 @@
   &__item {
 
     @include sm {
-      transition: all 0.5s ease;
+      // transition: transform 0.5s ease, top 0.5s ease, opacity 0.5s ease;
       transform: scale(1);
       position: sticky;
       top: calc(var(--header-height) + 2rem);

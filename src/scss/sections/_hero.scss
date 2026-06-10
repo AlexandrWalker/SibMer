@@ -159,7 +159,7 @@
     border-radius: 1rem;
     overflow: hidden;
     filter: drop-shadow(0px 55px 93px rgba(20, 38, 55, 0.92));
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     color: var(--white);
 

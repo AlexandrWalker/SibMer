@@ -1,0 +1,218 @@
+@use './../mixins' as *;
+
+.opinions {
+
+  .general {
+
+    &__control {
+      justify-content: center;
+
+      @include sm {
+        justify-content: flex-start;
+
+        .opinions-button-prev {
+          order: 1;
+        }
+
+        .opinions-button-next {
+          order: 2;
+        }
+
+        .btn--default {
+          order: 3;
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__body {
+    width: calc(100% + 4rem);
+    padding: 0 2rem;
+    margin-left: -2rem;
+
+    // -webkit-mask-image: linear-gradient(to right,
+    //     transparent 0%,
+    //     black 1.5rem,
+    //     black calc(100% - 1.5rem),
+    //     transparent 100%);
+    // mask-image: linear-gradient(to right,
+    //     transparent 0%,
+    //     black 1.5rem,
+    //     black calc(100% - 1.5rem),
+    //     transparent 100%);
+    // -webkit-mask-clip: no-clip;
+    // mask-clip: no-clip;
+
+    // overflow-y: visible;
+    // overflow-x: hidden;
+
+    position: relative;
+  }
+
+  &__slider {
+
+    @include dosm {
+
+      .swiper-slide {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+
+        &-visible {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    height: 100%;
+    min-height: 60rem;
+    padding: 5rem 3rem 4rem 3rem;
+    border-radius: 1rem;
+    background: var(--white);
+    box-shadow: 0px 55px 93px rgba(36, 93, 157, 0.06);
+
+    @include sm {
+      gap: 1.5rem;
+      min-height: 37.2rem;
+      padding: 1.5rem 1.5rem 3rem 1.5rem;
+    }
+
+    &-head {
+      display: flex;
+      flex-direction: row;
+      gap: 4rem;
+
+      @include sm {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+    }
+
+    &-icon {
+      max-width: 5.6rem;
+      width: auto;
+      height: 5.6rem;
+
+      @include sm {
+        max-width: 3.6rem;
+        height: 3.6rem;
+      }
+
+      img {
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+
+      @include sm {
+        gap: 1rem;
+      }
+    }
+
+    &-name {
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 110%;
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+
+    &-date {
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 120%;
+      color: var(--black-50);
+
+      @include sm {
+        font-size: 1rem;
+      }
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      @include dosm {
+        gap: 2rem;
+        padding-left: 9.6rem;
+      }
+    }
+
+    &-text {
+      // -webkit-line-clamp: 4;
+      // display: -webkit-box;
+      // -webkit-box-orient: vertical;
+      // -o-text-overflow: clip;
+      // text-overflow: clip;
+      // overflow: hidden;
+
+      color: var(--black-50);
+
+      @include sm {
+        font-size: 1.2rem;
+      }
+    }
+
+    &-btn {
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 120%;
+      text-decoration-line: underline;
+      color: var(--accent);
+
+      @include sm {
+        font-size: 1rem;
+      }
+    }
+
+    &-foot {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: auto;
+
+      @include dosm {
+        padding-left: 9.6rem;
+      }
+    }
+
+    &-subtitle {
+      line-height: 110%;
+      color: var(--black-50);
+    }
+
+    &-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    &-tag {
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 110%;
+    }
+  }
+}

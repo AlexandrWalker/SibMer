@@ -30,15 +30,26 @@
       gap: 0.8rem;
     }
 
+    &.anim-animated {
+
+      @include dosm {
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+
     &::after {
       content: "";
       display: block;
-      width: 100%;
+      width: 0;
       border: 0.2rem dashed var(--accent);
+      transition: width 1.6s linear;
 
       position: absolute;
       top: 50%;
-      right: 0;
+      left: 0;
       z-index: 1;
       transform: translateY(-50%);
 
@@ -54,7 +65,7 @@
     padding: 3rem 1.8rem 3rem 3rem;
     border-radius: 1rem;
     background-color: var(--white);
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     position: relative;
     z-index: 2;

@@ -2,32 +2,29 @@
 
 .swiper {
   max-width: 100%;
+  width: 100%;
+  height: 100%;
   overflow: visible;
 
   &-slide {
     height: auto;
   }
 
-  &-buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
+  &-buttons {}
 
   &-button {
 
-    &-prev {
-      left: -15.7rem;
+    // &-prev {
+    //   left: -15.7rem;
 
-      i {
-        transform: scale(-1, -1);
-      }
-    }
+    //   i {
+    //     transform: scale(-1, -1);
+    //   }
+    // }
 
-    &-next {
-      right: -15.7rem;
-    }
+    // &-next {
+    //   right: -15.7rem;
+    // }
 
     &-disabled {
       opacity: 0.5 !important;
@@ -67,31 +64,26 @@
 
 [class^="swiper-button-"],
 [class*=" swiper-button-"] {
-  width: 13.2rem;
-  height: 13.2rem;
-  border-radius: 50%;
+  width: 5.6rem;
+  height: 5.6rem;
   margin: 0;
+  border-radius: 50%;
+  background-color: var(--gray);
   transition: all 0.3s ease;
 
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  color: var(--black);
 
-  @include sm {
-    width: 9rem;
-    height: 9rem;
-  }
+  position: static;
+  transform: unset;
+
+  @include sm {}
 
   &::after {
     display: none;
   }
 
   i {
-    --font-size: 13.2rem;
-
-    @include sm {
-      --font-size: 9rem;
-    }
+    --font-size: 5.6rem;
   }
 
   .swiper-navigation-icon {
@@ -105,16 +97,18 @@
 }
 
 .f-button.is-close-button {
-  --f-close-button-width: 6rem;
-  --f-close-button-height: 6rem;
+  --f-close-button-width: 4.5rem;
+  --f-close-button-height: 4.5rem;
   --f-close-border-radius: 50%;
   --f-close-button-color: var(--white);
   --f-close-button-hover-color: var(--white);
-  --f-close-button-bg: #000000;
-  --f-close-button-hover-bg: #000000;
-  --f-close-button-active-bg: #000000;
+  --f-close-button-bg: var(--accent);
+  --f-close-button-hover-bg: var(--black);
+  --f-close-button-active-bg: var(--black);
   // --f-close-button-svg-width: 2.2rem;
   // --f-close-button-svg-height: 2.2rem;
+  // --f-button-svg-width: 2.4rem;
+  // --f-button-svg-height: 2.4rem;
   --f-button-svg-stroke-width: 0.4rem;
 
   display: flex;
@@ -122,8 +116,8 @@
   align-items: center;
   flex-shrink: 0;
 
-  top: 4rem;
-  right: 4rem;
+  top: 2.5rem;
+  right: 2.5rem;
 
   @include sm {
     --f-close-button-width: 4rem;
@@ -132,6 +126,10 @@
 
     top: 2rem;
     right: 2rem;
+  }
+
+  svg {
+    stroke-linecap: round !important;
   }
 }
 

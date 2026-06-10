@@ -2,4 +2,44 @@
 
 .popup {
   display: none;
+  padding: 6rem;
+  border-radius: 1rem;
+  background-color: var(--gray);
+  max-width: 61.3rem;
+  width: 100%;
+
+  &--success {
+
+    .popup__content {
+      gap: 2rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 4rem;
+    line-height: 130%;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 143%;
+    color: var(--black-50);
+  }
 }

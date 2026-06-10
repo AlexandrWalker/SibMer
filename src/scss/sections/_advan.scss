@@ -69,6 +69,8 @@
     background-color: var(--white);
     border-radius: 1rem;
 
+    will-change: transform, opacity;
+
     @include sm {
       padding: 1rem 2rem 1.5rem 1rem;
       min-height: 13.4rem;
@@ -77,6 +79,8 @@
     &--end {
       padding: 3rem 4rem 4rem 4rem;
       background-color: var(--black);
+      transition: none;
+      cursor: pointer;
 
       @include sm {
         padding: 1rem 3rem 1.5rem 2rem;

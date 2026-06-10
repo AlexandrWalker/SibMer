@@ -37,8 +37,9 @@
     border-radius: 1rem;
     background-color: var(--black-50);
     box-shadow: 0px 55px 93px rgba(36, 93, 157, 0.06);
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, min-height 0.3s ease, color 0.3s ease;
 
+    cursor: pointer;
     color: var(--white);
 
     position: relative;
@@ -49,19 +50,41 @@
       padding: 2rem 1.5rem 7rem 1.5rem;
     }
 
-    &:hover {
+    // &:hover {
+
+    //   @include dosm {
+    //     background-color: var(--white);
+    //     min-height: 78.9rem;
+
+    //     color: var(--black);
+
+    //     @include sm {
+    //       min-height: unset;
+    //     }
+
+    //     .btn {
+    //       opacity: 1;
+    //     }
+    //   }
+    // }
+
+    &.accordion-item--active {
+
+      @include dosm {
+        min-height: 78.9rem;
+      }
+
+      // @include sm {
       background-color: var(--white);
-      min-height: 78.9rem;
+      min-height: unset;
 
       color: var(--black);
-
-      @include sm {
-        min-height: unset;
-      }
 
       .btn {
         opacity: 1;
       }
+
+      // }
     }
 
     &-title {
@@ -116,18 +139,27 @@
         height: 4.6rem;
       }
 
-      .services__item:hover & {
+      // .services__item:hover & {
+
+      //   @include dosm {
+      //     opacity: 0;
+      //   }
+      // }
+
+      .accordion-item--active & {
 
         @include dosm {
           opacity: 0;
         }
 
         i {
-          
-          &::before {
 
-            @include sm {
+          @include sm {
+
+            &::before {
               content: "\e915";
+
+              transform: rotate(180deg);
             }
           }
         }
@@ -138,16 +170,28 @@
         @include sm {
           --font-size: 3rem;
         }
+
+        &::before {
+
+          @include sm {
+            transition: all 0.3s ease;
+          }
+        }
       }
     }
 
     .btn {
       opacity: 0;
+      pointer-events: none;
 
       position: absolute;
       bottom: 3rem;
       left: 3rem;
       z-index: 1;
+
+      .accordion-item--active & {
+        pointer-events: all;
+      }
 
       @include sm {
         display: none;
@@ -155,15 +199,18 @@
     }
 
     &-content {
-      display: grid;
-      grid-template-rows: 0fr;
-      overflow: hidden;
-      transition: all 0.3s ease;
+      // display: grid;
+      // grid-template-rows: 0fr;
+      // overflow: hidden;
+      // transition: all 0.3s ease;
       height: 100%;
 
-      .services__item:hover & {
-        grid-template-rows: 1fr;
-      }
+      // .services__item:hover & {
+
+      //   @include dosm {
+      //     grid-template-rows: 1fr;
+      //   }
+      // }
     }
 
     &-wrap {

@@ -1,3 +1,53 @@
 @use './../mixins' as *;
 
-.plate {}
+.plate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  width: fit-content;
+  padding: 1.2rem 3rem;
+  margin-left: auto;
+  border-radius: 1rem;
+  background-color: var(--accent);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.5s ease;
+
+  position: sticky;
+  right: 4rem;
+  left: auto;
+  bottom: calc(2rem + env(safe-area-inset-bottom, 20px));
+  z-index: 1000;
+
+  @include sm {
+    right: 1.5rem;
+    left: 1.5rem;
+  }
+
+  &__text {
+    line-height: 100%;
+    color: var(--white);
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+    background-color: var(--white);
+
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+}

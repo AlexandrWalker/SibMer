@@ -1,0 +1,103 @@
+@use './../mixins' as *;
+
+.faq {
+  background-color: var(--white);
+
+  .general {
+
+    &__head {
+
+      @include dosm {
+        grid-column: 1 / 5;
+      }
+    }
+
+    &__body {
+
+      @include dosm {
+        grid-column: 5 / 13;
+      }
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include sm {
+      gap: 0.8rem;
+    }
+  }
+
+  &__item {
+    border-radius: 1rem;
+    padding: 3.3rem 11.7rem 3.6rem 2rem;
+    background-color: var(--gray);
+
+    position: relative;
+
+    @include sm {
+      padding: 2rem 2.8rem 2rem 1.5rem;
+    }
+
+    &-head {
+      cursor: pointer;
+
+      @include sm {
+        padding-right: 2rem;
+      }
+    }
+
+    &-title {
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 130%;
+
+      transition: font-weight 0.3s ease;
+
+      @include sm {
+        font-weight: 700;
+        font-size: 1.4rem;
+      }
+
+      .accordion-item--active & {
+
+        @include dosm {
+          font-weight: 700;
+        }
+      }
+    }
+
+    &-icon {
+      color: var(--accent);
+
+      position: absolute;
+      top: 3.4rem;
+      right: 3.3rem;
+      z-index: 1;
+
+      @include sm {
+        top: 1.5rem;
+        right: 0.8rem;
+      }
+    }
+
+    &-body {}
+
+    &-content {}
+
+    &-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      color: var(--black-50);
+
+      @include sm {
+        gap: 1rem;
+      }
+    }
+  }
+
+}

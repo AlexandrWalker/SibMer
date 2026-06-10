@@ -1,79 +1,263 @@
-<div class="popup" id="popup-1">
+<div id="popup-1" class="popup">
   <div class="popup__wrap" data-lenis-prevent>
     <div class="popup__content">
       <div class="popup__head">
         <div class="popup__title">
-          Брендинг <br>
-          и айдентика
+          Отправьте заявку
         </div>
       </div>
       <div class="popup__body">
-        <div class="popup__list">
-          <ul>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Нейминг
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Позиционирование, УТП
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Фирменный стиль 
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Брендбук 
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Упаковка 
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Графический дизайн 
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="popup__list">
-          <ul>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Моушен-дизайн 
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                ИИ-дизайн 
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Pos-материалы 
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Презентации 
-              </a>
-            </li>
-            <li>
-              <a class="underline" href="/sovok/404.html">
-                Мерч 
-              </a>
-            </li>
-          </ul>
+        <form class="form-inner" action="#">
+          <div class="form-body">
+
+            <div class="form-block">
+              <div class="form-title">
+                Ваши данные
+              </div>
+              <div class="form-content">
+                <div class="form-group">
+                  <div class="form-icon">
+                    <i class="icon-person"></i>
+                  </div>
+                  <input class="form-input" type="text" name="popup_callback_name" id="" placeholder="Имя">
+                </div>
+                <div class="form-group">
+                  <div class="form-icon">
+                    <i class="icon-phone"></i>
+                  </div>
+                  <input class="form-input" type="tel" name="popup_callback_tel" id="" placeholder="Телефон">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-block">
+              <div class="form-title">
+                Маршрут
+              </div>
+              <div class="form-content">
+                <div class="form-group">
+                  <div class="form-icon">
+                    <i class="icon-otkuda"></i>
+                  </div>
+                  <input class="form-input" type="text" name="popup_callback_otkuda" id="" placeholder="Откуда">
+                </div>
+                <div class="form-group">
+                  <div class="form-icon">
+                    <i class="icon-kuda"></i>
+                  </div>
+                  <input class="form-input" type="text" name="popup_callback_kuda" id="" placeholder="Куда">
+                </div>
+              </div>
+
+              <div class="form-items form-col-2">
+                <div class="form-item">
+                  <div class="form-group">
+                    <label class="form-label">
+                      Общий вес груза
+                    </label>
+                  </div>
+                  <div class="form-group form-total form-total-weight">
+                    <input class="form-input" type="text" name="popup_callback_weight" id="" placeholder="0">
+                  </div>
+                </div>
+                <div class="form-item">
+                  <div class="form-group">
+                    <label class="form-label">
+                      Общий объём груза
+                    </label>
+                  </div>
+                  <div class="form-group form-total form-total-volume">
+                    <input class="form-input" type="text" name="popup_callback_volume" id="" placeholder="0">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-foot">
+            <button class="btn form-btn" data-fancybox href="#popup-3">
+              <div class="btn-text">
+                Отправить
+              </div>
+            </button>
+            <div class="form-privacy">
+              <div class="form-group">
+                <label class="form-checkbox-label">
+                  <input class="form-checkbox-input" name="popup_callback_privacy" type="checkbox">
+                  <div class="form-checkbox-item"></div>
+                  <div class="form-checkbox-text">
+                    Я согласен на обработку персональных данных
+                  </div>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="form-checkbox-label">
+                  <input class="form-checkbox-input" name="popup_callback_ads" type="checkbox">
+                  <div class="form-checkbox-item"></div>
+                  <div class="form-checkbox-text">
+                    Я согласен на рекламные уведомления
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="popup-2" class="popup">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+      <div class="popup__head">
+        <div class="popup__title">
+          Бесплатная консультация
         </div>
       </div>
-      <div class="popup__cover">
-        <img src="./../../images/temp/popup-cover-1.svg" alt="">
+      <div class="popup__body">
+        <form class="form-inner" action="#">
+          <div class="form-body">
+
+            <div class="form-block">
+              <div class="form-title">
+                Ваши данные
+              </div>
+              <div class="form-content">
+                <div class="form-group">
+                  <div class="form-icon">
+                    <i class="icon-person"></i>
+                  </div>
+                  <input class="form-input" type="text" name="popup_consultation_name" id="" placeholder="Имя">
+                </div>
+                <div class="form-group">
+                  <div class="form-icon">
+                    <i class="icon-phone"></i>
+                  </div>
+                  <input class="form-input" type="tel" name="popup_consultation_tel" id="" placeholder="Телефон">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-foot">
+            <button class="btn form-btn" data-fancybox href="#popup-3">
+              <div class="btn-text">
+                Отправить
+              </div>
+            </button>
+            <div class="form-privacy">
+              <div class="form-group">
+                <label class="form-checkbox-label">
+                  <input class="form-checkbox-input" name="popup_consultation_privacy" type="checkbox">
+                  <div class="form-checkbox-item"></div>
+                  <div class="form-checkbox-text">
+                    Я согласен на обработку персональных данных
+                  </div>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="form-checkbox-label">
+                  <input class="form-checkbox-input" name="popup_consultation_ads" type="checkbox">
+                  <div class="form-checkbox-item"></div>
+                  <div class="form-checkbox-text">
+                    Я согласен на рекламные уведомления
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="popup-3" class="popup popup--success">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+      <div class="popup__head">
+        <div class="popup__title">
+          Бесплатная консультация
+        </div>
+      </div>
+      <div class="popup__body">
+        <div class="popup__text">
+          <p>
+            В ближайшее время наш менеджер свяжется с вами!
+          </p>
+        </div>
+        <button class="btn">
+          <div class="btn-text">
+            На главную
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="popup-4" class="popup">
+  <div class="popup__wrap" data-lenis-prevent>
+    <div class="popup__content">
+      <div class="popup__head">
+        <div class="popup__title">
+          Бесплатная консультация
+        </div>
+      </div>
+      <div class="popup__body">
+        <form class="form-inner" action="#">
+          <div class="form-body">
+
+            <div class="form-block">
+              <div class="form-title">
+                Ваши данные
+              </div>
+              <div class="form-content">
+                <div class="form-group">
+                  <div class="form-icon">
+                    <i class="icon-person"></i>
+                  </div>
+                  <input class="form-input" type="text" name="popup_consultation_name" id="" placeholder="Имя">
+                </div>
+                <div class="form-group">
+                  <div class="form-icon">
+                    <i class="icon-phone"></i>
+                  </div>
+                  <input class="form-input" type="tel" name="popup_consultation_tel" id="" placeholder="Телефон">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-foot">
+            <button class="btn form-btn" data-fancybox href="#popup-3">
+              <div class="btn-text">
+                Отправить
+              </div>
+            </button>
+            <div class="form-privacy">
+              <div class="form-group">
+                <label class="form-checkbox-label">
+                  <input class="form-checkbox-input" name="popup_consultation_privacy" type="checkbox">
+                  <div class="form-checkbox-item"></div>
+                  <div class="form-checkbox-text">
+                    Я согласен на обработку персональных данных
+                  </div>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="form-checkbox-label">
+                  <input class="form-checkbox-input" name="popup_consultation_ads" type="checkbox">
+                  <div class="form-checkbox-item"></div>
+                  <div class="form-checkbox-text">
+                    Я согласен на рекламные уведомления
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

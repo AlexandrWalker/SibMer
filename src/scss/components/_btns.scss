@@ -90,4 +90,22 @@
       }
     }
   }
+
+  &--default {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5.6rem;
+    padding: 1rem 3rem;
+    background-color: var(--accent);
+    border-radius: 3.3rem;
+    transition: color 0.3s ease;
+
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 125%;
+    text-align: center;
+    color: var(--white);
+    cursor: pointer;
+  }
 }
