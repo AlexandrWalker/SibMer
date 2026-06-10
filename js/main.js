@@ -1173,33 +1173,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
       cacheOffsets();
 
+      // const checkItems = () => {
+      //   if (destroyed || window.innerWidth > MOBILE_BREAKPOINT) return;
+
+      //   const scrollY = window.scrollY;
+
+      //   try {
+      //     items.forEach((item, index) => {
+      //       if (index === items.length - 1) return;
+
+      //       const top = offsets[index] - scrollY;
+      //       const isActive = item.classList.contains('sticky__item-active');
+
+      //       if (!isActive && top <= 0) {
+      //         item.classList.add('sticky__item-active');
+      //         item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
+      //       }
+
+      //       if (isActive && top > removeOffset) {
+      //         item.classList.remove('sticky__item-active');
+      //         item.style.top = '';
+      //       }
+      //     });
+      //   } catch (e) {
+      //     console.warn('stickyReveal checkItems error:', e);
+      //   } finally {
+      //     ticking = false;
+      //   }
+      // };
+
       const checkItems = () => {
         if (destroyed || window.innerWidth > MOBILE_BREAKPOINT) return;
 
         const scrollY = window.scrollY;
+        // Получаем текущую высоту хедера из CSS переменной (в пикселях)
+        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 0;
+        // Базовый отступ (2rem = 20px)
+        const baseOffset = 20;
 
-        try {
-          items.forEach((item, index) => {
-            if (index === items.length - 1) return;
+        items.forEach((item, index) => {
+          // Рассчитываем "точку прилипания" для текущего индекса
+          // header + 2rem + (index * 2rem)
+          const stickyThreshold = headerHeight + baseOffset + (index * 20);
 
-            const top = offsets[index] - scrollY;
-            const isActive = item.classList.contains('sticky__item-active');
+          // Смотрим, где сейчас находится сам элемент относительно экрана
+          const currentItemTop = offsets[index] - scrollY;
+          const isActive = item.classList.contains('sticky__item-active');
 
-            if (!isActive && top <= 0) {
-              item.classList.add('sticky__item-active');
-              item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
-            }
+          // Активация: если верх карточки дотронулся до своей будущей "липкой" позиции
+          if (!isActive && currentItemTop <= stickyThreshold) {
+            item.classList.add('sticky__item-active');
+            item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
+          }
 
-            if (isActive && top > removeOffset) {
-              item.classList.remove('sticky__item-active');
-              item.style.top = '';
-            }
-          });
-        } catch (e) {
-          console.warn('stickyReveal checkItems error:', e);
-        } finally {
-          ticking = false;
-        }
+          // Деактивация: возвращаем в поток, если прокрутили обратно
+          // Добавляем небольшой запас (removeOffset), чтобы избежать мерцания
+          if (isActive && currentItemTop > stickyThreshold + removeOffset) {
+            item.classList.remove('sticky__item-active');
+            item.style.top = '';
+          }
+        });
+
+        ticking = false;
       };
 
       scrollHandler = () => {
