@@ -132,16 +132,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -2312,8 +2312,8 @@ body {
 }
 
 .footer__mid-item a {
-  background-image: -o-linear-gradient(bottom, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.1rem, transparent), color-stop(0, currentColor), color-stop(0.24rem, currentColor), color-stop(0, transparent), to(transparent));
+  background-image: -o-linear-gradient(bottom, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
   background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
   background-size: 0;
   -webkit-transition: 0.3s;
@@ -2384,8 +2384,8 @@ body {
 }
 
 .footer__bot-made a {
-  background-image: -o-linear-gradient(bottom, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.1rem, transparent), color-stop(0, currentColor), color-stop(0.24rem, currentColor), color-stop(0, transparent), to(transparent));
+  background-image: -o-linear-gradient(bottom, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
   background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
   background-size: 0;
   -webkit-transition: 0.3s;
@@ -2829,7 +2829,7 @@ body {
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   position: absolute;
-  bottom: -6.4rem;
+  bottom: -5.6rem;
   z-index: 2;
 }
 
@@ -3528,8 +3528,8 @@ canvas {
 .advan {
   --section-padding-top: 7rem;
   --section-padding-bottom: 7rem;
-  background: -o-linear-gradient(left, var(--accent) 0 36%, transparent 36% 70%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0, var(--accent)), color-stop(36%, transparent));
+  background: -o-linear-gradient(left, var(--accent) 0 36%, transparent 36% 70%);
   background: linear-gradient(90deg, var(--accent) 0 36%, transparent 36% 70%);
 }
 
@@ -4493,8 +4493,8 @@ canvas {
   display: block;
   width: 1.5rem;
   height: 100%;
-  background: -o-linear-gradient(right, transparent 0%, var(--white) 100%);
   background: -webkit-gradient(linear, right top, left top, from(transparent), to(var(--white)));
+  background: -o-linear-gradient(right, transparent 0%, var(--white) 100%);
   background: linear-gradient(to left, transparent 0%, var(--white) 100%);
   pointer-events: none;
   position: absolute;
@@ -5232,8 +5232,8 @@ canvas {
 
   .about {
     padding: 0;
-    background: -o-linear-gradient(left, var(--black) 0 50%, var(--accent) 50% 100%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0, var(--black)), color-stop(50%, var(--accent)));
+    background: -o-linear-gradient(left, var(--black) 0 50%, var(--accent) 50% 100%);
     background: linear-gradient(90deg, var(--black) 0 50%, var(--accent) 50% 100%);
   }
 
@@ -5306,8 +5306,8 @@ canvas {
   .cases {
     --section-padding-top: 0;
     --section-padding-bottom: 0;
-    background: -o-linear-gradient(left, var(--black) 0 41.8%, transparent 41.8% 70%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0, var(--black)), color-stop(41.8%, transparent));
+    background: -o-linear-gradient(left, var(--black) 0 41.8%, transparent 41.8% 70%);
     background: linear-gradient(90deg, var(--black) 0 41.8%, transparent 41.8% 70%);
   }
 
@@ -5986,8 +5986,8 @@ canvas {
   .advan {
     --section-padding-top: 4rem;
     --section-padding-bottom: 4rem;
-    background: -o-linear-gradient(top, var(--accent) 0 37.5%, transparent 37.5% 70%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0, var(--accent)), color-stop(37.5%, transparent));
+    background: -o-linear-gradient(top, var(--accent) 0 37.5%, transparent 37.5% 70%);
     background: linear-gradient(180deg, var(--accent) 0 37.5%, transparent 37.5% 70%);
   }
 

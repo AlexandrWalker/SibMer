@@ -1438,7 +1438,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Настройка скролла
       scrollTrigger: {
         trigger: items, // Родитель всей сетки (замените на ваш класс)
-        start: "top 85%", // Анимация начнется, когда верх блока достигнет 85% высоты экрана
+        start: "top 90%", // Анимация начнется, когда верх блока достигнет 85% высоты экрана
         // toggleActions: "play none none none" // Проигрывать при скролле вниз, откатывать при скролле вверх
         onEnter: () => items.classList.add('anim-animated'),
       }
