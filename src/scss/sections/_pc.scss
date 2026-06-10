@@ -1,7 +1,26 @@
 @use './../mixins' as *;
 
 .pc {
-  overflow: visible;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 242.7rem;
+    height: 115.4rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMTU3IiB2aWV3Qm94PSIwIDAgMTkyMCAxMTU3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHBhdGggZD0iTTIxNTkuMjggODgxLjU0NkMyMDE0Ljc5IDEwNDMgMTY0NC4zMiAxMzAyLjY5IDEzMTguNDIgMTA0OS44QzEyNDIuNjkgOTkzLjcxNSAxMjAzLjUxIDkyNC44ODQgMTAyOC41NSA5NzMuMzIxQzk4OS4zODEgOTc1Ljg3IDk2NS44NzggMTAwMS4zNiA4NzQuNDggODIwLjM2MkM3ODMuMDgxIDYzOS4zNjEgNTI5Ljc3NiAzNTYuMzg3IDEyLjcyMTYgNTg4LjM3NUMtNTA0LjMzMyA4MjAuMzYyIC0yMDYuNjM1IC0xMDcuNTg4IDEwOS4zNDMgMTIuMjI5NkMyMjQuMjQ0IDUwLjQ2OTMgMzIwLjg2NSAxNzcuOTM1IDQ2NC40OTEgMTY1LjE4OEM1MzkuNjk5IDE0Mi43NTQgNTkxLjU3OSA5OC4wNTYyIDYwOC4xMTggNzguNTExNSIgc3Ryb2tlPSIjMTQyNjM3IiBzdHJva2Utb3BhY2l0eT0iMC4xIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPg0KPC9zdmc+DQo=);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    pointer-events: none;
+
+    position: absolute;
+    right: -24rem;
+    bottom: 12.38rem;
+
+    @include sm {
+      display: none;
+    }
+  }
 
   .general {
 
