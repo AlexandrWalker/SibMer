@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gsap.ticker.lagSmoothing(0);
 
+    // Синхронизируем Lenis со ScrollTrigger
+    // Без этого ScrollTrigger читает нативный scrollY а Lenis работает со своим
+    lenis.on('scroll', ScrollTrigger.update);
+
     // Плавный скролл к целевому элементу через Lenis
     function scrollToTarget(target) {
       lenis.scrollTo(target, {
@@ -443,6 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sectionsSelector: 'section',
       firstSectionSelector: null,      // null = используем высоту хедера
       footerSelector: '.footer',
+      innerBlockSelector: '.header__top',
 
       // 
       // ТЕМА (светлая / тёмная секция под хедером)
@@ -492,9 +497,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // 
       // АНИМАЦИЯ ВЫСОТЫ ХЕДЕРА ПРИ СКРОЛЛЕ
       // 
-      animateHeight: false,                // true = менять высоту, false = не менять
-      heightMultiplier: 1,              // во сколько раз уменьшить (0.7 = 63.53%)
-      // heightMultiplier: 0.342,
+      animateHeight: true,                // true = менять высоту, false = не менять
+      // heightMultiplier: 1,              // во сколько раз уменьшить (0.7 = 63.53%)
+      heightMultiplier: 0.342,
 
       // Множитель высоты для мобильной версии
       // Используется когда ширина окна меньше mobileBreakpoint
@@ -589,7 +594,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const initialStyles = {
       yPercent: 0,
       // Высоту всегда устанавливаем чтобы GSAP знал начальное значение
-      height: headerHeight,
+      // height: headerHeight,
+      height: () => `${header.offsetHeight}px`,
     };
 
     if (CONFIG.animateBg) {
@@ -629,6 +635,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Запускаем scrub только если есть хотя бы одно включённое свойство
     const hasScrubAnimation = CONFIG.animateBg || CONFIG.animateShadow || CONFIG.animateHeight || CONFIG.hideFixed;
 
+    // if (hasScrubAnimation) {
+    //   const tlScrub = gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: document.documentElement,
+    //       start: 'top top',
+    //       end: `+=${scrollZone}`,
+    //       scrub: true,
+    //       onEnter: () => htmlEl.classList.add(CONFIG.classFixed),
+    //       onLeaveBack: () => {
+    //         htmlEl.classList.remove(CONFIG.classFixed);
+    //         htmlEl.classList.remove(CONFIG.classOffTop);
+    //       },
+    //     }
+    //   });
+
+    //   tlScrub.to(header, animateTo);
+    // }
+
+    // Находим внутренний блок
+    const innerBlock = header.querySelector(CONFIG.innerBlockSelector);
+
+    // Рассчитываем начальную высоту внутреннего блока
+    const innerHeight = innerBlock ? innerBlock.offsetHeight : 0;
+
     if (hasScrubAnimation) {
       const tlScrub = gsap.timeline({
         scrollTrigger: {
@@ -636,6 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
           start: 'top top',
           end: `+=${scrollZone}`,
           scrub: true,
+          invalidateOnRefresh: true,
           onEnter: () => htmlEl.classList.add(CONFIG.classFixed),
           onLeaveBack: () => {
             htmlEl.classList.remove(CONFIG.classFixed);
@@ -644,7 +675,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      tlScrub.to(header, animateTo);
+      // Анимируем основной хедер
+      tlScrub.to(header, animateTo, 0); // Параметр 0 значит "начать в начале таймлайна"
+
+      // Анимируем внутренний блок, если он найден
+      if (innerBlock && CONFIG.animateHeight && !isMobile()) {
+        tlScrub.to(innerBlock, {
+          // height: innerHeight * getHeightMultiplier(),
+          // height: () => `${(innerBlock.offsetHeight * getHeightMultiplier())}px`,
+          height: '0px',
+          opacity: 0,
+          ease: 'none'
+        }, 0); // 0 — чтобы анимация шла одновременно с хедером
+      }
     }
 
     // 
@@ -782,31 +825,51 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(resizeTimer);
 
         resizeTimer = setTimeout(() => {
-          const currentIsMobile = isMobile();
-
-          // Реагируем только если реально пересекли брейкпоинт
-          // Иначе при каждом мини-ресайзе будем без нужды пересобирать анимацию
-          if (currentIsMobile === lastIsMobile) return;
-          lastIsMobile = currentIsMobile;
-
-          // Находим scrub-таймлайн нашего хедера и обновляем целевую высоту
-          // ScrollTrigger.getAll() возвращает все триггеры на странице -
-          // фильтруем по trigger === document.documentElement
-          const newHeight = headerHeight * getHeightMultiplier();
+          // 1. Рассчитываем множитель
+          const multiplier = getHeightMultiplier();
 
           ScrollTrigger.getAll().forEach(st => {
             // Ищем именно scrub-триггер хедера
             if (st.trigger === document.documentElement && st.animation) {
-              // Меняем целевое значение height в текущем твине
+
+              // Очищаем инлайновые стили перед пересчетом, 
+              // чтобы замерить реальную высоту из CSS
+              header.style.height = '';
+              if (innerBlock) innerBlock.style.height = '';
+
+              // 2. Обновляем основной хедер (первый элемент в таймлайне)
               const tween = st.animation.getChildren()[0];
               if (tween && tween.vars) {
-                tween.vars.height = newHeight;
-                // Инвалидируем чтобы GSAP перечитал from/to значения
+                // Рассчитываем целевую высоту в rem (ваша формула / 10)
+                const h = header.offsetHeight * multiplier;
+                tween.vars.height = `${h}px`;
+
+                // Заставляем GSAP забыть старые значения и подхватить новые
                 tween.invalidate();
-                st.refresh();
               }
+
+              // 3. Обновляем внутренний блок (второй элемент в таймлайне)
+              const innerTween = st.animation.getChildren()[1];
+              if (innerTween && innerTween.vars) {
+                if (isMobile()) {
+                  // На мобилке возвращаем всё как было в CSS
+                  innerTween.vars.height = "auto";
+                  innerTween.vars.opacity = 1;
+                } else {
+                  // На десктопе принудительно ставим жесткий ноль
+                  innerTween.vars.height = "0px";
+                  innerTween.vars.paddingTop = "0px";
+                  innerTween.vars.paddingBottom = "0px";
+                  innerTween.vars.opacity = 0;
+                }
+                innerTween.invalidate();
+              }
+
+              // Пересчитываем позиции всех триггеров на странице
+              st.refresh();
             }
           });
+
         }, 200);
       }, { passive: true });
     }
@@ -866,6 +929,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  // (function () {
+  //   const html = document.documentElement;
+  //   const header = document.querySelector('.header');
+
+  //   window.addEventListener('scroll', () => {
+  //     const scrollPosition = () => window.pageYOffset || document.documentElement.scrollTop;
+  //     console.log(scrollPosition());
+  //     if (scrollPosition() >= 5) {
+  //       // setTimeout(() => {
+  //       //   html.classList.add('header-fixed');
+  //       // }, 100);
+  //       html.classList.add('header-fixed');
+  //     } else {
+  //       // setTimeout(() => {
+  //       //   html.classList.remove('header-fixed');
+  //       // }, 100);
+  //       html.classList.remove('header-fixed');
+  //     }
+  //   })
+  // })();
+
+  /**
+   * Функция для запуска svg анимации
+   */
   (function () {
     const svgBlocks = document.querySelectorAll('.svg-block');
     if (svgBlocks.length) {
@@ -957,6 +1044,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  /**
+   * Функция для блока кейсов
+   */
   (function () {
     const mobileBreakpoint = 600;
     const casesJs = document.querySelector('.cases--js');
@@ -969,22 +1059,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (casesTabsItemsJs.length) {
       casesTabsItemsJs.forEach(tab => {
-
         tab.addEventListener('click', () => {
-          casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
+          console.log('scrollHeight before:', document.body.scrollHeight);
 
+          casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
           tab.classList.add('tabs--active');
 
           const data = tab.dataset.value;
-          console.log(data);
-
           const casesItem = document.querySelector(`[data-cases="${data}"]`);
-          console.log(casesItem);
 
           casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
           casesItem.classList.add('cases-item--active');
-        })
 
+          // После переключения таба высота страницы могла измениться
+          // Компенсируем позицию скролла и обновляем ScrollTrigger
+          const scrollBefore = window.lenis ? window.lenis.scroll : window.scrollY;
+          const heightBefore = document.body.scrollHeight;
+
+          requestAnimationFrame(() => {
+            const heightAfter = document.body.scrollHeight;
+            const heightDelta = heightAfter - heightBefore;
+
+            if (heightDelta !== 0 && window.lenis) {
+              window.lenis.stop();
+              window.lenis.scrollTo(scrollBefore + heightDelta, {
+                immediate: true,
+                force: true,
+              });
+              requestAnimationFrame(() => {
+                ScrollTrigger.refresh();
+                window.lenis.start();
+              });
+            } else {
+              ScrollTrigger.refresh();
+            }
+          });
+
+          setTimeout(() => {
+            console.log('scrollHeight after:', document.body.scrollHeight);
+          }, 50);
+        });
       });
     }
 
@@ -995,21 +1109,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const isMobile = () => window.innerWidth < mobileBreakpoint;
 
-      if (isMobile) {
+      if (isMobile()) {
         casesItemsJs.forEach(item => {
-
           item.addEventListener('click', () => {
+            // Запоминаем позицию и высоту ДО изменения
+            const scrollBefore = window.lenis ? window.lenis.scroll : window.scrollY;
+            const heightBefore = document.body.scrollHeight;
+
             if (item.classList.contains('cases-item--active')) {
               item.classList.remove('cases-item--active');
             } else {
-              // casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
               item.classList.add('cases-item--active');
             }
-          })
+
+            // Ждём перерисовки браузером после изменения класса
+            requestAnimationFrame(() => {
+              const heightAfter = document.body.scrollHeight;
+              const heightDelta = heightAfter - heightBefore;
+
+              if (heightDelta !== 0 && window.lenis) {
+                window.lenis.stop();
+                window.lenis.scrollTo(scrollBefore + heightDelta, {
+                  immediate: true,
+                  force: true,
+                });
+                requestAnimationFrame(() => {
+                  ScrollTrigger.refresh();
+                  window.lenis.start();
+                });
+              } else {
+                ScrollTrigger.refresh();
+              }
+            });
+          });
         });
       }
     }
-
   })();
 
   /**
@@ -1118,13 +1253,823 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let globalStickyInstance = stickyReveal();
 
+  /**
+   * Функция аккордиона
+   */
+  (function accordionFunc() {
+    const accordionContainers = document.querySelectorAll('.accordion-items');
+    if (!accordionContainers.length) return;
+
+    // Один глобальный обработчик для закрытия при клике вне аккордеона
+    document.addEventListener('click', (e) => {
+      accordionContainers.forEach(container => {
+        const items = container.querySelectorAll('.accordion-item');
+        const activeClass = 'accordion-item--active';
+        items.forEach(item => {
+          if (!e.composedPath().includes(item)) {
+            item.classList.remove(activeClass);
+            container.classList.remove('activated');
+          }
+        });
+      });
+    });
+
+    accordionContainers.forEach(accordionContainer => {
+      const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
+      const activeClass = 'accordion-item--active';
+
+      // Закрытие при Escape
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          accordionItems.forEach(item => item.classList.remove(activeClass));
+          accordionContainer.classList.remove('activated');
+        }
+      });
+
+      accordionItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          // Закрываем другие открытые элементы
+          accordionItems.forEach(i => {
+            if (i !== item) i.classList.remove(activeClass);
+          });
+
+          // Переключаем текущий
+          item.classList.toggle(activeClass);
+
+          // Обновляем ScrollTrigger после завершения CSS transition
+          // Задержка должна совпадать с duration transition аккордеона в CSS
+          setTimeout(() => {
+            ScrollTrigger.refresh();
+          }, 400);
+
+          // Управляем классом контейнера
+          if (item.classList.contains(activeClass)) {
+            accordionContainer.classList.add('activated');
+          } else {
+            accordionContainer.classList.remove('activated');
+          }
+        });
+      });
+    });
+  })();
+
+  /**
+   * Анимация текста
+   */
+  function scrollTriggerPlayer(triggerElement, timeline, onEnterStart = "top 95%") {
+    ScrollTrigger.create({ trigger: triggerElement, start: "top bottom", onLeaveBack: () => { timeline.progress(1); timeline.pause(); } });
+    ScrollTrigger.create({ trigger: triggerElement, start: onEnterStart, scrub: true, onEnter: () => timeline.play() });
+  }
+
+  gsap.utils.toArray('[data-split="lines"]').forEach(dataSplitLines => {
+    const textSplits = dataSplitLines.querySelectorAll('*');
+
+    // Определяем настройки для мобилки и десктопа
+    const isMobile = window.innerWidth < 600;
+    const animSettings = {
+      duration: isMobile ? 0.2 : 0.3, // на мобилке дольше
+      stagger: isMobile ? 0.1 : 0.1  // на мобилке задержка больше
+    };
+
+    textSplits.forEach(textSplit => {
+
+      if (isMobile) {
+        const brs = textSplit.querySelectorAll('br');
+        brs.forEach(br => br.remove());
+      }
+
+      if (textSplit) SplitText.create(textSplit, {
+        type: "words,lines",
+        mask: "lines",
+        linesClass: "line",
+        autoSplit: true,
+        onSplit: inst => gsap.from(inst.lines, {
+          yPercent: 120,
+          duration: animSettings.duration,
+          stagger: animSettings.stagger,
+          scrollTrigger: {
+            trigger: dataSplitLines,
+            start: "top 95%",
+            end: "bottom top"
+          }
+        })
+      });
+
+    });
+  });
+
+  gsap.utils.toArray('[data-split="text"]').forEach(dataSplitText => {
+    const isMobile = window.innerWidth < 600;
+    const textSplit = dataSplitText.querySelectorAll('*');
+    if (textSplit) SplitText.create(textSplit, {
+      type: "words",
+      aria: "hidden",
+      onSplit: split => gsap.from(split.words, {
+        opacity: 0,
+        // duration: 0.3,
+        duration: isMobile ? 0.2 : 0.3,
+        // stagger: 0.05,
+        stagger: isMobile ? 0.03 : 0.05,
+        ease: "sine.out",
+        scrollTrigger: {
+          trigger: dataSplitText,
+          start: "top 95%",
+          end: "bottom top"
+        }
+      })
+    });
+  });
+
+  const animItems = document.querySelectorAll('.anim-items')
+  animItems.forEach(items => {
+    const item = items.querySelectorAll('.anim-item')
+    gsap.from(item, {
+
+      // Начальное состояние: уменьшены и прозрачны
+      scale: 0.8,
+      opacity: 0,
+
+      // Настройки появления по очереди
+      stagger: {
+        each: 0.2, // задержка 0.2 сек между каждым айтемом
+        from: "start" // начинаем с первого в DOM
+      },
+
+      duration: 0.8,
+      ease: "back.out(1.7)", // пружинистый эффект в конце увеличения
+
+      // Настройка скролла
+      scrollTrigger: {
+        trigger: items, // Родитель всей сетки (замените на ваш класс)
+        start: "top 85%", // Анимация начнется, когда верх блока достигнет 85% высоты экрана
+        // toggleActions: "play none none none" // Проигрывать при скролле вниз, откатывать при скролле вверх
+        onEnter: () => items.classList.add('anim-animated'),
+      }
+    });
+  });
+
+  /**
+   * Инициализация слайдера
+   */
+  (function swiperWrapper() {
+
+    if (!document.querySelector('.swiper')) return;
+
+    const globalImpulseOptions = {
+      // Максимальный интервал между кликами в мс который считается быстрым
+      fastClickDelay: 200,
+
+      // Насколько сильно каждый быстрый клик увеличивает импульс
+      // Формула: impulse += (fastClickDelay - delta) * accelerationFactor
+      accelerationFactor: 0.23,
+
+      // Коэффициент затухания импульса (0-1), теряет 15% каждые 40мс
+      friction: 0.85,
+
+      // Верхняя граница импульса, итоговый шаг = 1 + round(impulse)
+      maxExtraSteps: 2,
+
+      // Как часто пересчитывается затухание в мс, ~2-3 кадра при 60fps
+      decayInterval: 40,
+    };
+
+    const slidersConfig = [
+      // {
+      //   sliderSelector: '.produce__slider',
+      //   highlight: false,
+      //   swiperOptions: {
+      //     slidesPerGroup: 1,
+      //     slidesPerView: 1,
+      //     spaceBetween: 10,
+      //     speed: 500,
+      //     grabCursor: true,
+      //     loop: false,
+      //     touchRatio: 1.6,
+      //     resistance: true,
+      //     resistanceRatio: 0.4,
+      //     centeredSlides: false,
+      //     centeredSlidesBounds: true,
+      //     simulateTouch: true,
+      //     direction: 'horizontal',
+      //     touchStartPreventDefault: true,
+      //     touchMoveStopPropagation: true,
+      //     threshold: 8,
+      //     touchAngle: 25,
+      //     watchOverflow: true,
+      //     freeMode: {
+      //       enabled: true,
+      //       momentum: true,
+      //       momentumRatio: 0.85,
+      //       momentumVelocityRatio: 1,
+      //       momentumBounce: false,
+      //       sticky: true,
+      //     },
+      //     mousewheel: {
+      //       forceToAxis: true,
+      //       sensitivity: 1,
+      //       releaseOnEdges: true,
+      //     },
+      //     navigation: false,
+      //     breakpoints: {
+      //       0: {
+      //         slidesPerGroup: 1,
+      //         slidesPerView: 1,
+      //         spaceBetween: 20,
+      //       },
+      //       601: {
+      //         slidesPerGroup: 1,
+      //         slidesPerView: 2,
+      //         spaceBetween: 20,
+      //       },
+      //       835: {
+      //         slidesPerGroup: 1,
+      //         slidesPerView: 3,
+      //         spaceBetween: 80,
+      //       },
+      //     },
+      //   },
+      // },
+      {
+        sliderSelector: '.partners__slider',
+        prevSelector: '.partners-button-prev',
+        nextSelector: '.partners-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1.02,
+          spaceBetween: 8,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            0: {
+              slidesPerGroup: 1,
+              slidesPerView: 1.02,
+              spaceBetween: 8,
+            },
+            835: {
+              slidesPerGroup: 1,
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+          },
+        },
+      },
+      {
+        sliderSelector: '.opinions__slider',
+        prevSelector: '.opinions-button-prev',
+        nextSelector: '.opinions-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 8,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+
+          watchSlidesProgress: true,
+
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            380: {
+              slidesPerGroup: 1,
+              slidesPerView: 2,
+              spaceBetween: 8,
+            },
+            835: {
+              slidesPerGroup: 1,
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+          },
+        },
+      },
+    ];
+
+
+    // Инициализируем каждый слайдер из конфига
+    slidersConfig.forEach(({ sliderSelector, prevSelector, nextSelector, highlight, swiperOptions }) => {
+
+      if (!document.querySelector(sliderSelector)) return;
+
+      // Ищем кнопки только если селекторы заданы в конфиге
+      // Если prevSelector/nextSelector не указаны - слайдер без кнопок навигации
+      const prevEl = prevSelector ? document.querySelector(prevSelector) : null;
+      const nextEl = nextSelector ? document.querySelector(nextSelector) : null;
+
+      // ищем highlight-элементы только если в конфиге явно указано highlight: true
+      // если false или не указано - передаём null и createHighlight вернёт заглушку
+      const fromEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--from`) : null;
+      const toEl = highlight ? document.querySelector(`${sliderSelector} .slider-highlight--to`) : null;
+
+      const swiper = new Swiper(sliderSelector, swiperOptions);
+
+      // Управление пагинацией через кастомный флаг hidePagination в брейкпоинтах
+      initPaginationBreakpoint(swiper);
+
+      // highlight создаём всегда - если элементов нет, вернётся заглушка
+      // edgeTracker и navigation получат корректный объект в любом случае
+      const highlightInstance = createHighlight(swiper, fromEl, toEl);
+
+      // EdgeTracker подключаем только если slidesPerView больше 1 хотя бы
+      // в одном брейкпоинте или в базовых настройках - иначе смысла нет
+      const needsEdgeTracker = shouldUseEdgeTracker(swiperOptions);
+      const edgeTracker = needsEdgeTracker
+        ? createEdgeTracker(swiper, highlightInstance)
+        : createEdgeTrackerStub();
+
+      // Навигацию подключаем только если обе кнопки реально найдены в DOM
+      if (prevEl || nextEl) {
+        createNavigation(swiper, prevEl, nextEl, highlightInstance, edgeTracker);
+      }
+    });
+
+
+    // Проверяет нужен ли edgeTracker для данного слайдера.
+    // Смотрим на базовый slidesPerView и на все брейкпоинты -
+    // если хоть где-то больше 1 (и не 'auto') то tracker нужен
+    function shouldUseEdgeTracker(swiperOptions) {
+      const base = swiperOptions.slidesPerView;
+      if (typeof base === 'number' && base > 1) return true;
+
+      const breakpoints = swiperOptions.breakpoints ?? {};
+      return Object.values(breakpoints).some(bp => {
+        return typeof bp.slidesPerView === 'number' && bp.slidesPerView > 1;
+      });
+    }
+
+
+    // Заглушка edgeTracker для слайдеров где он не нужен (slidesPerView = 1).
+    // Возвращает тот же API что и настоящий edgeTracker - navigation не знает разницы
+    function createEdgeTrackerStub() {
+      return {
+        handleEdgeNext: () => false,
+        handleEdgePrev: () => false,
+        clearVirtual: () => { },
+        getVirtualIndex: () => null,
+      };
+    }
+
+
+    // Управление видимостью пагинации через кастомный флаг hidePagination.
+    // Swiper не умеет включать/выключать пагинацию через breakpoints нативно,
+    // поэтому слушаем событие breakpoint и управляем display вручную
+    function initPaginationBreakpoint(swiper) {
+      const paginationEl = swiper.pagination?.el;
+      if (!paginationEl) return;
+
+      function applyVisibility() {
+        // currentBreakpointParams содержит параметры активного брейкпоинта
+        const params = swiper.currentBreakpointParams ?? {};
+        paginationEl.style.display = params.hidePagination === true ? 'none' : '';
+      }
+
+      swiper.on('breakpoint', applyVisibility);
+
+      // Проверяем сразу после инициализации - брейкпоинт уже мог сработать
+      applyVisibility();
+    }
+
+
+    // Highlight - анимированный фон резинка между слайдами.
+    // Если элементов --from и --to нет в DOM - возвращаем заглушку.
+    // Заглушка имеет тот же API поэтому edgeTracker работает без изменений
+    function createHighlight(swiper, fromEl, toEl) {
+
+      // Нет элементов - возвращаем заглушку с рабочим getGeometry
+      // edgeTracker использует getGeometry для расчётов даже без визуала
+      if (!fromEl || !toEl) {
+        return {
+          animateTo: () => { },
+          snapInstant: () => { },
+          getGeometry: (index) => {
+            const slide = swiper.slides[index];
+            if (!slide) return null;
+            return {
+              x: slide.offsetLeft + (swiper.translate ?? 0),
+              width: slide.offsetWidth,
+            };
+          },
+          getCurrentX: () => 0,
+          getCurrentW: () => 0,
+        };
+      }
+
+      const DURATION = 320;
+      const EASE_OUT = 'cubic-bezier(0.4, 0, 0.2, 1)';
+      const EASE_SNAP = 'cubic-bezier(0.34, 1.4, 0.64, 1)';
+
+      let currentX = 0;
+      let currentWidth = 0;
+      let rafId = null;
+
+      function getGeometry(index) {
+        const slide = swiper.slides[index];
+        if (!slide) return null;
+        return {
+          x: slide.offsetLeft + (swiper.translate ?? 0),
+          width: slide.offsetWidth,
+        };
+      }
+
+      function setInstant(el, x, width, visible) {
+        el.style.transition = 'none';
+        el.style.transform = `translateX(${x}px)`;
+        el.style.width = `${width}px`;
+        el.classList.toggle('is-visible', visible);
+      }
+
+      function setAnimated(el, x, width, duration, easing, visible) {
+        el.style.transition = [
+          `transform ${duration}ms ${easing}`,
+          `width ${duration}ms ${easing}`,
+          `opacity ${duration * 0.6}ms ease`,
+        ].join(', ');
+        el.style.transform = `translateX(${x}px)`;
+        el.style.width = `${width}px`;
+        el.classList.toggle('is-visible', visible);
+      }
+
+      function animateTo(toX, toWidth, dir) {
+        if (rafId) cancelAnimationFrame(rafId);
+
+        const fromX = currentX;
+        const fromWidth = currentWidth;
+        const collapseX = dir === 'next' ? fromX + fromWidth : fromX;
+        const startX = dir === 'next' ? toX : toX + toWidth;
+
+        setInstant(fromEl, fromX, fromWidth, true);
+        setInstant(toEl, startX, 0, true);
+
+        // Двойной RAF гарантирует что стили шага 1 применены до старта анимации
+        rafId = requestAnimationFrame(() => {
+          rafId = requestAnimationFrame(() => {
+            rafId = null;
+            setAnimated(fromEl, collapseX, 0, DURATION, EASE_OUT, false);
+            setAnimated(toEl, toX, toWidth, DURATION, EASE_SNAP, true);
+          });
+        });
+
+        // Фиксируем целевую геометрию сразу - не ждём конца анимации
+        // Следующий вызов animateTo возьмёт правильную стартовую точку
+        currentX = toX;
+        currentWidth = toWidth;
+      }
+
+      function snapInstant(index) {
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        const geo = getGeometry(index);
+        if (!geo) return;
+        setInstant(fromEl, geo.x, geo.width, true);
+        setInstant(toEl, geo.x, 0, false);
+        currentX = geo.x;
+        currentWidth = geo.width;
+      }
+
+      swiper.on('slideChange', () => {
+        const curr = swiper.activeIndex;
+        const prev = swiper.previousIndex ?? curr;
+        const dir = curr >= prev ? 'next' : 'prev';
+        const geo = getGeometry(curr);
+        if (geo) animateTo(geo.x, geo.width, dir);
+      });
+
+      swiper.on('transitionEnd', () => {
+        setInstant(fromEl, currentX, currentWidth, true);
+        setInstant(toEl, currentX, 0, false);
+      });
+
+      swiper.on('setTranslate', () => {
+        if (swiper.animating) return;
+        const geo = getGeometry(swiper.activeIndex);
+        if (!geo) return;
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        setInstant(fromEl, geo.x, geo.width, true);
+        setInstant(toEl, geo.x, 0, false);
+        currentX = geo.x;
+        currentWidth = geo.width;
+      });
+
+      swiper.on('resize', () => snapInstant(swiper.activeIndex));
+
+      snapInstant(swiper.activeIndex ?? 0);
+
+      return {
+        animateTo,
+        snapInstant,
+        getGeometry,
+        getCurrentX: () => currentX,
+        getCurrentW: () => currentWidth,
+      };
+    }
+
+
+    // EdgeTracker - виртуальный активный слайд когда wrapper упёрся в край.
+    // Проблема: при slidesPerView > 1 последние слайды никогда не получают
+    // swiper-slide-active потому что wrapper уже не может сдвинуться.
+    // Решение: вручную двигаем виртуальный активный по оставшимся слайдам
+    function createEdgeTracker(swiper, highlight) {
+
+      const VIRTUAL_CLASS = 'is-virtual-active';
+      const BEFORE_EDGE_CLASS = 'is-before-edge';
+
+      let virtualIndex = null;
+
+      function getVisibleIndices() {
+        const containerWidth = swiper.width;
+        const offset = Math.abs(swiper.translate ?? 0);
+        const visible = [];
+        swiper.slides.forEach((slide, i) => {
+          const left = slide.offsetLeft;
+          const right = left + slide.offsetWidth;
+          if (right > offset && left < offset + containerWidth) visible.push(i);
+        });
+        return visible;
+      }
+
+      function clearBeforeEdge() {
+        swiper.slides.forEach(s => s.classList.remove(BEFORE_EDGE_CLASS));
+      }
+
+      function markBeforeEdge() {
+        clearBeforeEdge();
+        swiper.slides.forEach(s => {
+          if (s.classList.contains('swiper-slide-active')) {
+            s.classList.add(BEFORE_EDGE_CLASS);
+          }
+        });
+      }
+
+      function clearVirtual() {
+        swiper.slides.forEach(s => s.classList.remove(VIRTUAL_CLASS));
+        clearBeforeEdge();
+        virtualIndex = null;
+      }
+
+      function setVirtualActive(index, dir) {
+        if (virtualIndex === null) markBeforeEdge();
+        swiper.slides.forEach(s => s.classList.remove(VIRTUAL_CLASS));
+        virtualIndex = index;
+        swiper.slides[index]?.classList.add(VIRTUAL_CLASS);
+
+        // highlight может быть заглушкой - вызываем в любом случае
+        const geo = highlight.getGeometry(index);
+        if (geo) highlight.animateTo(geo.x, geo.width, dir);
+      }
+
+      function handleEdgeNext() {
+        if (!swiper.isEnd) return false;
+        const visible = getVisibleIndices();
+        if (!visible.length) return false;
+        const lastVisible = visible[visible.length - 1];
+        const current = virtualIndex ?? swiper.activeIndex;
+        if (current >= lastVisible) return true;
+        setVirtualActive(current + 1, 'next');
+        return true;
+      }
+
+      function handleEdgePrev() {
+        if (virtualIndex === null) return false;
+        const current = virtualIndex;
+        const realActive = swiper.activeIndex;
+        if (current <= realActive) {
+          clearVirtual();
+          highlight.snapInstant(realActive);
+          return false;
+        }
+        setVirtualActive(current - 1, 'prev');
+        return true;
+      }
+
+      swiper.on('slideChange', () => {
+        if (virtualIndex !== null) clearVirtual();
+      });
+
+      swiper.on('fromEdge', () => {
+        clearVirtual();
+      });
+
+      return {
+        handleEdgeNext,
+        handleEdgePrev,
+        clearVirtual,
+        getVirtualIndex: () => virtualIndex,
+      };
+    }
+
+
+    // Navigation - кнопки + импульс + disabled состояние.
+    // Вызывается только если у слайдера есть обе кнопки навигации.
+    // Получает edgeTracker который может быть настоящим или заглушкой
+    function createNavigation(swiper, prevEl, nextEl, highlight, edgeTracker) {
+
+      const {
+        fastClickDelay = 200,
+        accelerationFactor = 0.23,
+        friction = 0.85,
+        maxExtraSteps = 2,
+        decayInterval = 40,
+      } = globalImpulseOptions;
+
+      let lastClickTime = 0;
+      let lastDirection = null;
+      let extraImpulse = 0;
+      let decayTimer = null;
+
+      function resetImpulse() {
+        extraImpulse = 0;
+        lastDirection = null;
+        if (decayTimer) clearInterval(decayTimer);
+        decayTimer = null;
+      }
+
+      function accumulateImpulse(direction) {
+        const now = Date.now();
+        const delta = now - lastClickTime;
+
+        if (lastDirection !== null && lastDirection !== direction) {
+          extraImpulse = 0;
+        }
+
+        extraImpulse = delta < fastClickDelay
+          ? Math.min(extraImpulse + (fastClickDelay - delta) * accelerationFactor, maxExtraSteps)
+          : 0;
+
+        lastClickTime = now;
+        lastDirection = direction;
+
+        if (decayTimer) clearInterval(decayTimer);
+        decayTimer = setInterval(() => {
+          extraImpulse *= friction;
+          if (extraImpulse < 0.2) {
+            extraImpulse = 0;
+            clearInterval(decayTimer);
+            decayTimer = null;
+          }
+        }, decayInterval);
+      }
+
+      function getVisibleIndicesForNav() {
+        const containerWidth = swiper.width;
+        const offset = Math.abs(swiper.translate ?? 0);
+        const visible = [];
+        swiper.slides.forEach((slide, i) => {
+          const left = slide.offsetLeft;
+          const right = left + slide.offsetWidth;
+          if (right > offset && left < offset + containerWidth) visible.push(i);
+        });
+        return visible;
+      }
+
+      function updateDisabled() {
+        if (swiper.params.loop) return;
+
+        const isStart = swiper.isBeginning && edgeTracker.getVirtualIndex() === null;
+
+        let nextBlocked = false;
+        if (swiper.isEnd) {
+          const visible = getVisibleIndicesForNav();
+          const lastVisible = visible[visible.length - 1] ?? swiper.activeIndex;
+          const currentVirt = edgeTracker.getVirtualIndex() ?? swiper.activeIndex;
+          nextBlocked = currentVirt >= lastVisible;
+        }
+
+        // disabled как свойство а не атрибут - клик всё равно доходит
+        // до нашего обработчика даже когда кнопка визуально заблокирована
+        if (prevEl) { prevEl.classList.toggle('swiper-button-disabled', isStart); prevEl.disabled = isStart; }
+        if (nextEl) { nextEl.classList.toggle('swiper-button-disabled', nextBlocked); nextEl.disabled = nextBlocked; }
+      }
+
+      function handle(direction) {
+        if (direction === 'next' && edgeTracker.handleEdgeNext()) {
+          updateDisabled();
+          return;
+        }
+        if (direction === 'prev' && edgeTracker.handleEdgePrev()) {
+          updateDisabled();
+          return;
+        }
+
+        accumulateImpulse(direction);
+        const steps = 1 + Math.round(extraImpulse);
+
+        // if (swiper.params.loop) {
+        //   const total = swiper.slides.length - (swiper.loopedSlides ?? 0) * 2;
+        //   const curr = swiper.realIndex;
+        //   const target = direction === 'next'
+        //     ? (curr + steps) % total
+        //     : (curr - steps + total) % total;
+        //   swiper.slideToLoop(target);
+        // }
+        if (swiper.params.loop) {
+          if (direction === 'next') {
+            swiper.slideNext();
+          } else {
+            swiper.slidePrev();
+          }
+          return;
+        } else {
+          const base = swiper.activeIndex;
+          const target = direction === 'next'
+            ? Math.min(base + steps, swiper.slides.length - 1)
+            : Math.max(base - steps, 0);
+          swiper.slideTo(target);
+        }
+
+        // if (nextEl) nextEl.addEventListener('click', (e) => {
+        //   e.preventDefault();
+        //   console.log('next clicked', swiper.realIndex);
+        //   handle('next');
+        // });
+
+        // console.log('loopedSlides:', swiper.loopedSlides);
+        // console.log('slides.length:', swiper.slides.length);
+
+        updateDisabled();
+      }
+
+      if (nextEl) nextEl.addEventListener('click', (e) => { e.preventDefault(); handle('next'); });
+      if (prevEl) prevEl.addEventListener('click', (e) => { e.preventDefault(); handle('prev'); });
+
+      swiper.on('touchStart', resetImpulse);
+      swiper.on('slideChange', updateDisabled);
+      swiper.on('resize', updateDisabled);
+      swiper.on('touchEnd', () => {
+        const dir = swiper.swipeDirection;
+        if (dir === 'next') edgeTracker.handleEdgeNext();
+        else if (dir === 'prev') edgeTracker.handleEdgePrev();
+        updateDisabled();
+      });
+
+      swiper.on('destroy', () => {
+        if (decayTimer) clearInterval(decayTimer);
+        decayTimer = null;
+      });
+
+      updateDisabled();
+    }
+
+  })();
 
   /**
    * Инициализация Fancybox
    */
   Fancybox.bind('[data-fancybox]', {
     // Отключаем закрытие свайпом вниз
-    // Это главный виновник конфликта со скроллом внутри попапа
     dragToClose: false,
     // Отключаем жесты карусели (свайп влево/вправо)
     Carousel: {
@@ -1190,4 +2135,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
+  /**
+   * УВЕДОМЛЕНИЕ О COOKIE                     
+   *    
+   * Показывает плашку если cookie COOKIE_ACCEPT ≠ '1'.            
+   * checkCookies() вызывается из HTML при клике на кнопку.         
+   */
+  const cookieAccepted =
+    ('; ' + document.cookie).split(`; COOKIE_ACCEPT=`).pop().split(';')[0] === '1';
+
+  if (!cookieAccepted) {
+    const cookiesNotify = document.getElementById('plate_cookie');
+    if (cookiesNotify) {
+      cookiesNotify.style.opacity = '1';
+      cookiesNotify.style.visibility = 'visible';
+      cookiesNotify.style.pointerEvents = 'all';
+    }
+  }
+
 });
+
+/**
+ * Принимает cookie и скрывает плашку уведомления.
+ *
+ * Устанавливает COOKIE_ACCEPT=1 сроком на 1 год.
+ */
+function checkCookies() {
+  const expires = new Date(Date.now() + 86400e3 * 365).toUTCString();
+  document.cookie = `COOKIE_ACCEPT=1;path=/;expires=${expires}`;
+
+  const plate = document.getElementById('plate_cookie');
+  if (!plate) return;
+
+  plate.style.opacity = '0';
+  plate.style.visibility = 'hidden';
+  plate.style.pointerEvents = 'none';
+
+  setTimeout(() => plate.remove(), 5000);
+}
