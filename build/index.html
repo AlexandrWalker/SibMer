@@ -2599,9 +2599,9 @@
           Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
         </p>
       </div>
-      <div class="opinions__item-btn">
+      <a class="opinions__item-btn" href="./images/temp/sale-cover.jpg" data-fancybox>
         Смотреть оригинал отзыва
-      </div>
+      </a>
     </div>
     <div class="opinions__item-foot">
       <div class="opinions__item-subtitle">
@@ -2633,9 +2633,9 @@
           Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
         </p>
       </div>
-      <div class="opinions__item-btn">
+      <a class="opinions__item-btn" href="./images/temp/sale-cover.jpg" data-fancybox>
         Смотреть оригинал отзыва
-      </div>
+      </a>
     </div>
     <div class="opinions__item-foot">
       <div class="opinions__item-subtitle">
@@ -2667,9 +2667,9 @@
           Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
         </p>
       </div>
-      <div class="opinions__item-btn">
+      <a class="opinions__item-btn" href="./images/temp/sale-cover.jpg" data-fancybox>
         Смотреть оригинал отзыва
-      </div>
+      </a>
     </div>
     <div class="opinions__item-foot">
       <div class="opinions__item-subtitle">
@@ -2701,9 +2701,9 @@
           Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
         </p>
       </div>
-      <div class="opinions__item-btn">
+      <a class="opinions__item-btn" href="./images/temp/sale-cover.jpg" data-fancybox>
         Смотреть оригинал отзыва
-      </div>
+      </a>
     </div>
     <div class="opinions__item-foot">
       <div class="opinions__item-subtitle">
@@ -2735,9 +2735,9 @@
           Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
         </p>
       </div>
-      <div class="opinions__item-btn">
+      <a class="opinions__item-btn" href="./images/temp/sale-cover.jpg" data-fancybox>
         Смотреть оригинал отзыва
-      </div>
+      </a>
     </div>
     <div class="opinions__item-foot">
       <div class="opinions__item-subtitle">
@@ -2769,9 +2769,9 @@
           Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
         </p>
       </div>
-      <div class="opinions__item-btn">
+      <a class="opinions__item-btn" href="./images/temp/sale-cover.jpg" data-fancybox>
         Смотреть оригинал отзыва
-      </div>
+      </a>
     </div>
     <div class="opinions__item-foot">
       <div class="opinions__item-subtitle">
@@ -2803,9 +2803,9 @@
           Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
         </p>
       </div>
-      <div class="opinions__item-btn">
+      <a class="opinions__item-btn" href="@@opinions-photo" data-fancybox>
         Смотреть оригинал отзыва
-      </div>
+      </a>
     </div>
     <div class="opinions__item-foot">
       <div class="opinions__item-subtitle">
@@ -2837,9 +2837,9 @@
           Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
         </p>
       </div>
-      <div class="opinions__item-btn">
+      <a class="opinions__item-btn" href="./images/temp/sale-cover.jpg" data-fancybox>
         Смотреть оригинал отзыва
-      </div>
+      </a>
     </div>
     <div class="opinions__item-foot">
       <div class="opinions__item-subtitle">
@@ -3518,14 +3518,16 @@
 </footer>
 <!-- Плашка -->
 <div id="plate_cookie" class="plate">
-  <div class="plate__text">
-    <p>
-      Этот сайт использует файлы <a href="/">сооkіе </a>
-    </p>
+  <div class="plate__inner">
+    <div class="plate__text">
+      <p>
+        Этот сайт использует файлы <a href="/">сооkіе </a>
+      </p>
+    </div>
+    <button class="plate__btn" onclick="checkCookies()">
+      Ок
+    </button>
   </div>
-  <button class="plate__btn" onclick="checkCookies()">
-    Ок
-  </button>
 </div>
 <!-- Попапы -->
 <div id="popup-1" class="popup">
@@ -3727,67 +3729,69 @@
   </div>
 </div>
 
-<div id="popup-4" class="popup">
+<div id="popup-4" class="popup popup--sale">
   <div class="popup__wrap" data-lenis-prevent>
-    <div class="popup__content">
-      <div class="popup__head">
-        <div class="popup__title">
-          Бесплатная консультация
+    <div class="popup__inner">
+      <div class="popup__content">
+        <div class="popup__head">
+          <div class="popup__title">
+            <span>Скидка 15%</span>
+            на первый заказ
+          </div>
+          <div class="popup__text">
+            <p>
+              Согласуем скидку и быстро доставим ваш груз!
+            </p>
+          </div>
+        </div>
+        <div class="popup__body">
+          <form class="form-inner" action="#">
+            <div class="form-body">
+
+              <div class="form-block">
+                <div class="form-content">
+                  <div class="form-group">
+                    <div class="form-icon">
+                      <i class="icon-phone"></i>
+                    </div>
+                    <input class="form-input" type="tel" name="popup_consultation_tel" id="" placeholder="Телефон">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-foot">
+              <button class="btn form-btn" data-fancybox href="#popup-3">
+                <div class="btn-text">
+                  Отправить
+                </div>
+              </button>
+              <div class="form-privacy">
+                <div class="form-group">
+                  <label class="form-checkbox-label">
+                    <input class="form-checkbox-input" name="popup_consultation_privacy" type="checkbox">
+                    <div class="form-checkbox-item"></div>
+                    <div class="form-checkbox-text">
+                      Я согласен на обработку персональных данных
+                    </div>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="form-checkbox-label">
+                    <input class="form-checkbox-input" name="popup_consultation_ads" type="checkbox">
+                    <div class="form-checkbox-item"></div>
+                    <div class="form-checkbox-text">
+                      Я согласен на рекламные уведомления
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="popup__body">
-        <form class="form-inner" action="#">
-          <div class="form-body">
-
-            <div class="form-block">
-              <div class="form-title">
-                Ваши данные
-              </div>
-              <div class="form-content">
-                <div class="form-group">
-                  <div class="form-icon">
-                    <i class="icon-person"></i>
-                  </div>
-                  <input class="form-input" type="text" name="popup_consultation_name" id="" placeholder="Имя">
-                </div>
-                <div class="form-group">
-                  <div class="form-icon">
-                    <i class="icon-phone"></i>
-                  </div>
-                  <input class="form-input" type="tel" name="popup_consultation_tel" id="" placeholder="Телефон">
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="form-foot">
-            <button class="btn form-btn" data-fancybox href="#popup-3">
-              <div class="btn-text">
-                Отправить
-              </div>
-            </button>
-            <div class="form-privacy">
-              <div class="form-group">
-                <label class="form-checkbox-label">
-                  <input class="form-checkbox-input" name="popup_consultation_privacy" type="checkbox">
-                  <div class="form-checkbox-item"></div>
-                  <div class="form-checkbox-text">
-                    Я согласен на обработку персональных данных
-                  </div>
-                </label>
-              </div>
-              <div class="form-group">
-                <label class="form-checkbox-label">
-                  <input class="form-checkbox-input" name="popup_consultation_ads" type="checkbox">
-                  <div class="form-checkbox-item"></div>
-                  <div class="form-checkbox-text">
-                    Я согласен на рекламные уведомления
-                  </div>
-                </label>
-              </div>
-            </div>
-          </div>
-        </form>
+      <div class="popup__cover">
+        <img src="./images/temp/sale-cover.jpg" alt="">
       </div>
     </div>
   </div>

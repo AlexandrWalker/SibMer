@@ -176,14 +176,21 @@
     }
 
     &-btn {
+      width: fit-content;
+
       font-weight: 400;
       font-size: 1.2rem;
       line-height: 120%;
-      text-decoration-line: underline;
+      text-decoration: underline;
       color: var(--accent);
 
       @include sm {
         font-size: 1rem;
+      }
+
+      &:link,
+      &:visited {
+        text-decoration: underline;
       }
     }
 

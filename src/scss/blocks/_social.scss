@@ -24,6 +24,11 @@
 
     .social__item-btn {
       top: 24.4rem;
+
+      &::before,
+      &::after {
+        visibility: hidden;
+      }
     }
 
     .social__item {
@@ -100,6 +105,73 @@
 
       position: absolute;
       top: 0;
+
+      &::before {
+        content: "";
+        width: 5.6rem;
+        height: 5.6rem;
+        border: 0.1rem solid var(--accent);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        pointer-events: none;
+        animation: pulseBefore 2s linear infinite;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      &::after {
+        content: "";
+        width: 5.6rem;
+        height: 5.6rem;
+        border: 0.1rem solid var(--accent);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        pointer-events: none;
+        animation: pulseAfter 2s linear infinite;
+        animation-delay: 1s;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
     }
+  }
+}
+
+@keyframes pulseBefore {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseAfter {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
   }
 }

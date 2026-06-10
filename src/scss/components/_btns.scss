@@ -99,7 +99,7 @@
     padding: 1rem 3rem;
     background-color: var(--accent);
     border-radius: 3.3rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease;
 
     font-weight: 700;
     font-size: 1.6rem;
@@ -107,5 +107,9 @@
     text-align: center;
     color: var(--white);
     cursor: pointer;
+
+    &:hover {
+      background-color: var(--black);
+    }
   }
 }
