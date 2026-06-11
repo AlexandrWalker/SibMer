@@ -10,7 +10,7 @@ html {
   scroll-behavior: smooth;
 
   @include sm {
-    --refRes: 402;
+    --refRes: 390;
   }
 
   &::-webkit-scrollbar {

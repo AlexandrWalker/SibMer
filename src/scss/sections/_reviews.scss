@@ -1,0 +1,20 @@
+@use './../mixins' as *;
+
+.reviews {
+  --section-padding-top: 3rem;
+
+  @include sm {
+    --section-padding-top: 2rem;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+  }
+}

@@ -11,14 +11,6 @@
     display: flex;
     margin-top: auto;
     margin-right: 0.5ch;
-
-    font-size: 6rem;
-    line-height: 1.1;
-
-    @include sm {
-      font-size: 3rem;
-      line-height: 1.15;
-    }
   }
 }
 
@@ -35,15 +27,13 @@
   transform: translateY(0);
 
   text-align: right;
+
+  &-space {
+    width: 0.5ch;
+  }
 }
 
 .digit span {
   display: block;
-  // line-height: 1em;
-  line-height: 1;
   height: 1em;
-
-  @include sm {
-    line-height: 100%;
-  }
 }

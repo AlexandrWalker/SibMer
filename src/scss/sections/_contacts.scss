@@ -1,0 +1,231 @@
+@use './../mixins' as *;
+
+.contacts {
+  --section-padding-top: 4rem;
+
+  @include sm {
+    --section-padding-top: 2rem;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include sm {
+      gap: 0.8rem;
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include sm {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+  }
+
+  &__item {
+    padding: 4rem 3rem 4rem 12.8rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+    box-shadow: 0px 55px 93px rgba(36, 93, 157, 0.06);
+
+    position: relative;
+
+    @include sm {
+      padding: 3rem 3rem 3rem 6.6rem;
+    }
+
+    &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 5.6rem;
+      height: 5.6rem;
+      border-radius: 50%;
+      background-color: #EEF1F7;
+
+      color: var(--accent);
+
+      position: absolute;
+      top: 3rem;
+      left: 3rem;
+
+      @include sm {
+        width: 3.6rem;
+        height: 3.6rem;
+
+        top: 2rem;
+        left: 1.5rem;
+      }
+
+      i {
+
+        @include sm {
+          --font-size: 2rem;
+        }
+      }
+    }
+
+    &-title {
+      margin-bottom: 3rem;
+
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 110%;
+
+      @include sm {
+        margin-bottom: 1.5rem;
+
+        font-size: 1.4rem;
+      }
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+
+      @include sm {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-address {
+      margin-bottom: 3rem;
+
+      @include sm {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &-suptitle {
+      line-height: 100%;
+      color: var(--black-50);
+
+      @include sm {
+        font-size: 1.2rem;
+      }
+    }
+
+    &-link {
+
+      a {
+        background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
+        background-size: 0;
+        transition: .3s;
+        background-position: left;
+        background-repeat: no-repeat;
+
+        &:hover {
+
+          @include dosm {
+            background-size: 100%;
+          }
+        }
+      }
+    }
+
+    &-social {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3.6rem;
+        height: 3.6rem;
+        border-radius: 50%;
+        background-color: var(--black);
+
+        color: var(--white);
+
+        i {
+          --font-size: 2rem;
+        }
+
+        span {
+          font-size: 0;
+          position: absolute;
+          left: -9999999px;
+          top: -9999999px;
+          visibility: hidden;
+        }
+      }
+    }
+
+    &-text {}
+
+    &-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      @include sm {
+        gap: 1rem;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: underline;
+
+        span {
+          font-size: 0;
+          position: absolute;
+          left: -9999999px;
+          top: -9999999px;
+          visibility: hidden;
+        }
+      }
+    }
+
+    &-copy {
+      width: 2.4rem;
+      height: 2.4rem;
+      transition: color 0.3s ease;
+
+      color: var(--black-10);
+      cursor: pointer;
+
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      z-index: 1;
+
+      &:hover {
+        color: var(--black);
+      }
+
+      i {
+        --font-size: 2.4rem;
+      }
+    }
+  }
+
+  &__map {
+    width: 100%;
+    height: 70rem;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

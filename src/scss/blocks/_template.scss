@@ -1,3 +1,30 @@
 @use './../mixins' as *;
 
-.template {}
+.template {
+  --section-padding-bottom: 0;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    @include sm {
+      gap: 2rem;
+    }
+  }
+
+  &__title {
+
+    h1 {
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 4rem;
+      line-height: 117.5%;
+      text-transform: uppercase;
+
+      @include sm {
+        font-size: 3rem;
+      }
+    }
+  }
+}

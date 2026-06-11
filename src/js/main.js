@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const lenis = new Lenis();
     window.lenis = lenis;
 
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-
     gsap.ticker.lagSmoothing(0);
+
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
 
     // Синхронизируем Lenis со ScrollTrigger
     // Без этого ScrollTrigger читает нативный scrollY а Lenis работает со своим
@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const footer = document.querySelector(CONFIG.footerSelector);
     const htmlEl = document.documentElement;
-    const headerHeight = header.offsetHeight;
+    let headerHeight = header.offsetHeight;
 
     const firstSection = CONFIG.firstSectionSelector
       ? document.querySelector(CONFIG.firstSectionSelector)
@@ -666,7 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
           start: 'top top',
           end: `+=${scrollZone}`,
           scrub: true,
-          invalidateOnRefresh: true,
+
           onEnter: () => htmlEl.classList.add(CONFIG.classFixed),
           onLeaveBack: () => {
             htmlEl.classList.remove(CONFIG.classFixed);
@@ -696,6 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ScrollTrigger.create({
       trigger: document.documentElement,
       start: `top+=${scrollZone} top`,
+
       onEnter: () => htmlEl.classList.add(CONFIG.classOffTop),
       onLeaveBack: () => htmlEl.classList.remove(CONFIG.classOffTop),
     });
@@ -707,6 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ScrollTrigger.create({
         trigger: footer,
         start: 'top bottom',
+
         onEnter: () => htmlEl.classList.add(CONFIG.classAtFooter),
         onLeaveBack: () => htmlEl.classList.remove(CONFIG.classAtFooter),
       });
@@ -866,7 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
               }
 
               // Пересчитываем позиции всех триггеров на странице
-              st.refresh();
+              // st.refresh();
             }
           });
 
@@ -927,50 +929,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 
     updateTheme();
 
-  })();
-
-  // (function () {
-  //   const html = document.documentElement;
-  //   const header = document.querySelector('.header');
-
-  //   window.addEventListener('scroll', () => {
-  //     const scrollPosition = () => window.pageYOffset || document.documentElement.scrollTop;
-  //     console.log(scrollPosition());
-  //     if (scrollPosition() >= 5) {
-  //       // setTimeout(() => {
-  //       //   html.classList.add('header-fixed');
-  //       // }, 100);
-  //       html.classList.add('header-fixed');
-  //     } else {
-  //       // setTimeout(() => {
-  //       //   html.classList.remove('header-fixed');
-  //       // }, 100);
-  //       html.classList.remove('header-fixed');
-  //     }
-  //   })
-  // })();
-
-  /**
-   * Функция для запуска svg анимации
-   */
-  (function () {
-    const svgBlocks = document.querySelectorAll('.svg-block');
-    if (svgBlocks.length) {
-      svgBlocks.forEach(svgBlock => {
-        gsap.from(svgBlock, {
-          ease: "none",
-          scrollTrigger: {
-            trigger: svgBlock,
-            start: `top 90%`,
-            end: `top top`,
-            scrub: true,
-          },
-          onStart: function () {
-            svgBlock.classList.add('svg-active');
-          },
-        });
-      });
-    }
   })();
 
   /**
@@ -1050,7 +1008,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (function () {
     const mobileBreakpoint = 600;
     const casesJs = document.querySelector('.cases--js');
-
     if (!casesJs) return;
 
     const casesTabsJs = document.querySelector('.cases-tabs--js');
@@ -1060,8 +1017,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (casesTabsItemsJs.length) {
       casesTabsItemsJs.forEach(tab => {
         tab.addEventListener('click', () => {
-          console.log('scrollHeight before:', document.body.scrollHeight);
-
           casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
           tab.classList.add('tabs--active');
 
@@ -1071,33 +1026,7 @@ document.addEventListener('DOMContentLoaded', () => {
           casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
           casesItem.classList.add('cases-item--active');
 
-          // После переключения таба высота страницы могла измениться
-          // Компенсируем позицию скролла и обновляем ScrollTrigger
-          const scrollBefore = window.lenis ? window.lenis.scroll : window.scrollY;
-          const heightBefore = document.body.scrollHeight;
-
-          requestAnimationFrame(() => {
-            const heightAfter = document.body.scrollHeight;
-            const heightDelta = heightAfter - heightBefore;
-
-            if (heightDelta !== 0 && window.lenis) {
-              window.lenis.stop();
-              window.lenis.scrollTo(scrollBefore + heightDelta, {
-                immediate: true,
-                force: true,
-              });
-              requestAnimationFrame(() => {
-                ScrollTrigger.refresh();
-                window.lenis.start();
-              });
-            } else {
-              ScrollTrigger.refresh();
-            }
-          });
-
-          setTimeout(() => {
-            console.log('scrollHeight after:', document.body.scrollHeight);
-          }, 50);
+          ScrollTrigger.update();
         });
       });
     }
@@ -1112,40 +1041,79 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isMobile()) {
         casesItemsJs.forEach(item => {
           item.addEventListener('click', () => {
-            // Запоминаем позицию и высоту ДО изменения
-            const scrollBefore = window.lenis ? window.lenis.scroll : window.scrollY;
-            const heightBefore = document.body.scrollHeight;
-
             if (item.classList.contains('cases-item--active')) {
               item.classList.remove('cases-item--active');
             } else {
               item.classList.add('cases-item--active');
             }
 
-            // Ждём перерисовки браузером после изменения класса
-            requestAnimationFrame(() => {
-              const heightAfter = document.body.scrollHeight;
-              const heightDelta = heightAfter - heightBefore;
-
-              if (heightDelta !== 0 && window.lenis) {
-                window.lenis.stop();
-                window.lenis.scrollTo(scrollBefore + heightDelta, {
-                  immediate: true,
-                  force: true,
-                });
-                requestAnimationFrame(() => {
-                  ScrollTrigger.refresh();
-                  window.lenis.start();
-                });
-              } else {
-                ScrollTrigger.refresh();
-              }
-            });
+            ScrollTrigger.update();
           });
         });
       }
     }
   })();
+
+  /**
+   * Функция для блока кейсов, где одна всегда открыта
+   */
+  // (function () {
+  //   const mobileBreakpoint = 600;
+  //   const casesJs = document.querySelector('.cases--js');
+  //   if (!casesJs) return;
+
+  //   const casesTabsJs = document.querySelector('.cases-tabs--js');
+  //   const casesTabsItemsJs = casesTabsJs.querySelectorAll('.general__tabs-item');
+  //   const casesItemsJs = document.querySelectorAll('.cases-item--js');
+
+  //   const isMobile = () => window.innerWidth < mobileBreakpoint;
+
+  //   // Функция активации (общая для табов и кликов по карточкам)
+  //   function activateCase(dataValue) {
+  //     const targetItem = document.querySelector(`[data-cases="${dataValue}"]`);
+  //     const targetTab = document.querySelector(`.general__tabs-item[data-value="${dataValue}"]`);
+
+  //     if (!targetItem) return;
+
+  //     // Снимаем активность со всех
+  //     casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+  //     casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
+
+  //     // Активируем нужные
+  //     targetItem.classList.add('cases-item--active');
+  //     if (targetTab) targetTab.classList.add('tabs--active');
+
+  //     // Обновляем GSAP, так как высота могла измениться
+  //     if (window.ScrollTrigger) setTimeout(() => ScrollTrigger.refresh(), 300);
+  //   }
+
+  //   // Логика ТАБОВ
+  //   if (casesTabsItemsJs.length) {
+  //     casesTabsItemsJs.forEach(tab => {
+  //       tab.addEventListener('click', () => {
+  //         activateCase(tab.dataset.value);
+  //       });
+  //     });
+  //   }
+
+  //   // Логика КАРТОЧЕК
+  //   if (casesItemsJs.length) {
+  //     casesItemsJs.forEach((item, index) => {
+  //       item.style.zIndex = 100 - index;
+
+  //       item.addEventListener('click', () => {
+  //         // Если это мобилка
+  //         if (isMobile()) {
+  //           // Если элемент уже активен — НИЧЕГО НЕ ДЕЛАЕМ (запрет на закрытие)
+  //           if (item.classList.contains('cases-item--active')) return;
+
+  //           // Иначе активируем этот кейс через общую функцию
+  //           activateCase(item.dataset.cases);
+  //         }
+  //       });
+  //     });
+  //   }
+  // })();
 
   /**
    * Sticky функция
@@ -1307,6 +1275,19 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       });
+      ScrollTrigger.update();
+    });
+
+    // Один глобальный обработчик Escape для всех аккордеонов
+    window.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      accordionContainers.forEach(container => {
+        container.querySelectorAll('.accordion-item').forEach(item => {
+          item.classList.remove('accordion-item--active');
+        });
+        container.classList.remove('activated');
+      });
+      ScrollTrigger.update();
     });
 
     accordionContainers.forEach(accordionContainer => {
@@ -1314,13 +1295,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const activeClass = 'accordion-item--active';
 
       // Закрытие при Escape
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          accordionItems.forEach(item => item.classList.remove(activeClass));
-          accordionContainer.classList.remove('activated');
-        }
-      });
-
       accordionItems.forEach(item => {
         item.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -1333,30 +1307,127 @@ document.addEventListener('DOMContentLoaded', () => {
           // Переключаем текущий
           item.classList.toggle(activeClass);
 
-          // Обновляем ScrollTrigger после завершения CSS transition
-          // Задержка должна совпадать с duration transition аккордеона в CSS
-          setTimeout(() => {
-            ScrollTrigger.refresh();
-          }, 400);
-
           // Управляем классом контейнера
           if (item.classList.contains(activeClass)) {
             accordionContainer.classList.add('activated');
           } else {
             accordionContainer.classList.remove('activated');
           }
+
+          ScrollTrigger.update();
         });
       });
+    });
+
+  })();
+
+  /**
+   *  Copyboard
+   */
+  // (function () {
+  //   const copyButtons = document.querySelectorAll(".contacts__item-copy");
+  //   if (copyButtons.length) {
+  //     copyButtons.forEach(copyButton => {
+  //       copyButton.addEventListener("click", function () {
+  //         navigator.clipboard.writeText(copyButton.parentNode.innerText).then(function () {
+  //           console.log('Text copied to clipboard');
+  //         }).catch(function (error) {
+  //           console.error('Error:', error);
+  //         });
+  //       });
+  //     });
+  //   }
+  // })();
+
+  (function () {
+    const copyItems = document.querySelectorAll(".contacts__item");
+
+    copyItems.forEach(item => {
+      const copyButton = item.querySelector(".contacts__item-copy");
+      if (!copyButton) return;
+
+      copyButton.addEventListener("click", function () {
+        let result = [];
+
+        const mainTitle = item.querySelector('.contacts__item-title')?.innerText.trim();
+        if (mainTitle) result.push(`${mainTitle}`);
+
+        const contentBlocks = item.querySelectorAll('.contacts__item-wrap, .contacts__item-address, .contacts__item-links');
+
+        contentBlocks.forEach(block => {
+          const suptitle = block.querySelector('.contacts__item-suptitle')?.innerText.trim() || "";
+          const textNode = block.querySelector('.contacts__item-text')?.innerText.trim() || "";
+          const links = block.querySelectorAll('a');
+
+          if (textNode) {
+            result.push(`${suptitle} ${textNode}`.trim());
+          }
+
+          links.forEach(link => {
+            const href = link.getAttribute('href') || "";
+            const linkText = link.innerText.trim();
+
+            if (href.startsWith('tel:') || href.startsWith('mailto:')) {
+              result.push(`${suptitle} ${linkText}`.trim());
+            }
+            else if (href !== "/" && href !== "#" && href !== "") {
+              const displayValue = linkText ? `${linkText} (${href})` : href;
+              result.push(`${suptitle} ${displayValue}`.trim());
+            }
+            else if (linkText) {
+              result.push(linkText);
+            }
+          });
+        });
+
+        const textToCopy = result.join('\n').replace(/\n{2,}/g, '\n'); // убираем лишние пустые строки
+
+        if (textToCopy) {
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            setTimeout(() => copyButton.style.color = "", 1000);
+            console.log('Скопировано:\n', textToCopy);
+          }).catch(err => console.error('Ошибка:', err));
+        }
+      });
+    });
+  })();
+
+  (function () {
+    const filter = document.querySelector('.general__filter');
+    if (!filter) return;
+
+    const span = filter.querySelector('.general__filter-text span');
+    const icon = filter.querySelector('.general__filter-icon');
+
+    const states = [
+      { text: 'по умолчанию', class: 'icon--down' },
+      { text: 'по убыванию', class: 'icon--down' },
+      { text: 'по возрастанию', class: 'icon--up' }
+    ];
+
+    let currentStateIndex = 0;
+
+    filter.addEventListener('click', function () {
+      currentStateIndex = (currentStateIndex + 1) % states.length;
+
+      const state = states[currentStateIndex];
+
+      if (span) {
+        span.innerText = state.text;
+      }
+
+      icon.classList.remove('icon--up', 'icon--down');
+      icon.classList.add(state.class);
     });
   })();
 
   /**
    * Анимация текста
    */
-  function scrollTriggerPlayer(triggerElement, timeline, onEnterStart = "top 95%") {
-    ScrollTrigger.create({ trigger: triggerElement, start: "top bottom", onLeaveBack: () => { timeline.progress(1); timeline.pause(); } });
-    ScrollTrigger.create({ trigger: triggerElement, start: onEnterStart, scrub: true, onEnter: () => timeline.play() });
-  }
+  // function scrollTriggerPlayer(triggerElement, timeline, onEnterStart = "top 95%") {
+  //   ScrollTrigger.create({ trigger: triggerElement, start: "top bottom", onLeaveBack: () => { timeline.progress(1); timeline.pause(); } });
+  //   ScrollTrigger.create({ trigger: triggerElement, start: onEnterStart, scrub: true, onEnter: () => timeline.play() });
+  // }
 
   gsap.utils.toArray('[data-split="lines"]').forEach(dataSplitLines => {
     const textSplits = dataSplitLines.querySelectorAll('h1, h2, p');
@@ -1375,7 +1446,7 @@ document.addEventListener('DOMContentLoaded', () => {
         brs.forEach(br => br.remove());
       }
 
-      if (textSplit) SplitText.create(textSplit, {
+      if (textSplit && !isMobile) SplitText.create(textSplit, {
         type: "words,lines",
         mask: "lines",
         linesClass: "line",
@@ -1387,7 +1458,7 @@ document.addEventListener('DOMContentLoaded', () => {
           scrollTrigger: {
             trigger: dataSplitLines,
             start: "top 95%",
-            end: "bottom top"
+            end: "bottom top",
           }
         })
       });
@@ -1398,7 +1469,7 @@ document.addEventListener('DOMContentLoaded', () => {
   gsap.utils.toArray('[data-split="text"]').forEach(dataSplitText => {
     const isMobile = window.innerWidth < 600;
     const textSplit = dataSplitText.querySelectorAll('*');
-    if (textSplit) SplitText.create(textSplit, {
+    if (textSplit && !isMobile) SplitText.create(textSplit, {
       type: "words",
       aria: "hidden",
       onSplit: split => gsap.from(split.words, {
@@ -1411,39 +1482,242 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTrigger: {
           trigger: dataSplitText,
           start: "top 95%",
-          end: "bottom top"
+          end: "bottom top",
         }
       })
     });
   });
 
-  const animItems = document.querySelectorAll('.anim-items')
-  animItems.forEach(items => {
-    const item = items.querySelectorAll('.anim-item')
-    gsap.from(item, {
+  /**
+   * Функция для запуска svg анимации
+   */
+  (function () {
+    const isMobile = window.innerWidth < 600;
+    const svgBlocks = document.querySelectorAll('.svg-block');
+    if (svgBlocks.length && !isMobile) {
+      svgBlocks.forEach(svgBlock => {
+        gsap.from(svgBlock, {
+          ease: "none",
+          scrollTrigger: {
+            trigger: svgBlock,
+            start: `top 90%`,
+            end: `top top`,
+          },
+          onStart: function () {
+            svgBlock.classList.add('svg-active');
+          },
+        });
+      });
+    }
+  })();
 
-      // Начальное состояние: уменьшены и прозрачны
-      scale: 0.8,
-      opacity: 0,
+  /**
+   * Анимация чисел
+   */
+  (function initNumberRolls(selector = ".number-roll") {
 
-      // Настройки появления по очереди
-      stagger: {
-        each: 0.2, // задержка 0.2 сек между каждым айтемом
-        from: "start" // начинаем с первого в DOM
-      },
+    const isMobile = window.innerWidth < 600;
 
-      duration: 0.8,
-      ease: "back.out(1.7)", // пружинистый эффект в конце увеличения
+    if (!isMobile) {
+      document.querySelectorAll(selector).forEach(el => {
+        const digits = el.dataset.number.split("");
+        el.innerHTML = digits.map(ch => {
+          if (ch === ".") return `<span class="digit-container"><span class="digit"><span>.</span></span></span>`;
+          if (ch === " " || ch === "\u00A0") return `<span class="digit-container digit-space"><span class="digit"><span>&nbsp;</span></span></span>`;
+          let numSpan = "";
+          for (let j = 0; j < 2; j++) for (let i = 0; i <= 9; i++) numSpan += `<span>${i}</span>`;
+          return `<span class="digit-container"><span class="digit">${numSpan}</span></span>`;
+        }).join("");
 
-      // Настройка скролла
-      scrollTrigger: {
-        trigger: items, // Родитель всей сетки (замените на ваш класс)
-        start: "top 90%", // Анимация начнется, когда верх блока достигнет 85% высоты экрана
-        // toggleActions: "play none none none" // Проигрывать при скролле вниз, откатывать при скролле вверх
-        onEnter: () => items.classList.add('anim-animated'),
-      }
-    });
-  });
+        ScrollTrigger.create({
+          trigger: el, start: "top 100%", once: true, invalidateOnRefresh: true,
+          onEnter: () => el.querySelectorAll(".digit-container").forEach((container, i) => {
+            const target = digits[i]; if (target === ".") return;
+            const digitEl = container.querySelector(".digit");
+            const t = gsap.to(digitEl, { y: "-10em", duration: 0.2 + Math.random() * 0.4, ease: "linear", repeat: -1 });
+            gsap.delayedCall(1 + i * 0.3, () => {
+              t.kill();
+              const loops = Math.floor(digitEl.querySelectorAll("span").length / 10) - 1;
+              gsap.to(digitEl, { y: -(loops * 10 + parseInt(target)) + "em", duration: 0.2 + i * 0.2, ease: "power3.out" });
+            });
+          })
+        });
+      });
+    }
+
+  })();
+
+  /**
+   * Анимация блоков
+   */
+  (function () {
+    const isMobile = window.innerWidth < 600;
+
+    if (!isMobile) {
+      const animItems = document.querySelectorAll('.anim-items')
+      animItems.forEach(items => {
+        const item = items.querySelectorAll('.anim-item')
+        gsap.from(item, {
+
+          // Начальное состояние: уменьшены и прозрачны
+          scale: 0.8,
+          opacity: 0,
+
+          // Настройки появления по очереди
+          stagger: {
+            each: 0.2, // задержка 0.2 сек между каждым айтемом
+            from: "start" // начинаем с первого в DOM
+          },
+
+          duration: 0.8,
+          ease: "back.out(1.7)", // пружинистый эффект в конце увеличения
+
+          // Настройка скролла
+          scrollTrigger: {
+            trigger: items, // Родитель всей сетки (замените на ваш класс)
+            start: "top 90%", // Анимация начнется, когда верх блока достигнет 85% высоты экрана
+            // toggleActions: "play none none none" // Проигрывать при скролле вниз, откатывать при скролле вверх
+
+            onEnter: () => items.classList.add('anim-animated'),
+          }
+        });
+      });
+    }
+  })();
+
+  /**
+   * Глобальный обработчик анимаций
+   */
+  // (function () {
+  //   const isMobile = () => window.innerWidth < 600;
+
+  //   // 1. АВТО-ОБНОВЛЕНИЕ ПРИ ИЗМЕНЕНИИ ВЫСОТЫ (для аккордеонов)
+  //   // Это гарантирует, что триггеры не собьются, когда открываются блоки
+  //   const ro = new ResizeObserver(() => {
+  //     ScrollTrigger.refresh();
+  //   });
+  //   ro.observe(document.body);
+
+  //   // 2. АНИМАЦИЯ СТРОК (data-split="lines")
+  //   gsap.utils.toArray('[data-split="lines"]').forEach(container => {
+  //     const textElements = container.querySelectorAll('h1, h2, p');
+
+  //     textElements.forEach(el => {
+  //       // Удаляем <br> на мобилках перед сплитом
+  //       if (isMobile()) {
+  //         el.querySelectorAll('br').forEach(br => br.remove());
+  //       }
+
+  //       const split = new SplitText(el, {
+  //         type: "lines",
+  //         linesClass: "line-child",
+  //       });
+
+  //       // Обертка для маски (overflow: hidden)
+  //       new SplitText(el, {
+  //         type: "lines",
+  //         linesClass: "line-mask",
+  //       });
+
+  //       if (split.lines.length) {
+  //         gsap.from(split.lines, {
+  //           yPercent: 120,
+  //           duration: isMobile() ? 0.4 : 0.6,
+  //           stagger: 0.1,
+  //           ease: "power2.out",
+  //           scrollTrigger: {
+  //             trigger: container,
+  //             start: "top 92%",
+  //             // invalidateOnRefresh: true
+  //           }
+  //         });
+  //       }
+  //     });
+  //   });
+
+  //   // 3. АНИМАЦИЯ СЛОВ (data-split="text")
+  //   gsap.utils.toArray('[data-split="text"]').forEach(container => {
+  //     const split = new SplitText(container, { type: "words" });
+
+  //     if (split.words.length) {
+  //       gsap.from(split.words, {
+  //         opacity: 0,
+  //         duration: isMobile() ? 0.3 : 0.5,
+  //         stagger: 0.05,
+  //         ease: "sine.out",
+  //         scrollTrigger: {
+  //           trigger: container,
+  //           start: "top 92%",
+  //         }
+  //       });
+  //     }
+  //   });
+
+  //   // 4. SVG АНИМАЦИЯ
+  //   document.querySelectorAll('.svg-block').forEach(svg => {
+  //     gsap.from(svg, {
+  //       scrollTrigger: {
+  //         trigger: svg,
+  //         start: "top 90%",
+  //         end: "top 20%",
+  //         scrub: true,
+  //         onEnter: () => svg.classList.add('svg-active'),
+  //       }
+  //     });
+  //   });
+
+  //   // 5. АНИМАЦИЯ ЧИСЕЛ
+  //   document.querySelectorAll('.number-roll').forEach(el => {
+  //     const digits = el.dataset.number.split("");
+  //     el.innerHTML = digits.map(ch => {
+  //       if (ch === "." || ch === ",") return `<span class="digit-container"><span>${ch}</span></span>`;
+  //       if (ch === " " || ch === "00A0") return `<span class="digit-container">&nbsp;</span>`;
+  //       let numSpan = "";
+  //       for (let j = 0; j < 2; j++) for (let i = 0; i <= 9; i++) numSpan += `<span>${i}</span>`;
+  //       return `<span class="digit-container"><span class="digit">${numSpan}</span></span>`;
+  //     }).join("");
+
+  //     ScrollTrigger.create({
+  //       trigger: el,
+  //       start: "top 95%",
+  //       once: true,
+  //       onEnter: () => {
+  //         el.querySelectorAll(".digit").forEach((digitEl, i) => {
+  //           const target = digits[i];
+  //           if (isNaN(target)) return;
+
+  //           gsap.to(digitEl, {
+  //             y: -(10 + parseInt(target)) + "em",
+  //             duration: 1 + i * 0.2,
+  //             ease: "power3.out"
+  //           });
+  //         });
+  //       }
+  //     });
+  //   });
+
+  //   // 6. АНИМАЦИЯ БЛОКОВ (СЕТКИ)
+  //   document.querySelectorAll('.anim-items').forEach(wrapper => {
+  //     const items = wrapper.querySelectorAll('.anim-item');
+
+  //     gsap.from(items, {
+  //       scale: 0.8,
+  //       opacity: 0,
+  //       stagger: 0.15,
+  //       duration: 0.8,
+  //       ease: "back.out(1.6)",
+  //       scrollTrigger: {
+  //         trigger: wrapper,
+  //         start: "top 85%",
+  //         onEnter: () => wrapper.classList.add('anim-animated'),
+  //       }
+  //     });
+  //   });
+
+  //   // 7. ИСПРАВЛЕНИЕ ДЛЯ CSS MASK И ТЕНЕЙ (если нужно)
+  //   // Если у вас блоки режутся маской, добавьте этот класс родителю
+  //   // gsap.set(".line-mask", { overflow: "hidden" });
+  // })();
 
   /**
    * Инициализация слайдера
@@ -2098,6 +2372,13 @@ document.addEventListener('DOMContentLoaded', () => {
       updateDisabled();
     }
 
+    // Добавьте этот код один раз в проект
+    // Он будет следить за изменением высоты BODY и обновлять GSAP
+    // const ro = new ResizeObserver(() => {
+    //   ScrollTrigger.refresh();
+    // });
+    // ro.observe(document.body);
+
   })();
 
   /**
@@ -2124,51 +2405,59 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * iOS-safe ScrollTrigger refresh handler
    */
-  (function () {
-    let resizeTimer = null;
-    let lastWidth = window.innerWidth;
+  // (function () {
+  //   let resizeTimer = null;
+  //   let lastWidth = window.innerWidth;
 
-    // Единственный надёжный триггер для refresh - смена ширины.
-    // Высоту игнорируем полностью: на iOS она "прыгает" при скролле
-    // из-за адресной строки и вызывает ложные refresh.
-    function safeRefresh() {
-      // Читаем ширину через visualViewport если доступен - точнее на iOS
-      const currentWidth = window.visualViewport
-        ? Math.round(window.visualViewport.width)
-        : window.innerWidth;
+  //   // Единственный надёжный триггер для refresh - смена ширины.
+  //   // Высоту игнорируем полностью: на iOS она "прыгает" при скролле
+  //   // из-за адресной строки и вызывает ложные refresh.
+  //   function safeRefresh() {
+  //     // Читаем ширину через visualViewport если доступен - точнее на iOS
+  //     const currentWidth = window.visualViewport
+  //       ? Math.round(window.visualViewport.width)
+  //       : window.innerWidth;
 
-      if (Math.abs(currentWidth - lastWidth) < 50) return;
+  //     if (Math.abs(currentWidth - lastWidth) < 50) return;
 
-      lastWidth = currentWidth;
+  //     lastWidth = currentWidth;
 
-      clearTimeout(resizeTimer);
-      // 400ms - даём iOS время завершить layout после поворота
-      resizeTimer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 400);
-    }
+  //     clearTimeout(resizeTimer);
+  //     // 400ms - даём iOS время завершить layout после поворота
+  //     resizeTimer = setTimeout(() => {
+  //       ScrollTrigger.refresh();
+  //     }, 400);
+  //   }
 
-    // orientationchange - основной триггер поворота на мобильных
-    window.addEventListener('orientationchange', () => {
-      // Дополнительная задержка: браузер применяет новые размеры
-      // не сразу после события а через ~300-500ms
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        lastWidth = window.visualViewport
-          ? Math.round(window.visualViewport.width)
-          : window.innerWidth;
-        ScrollTrigger.refresh();
-      }, 500);
-    });
+  //   // orientationchange - основной триггер поворота на мобильных
+  //   window.addEventListener('orientationchange', () => {
+  //     // Дополнительная задержка: браузер применяет новые размеры
+  //     // не сразу после события а через ~300-500ms
+  //     clearTimeout(resizeTimer);
+  //     resizeTimer = setTimeout(() => {
+  //       lastWidth = window.visualViewport
+  //         ? Math.round(window.visualViewport.width)
+  //         : window.innerWidth;
+  //       ScrollTrigger.refresh();
+  //     }, 500);
+  //   });
 
-    // window.resize - для десктопа и Android
-    window.addEventListener('resize', safeRefresh);
+  //   // window.resize - для десктопа и Android
+  //   window.addEventListener('resize', safeRefresh);
 
-    // visualViewport.resize - для iOS Safari (надёжнее чем window.resize)
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', safeRefresh);
-    }
-  })();
+  //   // visualViewport.resize - для iOS Safari (надёжнее чем window.resize)
+  //   if (window.visualViewport) {
+  //     window.visualViewport.addEventListener('resize', safeRefresh);
+  //   }
+  // })();
+
+  // Следим за любыми изменениями высоты документа (аккордеоны, табы, загрузка картинок)
+  // const globalResizeObserver = new ResizeObserver(() => {
+  //   ScrollTrigger.refresh();
+  // });
+  // globalResizeObserver.observe(document.body);
+
+  window.addEventListener('resize', function () { ScrollTrigger.refresh() });
 
   /**
    * УВЕДОМЛЕНИЕ О COOKIE                     

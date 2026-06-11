@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'SibMerIconFont';
-  src:  url('fonts/SibMerIconFont.eot?8ga7b9');
-  src:  url('fonts/SibMerIconFont.eot?8ga7b9#iefix') format('embedded-opentype'),
-    url('fonts/SibMerIconFont.ttf?8ga7b9') format('truetype'),
-    url('fonts/SibMerIconFont.woff?8ga7b9') format('woff'),
-    url('fonts/SibMerIconFont.svg?8ga7b9#SibMerIconFont') format('svg');
+  src:  url('fonts/SibMerIconFont.eot?x29g51');
+  src:  url('fonts/SibMerIconFont.eot?x29g51#iefix') format('embedded-opentype'),
+    url('fonts/SibMerIconFont.ttf?x29g51') format('truetype'),
+    url('fonts/SibMerIconFont.woff?x29g51') format('woff'),
+    url('fonts/SibMerIconFont.svg?x29g51#SibMerIconFont') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-exit:before {
+  content: "\e929";
+}
 .icon-advan-1:before {
   content: "\e900";
 }
@@ -67,60 +70,84 @@
 .icon-contacts:before {
   content: "\e90d";
 }
-.icon-danger:before {
+.icon-contacts-icon-1:before {
   content: "\e90e";
 }
-.icon-down:before {
+.icon-contacts-icon-2:before {
   content: "\e90f";
 }
-.icon-download:before {
+.icon-contacts-icon-3:before {
   content: "\e910";
 }
-.icon-eaeu:before {
+.icon-copy:before {
   content: "\e911";
 }
-.icon-ground:before {
+.icon-danger:before {
   content: "\e912";
 }
-.icon-kuda:before {
+.icon-down:before {
   content: "\e913";
 }
-.icon-max:before {
+.icon-download:before {
   content: "\e914";
 }
-.icon-minus:before {
+.icon-eaeu:before {
   content: "\e915";
 }
-.icon-otkuda:before {
+.icon-ground:before {
   content: "\e916";
 }
-.icon-person:before {
+.icon-kuda:before {
   content: "\e917";
 }
-.icon-phone:before {
+.icon-max:before {
   content: "\e918";
 }
-.icon-plus:before {
+.icon-minus:before {
   content: "\e919";
 }
-.icon-pochta:before {
+.icon-otkuda:before {
   content: "\e91a";
 }
-.icon-presentation:before {
+.icon-person:before {
   content: "\e91b";
 }
-.icon-refrigerated:before {
+.icon-phone:before {
   content: "\e91c";
 }
-.icon-rf:before {
+.icon-plus:before {
   content: "\e91d";
 }
-.icon-tg:before {
+.icon-pochta:before {
   content: "\e91e";
 }
-.icon-unofficial:before {
+.icon-presentation:before {
   content: "\e91f";
 }
-.icon-wa:before {
+.icon-refrigerated:before {
   content: "\e920";
+}
+.icon-rf:before {
+  content: "\e921";
+}
+.icon-services-icon-air:before {
+  content: "\e922";
+}
+.icon-services-icon-country:before {
+  content: "\e923";
+}
+.icon-services-icon-ground:before {
+  content: "\e924";
+}
+.icon-tg:before {
+  content: "\e925";
+}
+.icon-triangle:before {
+  content: "\e926";
+}
+.icon-unofficial:before {
+  content: "\e927";
+}
+.icon-wa:before {
+  content: "\e928";
 }

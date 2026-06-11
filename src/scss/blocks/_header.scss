@@ -21,6 +21,10 @@
     transition: background-color 0.3s ease;
   }
 
+  .inner-page & {
+    background-color: var(--black);
+  }
+
   .container {
     height: fit-content;
   }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" class="notfound-page inner-page">
+@@include('blocks/head.html', {"title": "Siberian Merchant Lines"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <main class="main">
+
+      <section class="notfound">
+        <div class="container">
+          <div class="notfound__inner">
+
+            <div class="notfound__content">
+              <div class="notfound__title" data-split="lines">
+                <h1>
+                  <span>ой,</span> страница <br>
+                  не найдена :(
+                </h1>
+              </div>
+              <div class="notfound__btn">
+                <a class="btn" href="/SibMer">
+                  <span class="btn-text">
+                    Перейти на главную
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="notfound__video">
+              <video src="./video/404.mp4" autoplay loop muted playsinline preload="auto"></video>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

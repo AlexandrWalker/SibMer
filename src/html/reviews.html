@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru" class="inner-page">
+@@include('blocks/head.html', {"title": "Siberian Merchant Lines"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <div class="breadcrumbs__items">
+                <a class="breadcrumbs__item" href="/SibMer">
+                  Главная
+                </a>
+                <div class="breadcrumbs__item">
+                  Отзывы
+                </div>
+              </div>
+            </div>
+
+            <div class="template__head">
+              <div class="template__title" data-split="lines">
+                <h1>
+                  Отзывы
+                </h1>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews">
+        <div class="container">
+          <div class="reviews__inner">
+
+            <div class="general__control">
+              <div class="general__tabs">
+                <div class="general__tabs-items">
+                  <div class="general__tabs-item tabs--active">
+                    Яндекс
+                  </div>
+                  <div class="general__tabs-item">
+                    Google
+                  </div>
+                  <div class="general__tabs-item">
+                    2Гис
+                  </div>
+                  <div class="general__tabs-item">
+                    Все отзывы
+                  </div>
+                </div>
+              </div>
+              <div class="general__filter">
+                <div class="general__filter-text">
+                  Сортировать: <span>по умолчанию</span>
+                </div>
+                <div class="general__filter-icon icon--down"></div>
+              </div>
+            </div>
+
+            <div class="reviews__content">
+              <div class="reviews__items anim-items">
+                @@loop('./elements/reviews-item.html', './data/opinions-items.json')
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')
