@@ -1,7 +1,7 @@
 @use './../mixins' as *;
 
 .pc {
-  overflow: hidden;
+  overflow: clip;
 
   &::before {
     content: "";

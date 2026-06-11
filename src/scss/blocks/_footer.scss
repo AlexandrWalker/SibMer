@@ -34,6 +34,13 @@
       @include sm {
         font-size: 4rem;
       }
+
+      &:hover {
+
+        @include dosm {
+          color: var(--accent);
+        }
+      }
     }
 
     &-mail {
@@ -220,6 +227,26 @@
         background-color: var(--black-05);
 
         color: var(--accent);
+
+        &:hover {
+
+          i {
+            color: var(--white);
+          }
+
+          .GlassMaterial:before {
+            opacity: 0;
+          }
+
+          .GlassMaterial:after {
+            background-color: var(--accent);
+          }
+
+          .header__mid-wrap {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
       }
 
       i {

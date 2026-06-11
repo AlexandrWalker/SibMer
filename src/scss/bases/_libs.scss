@@ -160,10 +160,7 @@
   touch-action: pan-y;
 }
 
-.f-button svg {
-  stroke-linecap: square;
-  stroke-linejoin: square;
-}
+.f-button svg {}
 
 .fancybox__backdrop {
   background: var(--black-50);
