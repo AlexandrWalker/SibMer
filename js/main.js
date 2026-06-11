@@ -1359,7 +1359,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   gsap.utils.toArray('[data-split="lines"]').forEach(dataSplitLines => {
-    const textSplits = dataSplitLines.querySelectorAll('*');
+    const textSplits = dataSplitLines.querySelectorAll('h1, h2, p');
 
     // Определяем настройки для мобилки и десктопа
     const isMobile = window.innerWidth < 600;
