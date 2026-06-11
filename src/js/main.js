@@ -685,6 +685,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // height: () => `${(innerBlock.offsetHeight * getHeightMultiplier())}px`,
           height: '0px',
           opacity: 0,
+          filter: "blur(10px)",
           ease: 'none'
         }, 0); // 0 — чтобы анимация шла одновременно с хедером
       }
@@ -1041,79 +1042,26 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isMobile()) {
         casesItemsJs.forEach(item => {
           item.addEventListener('click', () => {
-            if (item.classList.contains('cases-item--active')) {
-              item.classList.remove('cases-item--active');
-            } else {
+            // Проверяем, активен ли этот элемент уже
+            const isActive = item.classList.contains('cases-item--active');
+
+            // 1. Сначала убираем активный класс у ВСЕХ кейсов
+            casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+
+            // 2. Если элемент не был активен до клика — открываем его
+            // Если был активен — он останется закрытым (так работает логика закрытия)
+            if (!isActive) {
               item.classList.add('cases-item--active');
             }
 
+            // Обновляем ScrollTrigger, так как высота контента могла измениться
             ScrollTrigger.update();
           });
         });
       }
+
     }
   })();
-
-  /**
-   * Функция для блока кейсов, где одна всегда открыта
-   */
-  // (function () {
-  //   const mobileBreakpoint = 600;
-  //   const casesJs = document.querySelector('.cases--js');
-  //   if (!casesJs) return;
-
-  //   const casesTabsJs = document.querySelector('.cases-tabs--js');
-  //   const casesTabsItemsJs = casesTabsJs.querySelectorAll('.general__tabs-item');
-  //   const casesItemsJs = document.querySelectorAll('.cases-item--js');
-
-  //   const isMobile = () => window.innerWidth < mobileBreakpoint;
-
-  //   // Функция активации (общая для табов и кликов по карточкам)
-  //   function activateCase(dataValue) {
-  //     const targetItem = document.querySelector(`[data-cases="${dataValue}"]`);
-  //     const targetTab = document.querySelector(`.general__tabs-item[data-value="${dataValue}"]`);
-
-  //     if (!targetItem) return;
-
-  //     // Снимаем активность со всех
-  //     casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
-  //     casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
-
-  //     // Активируем нужные
-  //     targetItem.classList.add('cases-item--active');
-  //     if (targetTab) targetTab.classList.add('tabs--active');
-
-  //     // Обновляем GSAP, так как высота могла измениться
-  //     if (window.ScrollTrigger) setTimeout(() => ScrollTrigger.refresh(), 300);
-  //   }
-
-  //   // Логика ТАБОВ
-  //   if (casesTabsItemsJs.length) {
-  //     casesTabsItemsJs.forEach(tab => {
-  //       tab.addEventListener('click', () => {
-  //         activateCase(tab.dataset.value);
-  //       });
-  //     });
-  //   }
-
-  //   // Логика КАРТОЧЕК
-  //   if (casesItemsJs.length) {
-  //     casesItemsJs.forEach((item, index) => {
-  //       item.style.zIndex = 100 - index;
-
-  //       item.addEventListener('click', () => {
-  //         // Если это мобилка
-  //         if (isMobile()) {
-  //           // Если элемент уже активен — НИЧЕГО НЕ ДЕЛАЕМ (запрет на закрытие)
-  //           if (item.classList.contains('cases-item--active')) return;
-
-  //           // Иначе активируем этот кейс через общую функцию
-  //           activateCase(item.dataset.cases);
-  //         }
-  //       });
-  //     });
-  //   }
-  // })();
 
   /**
    * Sticky функция
@@ -1324,21 +1272,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    *  Copyboard
    */
-  // (function () {
-  //   const copyButtons = document.querySelectorAll(".contacts__item-copy");
-  //   if (copyButtons.length) {
-  //     copyButtons.forEach(copyButton => {
-  //       copyButton.addEventListener("click", function () {
-  //         navigator.clipboard.writeText(copyButton.parentNode.innerText).then(function () {
-  //           console.log('Text copied to clipboard');
-  //         }).catch(function (error) {
-  //           console.error('Error:', error);
-  //         });
-  //       });
-  //     });
-  //   }
-  // })();
-
   (function () {
     const copyItems = document.querySelectorAll(".contacts__item");
 
@@ -1392,6 +1325,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  /**
+   * Функция для фильтра
+   */
   (function () {
     const filter = document.querySelector('.general__filter');
     if (!filter) return;
@@ -1432,7 +1368,6 @@ document.addEventListener('DOMContentLoaded', () => {
   gsap.utils.toArray('[data-split="lines"]').forEach(dataSplitLines => {
     const textSplits = dataSplitLines.querySelectorAll('h1, h2, p');
 
-    // Определяем настройки для мобилки и десктопа
     const isMobile = window.innerWidth < 600;
     const animSettings = {
       duration: isMobile ? 0.2 : 0.3, // на мобилке дольше
@@ -2457,7 +2392,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // });
   // globalResizeObserver.observe(document.body);
 
-  window.addEventListener('resize', function () { ScrollTrigger.refresh() });
+  window.addEventListener('resize', function () { ScrollTrigger.update() });
 
   /**
    * УВЕДОМЛЕНИЕ О COOKIE                     

@@ -29,31 +29,35 @@
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    // gap: 4rem;
   }
 
   &__body {
     width: calc(100% + 4rem);
-    padding: 0 2rem;
+    padding: 3rem 2rem;
     margin-left: -2rem;
 
-    // -webkit-mask-image: linear-gradient(to right,
-    //     transparent 0%,
-    //     black 1.5rem,
-    //     black calc(100% - 1.5rem),
-    //     transparent 100%);
-    // mask-image: linear-gradient(to right,
-    //     transparent 0%,
-    //     black 1.5rem,
-    //     black calc(100% - 1.5rem),
-    //     transparent 100%);
-    // -webkit-mask-clip: no-clip;
-    // mask-clip: no-clip;
-
-    // overflow-y: visible;
-    // overflow-x: hidden;
-
     position: relative;
+
+    @include dosm {
+      padding: 4rem 2rem;
+
+      -webkit-mask-image: linear-gradient(to right,
+          transparent 0%,
+          black 1.5rem,
+          black calc(100% - 1.5rem),
+          transparent 100%);
+      mask-image: linear-gradient(to right,
+          transparent 0%,
+          black 1.5rem,
+          black calc(100% - 1.5rem),
+          transparent 100%);
+      -webkit-mask-clip: no-clip;
+      mask-clip: no-clip;
+
+      overflow-y: visible;
+      overflow-x: hidden;
+    }
   }
 
   &__slider {
@@ -61,13 +65,13 @@
     @include dosm {
 
       .swiper-slide {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        // opacity: 0;
+        // visibility: hidden;
+        // transition: opacity 0.3s ease, visibility 0.3s ease;
 
         &-visible {
-          opacity: 1;
-          visibility: visible;
+          // opacity: 1;
+          // visibility: visible;
         }
       }
     }
@@ -82,7 +86,7 @@
     padding: 5rem 3rem 4rem 3rem;
     border-radius: 1rem;
     background: var(--white);
-    box-shadow: 0px 55px 93px rgba(36, 93, 157, 0.06);
+    box-shadow: 0px 15px 20px rgba(36, 93, 157, 0.06);
 
     @include sm {
       gap: 1.5rem;
@@ -220,7 +224,7 @@
       font-weight: 400;
       font-size: 1.2rem;
       line-height: 110%;
-      
+
       @include sm {
         font-size: 1rem;
       }
