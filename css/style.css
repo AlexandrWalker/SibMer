@@ -116,16 +116,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -2951,16 +2951,16 @@ body {
   background-color: var(--accent);
   pointer-events: none;
   opacity: 0;
+  margin-left: var(--container-padding);
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   position: absolute;
-  bottom: -5.6rem;
+  bottom: 0;
   z-index: 2;
-}
-
-.header-fixed .nav__indicator {
-  bottom: -2.4rem;
+  -webkit-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
 }
 
 .nav__indicator.active {
@@ -6376,6 +6376,10 @@ canvas {
 
   .logo {
     height: 3.2rem;
+  }
+
+  .nav__indicator {
+    display: none;
   }
 
   .plate__inner {
