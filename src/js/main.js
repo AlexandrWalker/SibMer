@@ -336,6 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       indicator.style.left = `${left}px`;
       indicator.style.width = `${width}px`;
+      indicator.classList.add('active');
     }
 
     // Инициализация: ставим индикатор под активным пунктом
@@ -369,6 +370,13 @@ document.addEventListener('DOMContentLoaded', () => {
     //     setIndicator(currentActive);
     //   }
     // });
+
+    window.addEventListener('resize', () => {
+      const currentActive = document.querySelector('.nav__active');
+      if (currentActive) {
+        setIndicator(currentActive);
+      }
+    });
   })();
 
   /**
