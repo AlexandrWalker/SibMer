@@ -17,6 +17,11 @@
   left: 0;
   z-index: 800;
 
+  &.plate--active {
+    opacity: 1;
+    visibility: visible;
+  }
+
   &__inner {
     display: flex;
     flex-direction: row;
@@ -27,6 +32,7 @@
     border-radius: 1rem;
     background-color: var(--accent);
     transition: all 0.5s ease;
+    pointer-events: none;
 
     margin: 0 4rem calc(2rem + env(safe-area-inset-bottom, 20px)) auto;
 
@@ -35,6 +41,10 @@
     // left: auto;
     // bottom: calc(2rem + env(safe-area-inset-bottom, 20px));
     // z-index: 1000;
+
+    .plate--active & {
+      pointer-events: all;
+    }
 
     @include sm {
       margin: 0 1.5rem calc(2rem + env(safe-area-inset-bottom, 20px)) 1.5rem;
@@ -47,6 +57,10 @@
 
     a {
       text-decoration: underline;
+
+      &:hover {
+        color: var(--black);
+      }
     }
   }
 
@@ -58,11 +72,17 @@
     height: 5.6rem;
     border-radius: 50%;
     background-color: var(--white);
+    transition: all 0.3s ease;
 
     font-weight: 700;
     font-size: 1.6rem;
     line-height: 120%;
     text-transform: uppercase;
     color: var(--black);
+
+    &:hover {
+      background-color: var(--black);
+      color: var(--white);
+    }
   }
 }
