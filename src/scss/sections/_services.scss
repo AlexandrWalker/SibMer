@@ -4,7 +4,7 @@
   background-color: var(--black);
   overflow: hidden;
   position: relative;
-  
+
   &::before {
     content: "";
     display: block;
@@ -72,23 +72,39 @@
       padding: 2rem 1.5rem 7rem 1.5rem;
     }
 
-    // &:hover {
+    &:hover {
 
-    //   @include dosm {
-    //     background-color: var(--white);
-    //     min-height: 78.9rem;
+      @include dosm {
 
-    //     color: var(--black);
+        .services__item-btn {
 
-    //     @include sm {
-    //       min-height: unset;
-    //     }
+          i {
+            color: var(--accent);
+          }
 
-    //     .btn {
-    //       opacity: 1;
-    //     }
-    //   }
-    // }
+          .GlassMaterial:before {
+            opacity: 0;
+          }
+
+          .GlassMaterial:after {
+            background-color: var(--white);
+          }
+        }
+
+        //     background-color: var(--white);
+        //     min-height: 78.9rem;
+
+        //     color: var(--black);
+
+        //     @include sm {
+        //       min-height: unset;
+        //     }
+
+        //     .btn {
+        //       opacity: 1;
+        // }
+      }
+    }
 
     &.accordion-item--active {
 
@@ -179,7 +195,7 @@
           @include sm {
 
             &::before {
-              content: "\e919";
+              content: "\e91b";
 
               transform: rotate(180deg);
             }

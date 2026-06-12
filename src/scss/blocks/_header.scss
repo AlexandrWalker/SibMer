@@ -157,10 +157,23 @@
       a {
         width: 5.6rem;
         height: 5.6rem;
+        border-radius: 50%;
 
         position: relative;
 
         &:hover {
+
+          /* new */
+          background-color: var(--white);
+
+          img {
+            opacity: 0;
+          }
+
+          i {
+            opacity: 1;
+          }
+          /* ./new */
 
           i {
             color: var(--accent);
@@ -181,7 +194,22 @@
         }
 
         i {
+          opacity: 0;
           color: var(--white-50);
+          transition: opacity 0.3s ease;
+
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        img {
+          max-width: 100%;
+          width: auto;
+          height: 100%;
+          object-fit: contain;
+          transition: opacity 0.3s ease;
         }
       }
     }

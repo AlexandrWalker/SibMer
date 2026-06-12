@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'SibMerIconFont';
-  src:  url('fonts/SibMerIconFont.eot?x29g51');
-  src:  url('fonts/SibMerIconFont.eot?x29g51#iefix') format('embedded-opentype'),
-    url('fonts/SibMerIconFont.ttf?x29g51') format('truetype'),
-    url('fonts/SibMerIconFont.woff?x29g51') format('woff'),
-    url('fonts/SibMerIconFont.svg?x29g51#SibMerIconFont') format('svg');
+  src:  url('fonts/SibMerIconFont.eot?aqqmz2');
+  src:  url('fonts/SibMerIconFont.eot?aqqmz2#iefix') format('embedded-opentype'),
+    url('fonts/SibMerIconFont.ttf?aqqmz2') format('truetype'),
+    url('fonts/SibMerIconFont.woff?aqqmz2') format('woff'),
+    url('fonts/SibMerIconFont.svg?aqqmz2#SibMerIconFont') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,9 +25,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-exit:before {
-  content: "\e929";
-}
 .icon-advan-1:before {
   content: "\e900";
 }
@@ -94,60 +91,75 @@
 .icon-eaeu:before {
   content: "\e915";
 }
-.icon-ground:before {
+.icon-exit:before {
   content: "\e916";
 }
-.icon-kuda:before {
+.icon-ground:before {
   content: "\e917";
 }
-.icon-max:before {
+.icon-kuda:before {
   content: "\e918";
 }
-.icon-minus:before {
+.icon-max:before {
   content: "\e919";
 }
-.icon-otkuda:before {
+.icon-max-glass:before {
   content: "\e91a";
+  color: rgba(255, 255, 255, 0.5);
 }
-.icon-person:before {
+.icon-minus:before {
   content: "\e91b";
 }
-.icon-phone:before {
+.icon-otkuda:before {
   content: "\e91c";
 }
-.icon-plus:before {
+.icon-person:before {
   content: "\e91d";
 }
-.icon-pochta:before {
+.icon-phone:before {
   content: "\e91e";
 }
-.icon-presentation:before {
+.icon-plus:before {
   content: "\e91f";
 }
-.icon-refrigerated:before {
+.icon-pochta:before {
   content: "\e920";
 }
-.icon-rf:before {
+.icon-presentation:before {
   content: "\e921";
 }
-.icon-services-icon-air:before {
+.icon-refrigerated:before {
   content: "\e922";
 }
-.icon-services-icon-country:before {
+.icon-rf:before {
   content: "\e923";
 }
-.icon-services-icon-ground:before {
+.icon-services-icon-air:before {
   content: "\e924";
 }
-.icon-tg:before {
+.icon-services-icon-country:before {
   content: "\e925";
 }
-.icon-triangle:before {
+.icon-services-icon-ground:before {
   content: "\e926";
 }
-.icon-unofficial:before {
+.icon-tg:before {
   content: "\e927";
 }
-.icon-wa:before {
+.icon-tg-glass:before {
   content: "\e928";
+  color: rgba(255, 255, 255, 0.5);
+}
+.icon-triangle:before {
+  content: "\e929";
+}
+.icon-unofficial:before {
+  content: "\e92a";
+}
+.icon-wa:before {
+  content: "\e92b";
+}
+.icon-wa-glass:before {
+  content: "\e92c";
+  color: rgba(255, 255, 255, 0.5);
 }
