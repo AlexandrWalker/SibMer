@@ -2414,9 +2414,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!cookieAccepted) {
     const cookiesNotify = document.getElementById('plate_cookie');
     if (cookiesNotify) {
-      cookiesNotify.style.opacity = '1';
-      cookiesNotify.style.visibility = 'visible';
-      cookiesNotify.style.pointerEvents = 'all';
+      cookiesNotify.classList.add('plate--active');
+
+      // cookiesNotify.style.opacity = '1';
+      // cookiesNotify.style.visibility = 'visible';
+      // cookiesNotify.style.pointerEvents = 'all';
     }
   }
 
@@ -2433,10 +2435,11 @@ function checkCookies() {
 
   const plate = document.getElementById('plate_cookie');
   if (!plate) return;
+  plate.classList.remove('plate--active');
 
-  plate.style.opacity = '0';
-  plate.style.visibility = 'hidden';
-  plate.style.pointerEvents = 'none';
+  // plate.style.opacity = '0';
+  // plate.style.visibility = 'hidden';
+  // plate.style.pointerEvents = 'none';
 
   setTimeout(() => plate.remove(), 5000);
 }

@@ -2993,6 +2993,11 @@ body {
   z-index: 800;
 }
 
+.plate.plate--active {
+  opacity: 1;
+  visibility: visible;
+}
+
 .plate__inner {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3014,7 +3019,12 @@ body {
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  pointer-events: none;
   margin: 0 4rem calc(2rem + env(safe-area-inset-bottom, 20px)) auto;
+}
+
+.plate--active .plate__inner {
+  pointer-events: all;
 }
 
 .plate__text {
@@ -3024,6 +3034,10 @@ body {
 
 .plate__text a {
   text-decoration: underline;
+}
+
+.plate__text a:hover {
+  color: var(--black);
 }
 
 .plate__btn {
@@ -3040,11 +3054,19 @@ body {
   height: 5.6rem;
   border-radius: 50%;
   background-color: var(--white);
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   font-weight: 700;
   font-size: 1.6rem;
   line-height: 120%;
   text-transform: uppercase;
   color: var(--black);
+}
+
+.plate__btn:hover {
+  background-color: var(--black);
+  color: var(--white);
 }
 
 .popup {
