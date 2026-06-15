@@ -1,0 +1,73 @@
+@use './../mixins' as *;
+
+.privacy {
+
+  &__content {
+    max-width: 126rem;
+
+    h2 {
+      margin-bottom: 2rem;
+
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 116%;
+      text-transform: uppercase;
+      color: var(--accent);
+
+      @include sm {
+        margin-bottom: 1.5rem;
+
+        font-family: var(--second-family);
+        font-size: 1.6rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    span {
+      display: block;
+      margin-bottom: 2rem;
+
+      color: var(--accent);
+
+      @include sm {
+        margin-bottom: 1.5rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    p {
+      margin-bottom: 2rem;
+
+      @include sm {
+        margin-bottom: 1.5rem;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      background-image: linear-gradient(0deg, transparent 0.1rem, currentColor 0, currentColor 0.24rem, transparent 0, transparent 100%);
+      background-size: 0;
+      transition: .3s;
+      background-position: left;
+      background-repeat: no-repeat;
+
+      color: var(--accent);
+
+      &:hover {
+
+        @include dosm {
+          background-size: 100%;
+        }
+      }
+    }
+  }
+}

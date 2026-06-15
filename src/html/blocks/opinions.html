@@ -1,0 +1,39 @@
+<section class="opinions">
+  <div class="container">
+    <div class="opinions__inner">
+
+      <div class="general__head">
+        <div class="general__title" data-split="lines">
+          <h2>
+            @@title
+          </h2>
+        </div>
+      </div>
+      <div class="general__body">
+        <div class="opinions__body">
+          <div class="swiper opinions__slider anim-items">
+            <div class="swiper-wrapper">
+              @@loop('./../elements/opinions-slide-item.html', './data/opinions-items.json')
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="general__foot">
+        <div class="general__btns">
+          <div class="swiper-button-prev opinions-button-prev">
+            <i class="icon-arrow-left-long"></i>
+          </div>
+          <a class="btn--default" href="/SibMer/reviews.html">
+            <span class="btn-text">
+              Все отзывы
+            </span>
+          </a>
+          <div class="swiper-button-next opinions-button-next">
+            <i class="icon-arrow-right-long"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

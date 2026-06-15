@@ -27,4 +27,12 @@
       }
     }
   }
+
+  &+section {
+    --section-padding-top: 3rem;
+
+    @include sm {
+      --section-padding-top: 2rem;
+    }
+  }
 }

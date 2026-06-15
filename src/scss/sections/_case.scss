@@ -1,0 +1,145 @@
+@use './../mixins' as *;
+
+.case {
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    height: auto;
+    border-radius: 1rem;
+    padding: 1rem 1rem 3rem 1rem;
+    border: 0.1rem solid var(--white);
+    background-color: var(--white);
+    overflow: hidden;
+    transition: 0s, border-color 0.3s ease;
+    box-shadow: 0px 55px 93px rgba(36, 93, 157, 0.06);
+
+    @include sm {
+      padding: 0.5rem 0.5rem 1rem 0.5rem;
+      gap: 1.5rem;
+    }
+
+    &:hover {
+
+      @include dosm {
+        border-color: var(--black);
+
+        .btn--default {
+          background-color: var(--black);
+        }
+      }
+    }
+
+    &-img {
+      width: 100%;
+      height: 29rem;
+      border-radius: 0.6rem;
+      overflow: hidden;
+
+      @include sm {
+        height: 10.2rem;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3rem;
+      padding: 0 2rem 0 2rem;
+
+      @include sm {
+        padding: 0 0.5rem 0 0.5rem;
+        gap: 1rem;
+      }
+    }
+
+    &-title {
+      width: 100%;
+
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 140%;
+
+      @include sm {
+        font-size: 1rem;
+      }
+    }
+
+    &-feats {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+
+      @include sm {
+        gap: 0.8rem;
+      }
+    }
+
+    &-feat {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-left: 3.5rem;
+      border-left: 0.4rem solid var(--black-10);
+
+      @include sm {
+        gap: 0.5rem;
+        padding-left: 0.9rem;
+        border-width: 0.1rem;
+      }
+    }
+
+    &-count {
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 100%;
+      color: var(--accent);
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+
+    &-text {
+
+      @include sm {
+        font-size: 1rem;
+      }
+    }
+
+    .btn--default {
+      width: fit-content;
+      height: 3.6rem;
+      padding: 0 2rem;
+
+      font-size: 1.2rem;
+
+      @include sm {
+        height: 2.6rem;
+        padding: 0 1rem;
+
+        font-size: 1rem;
+      }
+    }
+  }
+}

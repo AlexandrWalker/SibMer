@@ -1,0 +1,140 @@
+@use './../mixins' as *;
+
+.blog {
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    border-radius: 1rem;
+    padding: 1rem 1rem 3rem 1rem;
+    overflow: hidden;
+    background-color: var(--white);
+    border: 0.1rem solid var(--white);
+    transition: 0s, border-color 0.3s ease;
+
+    @include sm {
+      gap: 1.5rem;
+      padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+    }
+
+    &:hover {
+
+      @include dosm {
+        border-color: var(--black);
+
+        .btn--default {
+          background-color: var(--black);
+        }
+      }
+    }
+
+    &-img {
+      width: 100%;
+      height: 28.9rem;
+      border-radius: 0.6rem;
+      overflow: hidden;
+
+      @include sm {
+        height: 10.2rem;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 0 2rem;
+
+      @include sm {
+        padding: 0 0.5rem;
+      }
+    }
+
+    &-title {
+      margin-bottom: 1.5rem;
+
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 140%;
+
+      @include sm {
+        margin-bottom: 0.8rem;
+
+        font-size: 1rem;
+      }
+    }
+
+    &-date {
+      width: 100%;
+      margin-bottom: 2rem;
+
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 120%;
+      color: var(--black-50);
+
+      @include sm {
+        margin-bottom: 0.8rem;
+
+        font-size: 1rem;
+      }
+    }
+
+    &-text {
+      margin-bottom: 3rem;
+
+      -webkit-line-clamp: 3;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -o-text-overflow: clip;
+      text-overflow: clip;
+      overflow: hidden;
+
+      line-height: 140%;
+      color: var(--black-50);
+
+      @include sm {
+        margin-bottom: 1.5rem;
+
+        -webkit-line-clamp: 5;
+
+        font-size: 1rem;
+      }
+    }
+
+    &-btn {}
+
+    .btn--default {
+      width: fit-content;
+      height: 3.6rem;
+      padding: 0 2rem;
+
+      font-size: 1.2rem;
+
+      @include sm {
+        height: 2.6rem;
+        padding: 0 1rem;
+
+        font-size: 1rem;
+      }
+    }
+  }
+}

@@ -23,7 +23,7 @@
                 </a>
                 <div class="breadcrumbs__item">
                   <span>
-                    Отзывы
+                    Блог
                   </span>
                 </div>
               </div>
@@ -32,7 +32,7 @@
             <div class="template__head">
               <div class="template__title" data-split="lines">
                 <h1>
-                  Отзывы
+                  Блог
                 </h1>
               </div>
             </div>
@@ -41,38 +41,29 @@
         </div>
       </section>
 
-      <section class="reviews">
+      <section class="blog">
         <div class="container">
-          <div class="reviews__inner">
+          <div class="blog__inner">
 
             <div class="general__control">
-              <div class="general__tabs">
+              <div class="general__tabs general__tabs--alt">
                 <div class="general__tabs-items">
                   <div class="general__tabs-item tabs--active">
-                    Яндекс
+                    Новости компании
                   </div>
                   <div class="general__tabs-item">
-                    Google
+                    Статьи
                   </div>
                   <div class="general__tabs-item">
-                    2Гис
-                  </div>
-                  <div class="general__tabs-item">
-                    Все отзывы
+                    Все
                   </div>
                 </div>
-              </div>
-              <div class="general__filter">
-                <div class="general__filter-text">
-                  Сортировать: <span>по умолчанию</span>
-                </div>
-                <div class="general__filter-icon icon--down"></div>
               </div>
             </div>
 
-            <div class="reviews__content">
-              <div class="reviews__items anim-items">
-                @@loop('./elements/reviews-item.html', './data/opinions-items.json')
+            <div class="blog__content">
+              <div class="blog__items anim-items">
+                @@loop('./elements/blog-item.html', './data/blog-items.json')
               </div>
             </div>
 

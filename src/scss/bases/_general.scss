@@ -39,6 +39,18 @@
 
   &__title {
 
+    h1 {
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 4rem;
+      line-height: 117.5%;
+      text-transform: uppercase;
+
+      @include sm {
+        font-size: 3rem;
+      }
+    }
+
     h2 {
       font-family: var(--second-family);
       font-weight: 400;
@@ -169,7 +181,7 @@
       padding: 0.8rem 2rem;
       background-color: var(--white);
       border-radius: 3.3rem;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, background-color 0.3s ease;
 
       font-weight: 700;
       font-size: 1.2rem;
@@ -181,6 +193,15 @@
       &.tabs--active,
       &:hover {
         color: var(--black);
+      }
+
+      .general__tabs--alt & {
+
+        &.tabs--active,
+        &:hover {
+          background-color: var(--accent);
+          color: var(--white);
+        }
       }
 
       .cases & {
@@ -255,6 +276,14 @@
     }
   }
 
+  &__date {
+    color: var(--accent);
+
+    @include sm {
+      font-size: 1.2rem;
+    }
+  }
+
 }
 
 .svg {
@@ -276,10 +305,14 @@
   &__item {
 
     @include sm {
-      transition: top 0.3s ease;
+      transition: top 0.3s ease, opacity 0.3s ease;
       transform: scale(1);
       position: sticky;
       top: calc(var(--header-height) + 2rem);
+    }
+
+    &:last-child {
+      opacity: 1 !important;
     }
 
     .over {

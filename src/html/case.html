@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru" class="inner-page">
+@@include('blocks/head.html', {"title": "Siberian Merchant Lines"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Меню -->
+    @@include('./blocks/menu.html')
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <div class="breadcrumbs__items">
+                <a class="breadcrumbs__item" href="/SibMer">
+                  <span>
+                    Главная
+                  </span>
+                </a>
+                <div class="breadcrumbs__item">
+                  <span>
+                    Кейсы
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="template__head">
+              <div class="template__title" data-split="lines">
+                <h1>
+                  Кейсы
+                </h1>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="case">
+        <div class="container">
+          <div class="case__inner">
+
+            <div class="general__control">
+              <div class="general__tabs">
+                <div class="general__tabs-items">
+                  <div class="general__tabs-item tabs--active">
+                    Кейсы
+                  </div>
+                  <div class="general__tabs-item">
+                    Автоперевозка грузов
+                  </div>
+                </div>
+              </div>
+              <div class="general__filter">
+                <div class="general__filter-text">
+                  Сортировать: <span>по умолчанию</span>
+                </div>
+                <div class="general__filter-icon icon--down"></div>
+              </div>
+            </div>
+
+            <div class="case__content">
+              <div class="case__items anim-items">
+                @@loop('./elements/case-item.html', './data/case-items.json')
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="calc">
+        <div class="container">
+          <div class="calc__inner general__content">
+
+            <div class="general__head">
+              <div class="general__title" data-split="lines">
+                <h2>
+                  Желаете заказать подобную услугу, напишите&nbsp;нам
+                </h2>
+              </div>
+              <div class="general__text" data-split="text">
+                <p>
+                  Предоставим скидку на <br> первую перевозку 15% <br> от стоимости
+                </p>
+              </div>
+            </div>
+
+            <div class="general__body">
+              <div class="calc__body">
+                <form class="form-inner" action="#">
+                  <div class="form-body">
+
+                    <div class="form-block form-col-9">
+                      <div class="form-items">
+                        <div class="form-title">
+                          Маршрут
+                        </div>
+                        <div class="form-content form-col-2">
+                          <div class="form-item">
+                            <div class="form-group">
+                              <div class="form-icon">
+                                <i class="icon-otkuda"></i>
+                              </div>
+                              <input class="form-input" type="text" name="case_calc_otkuda" placeholder="Откуда">
+                            </div>
+                          </div>
+                          <div class="form-item">
+                            <div class="form-group">
+                              <div class="form-icon">
+                                <i class="icon-kuda"></i>
+                              </div>
+                              <input class="form-input" type="text" name="case_calc_kuda" placeholder="Куда">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-items form-col-2">
+                        <div class="form-item">
+                          <div class="form-group">
+                            <label class="form-label">
+                              Общий вес груза
+                            </label>
+                          </div>
+                          <div class="form-group form-total form-total-weight">
+                            <input class="form-input" type="text" name="case_calc_weight" placeholder="0">
+                          </div>
+                        </div>
+                        <div class="form-item">
+                          <div class="form-group">
+                            <label class="form-label">
+                              Общий объём груза
+                            </label>
+                          </div>
+                          <div class="form-group form-total form-total-volume">
+                            <input class="form-input" type="text" name="case_calc_volume" placeholder="0">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-block">
+                      <div class="form-title">
+                        Тип груза
+                      </div>
+                      <div class="form-content">
+                        <div class="form-wrap">
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Оборудование
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Сырье
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Электроника
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Насосы
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Сухопутная техника
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Строительная техника
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Автомобили
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Химия
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Крепеж
+                              </span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <label class="form-radio-label">
+                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <span class="form-radio-item"></span>
+                              <span class="form-radio-text">
+                                Батареи и аккумуляторы
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="calc__item">
+                      <div class="calc__item-title">
+                        Примерная стоимость доставки:
+                      </div>
+                      <div class="calc__item-price">
+                        <span>0</span>₽
+                      </div>
+                      <div class="calc__item-subtitle">
+                        * Данная стоимость не является окончательной
+                      </div>
+                    </div>
+
+                    <div class="form-block">
+                      <div class="form-title">
+                        Заполните форму, чтобы узнать точную стоимость перевозки
+                      </div>
+                      <div class="form-content form-col-2">
+                        <div class="form-group">
+                          <div class="form-icon">
+                            <i class="icon-person"></i>
+                          </div>
+                          <input class="form-input" type="text" name="case_calc_name" placeholder="Имя">
+                        </div>
+                        <div class="form-group">
+                          <div class="form-icon">
+                            <i class="icon-phone"></i>
+                          </div>
+                          <input class="form-input" type="tel" name="case_calc_tel" placeholder="Телефон">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="form-foot">
+                    <button class="btn form-btn" type="button">
+                      <span class="btn-text">
+                        Рассчитать стоимость
+                      </span>
+                    </button>
+                    <div class="form-privacy">
+                      <div class="form-group">
+                        <label class="form-checkbox-label">
+                          <input class="form-checkbox-input" name="case_calc_privacy" type="checkbox">
+                          <span class="form-checkbox-item"></span>
+                          <span class="form-checkbox-text">
+                            Я согласен на обработку персональных данных
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-checkbox-label">
+                          <input class="form-checkbox-input" name="case_calc_ads" type="checkbox">
+                          <span class="form-checkbox-item"></span>
+                          <span class="form-checkbox-text">
+                            Я согласен на рекламные уведомления
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      @@include('blocks/opinions.html', {"title": "НАМ ДОВЕРЯЮТ"})
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

@@ -39,6 +39,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   @include sm {
+    background: #DFE7F3;
+
     font-size: 1.4rem;
   }
 }
