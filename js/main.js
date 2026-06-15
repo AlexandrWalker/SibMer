@@ -1074,9 +1074,146 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Sticky функция
    */
+  // function stickyReveal() {
+  //   let scrollHandler = null;
+  //   let resizeHandler = null;
+  //   let ticking = false;
+  //   let destroyed = false;
+  //   let items = [];
+  //   let offsets = [];
+
+  //   const removeOffset = 31;
+  //   const MOBILE_BREAKPOINT = 600;
+
+  //   function cacheOffsets() {
+  //     offsets = items.map(item => item.getBoundingClientRect().top + window.scrollY);
+  //   }
+
+  //   function init() {
+  //     if (window.innerWidth > MOBILE_BREAKPOINT) return;
+
+  //     items = Array.from(document.querySelectorAll('.sticky__item'));
+  //     if (!items.length) return;
+
+  //     cacheOffsets();
+
+  //     // const checkItems = () => {
+  //     //   if (destroyed || window.innerWidth > MOBILE_BREAKPOINT) return;
+
+  //     //   const scrollY = window.scrollY;
+
+  //     //   try {
+  //     //     items.forEach((item, index) => {
+  //     //       if (index === items.length - 1) return;
+
+  //     //       const top = offsets[index] - scrollY;
+  //     //       const isActive = item.classList.contains('sticky__item-active');
+
+  //     //       if (!isActive && top <= 0) {
+  //     //         item.classList.add('sticky__item-active');
+  //     //         item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
+  //     //       }
+
+  //     //       if (isActive && top > removeOffset) {
+  //     //         item.classList.remove('sticky__item-active');
+  //     //         item.style.top = '';
+  //     //       }
+  //     //     });
+  //     //   } catch (e) {
+  //     //     console.warn('stickyReveal checkItems error:', e);
+  //     //   } finally {
+  //     //     ticking = false;
+  //     //   }
+  //     // };
+
+  //     const checkItems = () => {
+  //       if (destroyed || window.innerWidth > MOBILE_BREAKPOINT) return;
+
+  //       const scrollY = window.scrollY;
+  //       // Получаем текущую высоту хедера из CSS переменной (в пикселях)
+  //       const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 0;
+  //       // Базовый отступ (2rem = 20px)
+  //       const baseOffset = 20;
+
+  //       items.forEach((item, index) => {
+  //         // Рассчитываем "точку прилипания" для текущего индекса
+  //         // header + 2rem + (index * 2rem)
+  //         const stickyThreshold = headerHeight + baseOffset + (index * 20);
+
+  //         // Смотрим, где сейчас находится сам элемент относительно экрана
+  //         const currentItemTop = offsets[index] - scrollY;
+  //         const isActive = item.classList.contains('sticky__item-active');
+
+  //         // Активация: если верх карточки дотронулся до своей будущей "липкой" позиции
+  //         if (!isActive && currentItemTop <= stickyThreshold) {
+  //           item.classList.add('sticky__item-active');
+  //           item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
+  //         }
+
+  //         // Деактивация: возвращаем в поток, если прокрутили обратно
+  //         // Добавляем небольшой запас (removeOffset), чтобы избежать мерцания
+  //         if (isActive && currentItemTop > stickyThreshold + removeOffset) {
+  //           item.classList.remove('sticky__item-active');
+  //           item.style.top = '';
+  //         }
+  //       });
+
+  //       ticking = false;
+  //     };
+
+  //     scrollHandler = () => {
+  //       if (!ticking) {
+  //         requestAnimationFrame(checkItems);
+  //         ticking = true;
+  //       }
+  //     };
+
+  //     resizeHandler = () => {
+  //       clearTimeout(resizeHandler._timer);
+  //       resizeHandler._timer = setTimeout(() => {
+  //         if (window.innerWidth > MOBILE_BREAKPOINT) {
+  //           destroy();
+  //         } else if (destroyed) {
+  //           destroyed = false;
+  //           init();
+  //         } else {
+  //           cacheOffsets();
+  //           checkItems();
+  //         }
+  //       }, 100);
+  //     };
+
+  //     window.addEventListener('scroll', scrollHandler, { passive: true });
+  //     window.addEventListener('resize', resizeHandler, { passive: true });
+
+  //     checkItems();
+  //   }
+
+  //   function destroy() {
+  //     destroyed = true;
+  //     if (scrollHandler) {
+  //       window.removeEventListener('scroll', scrollHandler);
+  //       scrollHandler = null;
+  //     }
+
+  //     document.querySelectorAll('.sticky__item-active').forEach(el => {
+  //       el.classList.remove('sticky__item-active');
+  //       el.style.top = '';
+  //     });
+  //   }
+
+  //   init();
+
+  //   return {
+  //     destroy,
+  //     reinit: () => { destroy(); destroyed = false; init(); }
+  //   };
+  // }
+
   function stickyReveal() {
     let scrollHandler = null;
     let resizeHandler = null;
+    let contentObserver = null;
     let ticking = false;
     let destroyed = false;
     let items = [];
@@ -1086,7 +1223,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const MOBILE_BREAKPOINT = 600;
 
     function cacheOffsets() {
+      if (destroyed) return;
+
+      // Сохраняем текущие стили, чтобы сбросить их для чистого замера
+      const currentStyles = items.map(item => ({
+        top: item.style.top,
+        opacity: item.style.opacity,
+        isActive: item.classList.contains('sticky__item-active')
+      }));
+
+      // Сброс для замера реального положения в потоке
+      items.forEach(item => {
+        item.style.top = '';
+        item.style.opacity = '';
+        item.classList.remove('sticky__item-active');
+      });
+
+      // Замеряем позиции
       offsets = items.map(item => item.getBoundingClientRect().top + window.scrollY);
+
+      // Возвращаем стили обратно
+      items.forEach((item, i) => {
+        item.style.top = currentStyles[i].top;
+        item.style.opacity = currentStyles[i].opacity;
+        if (currentStyles[i].isActive) item.classList.add('sticky__item-active');
+      });
+    }
+
+    function checkItems() {
+      if (destroyed || window.innerWidth > MOBILE_BREAKPOINT) return;
+
+      const scrollY = window.scrollY;
+      const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 0;
+      const baseOffset = 20;
+
+      items.forEach((item, index) => {
+        const stickyThreshold = headerHeight + baseOffset + (index * 20);
+        const currentItemTop = offsets[index] - scrollY;
+        const isActive = item.classList.contains('sticky__item-active');
+
+        if (currentItemTop <= stickyThreshold) {
+          // Активация: фиксируем позицию и ставим прозрачность
+          item.classList.add('sticky__item-active');
+          item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
+          item.style.opacity = '0.5';
+        } else if (isActive && currentItemTop > stickyThreshold + removeOffset) {
+          // Деактивация: возвращаем всё как было
+          item.classList.remove('sticky__item-active');
+          item.style.top = '';
+          item.style.opacity = '1';
+        }
+      });
+
+      ticking = false;
     }
 
     function init() {
@@ -1097,70 +1286,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       cacheOffsets();
 
-      // const checkItems = () => {
-      //   if (destroyed || window.innerWidth > MOBILE_BREAKPOINT) return;
-
-      //   const scrollY = window.scrollY;
-
-      //   try {
-      //     items.forEach((item, index) => {
-      //       if (index === items.length - 1) return;
-
-      //       const top = offsets[index] - scrollY;
-      //       const isActive = item.classList.contains('sticky__item-active');
-
-      //       if (!isActive && top <= 0) {
-      //         item.classList.add('sticky__item-active');
-      //         item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
-      //       }
-
-      //       if (isActive && top > removeOffset) {
-      //         item.classList.remove('sticky__item-active');
-      //         item.style.top = '';
-      //       }
-      //     });
-      //   } catch (e) {
-      //     console.warn('stickyReveal checkItems error:', e);
-      //   } finally {
-      //     ticking = false;
-      //   }
-      // };
-
-      const checkItems = () => {
-        if (destroyed || window.innerWidth > MOBILE_BREAKPOINT) return;
-
-        const scrollY = window.scrollY;
-        // Получаем текущую высоту хедера из CSS переменной (в пикселях)
-        const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 0;
-        // Базовый отступ (2rem = 20px)
-        const baseOffset = 20;
-
-        items.forEach((item, index) => {
-          // Рассчитываем "точку прилипания" для текущего индекса
-          // header + 2rem + (index * 2rem)
-          const stickyThreshold = headerHeight + baseOffset + (index * 20);
-
-          // Смотрим, где сейчас находится сам элемент относительно экрана
-          const currentItemTop = offsets[index] - scrollY;
-          const isActive = item.classList.contains('sticky__item-active');
-
-          // Активация: если верх карточки дотронулся до своей будущей "липкой" позиции
-          if (!isActive && currentItemTop <= stickyThreshold) {
-            item.classList.add('sticky__item-active');
-            item.style.top = `calc(var(--header-height) + 2rem + ${index * 2}rem)`;
-          }
-
-          // Деактивация: возвращаем в поток, если прокрутили обратно
-          // Добавляем небольшой запас (removeOffset), чтобы избежать мерцания
-          if (isActive && currentItemTop > stickyThreshold + removeOffset) {
-            item.classList.remove('sticky__item-active');
-            item.style.top = '';
-          }
-        });
-
-        ticking = false;
-      };
-
       scrollHandler = () => {
         if (!ticking) {
           requestAnimationFrame(checkItems);
@@ -1168,6 +1293,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
 
+      // Следим за ресайзом окна
       resizeHandler = () => {
         clearTimeout(resizeHandler._timer);
         resizeHandler._timer = setTimeout(() => {
@@ -1183,6 +1309,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
       };
 
+      // СЛЕДИМ ЗА ИЗМЕНЕНИЕМ ВЫСОТЫ СТРАНИЦЫ
+      // Это решит проблему, когда контент выше изменился, и айтемы должны сдвинуться
+      contentObserver = new ResizeObserver(() => {
+        cacheOffsets();
+        checkItems();
+      });
+      contentObserver.observe(document.body);
+
       window.addEventListener('scroll', scrollHandler, { passive: true });
       window.addEventListener('resize', resizeHandler, { passive: true });
 
@@ -1191,14 +1325,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function destroy() {
       destroyed = true;
-      if (scrollHandler) {
-        window.removeEventListener('scroll', scrollHandler);
-        scrollHandler = null;
-      }
+      if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+      if (resizeHandler) window.removeEventListener('resize', resizeHandler);
+      if (contentObserver) contentObserver.disconnect();
 
-      document.querySelectorAll('.sticky__item-active').forEach(el => {
+      items.forEach(el => {
         el.classList.remove('sticky__item-active');
         el.style.top = '';
+        el.style.opacity = '';
       });
     }
 
@@ -1211,6 +1345,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let globalStickyInstance = stickyReveal();
+
 
   /**
    * Функция аккордиона
@@ -1848,6 +1983,50 @@ document.addEventListener('DOMContentLoaded', () => {
               spaceBetween: 20,
             },
           },
+        },
+      },
+      {
+        sliderSelector: '.details__slider',
+        prevSelector: '.details-button-prev',
+        nextSelector: '.details-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 0,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
         },
       },
     ];
