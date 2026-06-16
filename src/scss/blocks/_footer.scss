@@ -142,6 +142,10 @@
           @include sm {
             font-size: 1.2rem;
           }
+
+          &:hover {
+            color: var(--black);
+          }
         }
       }
 

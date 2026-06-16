@@ -212,6 +212,10 @@
 
       .btn {
         margin-top: auto;
+
+        &:hover {
+          --btn-padding-x: 3rem;
+        }
       }
     }
 

@@ -116,24 +116,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -148,16 +140,24 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -644,6 +644,11 @@ img {
   -webkit-transform: unset;
   -ms-transform: unset;
   transform: unset;
+}
+
+[class^=swiper-button-]:hover,
+[class*=" swiper-button-"]:hover {
+  color: var(--accent);
 }
 
 [class^=swiper-button-].partners-button-prev,
@@ -2483,6 +2488,10 @@ body {
   text-decoration: underline;
 }
 
+.footer__mid-item.footer__mid-item--stuff a:hover {
+  color: var(--black);
+}
+
 .footer__mid-item li {
   margin-bottom: 4rem;
 }
@@ -3268,6 +3277,10 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 3rem;
+}
+
+.popup__body .btn:hover {
+  --btn-padding-x: 3rem;
 }
 
 .popup__text {
@@ -5681,6 +5694,10 @@ canvas {
 
 .pc__item-text .btn {
   margin-top: auto;
+}
+
+.pc__item-text .btn:hover {
+  --btn-padding-x: 3rem;
 }
 
 .pc__item-wrap {

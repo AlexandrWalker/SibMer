@@ -113,6 +113,10 @@
 
   @include sm {}
 
+  &:hover {
+    color: var(--accent);
+  }
+
   &.partners-button-prev,
   &.partners-button-next {
     background-color: var(--gray);
