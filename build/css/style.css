@@ -116,6 +116,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
@@ -124,8 +132,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -142,14 +150,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
   font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
   font-style: normal;
 }
 
@@ -431,6 +431,10 @@ img {
   text-align: center;
   color: var(--white);
   cursor: pointer;
+}
+
+.general__tabs-btn:hover {
+  background-color: var(--black);
 }
 
 .general__btns {
@@ -6470,6 +6474,9 @@ canvas {
   -webkit-transition: background-color 0.3s ease, color 0.3s ease;
   -o-transition: background-color 0.3s ease, color 0.3s ease;
   transition: background-color 0.3s ease, color 0.3s ease;
+  will-change: background-color, color;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   position: relative;
   z-index: 2;
 }
@@ -6579,9 +6586,12 @@ canvas {
 }
 
 .unservices__item-icon {
-  -webkit-transition: color 0.3s ease;
-  -o-transition: color 0.3s ease;
-  transition: color 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  will-change: color;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   color: var(--gray);
   position: absolute;
   top: 50%;

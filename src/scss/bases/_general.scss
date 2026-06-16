@@ -228,6 +228,10 @@
       text-align: center;
       color: var(--white);
       cursor: pointer;
+
+      &:hover {
+        background-color: var(--black);
+      }
     }
   }
 

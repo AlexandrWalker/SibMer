@@ -67,6 +67,9 @@
     background-color: var(--white);
     transition: background-color 0.3s ease, color 0.3s ease;
 
+    will-change: background-color, color;
+    transform: translateZ(0);
+
     position: relative;
     z-index: 2;
 
@@ -200,7 +203,9 @@
     }
 
     &-icon {
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      will-change: color;
+      transform: translateZ(0);
 
       color: var(--gray);
 
