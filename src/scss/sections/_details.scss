@@ -29,6 +29,13 @@
       }
     }
 
+    &__title {
+      
+      @include dosm {
+        max-width: 58rem;
+      }
+    }
+
     &__feat {
       flex-direction: column;
       gap: 2rem;

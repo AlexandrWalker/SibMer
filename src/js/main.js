@@ -1070,9 +1070,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    const casesHead = casesJs.querySelector('.cases__head');
-    let h = (casesHead.clientHeight + 30 + 56) / 10;
-    document.documentElement.style.setProperty('--cases-padding', `${h}rem`);
+    const cases = document.querySelector('.cases');
+    const casesHead = cases.querySelector('.cases__head');
+
+    if (cases && casesHead) {
+
+      const updateCasesPadding = () => {
+        const h = casesHead.offsetHeight;
+        console.log(h);
+        document.documentElement.style.setProperty('--cases-padding', `${h}px`);
+      };
+
+      const resizeObserver = new ResizeObserver(() => {
+        updateCasesPadding();
+      });
+
+      resizeObserver.observe(casesHead);
+    }
+
   })();
 
   /**
@@ -2060,11 +2075,16 @@ document.addEventListener('DOMContentLoaded', () => {
           resistance: true,
           resistanceRatio: 0.4,
           centeredSlides: false,
-          centeredSlidesBounds: true,
+          // centeredSlidesBounds: true,
+          centeredSlidesBounds: false,
           simulateTouch: true,
           direction: 'horizontal',
-          touchStartPreventDefault: true,
-          touchMoveStopPropagation: true,
+
+          // touchStartPreventDefault: true,
+          touchStartPreventDefault: false,
+          // touchMoveStopPropagation: true,
+          touchMoveStopPropagation: false,
+
           threshold: 8,
           touchAngle: 25,
           watchOverflow: true,
@@ -2072,14 +2092,15 @@ document.addEventListener('DOMContentLoaded', () => {
             el: '.swiper-pagination',
             clickable: true,
           },
-          freeMode: {
-            enabled: true,
-            momentum: true,
-            momentumRatio: 0.85,
-            momentumVelocityRatio: 1,
-            momentumBounce: false,
-            sticky: true,
-          },
+          freeMode: false,
+          // freeMode: {
+          //   enabled: true,
+          //   momentum: true,
+          //   momentumRatio: 0.85,
+          //   momentumVelocityRatio: 1,
+          //   momentumBounce: false,
+          //   sticky: true,
+          // },
           mousewheel: {
             forceToAxis: true,
             sensitivity: 1,
@@ -2567,6 +2588,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Fancybox.bind('[data-fancybox]', {
     // Отключаем закрытие свайпом вниз
     dragToClose: false,
+    closeExisting: true,
     // Отключаем жесты карусели (свайп влево/вправо)
     Carousel: {
       Panzoom: {

@@ -332,7 +332,7 @@
       
       padding: 24.8rem 0 6rem;
       // padding: calc(var(--cases-padding) + 5.6rem + 3rem + 1rem) 0 6rem;
-      padding: var(--cases-padding) 0 6rem;
+      padding: calc(var(--cases-padding) + 3rem) 0 6rem;
 
       @include sm {
         display: grid;
