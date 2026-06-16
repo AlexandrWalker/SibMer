@@ -1069,6 +1069,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     }
+
+    const casesHead = casesJs.querySelector('.cases__head');
+    let h = (casesHead.clientHeight + 30 + 56) / 10;
+    document.documentElement.style.setProperty('--cases-padding', `${h}rem`);
   })();
 
   /**
@@ -1937,7 +1941,62 @@ document.addEventListener('DOMContentLoaded', () => {
         highlight: false,
         swiperOptions: {
           slidesPerGroup: 1,
-          slidesPerView: 1,
+          slidesPerView: 2,
+          spaceBetween: 8,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+
+          watchSlidesProgress: true,
+
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            380: {
+              slidesPerGroup: 1,
+              slidesPerView: 2,
+              spaceBetween: 8,
+            },
+            835: {
+              slidesPerGroup: 1,
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+          },
+        },
+      },
+      {
+        sliderSelector: '.articles__slider',
+        prevSelector: '.articles-button-prev',
+        nextSelector: '.articles-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 2,
           spaceBetween: 8,
           speed: 500,
           grabCursor: true,
@@ -2494,8 +2553,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateDisabled();
     }
 
-    // Добавьте этот код один раз в проект
-    // Он будет следить за изменением высоты BODY и обновлять GSAP
+    // Можно добавить этот код один раз, чтобы он следил за изменением высоты BODY и обновлял GSAP
     // const ro = new ResizeObserver(() => {
     //   ScrollTrigger.refresh();
     // });

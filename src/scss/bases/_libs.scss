@@ -103,7 +103,7 @@
   height: 5.6rem;
   margin: 0;
   border-radius: 50%;
-  background-color: var(--gray);
+  background-color: var(--white);
   transition: all 0.3s ease;
 
   color: var(--black);
@@ -112,6 +112,11 @@
   transform: unset;
 
   @include sm {}
+
+  &.partners-button-prev,
+  &.partners-button-next {
+    background-color: var(--gray);
+  }
 
   &::after {
     display: none;
@@ -204,7 +209,7 @@
 }
 
 .fancybox__content {
-  border-radius: var(--border-radius);
+  border-radius: 1rem;
   margin: 2rem;
   overflow: hidden !important;
   padding: 0;

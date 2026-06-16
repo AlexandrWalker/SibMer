@@ -47,6 +47,7 @@
       height: 29rem;
       border-radius: 0.6rem;
       overflow: hidden;
+      flex-shrink: 0;
 
       @include sm {
         height: 10.2rem;
@@ -65,6 +66,7 @@
       align-items: flex-end;
       gap: 3rem;
       padding: 0 2rem 0 2rem;
+      height: 100%;
 
       @include sm {
         padding: 0 0.5rem 0 0.5rem;
@@ -131,6 +133,7 @@
       width: fit-content;
       height: 3.6rem;
       padding: 0 2rem;
+      margin-top: auto;
 
       font-size: 1.2rem;
 

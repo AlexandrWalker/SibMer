@@ -132,14 +132,28 @@
     &:active,
     &:checked {
       border-color: var(--black-50);
+
+      .has-error & {
+        color: var(--accent);
+      }
     }
 
     &::placeholder {
       color: var(--black-50);
+
+      .has-error & {
+        color: var(--accent);
+      }
     }
 
     &:hover {
       border-color: var(--black-50);
+    }
+
+    .has-error & {
+      color: var(--accent);
+      border-color: var(--accent);
+      background-color: var(--accent-10) !important;
     }
   }
 
