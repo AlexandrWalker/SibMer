@@ -1,313 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru" class="inner-page">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#142637">
-  <!-- noindex -->
-  <meta name="robots" content="noindex, nofollow" />
-  <!-- format -->
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="format-detection" content="date=no">
-  <meta name="format-detection" content="address=no">
-  <meta name="format-detection" content="email=no">
-  <!-- favicon -->
-  <link rel="icon" type="image/png" href="./images/favicon/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="./images/favicon/favicon.svg" />
-  <link rel="shortcut icon" href="./images/favicon/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="SM" />
-  <link rel="manifest" href="./images/favicon/site.webmanifest" />
-  <!-- title -->
-  <title>Siberian Merchant Lines</title>
-  <!-- icons -->
-  <link rel="stylesheet" href="./icons/style.css">
-  <!-- styles -->
-  <link rel="stylesheet" href="./libs/fancybox/fancybox.css">
-  <link rel="stylesheet" href="./libs/lenis/lenis.min.css">
-  <link rel="stylesheet" href="./libs/swiper/swiper-bundle.min.css">
-  <link rel="stylesheet" href="./css/style.css">
-</head>
+<html lang="ru" class="services-page inner-page">
+@@include('blocks/head.html', {"title": "Siberian Merchant Lines"})
 
 <body>
   <div class="wrapper">
     <!-- Шапка -->
-    <header id="header" class="header">
-  <div class="container">
-    <div class="header__inner">
-
-      <div class="header__top">
-        <div class="header__top-wrap">
-          <div class="header__top-logo">
-            <a class="logo" href="/SibMer">
-              <img src="./images/logo/logo.svg" alt="">
-            </a>
-          </div>
-          <div class="header__top-contacts">
-            <div class="header__top-link">
-              <a href="tel:+73832875087">
-                +7 (383) 287‒50‒87
-              </a>
-            </div>
-            <div class="header__top-link">
-              <a href="emailto:offer@sb-mer.ru">
-                offer@sb-mer.ru
-              </a>
-            </div>
-          </div>
-          <div id="burger-btn" class="burger-btn">
-            <span class="burger__line burger__line--first"></span>
-            <span class="burger__line burger__line--second"></span>
-            <span class="burger__line burger__line--third"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="header__mid">
-        <div class="header__mid-nav">
-          <nav class="nav">
-  <ul>
-    <li class="nav__active">
-      <a href="/SibMer/404.html">
-        О компании
-      </a>
-    </li>
-    <li>
-      <a href="/SibMer/404.html">
-        Как мы работаем
-      </a>
-    </li>
-    <li>
-      <a href="/SibMer/services.html">
-        Услуги
-      </a>
-    </li>
-    <li>
-      <a href="/SibMer/case.html">
-        Кейсы
-      </a>
-    </li>
-    <li>
-      <a href="/SibMer/contacts.html">
-        Контакты
-      </a>
-    </li>
-  </ul>
-</nav>
-        </div>
-        <div class="header__mid-control">
-          <div class="header__mid-social">
-            <a href="/">
-              <img src="./images/icon/max-glass-full.png" alt="">
-              <i class="icon-max"></i>
-              <div class="header__mid-wrap">
-                Связаться в Макс
-              </div>
-            </a>
-            <a href="/">
-              <img src="./images/icon/tg-glass-full.png" alt="">
-              <i class="icon-tg"></i>
-              <div class="header__mid-wrap">
-                Связаться в Телеграм
-              </div>
-            </a>
-            <a href="/">
-              <img src="./images/icon/wa-glass-full.png" alt="">
-              <i class="icon-wa"></i>
-              <div class="header__mid-wrap">
-                Связаться в Ватсап
-              </div>
-            </a>
-
-            <!-- <a class="GlassContainer" href="/">
-              <div class="GlassContent">
-                <i class="icon-max-glass"></i>
-              </div>
-              <div class="GlassMaterial">
-                <div class="GlassEdgeReflection"></div>
-                <div class="GlassEmbossReflection"></div>
-                <div class="GlassRefraction"></div>
-                <div class="GlassBlur"></div>
-                <div class="BlendLayers"></div>
-                <div class="Highlight"></div>
-              </div>
-              <div class="header__mid-wrap">
-                Связаться в Макс
-              </div>
-            </a>
-            <a class="GlassContainer" href="/">
-              <div class="GlassContent">
-                <i class="icon-tg-glass"></i>
-              </div>
-              <div class="GlassMaterial">
-                <div class="GlassEdgeReflection"></div>
-                <div class="GlassEmbossReflection"></div>
-                <div class="GlassRefraction"></div>
-                <div class="GlassBlur"></div>
-                <div class="BlendLayers"></div>
-                <div class="Highlight"></div>
-              </div>
-              <div class="header__mid-wrap">
-                Связаться в Телеграм
-              </div>
-            </a>
-            <a class="GlassContainer" href="/">
-              <div class="GlassContent">
-                <i class="icon-wa-glass"></i>
-              </div>
-              <div class="GlassMaterial">
-                <div class="GlassEdgeReflection"></div>
-                <div class="GlassEmbossReflection"></div>
-                <div class="GlassRefraction"></div>
-                <div class="GlassBlur"></div>
-                <div class="BlendLayers"></div>
-                <div class="Highlight"></div>
-              </div>
-              <div class="header__mid-wrap">
-                Связаться в Ватсап
-              </div>
-            </a> -->
-
-          </div>
-          <div class="header__mid-btn">
-            <a class="btn" data-fancybox href="#popup-1">
-              <i class="icon-arrow-right-thin"></i>
-              <span class="btn-text">
-                Узнать стоимость
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="social">
-        <div class="social__items">
-          <a class="social__item" href="/">
-            <i class="icon-wa"></i>
-          </a>
-          <a class="social__item" href="/">
-            <i class="icon-tg"></i>
-          </a>
-          <a class="social__item" href="/">
-            <i class="icon-max"></i>
-          </a>
-          <a class="social__item" href="/">
-            <i class="icon-pochta"></i>
-          </a>
-          <button class="social__item social__item-btn">
-            <i class="icon-contacts"></i>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <span class="nav__indicator"></span>
-</header>
+    @@include('./blocks/header.html')
     <!-- Меню -->
-    <div id="burger-menu" class="menu lenis" data-lenis-prevent>
-  <div class="menu__inner">
-
-    <div class="menu__nav">
-      <div class="container">
-        <div class="menu__nav-inner">
-          <ul>
-            <li>
-              <a href="/SibMer/404.html">
-                О компании
-              </a>
-            </li>
-            <li>
-              <a href="/SibMer/404.html">
-                Как мы работаем
-              </a>
-            </li>
-            <li>
-              <a href="/SibMer/services.html">
-                Услуги
-              </a>
-            </li>
-            <li>
-              <a href="/SibMer/case.html">
-                Кейсы
-              </a>
-            </li>
-            <li>
-              <a href="/SibMer/contacts.html">
-                Контакты
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="menu__contacts">
-      <div class="container">
-        <div class="menu__contacts-inner">
-          <div class="menu__contacts-phone">
-            <a href="tel:+73832875087">
-              +7 (383) 287‒50‒87
-            </a>
-          </div>
-          <div class="menu__contacts-mail">
-            <a href="emailto:offer@sb-mer.ru">
-              offer@sb-mer.ru
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="menu__social">
-      <div class="container">
-        <div class="menu__social-inner">
-          <a class="GlassContainer" href="/">
-            <div class="GlassContent">
-              <i class="icon-max"></i>
-            </div>
-            <div class="GlassMaterial">
-              <div class="GlassEdgeReflection"></div>
-              <div class="GlassEmbossReflection"></div>
-              <div class="GlassRefraction"></div>
-              <div class="GlassBlur"></div>
-              <div class="BlendLayers"></div>
-              <div class="Highlight"></div>
-            </div>
-          </a>
-          <a class="GlassContainer" href="/">
-            <div class="GlassContent">
-              <i class="icon-tg"></i>
-            </div>
-            <div class="GlassMaterial">
-              <div class="GlassEdgeReflection"></div>
-              <div class="GlassEmbossReflection"></div>
-              <div class="GlassRefraction"></div>
-              <div class="GlassBlur"></div>
-              <div class="BlendLayers"></div>
-              <div class="Highlight"></div>
-            </div>
-          </a>
-          <a class="GlassContainer" href="/">
-            <div class="GlassContent">
-              <i class="icon-wa"></i>
-            </div>
-            <div class="GlassMaterial">
-              <div class="GlassEdgeReflection"></div>
-              <div class="GlassEmbossReflection"></div>
-              <div class="GlassRefraction"></div>
-              <div class="GlassBlur"></div>
-              <div class="BlendLayers"></div>
-              <div class="Highlight"></div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
+    @@include('./blocks/menu.html')
     <main class="main">
 
       <section class="template">
@@ -321,19 +21,45 @@
                     Главная
                   </span>
                 </a>
+                <a class="breadcrumbs__item" href="/SibMer/services.html">
+                  <span>
+                    Услуги
+                  </span>
+                </a>
                 <div class="breadcrumbs__item">
                   <span>
-                    Контакты
+                    Международная перевозка грузов
                   </span>
                 </div>
               </div>
             </div>
 
-            <div class="template__head">
-              <div class="template__title" data-split="lines">
-                <h1>
-                  Контакты
-                </h1>
+            <div class="template__body">
+              <div class="template__content">
+                <div class="template__title" data-split="lines">
+                  <h1>
+                    Международная перевозка грузов
+                  </h1>
+                </div>
+                <div class="template__text" data-split="text">
+                  <p>
+                    Найти поставщика в Китае, проинспектировать готовый груз, организовать полное сопровождение груза от
+                    склада в Китае до склада клиента в г. Новосибирск.
+                  </p>
+                </div>
+                <a class="template__btn btn" data-fancybox href="#popup-1">
+                  <i class="icon-arrow-right-thin"></i>
+                  <span class="btn-text">
+                    Расчитать стоимость
+                  </span>
+                </a>
+              </div>
+              <div class="template__bg">
+                <picture>
+                  <source media="(min-width: 601px)" srcset="./images/temp/inter-cover.jpg">
+                  <source media="(max-width: 600px)" srcset="./images/temp/inter-cover-mob.jpg">
+                  <img src="./images/temp/inter-cover.jpg" alt="">
+                </picture>
               </div>
             </div>
 
@@ -341,158 +67,836 @@
         </div>
       </section>
 
-      <section class="contacts">
+      <section class="desc">
         <div class="container">
-          <div class="contacts__inner">
+          <div class="desc__inner">
 
-            <div class="contacts__content">
-              <div class="contacts__items anim-items">
-                <div class="contacts__item anim-item">
-                  <div class="contacts__item-icon">
-                    <i class="icon-contacts-icon-1"></i>
-                  </div>
-                  <div class="contacts__item-content">
-                    <div class="contacts__item-title">
-                      <p>
-                        Контакты
-                      </p>
-                    </div>
-                    <div class="contacts__item-wrap">
-                      <div class="contacts__item-suptitle">
-                        <p>
-                          Телефон:
-                        </p>
-                      </div>
-                      <div class="contacts__item-link">
-                        <a href="tel:+73832875087">
-                          +7 (383) 287‒50‒87
-                        </a>
-                      </div>
-                    </div>
-                    <div class="contacts__item-wrap">
-                      <div class="contacts__item-suptitle">
-                        <p>
-                          Эл.почта:
-                        </p>
-                      </div>
-                      <div class="contacts__item-link">
-                        <a href="mailto:offer@sb-mer.ru ">
-                          offer@sb-mer.ru 
-                        </a>
-                      </div>
-                    </div>
-                    <div class="contacts__item-wrap">
-                      <div class="contacts__item-suptitle">
-                        <p>
-                          Мессенджеры:
-                        </p>
-                      </div>
-                      <div class="contacts__item-social">
-                        <a href="/ссылка">
-                          <i class="icon-wa"></i>
-                        </a>
-                        <a href="/ссылка">
-                          <i class="icon-tg"></i>
-                        </a>
-                        <a href="/ссылка">
-                          <i class="icon-max"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="contacts__item-copy">
-                    <i class="icon-copy"></i>
+            <div class="desc__cover">
+              <img src="./../images/temp/inter-desc-cover.jpg" alt="">
+            </div>
+
+            <div class="desc__content">
+
+              <div class="sample__content">
+                <div class="sample__wrap">
+                  <h2>
+                    Описание услуги
+                  </h2>
+                  <p>
+                    Найти поставщика в Китае, проинспектировать готовый груз, организовать полное сопровождение груза от
+                    склада в Китае до склада клиента в г. Новосибирск.
+                  </p>
+                </div>
+                <div class="sample__wrap">
+                  <h3>
+                    Подзаголовок второй
+                  </h3>
+                  <p>
+                    Проблема заключалась в необходимости перевозки оборудования без жидкостей, хотя для проверки
+                    требовался полный запуск с их заливкой. Также возникли сложности с загрузкой из-за больших габаритов
+                    оборудования: оно почти вплотную прилегало к стенкам контейнера, что позволяло загружать его только
+                    самоходом, усложняя процесс.
+                  </p>
+                </div>
+              </div>
+
+              <a class="btn" data-fancybox href="#popup-1">
+                <i class="icon-arrow-right-thin"></i>
+                <span class="btn-text">
+                  Заказать услугу
+                </span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="included">
+        <div class="container">
+          <div class="included__inner general__content">
+
+            <div class="general__head">
+              <div class="general__title" data-split="lines">
+                <h2>
+                  Что <br> включено
+                </h2>
+              </div>
+            </div>
+            <div class="general__body">
+              <div class="included__items anim-items">
+                <div class="included__item anim-item">
+                  <div class="included__item-title">
+                    Международная автодоставка
                   </div>
                 </div>
-                <div class="contacts__item anim-item">
-                  <div class="contacts__item-icon">
-                    <i class="icon-contacts-icon-2"></i>
-                  </div>
-                  <div class="contacts__item-content">
-                    <div class="contacts__item-title">
-                      <p>
-                        Наш адрес
-                      </p>
-                    </div>
-                    <div class="contacts__item-address">
-                      <div class="contacts__item-text">
-                        <p>
-                          630005, Новосибирск, Некрасова, 48, офис 204/1
-                        </p>
-                      </div>
-                    </div>
-                    <div class="contacts__item-links">
-                      <a href="/ссылка">
-                        Смотреть в 2Гис
-                      </a>
-                      <a href="/ссылка">
-                        Смотреть в Яндекс
-                      </a>
-                    </div>
-                  </div>
-                  <div class="contacts__item-copy">
-                    <i class="icon-copy"></i>
+                <div class="included__item anim-item">
+                  <div class="included__item-title">
+                    Международная автодоставка
                   </div>
                 </div>
-                <div class="contacts__item anim-item">
-                  <div class="contacts__item-icon">
-                    <i class="icon-contacts-icon-3"></i>
-                  </div>
-                  <div class="contacts__item-content">
-                    <div class="contacts__item-title">
-                      <p>
-                        Реквизиты
-                      </p>
-                    </div>
-                    <div class="contacts__item-wrap">
-                      <div class="contacts__item-suptitle">
-                        <p>
-                          Наименование юридического лица:
-                        </p>
-                      </div>
-                      <div class="contacts__item-text">
-                        <p>
-                          Общество с ограниченной ответственностью
-                        </p>
-                      </div>
-                    </div>
-                    <div class="contacts__item-wrap">
-                      <div class="contacts__item-suptitle">
-                        <p>
-                          Юридический адрес:
-                        </p>
-                      </div>
-                      <div class="contacts__item-text">
-                        <p>
-                          630005, Новосибирск, Некрасова, 48, офис 204/1
-                        </p>
-                      </div>
-                    </div>
-                    <div class="contacts__item-wrap">
-                      <div class="contacts__item-suptitle">
-                        <p>
-                          ИНН
-                        </p>
-                      </div>
-                      <div class="contacts__item-text">
-                        <p>
-                          4324324324
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="contacts__item-copy">
-                    <i class="icon-copy"></i>
+                <div class="included__item anim-item">
+                  <div class="included__item-title">
+                    Международная автодоставка
                   </div>
                 </div>
               </div>
             </div>
-            <div class="contacts__map">
-              <picture>
-                <source media="(min-width: 601px)" srcset="./images/temp/map.jpg">
-                <source media="(max-width: 600px)" srcset="./images/temp/map-mob.jpg">
-                <img src="./images/temp/map.jpg" alt="">
-              </picture>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="s-advan">
+        <div class="container">
+          <div class="s-advan__inner general__content">
+
+            <div class="general__head">
+              <div class="general__title" data-split="lines">
+                <h2>
+                  <span>
+                    Преимущества услуги
+                  </span>
+                </h2>
+              </div>
+            </div>
+            <div class="general__body">
+              <div class="s-advan__items anim-items">
+                <div class="s-advan__item anim-item">
+                  <div class="s-advan__item-icon">
+                    <i class="icon-ground"></i>
+                  </div>
+                  <div class="s-advan__item-count">
+                    01
+                  </div>
+                  <div class="s-advan__item-title">
+                    Перевозки опасных грузов 
+                  </div>
+                </div>
+                <div class="s-advan__item anim-item">
+                  <div class="s-advan__item-icon">
+                    <i class="icon-ground"></i>
+                  </div>
+                  <div class="s-advan__item-count">
+                    02
+                  </div>
+                  <div class="s-advan__item-title">
+                    Перевозки опасных грузов 
+                  </div>
+                </div>
+                <div class="s-advan__item anim-item">
+                  <div class="s-advan__item-icon">
+                    <i class="icon-ground"></i>
+                  </div>
+                  <div class="s-advan__item-count">
+                    03
+                  </div>
+                  <div class="s-advan__item-title">
+                    Перевозки опасных грузов 
+                  </div>
+                </div>
+                <div class="s-advan__item anim-item">
+                  <div class="s-advan__item-icon">
+                    <i class="icon-ground"></i>
+                  </div>
+                  <div class="s-advan__item-count">
+                    04
+                  </div>
+                  <div class="s-advan__item-title">
+                    Перевозки опасных грузов 
+                  </div>
+                </div>
+                <div class="s-advan__item anim-item">
+                  <div class="s-advan__item-icon">
+                    <i class="icon-ground"></i>
+                  </div>
+                  <div class="s-advan__item-count">
+                    05
+                  </div>
+                  <div class="s-advan__item-title">
+                    Перевозки опасных грузов 
+                  </div>
+                </div>
+                <div class="s-advan__item anim-item">
+                  <div class="s-advan__item-icon">
+                    <i class="icon-ground"></i>
+                  </div>
+                  <div class="s-advan__item-count">
+                    06
+                  </div>
+                  <div class="s-advan__item-title">
+                    Перевозки опасных грузов 
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="advan">
+        <div class="container">
+          <div class="advan__inner general__content">
+
+            <div class="general__head">
+              <div class="general__title" data-split="lines">
+                <h2>
+                  12 лет <br> доставляем <br> сборные грузы <br> <span>из&nbsp;Китая в <br> Россию</span>
+                </h2>
+              </div>
+              <div class="general__text" data-split="text">
+                <p>
+                  Предоставим скидку на <br> первую перевозку 15% <br> от стоимости
+                </p>
+              </div>
+            </div>
+
+            <div class="general__body">
+              <div class="advan__body">
+                <div class="advan__items anim-items">
+                  <div class="advan__item anim-item">
+                    <div class="advan__item-icon">
+                      <!-- <i class="icon-advan-1"></i> -->
+                      <video class="icon-video" muted playsinline preload="auto">
+                        <source src="./video/advan-1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="advan__item-text">
+                      <p>
+                        Ежедневные отправки сборных грузов авиа и авто
+                      </p>
+                    </div>
+                  </div>
+                  <div class="advan__item anim-item">
+                    <div class="advan__item-icon">
+                      <!-- <i class="icon-advan-2"></i> -->
+                      <video class="icon-video" muted playsinline preload="auto">
+                        <source src="./video/advan-2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="advan__item-text">
+                      <p>
+                        Консолидация груза на нашем складе в&nbsp;Манчжурии
+                      </p>
+                    </div>
+                  </div>
+                  <div class="advan__item anim-item">
+                    <div class="advan__item-icon">
+                      <!-- <i class="icon-advan-3"></i> -->
+                      <video class="icon-video" muted playsinline preload="auto">
+                        <source src="./video/advan-3.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="advan__item-text">
+                      <p>
+                        Прямые договора со всеми исполнителями в&nbsp;цепочке
+                      </p>
+                    </div>
+                  </div>
+                  <div class="advan__item anim-item">
+                    <div class="advan__item-icon">
+                      <!-- <i class="icon-advan-4"></i> -->
+                      <video class="icon-video" muted playsinline preload="auto">
+                        <source src="./video/advan-4.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="advan__item-text">
+                      <p>
+                        Дислокация дважды <br> в&nbsp;день
+                      </p>
+                    </div>
+                  </div>
+                  <div class="advan__item anim-item">
+                    <div class="advan__item-icon">
+                      <!-- <i class="icon-advan-5"></i> -->
+                      <video class="icon-video" muted playsinline preload="auto">
+                        <source src="./video/advan-5.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="advan__item-text">
+                      <p>
+                        Оптимальные сроки <br> доставки 5&nbsp;-&nbsp;15&nbsp;дней
+                      </p>
+                    </div>
+                  </div>
+                  <div class="advan__item advan__item--end anim-item" data-fancybox href="#popup-2">
+                    <div class="advan__item-icon">
+                      <i class="icon-arrow-right-thin"></i>
+                    </div>
+                    <div class="advan__item-text">
+                      <p>
+                        Бесплатная консультация
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="algorithm">
+        <div class="algorithm__bg">
+          <img src="./../images/temp/algorithm-bg.jpg" alt="">
+        </div>
+        <div class="container">
+          <div class="algorithm__inner general__content">
+
+            <div class="general__head">
+              <div class="general__title" data-split="lines">
+                <h2>
+                  <span>Алгоритм</span> успешной доставки
+                </h2>
+              </div>
+              <div class="general__suptitle" data-split="text">
+                <p>
+                  Прозрачная работа на каждом этапе
+                </p>
+              </div>
+            </div>
+
+            <div class="general__body anim-items">
+              <div class="algorithm__body anim-item">
+                <div class="algorithm__content">
+                  <div class="algorithm__title">
+                    Как мы работаем
+                  </div>
+                  <div class="algorithm__items">
+                    <div class="algorithm__item">
+                      <div class="algorithm__item-count">
+                        1
+                      </div>
+                      <div class="algorithm__item-text">
+                        Заполняете форму заявки на сайте
+                      </div>
+                    </div>
+                    <div class="algorithm__item">
+                      <div class="algorithm__item-count">
+                        2
+                      </div>
+                      <div class="algorithm__item-text">
+                        Ознакамливаетесь с договором  и подписываете его
+                      </div>
+                    </div>
+                    <div class="algorithm__item">
+                      <div class="algorithm__item-count">
+                        3
+                      </div>
+                      <div class="algorithm__item-text">
+                        Получаете рассчет стоимости доставки в течении 1 часа
+                      </div>
+                    </div>
+                    <div class="algorithm__item">
+                      <div class="algorithm__item-count">
+                        4
+                      </div>
+                      <div class="algorithm__item-text">
+                        Забираем груз с места отправки  в течении 1-2 дней
+                      </div>
+                    </div>
+                    <div class="algorithm__item">
+                      <div class="algorithm__item-count">
+                        5
+                      </div>
+                      <div class="algorithm__item-text">
+                        Доставляем груз до таможни за 5-7 дней
+                      </div>
+                    </div>
+                    <div class="algorithm__item">
+                      <div class="algorithm__item-count">
+                        6
+                      </div>
+                      <div class="algorithm__item-text">
+                        Проходим таможню за 1 день и отправляем груз в место назначения
+                      </div>
+                    </div>
+                    <div class="algorithm__item">
+                      <div class="algorithm__item-count">
+                        7
+                      </div>
+                      <div class="algorithm__item-text">
+                        Проверяете груз на целостность и принимаете его
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="cases cases--js">
+        <div class="container">
+          <div class="cases__inner general__content">
+
+            <div class="general__head cases__head">
+              <div class="general__title">
+                <h2>
+                  Кейсы
+                </h2>
+              </div>
+              <div class="general__tabs cases-tabs--js">
+                <div class="general__tabs-items">
+                  <div class="general__tabs-item tabs--active" data-value="case-1">
+                    Перевозка контейнера
+                  </div>
+                  <div class="general__tabs-item" data-value="case-2">
+                    Перевозка авто
+                  </div>
+                  <div class="general__tabs-item" data-value="case-3">
+                    Авиаперевозка техники
+                  </div>
+                  <div class="general__tabs-item" data-value="case-4">
+                    Перевозка контейнера
+                  </div>
+                  <div class="general__tabs-item" data-value="case-5">
+                    Ж/д перевозка зерна
+                  </div>
+                  <div class="general__tabs-item" data-value="case-6">
+                    Название кейса
+                  </div>
+                  <div class="general__tabs-item" data-value="case-7">
+                    Перевозка авто
+                  </div>
+                  <a class="general__tabs-btn" href="/SibMer">
+                    <span class="btn-text">
+                      Все кейсы
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="general__body cases__body">
+
+              <div class="cases__items">
+                @@loop('./elements/cases-item.html', './data/cases-items.json')
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      @@include('blocks/opinions.html', {"title": "НАМ ДОВЕРЯЮТ"})
+
+      <section class="partners">
+        <div class="container">
+          <div class="partners__inner general__content">
+
+            <div class="general__head">
+              <div class="general__title" data-split="lines">
+                <h2>
+                  партнёры компании
+                </h2>
+              </div>
+              <div class="general__text" data-split="text">
+                <p>
+                  Подберем оптимальный вид транспорта под ваши задачи
+                </p>
+              </div>
+            </div>
+            <div class="general__body">
+              <div class="partners__body">
+                <div class="swiper partners__slider anim-items">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/s7.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/qatar.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/ce.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/aeroflot.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/s7.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/qatar.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/ce.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/aeroflot.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/s7.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/qatar.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/ce.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide partners__slide">
+                      <div class="partners__item anim-item">
+                        <div class="partners__item-logo">
+                          <img src="./../images/temp/aeroflot.svg" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="general__foot">
+              <div class="general__btns">
+                <div class="swiper-button-prev partners-button-prev">
+                  <i class="icon-arrow-left-long"></i>
+                </div>
+                <div class="swiper-button-next partners-button-next">
+                  <i class="icon-arrow-right-long"></i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="faq">
+        <div class="container">
+          <div class="faq__inner general__content">
+
+            <div class="general__head">
+              <div class="general__title" data-split="lines">
+                <h2>
+                  <span>ответы</span> на частые вопросы
+                </h2>
+              </div>
+            </div>
+            <div class="general__body">
+              <div class="faq__body">
+                <div class="faq__items accordion-items anim-items">
+                  <div class="faq__item accordion-item anim-item">
+                    <div class="faq__item-head accordion-head">
+                      <div class="faq__item-title">
+                        Как сейчас покупать товары за рубежом?
+                      </div>
+                      <div class="faq__item-icon accordion-icon">
+                        <i class="icon-plus"></i>
+                      </div>
+                    </div>
+                    <div class="faq__item-body accordion-body">
+                      <div class="faq__item-content accordion-content">
+                        <div class="faq__item-text">
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об
+                            очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов
+                            об
+                            услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге.
+                          </p>
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq__item accordion-item anim-item">
+                    <div class="faq__item-head accordion-head">
+                      <div class="faq__item-title">
+                        Как узнать цены на услуги доставки?
+                      </div>
+                      <div class="faq__item-icon accordion-icon">
+                        <i class="icon-plus"></i>
+                      </div>
+                    </div>
+                    <div class="faq__item-body accordion-body">
+                      <div class="faq__item-content accordion-content">
+                        <div class="faq__item-text">
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об
+                            очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов
+                            об
+                            услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге.
+                          </p>
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq__item accordion-item anim-item">
+                    <div class="faq__item-head accordion-head">
+                      <div class="faq__item-title">
+                        Как рассчитать таможенные платежи?
+                      </div>
+                      <div class="faq__item-icon accordion-icon">
+                        <i class="icon-plus"></i>
+                      </div>
+                    </div>
+                    <div class="faq__item-body accordion-body">
+                      <div class="faq__item-content accordion-content">
+                        <div class="faq__item-text">
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об
+                            очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов
+                            об
+                            услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге.
+                          </p>
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq__item accordion-item anim-item">
+                    <div class="faq__item-head accordion-head">
+                      <div class="faq__item-title">
+                        Как импортировать грузы из США, Европы и Тайваня в Россию?
+                      </div>
+                      <div class="faq__item-icon accordion-icon">
+                        <i class="icon-plus"></i>
+                      </div>
+                    </div>
+                    <div class="faq__item-body accordion-body">
+                      <div class="faq__item-content accordion-content">
+                        <div class="faq__item-text">
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об
+                            очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов
+                            об
+                            услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге.
+                          </p>
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq__item accordion-item anim-item">
+                    <div class="faq__item-head accordion-head">
+                      <div class="faq__item-title">
+                        Какие сроки авиационной доставки?
+                      </div>
+                      <div class="faq__item-icon accordion-icon">
+                        <i class="icon-plus"></i>
+                      </div>
+                    </div>
+                    <div class="faq__item-body accordion-body">
+                      <div class="faq__item-content accordion-content">
+                        <div class="faq__item-text">
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об
+                            очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов
+                            об
+                            услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге.
+                          </p>
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq__item accordion-item anim-item">
+                    <div class="faq__item-head accordion-head">
+                      <div class="faq__item-title">
+                        Как осуществляется доставка сборных грузов из Китая?
+                      </div>
+                      <div class="faq__item-icon accordion-icon">
+                        <i class="icon-plus"></i>
+                      </div>
+                    </div>
+                    <div class="faq__item-body accordion-body">
+                      <div class="faq__item-content accordion-content">
+                        <div class="faq__item-text">
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об
+                            очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов
+                            об
+                            услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге.
+                          </p>
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faq__item accordion-item anim-item">
+                    <div class="faq__item-head accordion-head">
+                      <div class="faq__item-title">
+                        Какие товары можно доставить в составе сборного груза из Китая?
+                      </div>
+                      <div class="faq__item-icon accordion-icon">
+                        <i class="icon-plus"></i>
+                      </div>
+                    </div>
+                    <div class="faq__item-body accordion-body">
+                      <div class="faq__item-content accordion-content">
+                        <div class="faq__item-text">
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, эффективный текст об
+                            очень важном отзыве для нашей компании. Задача отзыва - собрать статистику мнений клиентов
+                            об
+                            услуге, эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге.
+                          </p>
+                          <p>
+                            Эффективный текст об очень важном отзыве для нашей компании. Задача отзыва - собрать
+                            статистику мнений клиентов об услуге, эффективный текст об очень важном отзыве для нашей
+                            компании. Задача отзыва - собрать статистику мнений клиентов об услуге, товаре.....
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="sample">
+        <div class="container">
+          <div class="sample__inner">
+
+            <div class="sample__tags">
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название длинного тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                СЕО тег
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название длинного тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название длинного тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название длинного тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                СЕО тег
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название длинного тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                Примерное название тега
+              </a>
+              <a class="sample__tags-item" href="/SibMer/404.html">
+                СЕО тег
+              </a>
             </div>
 
           </div>
@@ -740,469 +1144,4 @@
 
     </main>
     <!-- Подвал -->
-    <footer class="footer">
-
-  <svg class="stroke-anim" width="1778" height="845" viewBox="0 0 1778 845" fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_2008_1133)">
-      <path class="stroke-anim-path"
-        d="M1778 645.402C1672.14 763.626 1400.74 953.781 1161.99 768.604C1106.51 727.537 1077.81 677.136 949.636 712.603C920.94 714.47 903.722 733.137 836.764 600.601C769.806 468.066 584.237 260.862 205.447 430.732C-173.343 600.601 44.7485 -78.8768 276.231 8.85802C360.407 36.8585 431.191 130.193 536.41 120.86C591.507 104.433 629.513 71.7033 641.629 57.392"
-        stroke="#142637" stroke-opacity="0.1" stroke-width="3" stroke-dasharray="4 4" />
-    </g>
-    <defs>
-      <clipPath id="clip0_2008_1133">
-        <rect width="1778" height="845" fill="white" />
-      </clipPath>
-    </defs>
-  </svg>
-
-  <div class="container">
-    <div class="footer__inner">
-
-      <div class="footer__top">
-        <div class="footer__top-phone">
-          <a href="tel:+73832875087">
-            +7 (383) 287‒50‒87
-          </a>
-        </div>
-        <div class="footer__top-mail">
-          <a href="emailto:offer@sb-mer.ru">
-            offer@sb-mer.ru
-          </a>
-        </div>
-      </div>
-      <div class="footer__mid">
-        <div class="footer__mid-menu">
-          <div class="footer__mid-items">
-            <div class="footer__mid-item footer__mid-item--menu">
-              <ul>
-                <li>
-                  <a href="/SibMer/404.html">
-                    О компании
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/404.html">
-                    Как мы работаем
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/services.html">
-                    Услуги
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/case.html">
-                    Кейсы
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/contacts.html">
-                    Контакты
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/blog.html">
-                    Блог
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="footer__mid-item footer__mid-item--services">
-              <ul>
-                <li>
-                  <a href="/SibMer/404.html">
-                    Международные перевозки грузов
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/404.html">
-                    Международные автоперевозки
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/404.html">
-                    Международные авиаперевозки
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/404.html">
-                    Доставка по странам
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="footer__mid-item footer__mid-item--stuff">
-              <ul>
-                <li>
-                  <a href="/SibMer/404.html">
-                    политика конфиденциальности
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/404.html" download="#">
-                    Скачать презентацию
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/404.html" download="#">
-                    Скачать реквизиты
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer__bot">
-        <div class="footer__bot-copyright">
-          © Siberian Merchant lines 2026
-        </div>
-        <div class="footer__bot-social">
-          <a class="GlassContainer" href="/">
-            <div class="GlassContent">
-              <i class="icon-max"></i>
-            </div>
-            <div class="GlassMaterial">
-              <div class="GlassEdgeReflection"></div>
-              <div class="GlassEmbossReflection"></div>
-              <div class="GlassRefraction"></div>
-              <div class="GlassBlur"></div>
-              <div class="BlendLayers"></div>
-              <div class="Highlight"></div>
-            </div>
-          </a>
-          <a class="GlassContainer" href="/">
-            <div class="GlassContent">
-              <i class="icon-tg"></i>
-            </div>
-            <div class="GlassMaterial">
-              <div class="GlassEdgeReflection"></div>
-              <div class="GlassEmbossReflection"></div>
-              <div class="GlassRefraction"></div>
-              <div class="GlassBlur"></div>
-              <div class="BlendLayers"></div>
-              <div class="Highlight"></div>
-            </div>
-          </a>
-          <a class="GlassContainer" href="/">
-            <div class="GlassContent">
-              <i class="icon-wa"></i>
-            </div>
-            <div class="GlassMaterial">
-              <div class="GlassEdgeReflection"></div>
-              <div class="GlassEmbossReflection"></div>
-              <div class="GlassRefraction"></div>
-              <div class="GlassBlur"></div>
-              <div class="BlendLayers"></div>
-              <div class="Highlight"></div>
-            </div>
-          </a>
-        </div>
-        <div class="footer__bot-made">
-          Разработка сайта — <a href="/">СОВОК</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</footer>
-<!-- Плашка -->
-<div id="plate_cookie" class="plate">
-  <div class="plate__inner">
-    <div class="plate__text">
-      <p>
-        Этот сайт использует файлы <a href="/SibMer/404.html">сооkіе </a>
-      </p>
-    </div>
-    <button class="plate__btn" onclick="checkCookies()">
-      Ок
-    </button>
-  </div>
-</div>
-<!-- Попапы -->
-<div id="popup-1" class="popup">
-  <div class="popup__wrap" data-lenis-prevent>
-    <div class="popup__content">
-      <div class="popup__head">
-        <div class="popup__title">
-          Отправьте заявку
-        </div>
-      </div>
-      <div class="popup__body">
-        <form class="form-inner" action="#">
-          <div class="form-body">
-
-            <div class="form-block">
-              <div class="form-title">
-                Ваши данные
-              </div>
-              <div class="form-content">
-                <div class="form-group">
-                  <div class="form-icon">
-                    <i class="icon-person"></i>
-                  </div>
-                  <input class="form-input" type="text" name="popup_callback_name" placeholder="Имя">
-                </div>
-                <div class="form-group">
-                  <div class="form-icon">
-                    <i class="icon-phone"></i>
-                  </div>
-                  <input class="form-input" type="tel" name="popup_callback_tel" placeholder="Телефон">
-                </div>
-              </div>
-            </div>
-
-            <div class="form-block">
-              <div class="form-title">
-                Маршрут
-              </div>
-              <div class="form-content">
-                <div class="form-group">
-                  <div class="form-icon">
-                    <i class="icon-otkuda"></i>
-                  </div>
-                  <input class="form-input" type="text" name="popup_callback_otkuda" placeholder="Откуда">
-                </div>
-                <div class="form-group">
-                  <div class="form-icon">
-                    <i class="icon-kuda"></i>
-                  </div>
-                  <input class="form-input" type="text" name="popup_callback_kuda" placeholder="Куда">
-                </div>
-              </div>
-
-              <div class="form-items form-col-2">
-                <div class="form-item">
-                  <div class="form-group">
-                    <label class="form-label">
-                      Общий вес груза
-                    </label>
-                  </div>
-                  <div class="form-group form-total form-total-weight">
-                    <input class="form-input" type="text" name="popup_callback_weight" placeholder="0">
-                  </div>
-                </div>
-                <div class="form-item">
-                  <div class="form-group">
-                    <label class="form-label">
-                      Общий объём груза
-                    </label>
-                  </div>
-                  <div class="form-group form-total form-total-volume">
-                    <input class="form-input" type="text" name="popup_callback_volume" placeholder="0">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="form-foot">
-            <button class="btn form-btn" data-fancybox href="#popup-3">
-              <span class="btn-text">
-                Отправить
-              </span>
-            </button>
-            <div class="form-privacy">
-              <div class="form-group">
-                <label class="form-checkbox-label">
-                  <input class="form-checkbox-input" name="popup_callback_privacy" type="checkbox">
-                  <span class="form-checkbox-item"></span>
-                  <span class="form-checkbox-text">
-                    Я согласен на обработку персональных данных
-                  </span>
-                </label>
-              </div>
-              <div class="form-group">
-                <label class="form-checkbox-label">
-                  <input class="form-checkbox-input" name="popup_callback_ads" type="checkbox">
-                  <span class="form-checkbox-item"></span>
-                  <span class="form-checkbox-text">
-                    Я согласен на рекламные уведомления
-                  </span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="popup-2" class="popup">
-  <div class="popup__wrap" data-lenis-prevent>
-    <div class="popup__content">
-      <div class="popup__head">
-        <div class="popup__title">
-          Бесплатная консультация
-        </div>
-      </div>
-      <div class="popup__body">
-        <form class="form-inner" action="#">
-          <div class="form-body">
-
-            <div class="form-block">
-              <div class="form-title">
-                Ваши данные
-              </div>
-              <div class="form-content">
-                <div class="form-group">
-                  <div class="form-icon">
-                    <i class="icon-person"></i>
-                  </div>
-                  <input class="form-input" type="text" name="popup_consultation_name" placeholder="Имя">
-                </div>
-                <div class="form-group">
-                  <div class="form-icon">
-                    <i class="icon-phone"></i>
-                  </div>
-                  <input class="form-input" type="tel" name="popup_consultation_tel" placeholder="Телефон">
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="form-foot">
-            <button class="btn form-btn" data-fancybox href="#popup-3">
-              <span class="btn-text">
-                Отправить
-              </span>
-            </button>
-            <div class="form-privacy">
-              <div class="form-group">
-                <label class="form-checkbox-label">
-                  <input class="form-checkbox-input" name="popup_consultation_privacy" type="checkbox">
-                  <span class="form-checkbox-item"></span>
-                  <span class="form-checkbox-text">
-                    Я согласен на обработку персональных данных
-                  </span>
-                </label>
-              </div>
-              <div class="form-group">
-                <label class="form-checkbox-label">
-                  <input class="form-checkbox-input" name="popup_consultation_ads" type="checkbox">
-                  <span class="form-checkbox-item"></span>
-                  <span class="form-checkbox-text">
-                    Я согласен на рекламные уведомления
-                  </span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="popup-3" class="popup popup--success">
-  <div class="popup__wrap" data-lenis-prevent>
-    <div class="popup__content">
-      <div class="popup__head">
-        <div class="popup__title">
-          Бесплатная консультация
-        </div>
-      </div>
-      <div class="popup__body">
-        <div class="popup__text">
-          <p>
-            В ближайшее время наш менеджер свяжется с вами!
-          </p>
-        </div>
-        <button class="btn">
-          <span class="btn-text">
-            На главную
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="popup-4" class="popup popup--sale">
-  <div class="popup__wrap" data-lenis-prevent>
-    <div class="popup__inner">
-      <div class="popup__content">
-        <div class="popup__head">
-          <div class="popup__title">
-            <span>Скидка 15%</span>
-            на первый заказ
-          </div>
-          <div class="popup__text">
-            <p>
-              Согласуем скидку и быстро доставим ваш груз!
-            </p>
-          </div>
-        </div>
-        <div class="popup__body">
-          <form class="form-inner" action="#">
-            <div class="form-body">
-
-              <div class="form-block">
-                <div class="form-content">
-                  <div class="form-group">
-                    <div class="form-icon">
-                      <i class="icon-phone"></i>
-                    </div>
-                    <input class="form-input" type="tel" name="popup_consultation_tel" placeholder="Телефон">
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="form-foot">
-              <button class="btn form-btn" data-fancybox href="#popup-3">
-                <span class="btn-text">
-                  Отправить
-                </span>
-              </button>
-              <div class="form-privacy">
-                <div class="form-group">
-                  <label class="form-checkbox-label">
-                    <input class="form-checkbox-input" name="popup_consultation_privacy" type="checkbox">
-                    <span class="form-checkbox-item"></span>
-                    <span class="form-checkbox-text">
-                      Я согласен на обработку персональных данных
-                    </span>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <label class="form-checkbox-label">
-                    <input class="form-checkbox-input" name="popup_consultation_ads" type="checkbox">
-                    <span class="form-checkbox-item"></span>
-                    <span class="form-checkbox-text">
-                      Я согласен на рекламные уведомления
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="popup__cover">
-        <img src="./images/temp/sale-cover.jpg" alt="">
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!-- libs -->
-<!-- jquery -->
-<script src="./libs/jquery/jquery.v3.7.1.min.js"></script>
-<!-- fancybox -->
-<script src="./libs/fancybox/fancybox.umd.js"></script>
-<!-- gsap -->
-<script src="./libs/gsap/gsap.min.js"></script>
-<script src="./libs/gsap/ScrollTrigger.min.js"></script>
-<script src="./libs/gsap/SplitText.min.js"></script>
-<!-- lenis -->
-<script src="./libs/lenis/lenis.min.js"></script>
-<!-- swiper -->
-<script src="./libs/swiper/swiper-bundle.min.js"></script>
-<!-- scripts -->
-<script src="./js/main.js"></script>
-</body>
-
-</html>
+    @@include('blocks/footer.html')

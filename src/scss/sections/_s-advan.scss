@@ -1,0 +1,50 @@
+@use './../mixins' as *;
+
+.s-advan {
+  background-color: var(--gray);
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include sm {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3.5rem;
+    padding: 3rem 3rem 2.4rem 13rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+    overflow: hidden;
+
+    position: relative;
+
+    &-icon {
+      color: var(--accent);
+
+      position: absolute;
+      top: 2rem;
+      left: 3rem;
+
+      i {
+        --font-size: 7rem;
+      }
+    }
+
+    &-count {
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 140%;
+    }
+
+    &-title {
+
+    }
+  }
+}

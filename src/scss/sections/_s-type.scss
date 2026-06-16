@@ -1,0 +1,222 @@
+@use './../mixins' as *;
+
+.s-type {
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include sm {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.8rem;
+    }
+  }
+
+  &__item {
+    height: fit-content;
+    border-radius: 1rem;
+    background-color: var(--white);
+    overflow: hidden;
+    transition: min-height 0.3s ease, gap 0.3s ease, padding 0.3s ease;
+
+    position: relative;
+
+    @include dosm {
+      min-height: 47rem;
+      padding: 5rem 3rem 3rem 3rem;
+    }
+
+    @include sm {
+      gap: 2rem;
+      padding: 2rem 2rem 5.7rem 2rem;
+    }
+
+    &:hover {
+
+      @include dosm {
+
+        .services__item-btn {
+
+          i {
+            color: var(--accent);
+          }
+
+          .GlassMaterial:before {
+            opacity: 0;
+          }
+
+          .GlassMaterial:after {
+            background-color: var(--white);
+          }
+        }
+      }
+    }
+
+    &.accordion-item--active {
+
+      @include dosm {
+        min-height: 78.9rem;
+      }
+
+      @include sm {
+        padding: 2rem 2rem 7.7rem 2rem;
+      }
+    }
+
+    &:first-child {
+
+      .s-type__item-icon {
+
+        @include sm {
+          width: 13rem;
+          height: 13rem;
+        }
+
+        i {
+
+          @include sm {
+            --font-size: 13rem;
+          }
+        }
+      }
+    }
+
+    &-title {
+      max-width: 27rem;
+
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      position: relative;
+      z-index: 2;
+
+      @include sm {
+        max-width: 17.4rem;
+
+        font-size: 1.4rem;
+      }
+    }
+
+    &-icon {
+      display: block;
+      width: 7rem;
+      height: 7rem;
+      transition: opacity 0.3s ease;
+
+      color: var(--accent);
+
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      z-index: 1;
+
+      @include dosm {
+        width: 16rem;
+        height: 16rem;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .accordion-item--active & {
+
+        @include dosm {
+          opacity: 0;
+        }
+      }
+
+      i {
+        --font-size: 16rem;
+
+        @include sm {
+          --font-size: 7rem;
+        }
+      }
+    }
+
+    &-btn {
+      width: 3.6rem;
+      height: 3.6rem;
+
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 2;
+
+      @include dosm {
+        width: 5.6rem;
+        height: 5.6rem;
+
+        right: 3rem;
+        bottom: 3rem;
+      }
+
+      .accordion-item--active & {
+
+        i {
+
+          &::before {
+            content: "\e91b";
+
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      i {
+
+        @include sm {
+          --font-size: 2rem;
+        }
+
+        &::before {
+          transition: all 0.3s ease;
+        }
+      }
+    }
+
+    &-content {
+      height: 100%;
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+      height: 100%;
+      overflow: hidden;
+
+      ul {}
+
+      li {
+        margin-bottom: 2rem;
+
+        @include sm {
+          margin-bottom: 1.5rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      a {
+        text-decoration-line: underline;
+        color: var(--accent);
+      }
+    }
+
+    &-list {
+
+      @include sm {
+        max-width: 60%;
+      }
+    }
+  }
+}

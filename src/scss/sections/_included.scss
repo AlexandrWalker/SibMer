@@ -1,0 +1,37 @@
+@use './../mixins' as *;
+
+.included {
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include sm {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    height: fit-content;
+    min-height: 47rem;
+    padding: 5rem 3rem;
+    background-color: var(--black);
+    border-radius: 1rem;
+    overflow: hidden;
+
+    color: var(--white);
+
+    @include sm {
+      min-height: unset;
+    }
+
+    &-title {
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+    }
+  }
+}

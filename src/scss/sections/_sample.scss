@@ -1,0 +1,134 @@
+@use './../mixins' as *;
+
+.sample {
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include sm {
+      gap: 2rem;
+    }
+
+    h2 {
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: var(--accent);
+
+      @include sm {
+        font-size: 1.6rem;
+      }
+    }
+
+    h3 {
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: var(--accent);
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+
+    h4 {
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: var(--accent);
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+
+    h5 {
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: var(--accent);
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+
+    h6 {
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: var(--accent);
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+
+    ul {
+      padding: 0 0 0 3rem;
+
+      @include sm {
+        padding: 0 0 0 2.5rem;
+      }
+
+      li {
+        list-style: disc;
+        margin-bottom: 1.5rem;
+
+        @include sm {
+          margin-bottom: 1rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @include sm {
+      gap: 1rem;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    &-item {
+      height: 4rem;
+      padding: 1rem 2rem;
+      border-radius: 10rem;
+      background-color: var(--white);
+
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 143%;
+      text-align: center;
+      color: var(--black-50);
+
+      &:hover {
+        color: var(--black);
+      }
+    }
+  }
+}

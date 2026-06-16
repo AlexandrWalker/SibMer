@@ -3,6 +3,10 @@
 .faq {
   background-color: var(--white);
 
+  .services-page & {
+    background-color: var(--gray);
+  }
+
   .general {
 
     &__head {
@@ -39,6 +43,10 @@
 
     @include sm {
       padding: 2rem 2.8rem 2rem 1.5rem;
+    }
+
+    .services-page & {
+      background-color: var(--white);
     }
 
     &-head {
