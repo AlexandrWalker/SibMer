@@ -12,6 +12,7 @@
 
       &+.nav__indicator {
         opacity: 1;
+        visibility: visible;
       }
     }
   }
@@ -35,14 +36,16 @@
 
   &__indicator {
     display: block;
-    width: 100%;
     height: 0.7rem;
     border-radius: 0.7rem;
     background-color: var(--accent);
     pointer-events: none;
-    opacity: 0;
     margin-left: var(--container-padding);
-    transition: all 0.3s ease;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: left 0.3s ease, width 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+
 
     position: absolute;
     bottom: 0;
@@ -56,6 +59,7 @@
 
     &.active {
       opacity: 1;
+      visibility: visible;
     }
   }
 }

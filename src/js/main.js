@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function scrollToTarget(target) {
       lenis.scrollTo(target, {
         offset: -80,
-        duration: 1.5,
+        duration: 2,
       });
     }
 
@@ -319,18 +319,100 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Код для индикатора навигации
    */
+  // (function () {
+  //   const nav = document.querySelector('.nav');
+  //   const items = document.querySelectorAll('.nav li');
+  //   const indicator = document.querySelector('.nav__indicator');
+
+  //   // Функция установки индикатора под элементом
+  //   function setIndicator(item) {
+  //     const link = item.querySelector('a');
+  //     const navRect = nav.getBoundingClientRect();
+  //     const linkRect = link.getBoundingClientRect();
+
+  //     // Вычисляем позицию относительно nav
+  //     const left = linkRect.left - navRect.left;
+  //     const width = linkRect.width;
+
+  //     indicator.style.left = `${left}px`;
+  //     indicator.style.width = `${width}px`;
+  //     indicator.classList.add('active');
+  //   }
+
+  //   items.forEach(item => {
+  //     // Сначала убираем зашитый в HTML класс, чтобы пересчитать всё начисто
+  //     item.classList.remove('nav__active');
+
+  //     const pageClass = item.dataset.page;
+  //     const link = item.querySelector('a');
+  //     const currentHash = window.location.hash; // Получаем текущий #якорь из URL
+
+  //     if (pageClass && document.documentElement.classList.contains(pageClass)) {
+  //       // Если это главная и у ссылки есть якорь
+  //       if (currentHash && link.getAttribute('href').nodeValue !== '#') {
+  //         if (link.getAttribute('href') === currentHash) {
+  //           item.classList.add('nav__active');
+  //         }
+  //       } else {
+  //         // Если якоря в URL нет, активируем самый первый подходящий пункт по умолчанию
+  //         const firstMatch = document.querySelector(`.nav li[data-page="${pageClass}"]`);
+  //         if (firstMatch) firstMatch.classList.add('nav__active');
+  //       }
+  //     }
+  //   });
+
+  //   // Инициализация: ставим индикатор под активным пунктом
+  //   window.addEventListener('load', () => {
+  //     const activeItem = document.querySelector('.nav__active');
+  //     if (activeItem) {
+  //       setIndicator(activeItem);
+  //     }
+  //   });
+
+  //   // Обработчик наведения на пункты меню
+  //   items.forEach(item => {
+  //     item.addEventListener('mouseenter', () => {
+  //       setIndicator(item);
+  //     });
+
+  //     // Обработчик клика: переключаем активный класс
+  //     item.addEventListener('click', (e) => {
+  //       // Убираем активный класс со всех пунктов
+  //       items.forEach(i => i.classList.remove('nav__active'));
+
+  //       // Добавляем активный класс на кликнутый пункт
+  //       item.classList.add('nav__active');
+
+  //       setIndicator(item);
+  //     });
+  //   });
+
+  //   // При уходе курсора возвращаем к активному пункту
+  //   nav.addEventListener('mouseleave', () => {
+  //     const currentActive = document.querySelector('.nav__active');
+  //     if (currentActive) {
+  //       setIndicator(currentActive);
+  //     }
+  //   });
+
+  //   window.addEventListener('resize', () => {
+  //     const currentActive = document.querySelector('.nav__active');
+  //     if (currentActive) {
+  //       setIndicator(currentActive);
+  //     }
+  //   });
+  // })();
+
   (function () {
     const nav = document.querySelector('.nav');
     const items = document.querySelectorAll('.nav li');
     const indicator = document.querySelector('.nav__indicator');
 
-    // Функция установки индикатора под элементом
     function setIndicator(item) {
       const link = item.querySelector('a');
       const navRect = nav.getBoundingClientRect();
       const linkRect = link.getBoundingClientRect();
 
-      // Вычисляем позицию относительно nav
       const left = linkRect.left - navRect.left;
       const width = linkRect.width;
 
@@ -339,45 +421,120 @@ document.addEventListener('DOMContentLoaded', () => {
       indicator.classList.add('active');
     }
 
-    // Инициализация: ставим индикатор под активным пунктом
-    const activeItem = document.querySelector('.nav__active');
-    if (activeItem) {
-      setIndicator(activeItem);
+    function hideIndicator() {
+      indicator.classList.remove('active');
     }
 
-    // Обработчик наведения на пункты меню
+    items.forEach(item => {
+      item.classList.remove('nav__active');
+      const pageClass = item.dataset.page;
+      const link = item.querySelector('a');
+      const isAnchor = link && link.getAttribute('href').startsWith('#');
+      if (pageClass && document.documentElement.classList.contains(pageClass) && !isAnchor) {
+        item.classList.add('nav__active');
+      }
+    });
+
+    window.addEventListener('load', () => {
+      const activeItem = document.querySelector('.nav__active');
+      if (activeItem) {
+        setIndicator(activeItem);
+      } else {
+        hideIndicator();
+      }
+    });
+
+    const anchorLinks = Array.from(items)
+      .map(item => item.querySelector('a'))
+      .filter(link => link && link.getAttribute('href').startsWith('#'));
+
+    if (anchorLinks.length > 0) {
+      const observerOptions = {
+        root: null,
+        rootMargin: '-45% 0px -45% 0px',
+        threshold: 0
+      };
+
+      const observerCallback = (entries) => {
+        entries.forEach(entry => {
+          const id = entry.target.getAttribute('id');
+          const targetLink = anchorLinks.find(link => link.getAttribute('href') === `#${id}`);
+
+          if (targetLink) {
+            const targetItem = targetLink.closest('li');
+
+            if (entry.isIntersecting) {
+              anchorLinks.forEach(link => link.closest('li').classList.remove('nav__active'));
+              targetItem.classList.add('nav__active');
+
+              if (!nav.matches(':hover')) {
+                setIndicator(targetItem);
+              }
+            } else {
+              if (targetItem.classList.contains('nav__active')) {
+                targetItem.classList.remove('nav__active');
+
+                if (!nav.matches(':hover')) {
+                  hideIndicator();
+                }
+              }
+            }
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+      anchorLinks.forEach(link => {
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          observer.observe(targetSection);
+        }
+      });
+    }
+
     items.forEach(item => {
       item.addEventListener('mouseenter', () => {
         setIndicator(item);
       });
 
-      // Обработчик клика: переключаем активный класс
       item.addEventListener('click', (e) => {
-        // Убираем активный класс со всех пунктов
+        const link = item.querySelector('a');
+        const isAnchor = link && link.getAttribute('href').startsWith('#');
+        if (isAnchor) {
+          const targetId = link.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+
+          if (!targetSection) {
+            return;
+          }
+        }
         items.forEach(i => i.classList.remove('nav__active'));
-
-        // Добавляем активный класс на кликнутый пункт
         item.classList.add('nav__active');
-
         setIndicator(item);
       });
     });
 
-    // При уходе курсора возвращаем к активному пункту
-    // nav.addEventListener('mouseleave', () => {
-    //   const currentActive = document.querySelector('.nav__active');
-    //   if (currentActive) {
-    //     setIndicator(currentActive);
-    //   }
-    // });
+    nav.addEventListener('mouseleave', () => {
+      const currentActive = document.querySelector('.nav__active');
+      if (currentActive) {
+        setIndicator(currentActive);
+      } else {
+        hideIndicator();
+      }
+    });
 
     window.addEventListener('resize', () => {
       const currentActive = document.querySelector('.nav__active');
       if (currentActive) {
         setIndicator(currentActive);
+      } else {
+        hideIndicator();
       }
     });
   })();
+
 
   /**
    * Функция управления поведением меню-бургера.
