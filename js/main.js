@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Плавный скролл к целевому элементу через Lenis
     function scrollToTarget(target) {
       lenis.scrollTo(target, {
-        offset: -60,
+        offset: -80,
         duration: 1.5,
       });
     }
@@ -1481,6 +1481,7 @@ document.addEventListener('DOMContentLoaded', () => {
           navigator.clipboard.writeText(textToCopy).then(() => {
             setTimeout(() => copyButton.style.color = "", 1000);
             console.log('Скопировано:\n', textToCopy);
+            alert('Скопировано в буфер обмена');
           }).catch(err => console.error('Ошибка:', err));
         }
       });
