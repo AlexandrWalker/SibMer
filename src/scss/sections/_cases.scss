@@ -228,6 +228,9 @@
 
         transition: clip-path 0.8s ease;
         clip-path: inset(0 0 0 100%);
+
+        will-change: clip-path;
+        transform: translateZ(0);
       }
     }
 
@@ -329,7 +332,7 @@
 
     &-body {
       grid-column: 6/13;
-      
+
       padding: 24.8rem 0 6rem;
       // padding: calc(var(--cases-padding) + 5.6rem + 3rem + 1rem) 0 6rem;
       padding: calc(var(--cases-padding) + 3rem) 0 6rem;

@@ -535,7 +535,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-
   /**
    * Функция управления поведением меню-бургера.
    */
