@@ -52,12 +52,22 @@
   border-radius: var(--corner-radius);
   padding: 0.5px;
   border: 0 solid transparent;
-  background: linear-gradient(155deg, hsla(0, 0%, 100%, 0.15) 0%, hsla(0, 0%, 0%, 0.2) 50%, hsla(0, 0%, 100%, 0.15) 100%);
-  // backdrop-filter: invert(0.15) opacity(0);
+  transition: opacity 0.3s ease;
+
+  /* new */
+  mix-blend-mode: screen;
   mask:
     linear-gradient(white 0 0) padding-box,
     linear-gradient(white 0 0) content-box;
-  mask-composite: exclude, exclude;
+  mask-composite: exclude;
+  /* ./new */
+
+  // background: linear-gradient(155deg, hsla(0, 0%, 100%, 0.15) 0%, hsla(0, 0%, 0%, 0.2) 50%, hsla(0, 0%, 100%, 0.15) 100%);
+  // // backdrop-filter: invert(0.15) opacity(0);
+  // mask:
+  //   linear-gradient(white 0 0) padding-box,
+  //   linear-gradient(white 0 0) content-box;
+  // mask-composite: exclude, exclude;
 
   transition: opacity 0.3s ease;
 }
@@ -150,6 +160,14 @@
   padding: 0.5px;
   border: 0 solid transparent;
   // backdrop-filter: brightness(1.2) contrast(1.6) saturate(1.2) opacity(0);
+  /* new */
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0) 70%,
+      rgba(255, 255, 255, 1) 100%);
+  mix-blend-mode: overlay;
+  /* ./new */
   mask:
     linear-gradient(white 0 0) padding-box,
     linear-gradient(white 0 0) content-box;

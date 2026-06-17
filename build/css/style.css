@@ -124,22 +124,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
@@ -148,8 +132,24 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
   font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -399,7 +399,8 @@ img {
 
 .general__tabs-item.tabs--active,
 .general__tabs-item:hover {
-  color: var(--black);
+  background-color: var(--black);
+  color: var(--white);
 }
 
 .general__tabs--alt .general__tabs-item.tabs--active,
@@ -2008,16 +2009,18 @@ body {
   border-radius: var(--corner-radius);
   padding: 0.5px;
   border: 0 solid transparent;
-  background: -o-linear-gradient(295deg, hsla(0, 0%, 100%, 0.15) 0%, hsla(0, 0%, 0%, 0.2) 50%, hsla(0, 0%, 100%, 0.15) 100%);
-  background: linear-gradient(155deg, hsla(0, 0%, 100%, 0.15) 0%, hsla(0, 0%, 0%, 0.2) 50%, hsla(0, 0%, 100%, 0.15) 100%);
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  /* new */
+  mix-blend-mode: screen;
   -webkit-mask: -webkit-gradient(linear, left top, left bottom, color-stop(0, white)) padding-box, -webkit-gradient(linear, left top, left bottom, color-stop(0, white)) content-box;
   -webkit-mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0) content-box;
   mask: -webkit-gradient(linear, left top, left bottom, color-stop(0, white)) padding-box, -webkit-gradient(linear, left top, left bottom, color-stop(0, white)) content-box;
   mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0) content-box;
-  -webkit-mask-composite: xor, xor;
-  mask-composite: exclude, exclude;
-  -webkit-transition: opacity 0.3s ease;
-  -o-transition: opacity 0.3s ease;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  /* ./new */
   transition: opacity 0.3s ease;
 }
 
@@ -2119,6 +2122,11 @@ body {
   border-radius: var(--corner-radius);
   padding: 0.5px;
   border: 0 solid transparent;
+  /* new */
+  background: -o-linear-gradient(315deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 70%, rgb(255, 255, 255) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 70%, rgb(255, 255, 255) 100%);
+  mix-blend-mode: overlay;
+  /* ./new */
   -webkit-mask: -webkit-gradient(linear, left top, left bottom, color-stop(0, white)) padding-box, -webkit-gradient(linear, left top, left bottom, color-stop(0, white)) content-box;
   -webkit-mask: linear-gradient(white 0 0) padding-box, linear-gradient(white 0 0) content-box;
   mask: -webkit-gradient(linear, left top, left bottom, color-stop(0, white)) padding-box, -webkit-gradient(linear, left top, left bottom, color-stop(0, white)) content-box;
@@ -3536,14 +3544,14 @@ canvas {
   }
 
   50% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
     opacity: 0.5;
   }
 
   100% {
-    -webkit-transform: scale(1.4);
-    transform: scale(1.4);
+    -webkit-transform: scale(1.6);
+    transform: scale(1.6);
     opacity: 0;
   }
 }
@@ -3556,14 +3564,14 @@ canvas {
   }
 
   50% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
     opacity: 0.5;
   }
 
   100% {
-    -webkit-transform: scale(1.4);
-    transform: scale(1.4);
+    -webkit-transform: scale(1.6);
+    transform: scale(1.6);
     opacity: 0;
   }
 }
@@ -3576,14 +3584,14 @@ canvas {
   }
 
   50% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
     opacity: 0.5;
   }
 
   100% {
-    -webkit-transform: scale(1.4);
-    transform: scale(1.4);
+    -webkit-transform: scale(1.6);
+    transform: scale(1.6);
     opacity: 0;
   }
 }
@@ -3596,14 +3604,14 @@ canvas {
   }
 
   50% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
     opacity: 0.5;
   }
 
   100% {
-    -webkit-transform: scale(1.4);
-    transform: scale(1.4);
+    -webkit-transform: scale(1.6);
+    transform: scale(1.6);
     opacity: 0;
   }
 }
@@ -5509,8 +5517,8 @@ canvas {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 2rem;
-  margin-top: auto;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
 }
 
 .opinions__item-subtitle {
@@ -5693,7 +5701,7 @@ canvas {
 }
 
 .pc__item-text p {
-  color: var(--white-50);
+  color: var(--white);
 }
 
 .pc__item-text .btn {
@@ -6995,7 +7003,9 @@ canvas {
   }
 
   .opinions__item-foot {
+    gap: 2rem;
     padding-left: 9.6rem;
+    margin-top: auto;
   }
 
   .partners .general__head {
@@ -8358,7 +8368,7 @@ canvas {
 
   .opinions__item {
     gap: 1.5rem;
-    min-height: 37.2rem;
+    min-height: unset;
     padding: 1.5rem 1.5rem 3rem 1.5rem;
   }
 
@@ -8389,10 +8399,20 @@ canvas {
 
   .opinions__item-text {
     font-size: 1.2rem;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -o-text-overflow: clip;
+       text-overflow: clip;
+    overflow: hidden;
   }
 
   .opinions__item-btn {
     font-size: 1rem;
+  }
+
+  .opinions__item-subtitle {
+    font-size: 1.2rem;
   }
 
   .opinions__item-tag {

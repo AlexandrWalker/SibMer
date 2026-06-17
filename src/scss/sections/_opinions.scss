@@ -90,7 +90,8 @@
 
     @include sm {
       gap: 1.5rem;
-      min-height: 37.2rem;
+      // min-height: 37.2rem;
+      min-height: unset;
       padding: 1.5rem 1.5rem 3rem 1.5rem;
     }
 
@@ -165,17 +166,17 @@
     }
 
     &-text {
-      // -webkit-line-clamp: 4;
-      // display: -webkit-box;
-      // -webkit-box-orient: vertical;
-      // -o-text-overflow: clip;
-      // text-overflow: clip;
-      // overflow: hidden;
-
       color: var(--black-50);
 
       @include sm {
         font-size: 1.2rem;
+
+        -webkit-line-clamp: 5;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -o-text-overflow: clip;
+        text-overflow: clip;
+        overflow: hidden;
       }
     }
 
@@ -201,17 +202,23 @@
     &-foot {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      margin-top: auto;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
 
       @include dosm {
+        gap: 2rem;
         padding-left: 9.6rem;
+        margin-top: auto;
       }
     }
 
     &-subtitle {
       line-height: 110%;
       color: var(--black-50);
+
+      @include sm {
+        font-size: 1.2rem;
+      }
     }
 
     &-tags {

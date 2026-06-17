@@ -192,7 +192,9 @@
 
       &.tabs--active,
       &:hover {
-        color: var(--black);
+        background-color: var(--black);
+        
+        color: var(--white);
       }
 
       .general__tabs--alt & {
