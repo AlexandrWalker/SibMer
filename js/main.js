@@ -1179,6 +1179,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const casesTabsItemsJs = casesTabsJs.querySelectorAll('.general__tabs-item');
     const casesItemsJs = document.querySelectorAll('.cases-item--js');
 
+    // Новая функция для расстановки классов соседям (prev / next)
+    function updateNeighborClasses() {
+      // Сначала очищаем старые классы у всех элементов
+      casesItemsJs.forEach(i => {
+        i.classList.remove('cases-item--prev', 'cases-item--next');
+      });
+
+      // Находим индекс текущего активного элемента в массиве (NodeList)
+      const activeIndex = Array.from(casesItemsJs).findIndex(i =>
+        i.classList.contains('cases-item--active')
+      );
+
+      // Если активный элемент найден (индекс не равен -1)
+      if (activeIndex !== -1) {
+        // Проверяем существование элемента ПЕРЕД активным
+        if (activeIndex > 0) {
+          casesItemsJs[activeIndex - 1].classList.add('cases-item--prev');
+        }
+
+        // Проверяем существование элемента ПОСЛЕ активного
+        if (activeIndex < casesItemsJs.length - 1) {
+          casesItemsJs[activeIndex + 1].classList.add('cases-item--next');
+        }
+      }
+    }
+
+    // Первоначальный запуск при загрузке страницы, чтобы разметить соседей стартового активного таба
+    updateNeighborClasses();
+
     if (casesTabsItemsJs.length) {
       casesTabsItemsJs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -1189,7 +1218,12 @@ document.addEventListener('DOMContentLoaded', () => {
           const casesItem = document.querySelector(`[data-cases="${data}"]`);
 
           casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
-          casesItem.classList.add('cases-item--active');
+          if (casesItem) {
+            casesItem.classList.add('cases-item--active');
+          }
+
+          // Обновляем соседние классы после смены активного элемента
+          updateNeighborClasses();
 
           ScrollTrigger.update();
         });
@@ -1206,31 +1240,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isMobile()) {
         casesItemsJs.forEach(item => {
           item.addEventListener('click', () => {
-            // Проверяем, активен ли этот элемент уже
             const isActive = item.classList.contains('cases-item--active');
 
-            // 1. Сначала убираем активный класс у ВСЕХ кейсов
             casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
 
-            // 2. Если элемент не был активен до клика — открываем его
-            // Если был активен — он останется закрытым (так работает логика закрытия)
             if (!isActive) {
               item.classList.add('cases-item--active');
             }
 
-            // Обновляем ScrollTrigger, так как высота контента могла измениться
+            // Обновляем соседние классы после клика по карточке на мобилке
+            updateNeighborClasses();
+
             ScrollTrigger.update();
           });
         });
       }
-
     }
 
     const cases = document.querySelector('.cases');
-    const casesHead = cases.querySelector('.cases__head');
+    const casesHead = cases ? cases.querySelector('.cases__head') : null;
 
     if (cases && casesHead) {
-
       const updateCasesPadding = () => {
         const h = casesHead.offsetHeight;
         console.log(h);
