@@ -101,8 +101,19 @@ img {
 }
 
 .container--fluid {
-  max-width: 100%;
+  max-width: calc(var(--container-width) + var(--container-padding) * 2);
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
   padding: 0;
+}
+
+.container--fluid::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
 }
 
 @font-face {
@@ -116,8 +127,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -132,8 +143,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -148,16 +159,24 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -174,14 +193,6 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
   font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
   font-style: normal;
 }
 
@@ -204,14 +215,6 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
   src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
@@ -222,6 +225,14 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
   font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -4505,8 +4516,8 @@ canvas {
 }
 
 .cases__item.cases-item--active .cases__item-head {
-  -webkit-clip-path: inset(0 0 0 calc(var(--container-padding) * -1));
-          clip-path: inset(0 0 0 calc(var(--container-padding) * -1));
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
 }
 
 .cases__item.cases-item--active .cases__item-img img {
@@ -4539,9 +4550,9 @@ canvas {
 
 .cases__item-wrap--content {
   overflow: hidden;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .cases__item-img {
@@ -4587,7 +4598,7 @@ canvas {
   -ms-grid-column-span: 7;
   grid-column: 6/13;
   padding: 24.8rem 0 6rem;
-  padding: calc(var(--cases-padding) + 3rem) 0 6rem;
+  padding: calc(var(--cases-padding) + 3rem) var(--container-padding) 6rem 2rem;
 }
 
 .cases__item-content {
@@ -6754,9 +6765,9 @@ canvas {
   .cases {
     --section-padding-top: 0;
     --section-padding-bottom: 0;
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, var(--black)), color-stop(41.8%, transparent));
-    background: -o-linear-gradient(left, var(--black) 0 41.8%, transparent 41.8% 70%);
-    background: linear-gradient(90deg, var(--black) 0 41.8%, transparent 41.8% 70%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, var(--black)), color-stop(41%, transparent));
+    background: -o-linear-gradient(left, var(--black) 0 41%, transparent 41% 70%);
+    background: linear-gradient(90deg, var(--black) 0 41%, transparent 41% 70%);
   }
 
   .cases .general__head {
@@ -6780,6 +6791,7 @@ canvas {
 
   .cases__head {
     padding-top: 5.6rem;
+    padding-left: 2rem;
   }
 
   .cases__item {
@@ -6794,9 +6806,9 @@ canvas {
     -ms-grid-row: 1;
     -ms-grid-row-span: 1;
     grid-row: 1/2;
-    -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
-    -o-transition: opacity 0.3s ease, visibility 0.3s ease;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    -webkit-transition: opacity 0.5s ease, visibility 0.5s ease;
+    -o-transition: opacity 0.5s ease, visibility 0.5s ease;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
     opacity: 0;
     visibility: hidden;
   }
@@ -6814,7 +6826,7 @@ canvas {
     -ms-grid-column: 1;
     -ms-grid-column-span: 5;
     grid-column: 1/6;
-    padding: 5rem 0 6rem;
+    padding: 5rem 0 6rem var(--container-padding);
     -webkit-transition: clip-path 0.8s ease;
     -webkit-transition: -webkit-clip-path 0.8s ease;
     transition: -webkit-clip-path 0.8s ease;
@@ -7928,6 +7940,10 @@ canvas {
     font-size: 1rem;
   }
 
+  .cases .container--fluid {
+    padding: 0 var(--container-padding);
+  }
+
   .cases__head {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -8052,6 +8068,9 @@ canvas {
     -ms-flex-direction: column;
     flex-direction: column;
     gap: 2rem;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .cases__item-img {
