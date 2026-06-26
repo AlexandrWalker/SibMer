@@ -68,6 +68,7 @@ section {
   overflow-x: hidden;
   overflow-y: visible;
   will-change: transform;
+  scroll-margin-top: 10rem;
 }
 
 a {
@@ -127,22 +128,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
@@ -151,8 +136,24 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
   font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -223,16 +224,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -3319,7 +3320,7 @@ body {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background: var(--red);
+  background: var(--black);
   -webkit-transform-origin: top center;
   -ms-transform-origin: top center;
   transform-origin: top center;
@@ -3330,8 +3331,8 @@ body {
 
 canvas {
   display: block;
-  width: 7.1rem;
-  height: 7rem;
+  width: 47.2rem;
+  height: 6rem;
   -ms-flex-negative: 0;
   flex-shrink: 0;
   -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -7290,6 +7291,10 @@ canvas {
     font-size: 1.4rem;
   }
 
+  section {
+    scroll-margin-top: 4rem;
+  }
+
   .general__title h1 {
     font-size: 3rem;
   }
@@ -7638,6 +7643,11 @@ canvas {
   .popup__title {
     padding-right: 5rem;
     font-size: 3rem;
+  }
+
+  canvas {
+    width: 80%;
+    height: auto;
   }
 
   .template__inner {

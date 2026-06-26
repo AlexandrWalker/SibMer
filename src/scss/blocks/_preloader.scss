@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--red);
+  background: var(--black);
   transform-origin: top center;
   
   position: fixed;
@@ -14,8 +14,13 @@
 
 canvas {
   display: block;
-  width: 7.1rem;
-  height: 7rem;
+  width: 47.2rem;
+  height: 6rem;
   flex-shrink: 0;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  @include sm {
+    width: 80%;
+    height: auto;
+  }
 }

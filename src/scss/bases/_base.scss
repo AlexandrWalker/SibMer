@@ -73,6 +73,11 @@ section {
   overflow-x: hidden;
   overflow-y: visible;
   will-change: transform;
+  scroll-margin-top: 10rem;
+
+  @include sm {
+    scroll-margin-top: 4rem;
+  }
 }
 
 a {
