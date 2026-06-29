@@ -1,21 +1,17 @@
-/**
- * Подключение ScrollTrigger
- * Подключение SplitText
- */
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 document.addEventListener('DOMContentLoaded', () => {
 
   const checkEditMode = document.querySelector('.bx-panel-toggle-on') ?? null;
 
+  /**
+   * Прелоадер + якорь + инициализация Lenis
+   */
   // Блокируем браузерное восстановление скролла до того как браузер успеет прыгнуть к якорю
   if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
   }
 
-  /**
-   * Прелоадер + якорь + инициализация Lenis
-   */
   (function () {
 
     // Длительность анимации закрытия мобильного меню в миллисекундах
@@ -25,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const PRELOADER_CONFIG = {
       mode: 'overlay',
       assets: {
-        logoWhiteSrc: './images/logo/logo-red.svg',
-        logoCyanSrc: './images/logo/logo.svg',
+        logoWhiteSrc: './images/logo/logo.svg',
+        logoCyanSrc: './images/logo/logo-red.svg',
       },
       logoWidth: 472,
       logoHeight: 60,
@@ -35,25 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Инициализация Lenis и привязка к GSAP ticker
-    // Инициализация Lenis и привязка к GSAP ticker
     const lenis = new Lenis();
     window.lenis = lenis;
-    // Оповещаем шапку, что Lenis готов к работе
-    window.dispatchEvent(new CustomEvent('lenis-ready', { detail: lenis }));
-
-    gsap.ticker.lagSmoothing(0);
 
     gsap.ticker.add((time) => lenis.raf(time * 1000));
-
-    // Синхронизируем Lenis со ScrollTrigger
-    // Без этого ScrollTrigger читает нативный scrollY а Lenis работает со своим
-    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.lagSmoothing(0);
 
     // Плавный скролл к целевому элементу через Lenis
     function scrollToTarget(target) {
       lenis.scrollTo(target, {
-        offset: -80,
-        duration: 2,
+        offset: -60,
+        duration: 1.5,
       });
     }
 
@@ -86,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const link = e.target.closest('a[href]');
       if (!link) return;
 
-      // Не мешаем Fancybox - пропускаем ссылки с data-fancybox
+      // Не мешаем Fancybox — пропускаем ссылки с data-fancybox
       if (link.hasAttribute('data-fancybox')) return;
 
       const href = link.getAttribute('href');
@@ -96,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!hash) return;
 
       // Ищем элемент на текущей странице
-      // Если его нет - браузер сам перейдёт на нужную страницу
+      // Если его нет — браузер сам перейдёт на нужную страницу
       // После загрузки сработает обработчик load ниже
       const target = document.getElementById(hash);
       if (!target) return;
@@ -203,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Режим overlay - два логотипа с анимацией заливки снизу вверх
+    // Режим overlay — два логотипа с анимацией заливки снизу вверх
     function startOverlayPreloader() {
       const { logoWidth, logoHeight } = initCanvas();
       let fillHeight = 0;
@@ -217,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.globalCompositeOperation = 'source-over';
         ctx.drawImage(logoWhite, 0, 0, logoWidth, logoHeight);
         ctx.globalCompositeOperation = 'source-atop';
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = '#DC2340';
         ctx.fillRect(0, logoHeight - fillHeight, logoWidth, fillHeight);
         ctx.globalCompositeOperation = 'source-over';
       }
@@ -281,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Режим singleLogo - одно лого без заливки, скрывается после загрузки
+    // Режим singleLogo — одно лого без заливки, скрывается после загрузки
     function startSingleLogoPreloader() {
       const { logoWidth, logoHeight } = initCanvas();
       const logo = new Image();
@@ -320,659 +308,52 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /**
-   * Функция для поведения шапки
+   * Управляет поведением хэдера.
    */
   (function () {
+    const html = document.documentElement;
+    const footer = document.getElementById('footer');
+    const firstHeight = 10;
 
-    // 
-    // НАСТРОЙКИ
-    // 
-    const CONFIG = {
+    let startScrollTop = null; // Первоначальная позиция до начала скролла
+    let fixedClassTimeout = null; // Таймер остановки скролла
 
-      // 
-      // СЕЛЕКТОРЫ
-      // 
-      headerSelector: '.header',
-      sectionsSelector: 'section',
-      firstSectionSelector: null,      // null = используем высоту хедера
-      footerSelector: '.footer',
-      innerBlockSelector: '.header__top',
+    const scrollPosition = () => window.pageYOffset || html.scrollTop;
 
-      // 
-      // ТЕМА (светлая / тёмная секция под хедером)
-      // Атрибут на секции: data-header-theme="dark" или "light"
-      // Добавляет класс на <html>: header-theme-dark / header-theme-light
-      // 
-      themeAttribute: 'data-header-theme',
-      classThemeDark: 'header-theme-dark',
-      classThemeLight: 'header-theme-light',
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      html.classList.toggle('footer-show', entry.isIntersecting);
+    });
+    footerObserver.observe(footer);
 
-      // 
-      // КЛАССЫ НА <html> ДЛЯ СОСТОЯНИЙ СКРОЛЛА
-      // 
-      classFixed: 'header-fixed',         // прошли 1px скролла
-      classOffTop: 'header-off-top',      // прошли первую секцию
-      classAtFooter: 'header-at-footer',  // хедер у футера
-      classHidden: 'header-hidden',       // хедер скрыт
+    if (startScrollTop === null) {
+      startScrollTop = scrollPosition();
+    }
 
-      // 
-      // СКРЫТИЕ ХЕДЕРА ПРИ СКРОЛЛЕ ВНИЗ
-      // 
-      hideOnScroll: false,                // true = скрывать, false = всегда видим
+    window.addEventListener('scroll', () => {
 
-      hideFixed: true,
+      clearTimeout(fixedClassTimeout);
 
-      // Настройки скрытия (работают только если hideOnScroll: true)
-      hideDuration: 0.4,
-      showDuration: 0.4,
-      hideEase: 'power2.in',
-      showEase: 'power2.out',
-      scrollThreshold: 5,                 // минимальный скролл для реакции (px)
+      fixedClassTimeout = setTimeout(() => {
+        const currentScroll = scrollPosition();
 
-      // 
-      // АНИМАЦИЯ ФОНА ХЕДЕРА ПРИ СКРОЛЛЕ
-      // 
-      animateBg: false,                    // true = менять фон, false = не менять
-      bgInitial: 'transparent',
-      bgScrolled: 'rgba(20, 38, 55, 1)',
-
-      // 
-      // АНИМАЦИЯ ТЕНИ ХЕДЕРА ПРИ СКРОЛЛЕ
-      // 
-      animateShadow: false,                // true = менять тень, false = не менять
-      shadowInitial: '0px 0px 0px rgba(0, 0, 0, 0)',
-      shadowScrolled: '0px 0px 20px rgba(0, 0, 0, 0.3)',
-
-      // 
-      // АНИМАЦИЯ ВЫСОТЫ ХЕДЕРА ПРИ СКРОЛЛЕ
-      // 
-      animateHeight: true,                // true = менять высоту, false = не менять
-      // heightMultiplier: 1,              // во сколько раз уменьшить (0.7 = 63.53%)
-      heightMultiplier: 0.342,
-
-      // Множитель высоты для мобильной версии
-      // Используется когда ширина окна меньше mobileBreakpoint
-      // Если null - используется heightMultiplier (общее значение)
-      heightMultiplierMobile: 1,
-
-      // Брейкпоинт мобильной версии в px
-      // При window.innerWidth < mobileBreakpoint применяется heightMultiplierMobile
-      mobileBreakpoint: 600,
-
-      // Классы попапов на <html> при которых нужно принудительно показывать шапку
-      // Если шапка скрыта (header-hidden) и появляется один из этих классов -
-      // шапка опускается обратно чтобы пользователь мог по ней кликнуть
-      // (например закрыть попап через кнопку в шапке)
-      forceShowOnClasses: [],
-      // forceShowOnClasses: ['callback--open', 'tender--open'],
-    };
-
-    // 
-    // ЭЛЕМЕНТЫ
-    // 
-    const header = document.querySelector(CONFIG.headerSelector);
-    if (!header) return;
-
-    const footer = document.querySelector(CONFIG.footerSelector);
-    const htmlEl = document.documentElement;
-    let headerHeight = header.offsetHeight;
-
-    const firstSection = CONFIG.firstSectionSelector
-      ? document.querySelector(CONFIG.firstSectionSelector)
-      : null;
-
-    // Проверка мобильной версии по ширине окна
-    // Вызывается каждый раз при инициализации scrub-анимации
-    // и при resize чтобы пересобрать анимацию с актуальным множителем
-    const isMobile = () => window.innerWidth < CONFIG.mobileBreakpoint;
-
-    // Возвращает актуальный множитель высоты в зависимости от ширины экрана
-    // Если для мобильной версии множитель не задан (null) - возвращает общий
-    const getHeightMultiplier = () => {
-      if (isMobile() && CONFIG.heightMultiplierMobile !== null) {
-        return CONFIG.heightMultiplierMobile;
-      }
-      return CONFIG.heightMultiplier;
-    };
-
-    // Зона скролла для scrub-анимации
-    const scrollZone = firstSection
-      ? firstSection.offsetHeight
-      : headerHeight;
-
-    // 
-    // ОПРЕДЕЛЕНИЕ ТЕМЫ ПОД ХЕДЕРОМ
-    // Проходим по секциям, находим ту что пересекается с хедером,
-    // берём её data-header-theme и ставим класс на <html>
-    // 
-    const updateTheme = () => {
-      const sections = document.querySelectorAll(CONFIG.sectionsSelector);
-      const headerBottom = header.getBoundingClientRect().bottom;
-      let foundTheme = null;
-
-      for (const section of sections) {
-        const rect = section.getBoundingClientRect();
-
-        // Секция пересекается с хедером:
-        // верх секции выше нижней границы хедера И низ секции ниже верха viewport
-        const intersects = rect.top <= headerBottom && rect.bottom >= 0;
-
-        if (intersects) {
-          const theme = section.getAttribute(CONFIG.themeAttribute);
-          if (theme) {
-            foundTheme = theme;
-            break;
+        if (currentScroll > startScrollTop && currentScroll > firstHeight) {
+          if (!html.classList.contains('header-fixed')) {
+            html.classList.add('header-fixed');
           }
-        }
-      }
-
-      // Сбрасываем оба класса и ставим нужный
-      htmlEl.classList.remove(CONFIG.classThemeDark, CONFIG.classThemeLight);
-
-      if (foundTheme === 'dark') {
-        htmlEl.classList.add(CONFIG.classThemeDark);
-      } else if (foundTheme === 'light') {
-        htmlEl.classList.add(CONFIG.classThemeLight);
-      }
-    };
-
-    // 
-    // НАЧАЛЬНЫЕ СТИЛИ ХЕДЕРА
-    // Устанавливаем только те свойства которые включены в CONFIG
-    // 
-    const initialStyles = {
-      yPercent: 0,
-      // Заменяем динамическую функцию на жесткую первоначальную строку
-      height: `${headerHeight}px`,
-    };
-
-    if (CONFIG.animateBg) {
-      initialStyles.backgroundColor = CONFIG.bgInitial;
-    }
-
-    if (CONFIG.animateShadow) {
-      initialStyles.boxShadow = CONFIG.shadowInitial;
-    }
-
-    gsap.set(header, initialStyles);
-
-    // 
-    // GSAP SCRUB - анимация хедера при скролле
-    // Собираем объект анимации только из включённых свойств
-    // 
-
-    // Объект с целевыми значениями для scrub-анимации
-    const animateTo = {
-      ease: 'none',
-      duration: 1,
-    };
-
-    if (CONFIG.animateBg) {
-      animateTo.backgroundColor = CONFIG.bgScrolled;
-    }
-
-    if (CONFIG.animateShadow) {
-      animateTo.boxShadow = CONFIG.shadowScrolled;
-    }
-
-    if (CONFIG.animateHeight) {
-      // Берём множитель через функцию - она сама решает мобильный или десктопный
-      animateTo.height = headerHeight * getHeightMultiplier();
-    }
-
-    // Запускаем scrub только если есть хотя бы одно включённое свойство
-    const hasScrubAnimation = CONFIG.animateBg || CONFIG.animateShadow || CONFIG.animateHeight || CONFIG.hideFixed;
-
-    // if (hasScrubAnimation) {
-    //   const tlScrub = gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: document.documentElement,
-    //       start: 'top top',
-    //       end: `+=${scrollZone}`,
-    //       scrub: true,
-    //       onEnter: () => htmlEl.classList.add(CONFIG.classFixed),
-    //       onLeaveBack: () => {
-    //         htmlEl.classList.remove(CONFIG.classFixed);
-    //         htmlEl.classList.remove(CONFIG.classOffTop);
-    //       },
-    //     }
-    //   });
-
-    //   tlScrub.to(header, animateTo);
-    // }
-
-    // Находим внутренний блок
-    const innerBlock = header.querySelector(CONFIG.innerBlockSelector);
-
-    // Рассчитываем начальную высоту внутреннего блока
-    const innerHeight = innerBlock ? innerBlock.offsetHeight : 0;
-
-    if (hasScrubAnimation) {
-      const tlScrub = gsap.timeline({
-        scrollTrigger: {
-          trigger: 'body',
-          start: 'top top',
-          end: `+=${scrollZone}`,
-          scrub: true,
-          invalidateOnRefresh: true,
-          // Оставляем только сброс инлайновых стилей в нуле
-          onLeaveBack: () => {
-            gsap.set(header, { clearProps: 'all' });
-            if (innerBlock) gsap.set(innerBlock, { clearProps: 'all' });
-            gsap.set(header, { height: `${headerHeight}px` });
-          },
-        }
-      });
-
-      // Анимируем основной хедер
-      tlScrub.to(header, animateTo, 0); // Параметр 0 значит "начать в начале таймлайна"
-
-      // Анимируем внутренний блок, если он найден
-      if (innerBlock && CONFIG.animateHeight && !isMobile()) {
-        tlScrub.to(innerBlock, {
-          // height: innerHeight * getHeightMultiplier(),
-          // height: () => `${(innerBlock.offsetHeight * getHeightMultiplier())}px`,
-          height: '0px',
-          opacity: 0,
-          filter: "blur(10px)",
-          ease: 'none'
-        }, 0); // 0 — чтобы анимация шла одновременно с хедером
-      }
-    }
-
-    // 
-    // КЛАСС header-at-footer - хедер достиг футера
-    // 
-    if (footer) {
-      ScrollTrigger.create({
-        trigger: footer,
-        start: 'top bottom',
-
-        onEnter: () => htmlEl.classList.add(CONFIG.classAtFooter),
-        onLeaveBack: () => htmlEl.classList.remove(CONFIG.classAtFooter),
-      });
-    }
-
-    // 
-    // HIDE / SHOW ХЕДЕРА
-    // Работает только если CONFIG.hideOnScroll: true
-    // 
-    let lastScrollY = window.scrollY || window.pageYOffset;
-    let isHidden = false;
-    let ticking = false;
-
-    // Нижняя граница первой секции в координатах страницы
-    const getFirstSectionBottom = () => {
-      if (!firstSection) return scrollZone;
-      return firstSection.getBoundingClientRect().bottom + window.scrollY;
-    };
-
-    const hideHeader = () => {
-      if (isHidden) return;
-      isHidden = true;
-      htmlEl.classList.add(CONFIG.classHidden);
-      gsap.to(header, {
-        yPercent: -100,
-        duration: CONFIG.hideDuration,
-        ease: CONFIG.hideEase,
-        overwrite: 'auto',
-      });
-    };
-
-    const showHeader = () => {
-      if (!isHidden) return;
-      isHidden = false;
-      htmlEl.classList.remove(CONFIG.classHidden);
-      gsap.to(header, {
-        yPercent: 0,
-        duration: CONFIG.showDuration,
-        ease: CONFIG.showEase,
-        overwrite: 'auto',
-      });
-    };
-
-    // 
-    // ОСНОВНОЙ ОБРАБОТЧИК СКРОЛЛА
-    // 
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY || window.pageYOffset;
-      const delta = currentScrollY - lastScrollY;
-      const absDelta = Math.abs(delta);
-
-      // Тему обновляем всегда - не зависит от threshold
-      updateTheme();
-
-      // Дальше - только если включено скрытие хедера
-      if (CONFIG.hideOnScroll) {
-
-        // Микро-скроллы игнорируем
-        if (absDelta >= CONFIG.scrollThreshold) {
-          const scrollingDown = delta > 0;
-          const firstSectionBottom = getFirstSectionBottom();
-
-          // Скролл вниз после первой секции - прячем
-          // if (scrollingDown && currentScrollY > firstSectionBottom) {
-          if (scrollingDown && currentScrollY > 0) {
-            hideHeader();
-          }
-
-          // Скролл вверх - показываем
-          if (!scrollingDown) {
-            showHeader();
-          }
-
-          // Самый верх - всегда показываем
-          if (currentScrollY <= 0) {
-            showHeader();
-          }
-
-          lastScrollY = currentScrollY;
-        }
-      } else {
-        // Скрытие выключено - просто обновляем lastScrollY
-        lastScrollY = currentScrollY;
-      }
-
-      ticking = false;
-    };
-
-    // rAF обёртка - не чаще одного раза за кадр
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(handleScroll);
-        ticking = true;
-      }
-    };
-
-    // Новая логика: привязываем обработчик к Lenis, чтобы координаты не терялись
-    if (window.lenis) {
-      window.lenis.on('scroll', (e) => {
-        // Подменяем вызов handleScroll функцией, которая принимает точный скролл Lenis
-        handleScrollLenis(e.scroll);
-      });
-    } else {
-      window.addEventListener('scroll', onScroll, { passive: true });
-    }
-
-    // Модифицированный обработчик, который принимает точную координату
-    // Модифицированный обработчик, который принимает точную координату от Lenis
-    const handleScrollLenis = (scrollPos) => {
-      const currentScrollY = scrollPos;
-      const delta = currentScrollY - lastScrollY;
-      const absDelta = Math.abs(delta);
-
-      // Тему обновляем всегда
-      updateTheme();
-
-      // ЖЕЛЕЗНОЕ НАВЕШИВАНИЕ КЛАССОВ (Не зависит от ScrollTrigger и скорости скролла)
-      if (currentScrollY > 1) {
-        htmlEl.classList.add(CONFIG.classFixed);
-      }
-
-      if (currentScrollY > scrollZone) {
-        htmlEl.classList.add(CONFIG.classOffTop);
-      } else {
-        htmlEl.classList.remove(CONFIG.classOffTop);
-      }
-
-      // Логика скрытия/показа шапки
-      if (CONFIG.hideOnScroll) {
-        if (absDelta >= CONFIG.scrollThreshold) {
-          const scrollingDown = delta > 0;
-
-          if (scrollingDown && currentScrollY > 0) {
-            hideHeader();
-          }
-          if (!scrollingDown) {
-            showHeader();
-          }
-          lastScrollY = currentScrollY;
-        }
-      } else {
-        lastScrollY = currentScrollY;
-      }
-
-      // ЖЕЛЕЗНЫЙ СБРОС ИНЛАЙНОВЫХ СТИЛЕЙ В САМОМ ВЕРХУ
-      if (currentScrollY <= 5) {
-        if (CONFIG.hideOnScroll) showHeader();
-
-        htmlEl.classList.remove(CONFIG.classFixed, CONFIG.classOffTop);
-
-        // Полностью очищаем всё, что записал GSAP в инлайны шапки
-        gsap.set(header, { clearProps: 'all' });
-        if (innerBlock) gsap.set(innerBlock, { clearProps: 'all' });
-
-        // Возвращаем жесткую базовую высоту
-        gsap.set(header, { height: `${headerHeight}px` });
-      }
-    };
-
-    // Функция подписки на скролл
-    function initHeaderScroll(lenisInstance) {
-      lenisInstance.on('scroll', (e) => {
-        handleScrollLenis(e.scroll);
-      });
-      // Подстраховка на окончание любого scrollTo (включая якорные ссылки)
-      lenisInstance.on('scroll', () => {
-        if (window.scrollY <= 10) {
-          handleScrollLenis(0);
-          ScrollTrigger.refresh();
-        }
-      });
-    }
-
-    // Безопасное подключение: проверяем готовность Lenis
-    if (window.lenis) {
-      initHeaderScroll(window.lenis);
-    } else {
-      window.addEventListener('lenis-ready', (e) => {
-        initHeaderScroll(e.detail);
-      });
-    }
-
-    // Пересчёт высоты при ресайзе окна
-    // Когда пользователь переходит через брейкпоинт (например, поворот телефона
-    // или ресайз окна разработчиком), множитель высоты должен пересчитаться
-    // Используем дебаунс чтобы не дёргать пересборку на каждый пиксель ресайза
-    if (CONFIG.animateHeight) {
-      let resizeTimer = null;
-      let lastIsMobile = isMobile();
-
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-
-        resizeTimer = setTimeout(() => {
-          // 1. Рассчитываем множитель
-          const multiplier = getHeightMultiplier();
-
-          ScrollTrigger.getAll().forEach(st => {
-            // Ищем триггер, привязанный к window
-            if (st.trigger === document.body && st.animation) {
-
-              // Очищаем инлайновые стили перед пересчетом, 
-              // чтобы замерить реальную высоту из CSS
-              header.style.height = '';
-              if (innerBlock) innerBlock.style.height = '';
-
-              // 2. Обновляем основной хедер (первый элемент в таймлайне)
-              const tween = st.animation.getChildren()[0];
-              if (tween && tween.vars) {
-                // Рассчитываем целевую высоту в rem (ваша формула / 10)
-                const h = header.offsetHeight * multiplier;
-                tween.vars.height = `${h}px`;
-
-                // Заставляем GSAP забыть старые значения и подхватить новые
-                tween.invalidate();
-              }
-
-              // 3. Обновляем внутренний блок (второй элемент в таймлайне)
-              const innerTween = st.animation.getChildren()[1];
-              if (innerTween && innerTween.vars) {
-                if (isMobile()) {
-                  // На мобилке возвращаем всё как было в CSS
-                  innerTween.vars.height = "auto";
-                  innerTween.vars.opacity = 1;
-                } else {
-                  // На десктопе принудительно ставим жесткий ноль
-                  innerTween.vars.height = "0px";
-                  innerTween.vars.paddingTop = "0px";
-                  innerTween.vars.paddingBottom = "0px";
-                  innerTween.vars.opacity = 0;
-                }
-                innerTween.invalidate();
-              }
-
-              // Пересчитываем позиции всех триггеров на странице
-              st.refresh();
-            }
-          });
-
-        }, 200);
-      }, { passive: true });
-    }
-
-    // 
-    // ПРИНУДИТЕЛЬНЫЙ ПОКАЗ ШАПКИ ПРИ ОТКРЫТИИ ПОПАПОВ
-    // 
-    // Когда на <html> появляется класс из forceShowOnClasses (callback--open,
-    // tender--open и т.д.) - принудительно показываем шапку если она скрыта
-    // Это нужно чтобы пользователь мог взаимодействовать с шапкой при открытом попапе
-    // Используем MutationObserver - он реагирует только на изменения класса
-    // и не дёргается при скролле, в отличие от глобальных слушателей
-    // 
-    if (CONFIG.forceShowOnClasses && CONFIG.forceShowOnClasses.length > 0) {
-
-      // Проверяет есть ли на <html> хотя бы один из "форсирующих" классов
-      const hasForceClass = () => {
-        return CONFIG.forceShowOnClasses.some(cls => htmlEl.classList.contains(cls));
-      };
-
-      // Запоминаем предыдущее состояние - чтобы реагировать только на переход
-      // false -> true (попап открылся), а не на каждое изменение класса
-      let wasForced = hasForceClass();
-
-      // Если попап уже открыт при инициализации скрипта - сразу показываем шапку
-      if (wasForced && isHidden) {
-        showHeader();
-      }
-
-      const popupObserver = new MutationObserver(() => {
-        const isForced = hasForceClass();
-
-        // Реагируем только в момент когда попап ОТКРЫЛСЯ
-        // (раньше форс-классов не было, теперь появился)
-        // На закрытие попапа не реагируем - дальше работает обычная логика hide/show
-        if (isForced && !wasForced) {
-          // Если шапка скрыта - принудительно показываем её
-          // Если уже видна - ничего не делаем (условие внутри showHeader)
-          if (isHidden) {
-            showHeader();
+        } else {
+          if (html.classList.contains('header-fixed')) {
+            html.classList.remove('header-fixed');
           }
         }
 
-        wasForced = isForced;
-      });
-
-      popupObserver.observe(htmlEl, {
-        attributes: true,
-        attributeFilter: ['class'],
-      });
-    }
-
-    // 
-    // ИНИЦИАЛИЗАЦИЯ - определяем тему сразу при загрузке страницы
-    // 
-    updateTheme();
-
+        startScrollTop = null;
+      }, 0);
+    });
   })();
 
   /**
    * Код для индикатора навигации
    */
-  // (function () {
-  //   const nav = document.querySelector('.nav');
-  //   const items = document.querySelectorAll('.nav li');
-  //   const indicator = document.querySelector('.nav__indicator');
-
-  //   // Функция установки индикатора под элементом
-  //   function setIndicator(item) {
-  //     const link = item.querySelector('a');
-  //     const navRect = nav.getBoundingClientRect();
-  //     const linkRect = link.getBoundingClientRect();
-
-  //     // Вычисляем позицию относительно nav
-  //     const left = linkRect.left - navRect.left;
-  //     const width = linkRect.width;
-
-  //     indicator.style.left = `${left}px`;
-  //     indicator.style.width = `${width}px`;
-  //     indicator.classList.add('active');
-  //   }
-
-  //   items.forEach(item => {
-  //     // Сначала убираем зашитый в HTML класс, чтобы пересчитать всё начисто
-  //     item.classList.remove('nav__active');
-
-  //     const pageClass = item.dataset.page;
-  //     const link = item.querySelector('a');
-  //     const currentHash = window.location.hash; // Получаем текущий #якорь из URL
-
-  //     if (pageClass && document.documentElement.classList.contains(pageClass)) {
-  //       // Если это главная и у ссылки есть якорь
-  //       if (currentHash && link.getAttribute('href').nodeValue !== '#') {
-  //         if (link.getAttribute('href') === currentHash) {
-  //           item.classList.add('nav__active');
-  //         }
-  //       } else {
-  //         // Если якоря в URL нет, активируем самый первый подходящий пункт по умолчанию
-  //         const firstMatch = document.querySelector(`.nav li[data-page="${pageClass}"]`);
-  //         if (firstMatch) firstMatch.classList.add('nav__active');
-  //       }
-  //     }
-  //   });
-
-  //   // Инициализация: ставим индикатор под активным пунктом
-  //   window.addEventListener('load', () => {
-  //     const activeItem = document.querySelector('.nav__active');
-  //     if (activeItem) {
-  //       setIndicator(activeItem);
-  //     }
-  //   });
-
-  //   // Обработчик наведения на пункты меню
-  //   items.forEach(item => {
-  //     item.addEventListener('mouseenter', () => {
-  //       setIndicator(item);
-  //     });
-
-  //     // Обработчик клика: переключаем активный класс
-  //     item.addEventListener('click', (e) => {
-  //       // Убираем активный класс со всех пунктов
-  //       items.forEach(i => i.classList.remove('nav__active'));
-
-  //       // Добавляем активный класс на кликнутый пункт
-  //       item.classList.add('nav__active');
-
-  //       setIndicator(item);
-  //     });
-  //   });
-
-  //   // При уходе курсора возвращаем к активному пункту
-  //   nav.addEventListener('mouseleave', () => {
-  //     const currentActive = document.querySelector('.nav__active');
-  //     if (currentActive) {
-  //       setIndicator(currentActive);
-  //     }
-  //   });
-
-  //   window.addEventListener('resize', () => {
-  //     const currentActive = document.querySelector('.nav__active');
-  //     if (currentActive) {
-  //       setIndicator(currentActive);
-  //     }
-  //   });
-  // })();
-
   (function () {
     const nav = document.querySelector('.nav');
     const items = document.querySelectorAll('.nav li');
@@ -980,12 +361,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setIndicator(item) {
       const link = item.querySelector('a');
+      if (!link) return;
       const navRect = nav.getBoundingClientRect();
       const linkRect = link.getBoundingClientRect();
-
       const left = linkRect.left - navRect.left;
       const width = linkRect.width;
-
       indicator.style.left = `${left}px`;
       indicator.style.width = `${width}px`;
       indicator.classList.add('active');
@@ -995,11 +375,23 @@ document.addEventListener('DOMContentLoaded', () => {
       indicator.classList.remove('active');
     }
 
+    // Функция для извлечения только хэша из любой ссылки
+    function getAnchorId(link) {
+      if (!link) return null;
+      const href = link.getAttribute('href');
+      // Проверяем, есть ли в ссылке знак #
+      if (href && href.includes('#')) {
+        return href.substring(href.indexOf('#')); // Вернет '#about'
+      }
+      return null;
+    }
+
     items.forEach(item => {
       item.classList.remove('nav__active');
       const pageClass = item.dataset.page;
       const link = item.querySelector('a');
-      const isAnchor = link && link.getAttribute('href').startsWith('#');
+      const isAnchor = !!getAnchorId(link);
+
       if (pageClass && document.documentElement.classList.contains(pageClass) && !isAnchor) {
         item.classList.add('nav__active');
       }
@@ -1014,9 +406,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Фильтруем только те ссылки, в которых есть хэш-якорь
     const anchorLinks = Array.from(items)
       .map(item => item.querySelector('a'))
-      .filter(link => link && link.getAttribute('href').startsWith('#'));
+      .filter(link => !!getAnchorId(link));
 
     if (anchorLinks.length > 0) {
       const observerOptions = {
@@ -1028,22 +421,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const observerCallback = (entries) => {
         entries.forEach(entry => {
           const id = entry.target.getAttribute('id');
-          const targetLink = anchorLinks.find(link => link.getAttribute('href') === `#${id}`);
+          // Сравниваем чистый хэш из ссылки с id секции
+          const targetLink = anchorLinks.find(link => getAnchorId(link) === `#${id}`);
 
           if (targetLink) {
             const targetItem = targetLink.closest('li');
-
             if (entry.isIntersecting) {
               anchorLinks.forEach(link => link.closest('li').classList.remove('nav__active'));
               targetItem.classList.add('nav__active');
-
               if (!nav.matches(':hover')) {
                 setIndicator(targetItem);
               }
             } else {
               if (targetItem.classList.contains('nav__active')) {
                 targetItem.classList.remove('nav__active');
-
                 if (!nav.matches(':hover')) {
                   hideIndicator();
                 }
@@ -1054,10 +445,9 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const observer = new IntersectionObserver(observerCallback, observerOptions);
-
       anchorLinks.forEach(link => {
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
+        const targetHash = getAnchorId(link);
+        const targetSection = document.querySelector(targetHash);
         if (targetSection) {
           observer.observe(targetSection);
         }
@@ -1071,15 +461,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       item.addEventListener('click', (e) => {
         const link = item.querySelector('a');
-        const isAnchor = link && link.getAttribute('href').startsWith('#');
-        if (isAnchor) {
-          const targetId = link.getAttribute('href');
-          const targetSection = document.querySelector(targetId);
+        const targetHash = getAnchorId(link);
 
+        if (targetHash) {
+          const targetSection = document.querySelector(targetHash);
           if (!targetSection) {
-            return;
+            return; // Если секции нет на этой странице (например, мы на другой странице), стандартный переход по ссылке сработает сам
           }
         }
+
         items.forEach(i => i.classList.remove('nav__active'));
         item.classList.add('nav__active');
         setIndicator(item);
@@ -1096,13 +486,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-      const currentActive = document.querySelector('.nav__active');
-      if (currentActive) {
-        setIndicator(currentActive);
-      } else {
-        hideIndicator();
-      }
+      // Даем браузеру обновить геометрию страницы перед пересчетом
+      requestAnimationFrame(() => {
+        const currentActive = document.querySelector('.nav__active');
+        if (currentActive) {
+          setIndicator(currentActive);
+        } else {
+          hideIndicator();
+        }
+      });
     });
+
   })();
 
   /**
