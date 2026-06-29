@@ -4,55 +4,60 @@
   width: 100%;
   height: var(--header-height);
   display: flex;
-  align-items: center;
   transition: all 0.3s ease;
+  pointer-events: none;
 
   position: sticky;
   top: 0;
   left: 0;
   z-index: 1000;
 
-  @include sm {
-    padding: 1.2rem 0 1.2rem;
-    border-bottom: 0.1rem solid var(--white-15);
-    transition: background-color 0.3s ease;
-  }
-
-  .inner-page & {
-    background-color: var(--black);
-  }
-
   .container {
     height: fit-content;
-  }
-
-  .menu--open & {
-
-    @include sm {
-      background-color: var(--black);
-      transition: background-color 0s ease;
-    }
-  }
-
-  .header-fixed & {
-    background-color: var(--black);
   }
 
   &__inner {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    width: 100%;
+    height: fit-content;
     transition: all 0.3s ease;
+    padding: 5.3rem 0 5.3rem;
+    border-bottom: 0.1rem solid transparent;
+    pointer-events: all;
+
+    @include sm {
+      gap: 0;
+      padding: 1.2rem 0 1.2rem;
+      border-color: var(--white-15);
+      transition: background-color 0.3s ease;
+    }
 
     .header-fixed & {
+      border-color: var(--white-15);
 
       @include dosm {
         gap: 0;
+        padding: 1rem 0;
+        background-color: var(--black);
+      }
+
+      @include sm {
+        background-color: var(--black);
       }
     }
 
-    @include sm {
-      height: 100%;
+    .inner-page & {
+      background-color: var(--black);
+    }
+
+    .menu--open & {
+
+      @include sm {
+        background-color: var(--black);
+        transition: background-color 0s ease;
+      }
     }
   }
 
@@ -64,7 +69,7 @@
     .header-fixed & {
 
       @include dosm {
-        height: 0;
+        grid-template-rows: 0fr;
       }
     }
 

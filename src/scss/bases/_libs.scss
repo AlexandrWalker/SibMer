@@ -176,6 +176,9 @@
     --f-close-button-height: 4rem;
     --f-button-svg-stroke-width: 0.2rem;
 
+    width: 4.4rem;
+    height: 4.4rem;
+
     top: 1rem;
     right: 1rem;
   }
@@ -196,6 +199,10 @@
     stroke-linecap: round !important;
     display: none;
   }
+}
+
+.fancybox__slide.has-html {
+  padding: 1.5rem;
 }
 
 .fancybox__container,
@@ -238,4 +245,8 @@
 .f-panzoom__wrapper {
   border-radius: 1rem;
   overflow: hidden;
+}
+
+html.with-fancybox body.hide-scrollbar {
+  overflow: clip !important;
 }
