@@ -110,7 +110,7 @@
   &__items {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(5, auto);
     gap: 2rem 5rem;
 
     @include dosm {
@@ -144,7 +144,7 @@
       }
     }
 
-    &:nth-child(4) {
+    &:nth-child(5) {
 
       @include dosm {
         padding-bottom: 0;
