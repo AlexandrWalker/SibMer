@@ -135,22 +135,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
@@ -159,8 +143,24 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
   font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -215,16 +215,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/RobotoCondensed-Light.woff2") format("woff2"), url("../fonts/RobotoCondensed-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -247,16 +247,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -1010,7 +1010,7 @@ body {
 }
 
 .accordion-item--active .accordion-icon i::before {
-  content: "\e91b";
+  content: "\e91c";
 }
 
 .accordion-icon {
@@ -4085,8 +4085,8 @@ canvas {
   display: grid;
   -ms-grid-columns: 1fr 5rem 1fr;
   grid-template-columns: repeat(2, 1fr);
-  -ms-grid-rows: auto 2rem auto 2rem auto 2rem auto;
-  grid-template-rows: repeat(4, auto);
+  -ms-grid-rows: auto 2rem auto 2rem auto 2rem auto 2rem auto;
+  grid-template-rows: repeat(5, auto);
   gap: 2rem 5rem;
 }
 
@@ -4127,6 +4127,16 @@ canvas {
 
 .algorithm__items > *:nth-child(8) {
   -ms-grid-row: 7;
+  -ms-grid-column: 3;
+}
+
+.algorithm__items > *:nth-child(9) {
+  -ms-grid-row: 9;
+  -ms-grid-column: 1;
+}
+
+.algorithm__items > *:nth-child(10) {
+  -ms-grid-row: 9;
   -ms-grid-column: 3;
 }
 
@@ -6012,7 +6022,7 @@ canvas {
 }
 
 .accordion-item--active .s-type__item-btn i::before {
-  content: "\e91b";
+  content: "\e91c";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -6773,7 +6783,7 @@ canvas {
     grid-auto-flow: column;
   }
 
-  .algorithm__item:nth-child(4) {
+  .algorithm__item:nth-child(5) {
     padding-bottom: 0;
     border-bottom: 0;
   }
@@ -8076,7 +8086,7 @@ canvas {
   }
 
   .cases__item.cases-item--active .cases__item-icon i::before {
-    content: "\e91b";
+    content: "\e91c";
   }
 
   .cases__item .general__head {
@@ -8719,7 +8729,7 @@ canvas {
   }
 
   .accordion-item--active .services__item-btn i::before {
-    content: "\e91b";
+    content: "\e91c";
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
