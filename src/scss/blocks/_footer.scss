@@ -50,11 +50,17 @@
       line-height: 130%;
       text-decoration-line: underline;
       text-transform: uppercase;
-      color: var(--accent);
       white-space: nowrap;
 
       @include sm {
         font-size: 4rem;
+      }
+
+      &:hover {
+
+        @include dosm {
+          color: var(--accent);
+        }
       }
     }
   }
@@ -231,10 +237,6 @@
         background-color: var(--black-05);
 
         color: var(--accent);
-
-        // .GlassMaterial .GlassBlur {
-        //   backdrop-filter: unset;
-        // }
 
         &:hover {
 
