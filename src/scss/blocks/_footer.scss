@@ -121,6 +121,13 @@
       }
 
       &.footer__mid-item--stuff {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+
+        @include sm {
+          gap: 2rem;
+        }
 
         li {
 
@@ -184,6 +191,31 @@
             background-size: 100%;
           }
         }
+      }
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+
+      font-size: 1.6rem;
+      line-height: 110%;
+      text-transform: uppercase;
+
+      @include sm {
+        gap: 2rem;
+
+        font-size: 1.4rem;
+      }
+
+      &--title {
+        font-weight: 700;
+
+      }
+
+      &--text {
+        font-weight: 400;
       }
     }
   }
