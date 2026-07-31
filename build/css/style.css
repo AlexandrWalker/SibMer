@@ -127,6 +127,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
@@ -137,14 +145,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
   font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
   font-style: normal;
 }
 
@@ -1010,7 +1010,7 @@ body {
 }
 
 .accordion-item--active .accordion-icon i::before {
-  content: "\e91b";
+  content: "\e91c";
 }
 
 .accordion-icon {
@@ -4118,8 +4118,8 @@ canvas {
   display: grid;
   -ms-grid-columns: 1fr 5rem 1fr;
   grid-template-columns: repeat(2, 1fr);
-  -ms-grid-rows: auto 2rem auto 2rem auto 2rem auto;
-  grid-template-rows: repeat(4, auto);
+  -ms-grid-rows: auto 2rem auto 2rem auto 2rem auto 2rem auto;
+  grid-template-rows: repeat(5, auto);
   gap: 2rem 5rem;
 }
 
@@ -4160,6 +4160,16 @@ canvas {
 
 .algorithm__items > *:nth-child(8) {
   -ms-grid-row: 7;
+  -ms-grid-column: 3;
+}
+
+.algorithm__items > *:nth-child(9) {
+  -ms-grid-row: 9;
+  -ms-grid-column: 1;
+}
+
+.algorithm__items > *:nth-child(10) {
+  -ms-grid-row: 9;
   -ms-grid-column: 3;
 }
 
@@ -5048,7 +5058,7 @@ canvas {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 3rem;
   color: var(--black-50);
 }
 
@@ -5875,8 +5885,8 @@ canvas {
   -ms-transform: rotate(-7.73deg);
   transform: rotate(-7.73deg);
   position: absolute;
-  right: 2.35rem;
-  bottom: -24.65rem;
+  right: 9.35rem;
+  bottom: -31.65rem;
 }
 
 .proposal__inner {
@@ -5884,16 +5894,16 @@ canvas {
 }
 
 .proposal__cover {
-  max-width: 92.9rem;
+  max-width: 92.7rem;
   width: auto;
-  height: 75.8rem;
+  height: 65.5rem;
   position: absolute;
-  top: 3rem;
+  top: 12.2rem;
   left: -7.3rem;
   z-index: 1;
 }
 
-.proposal__cover svg {
+.proposal__cover img {
   max-width: 100%;
   width: auto;
   height: 100%;
@@ -6045,7 +6055,7 @@ canvas {
 }
 
 .accordion-item--active .s-type__item-btn i::before {
-  content: "\e91b";
+  content: "\e91c";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -6806,7 +6816,7 @@ canvas {
     grid-auto-flow: column;
   }
 
-  .algorithm__item:nth-child(4) {
+  .algorithm__item:nth-child(5) {
     padding-bottom: 0;
     border-bottom: 0;
   }
@@ -8118,7 +8128,7 @@ canvas {
   }
 
   .cases__item.cases-item--active .cases__item-icon i::before {
-    content: "\e91b";
+    content: "\e91c";
   }
 
   .cases__item .general__head {
@@ -8349,7 +8359,7 @@ canvas {
   }
 
   .faq__item-text {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .hero {
@@ -8761,7 +8771,7 @@ canvas {
   }
 
   .accordion-item--active .services__item-btn i::before {
-    content: "\e91b";
+    content: "\e91c";
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);

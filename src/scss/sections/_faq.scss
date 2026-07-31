@@ -99,12 +99,12 @@
     &-text {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 3rem;
 
       color: var(--black-50);
 
       @include sm {
-        gap: 1rem;
+        gap: 1.5rem;
       }
     }
   }

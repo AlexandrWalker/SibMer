@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'SibMerIconFont';
-  src:  url('fonts/SibMerIconFont.eot?aqqmz2');
-  src:  url('fonts/SibMerIconFont.eot?aqqmz2#iefix') format('embedded-opentype'),
-    url('fonts/SibMerIconFont.ttf?aqqmz2') format('truetype'),
-    url('fonts/SibMerIconFont.woff?aqqmz2') format('woff'),
-    url('fonts/SibMerIconFont.svg?aqqmz2#SibMerIconFont') format('svg');
+  font-family: 'SibMerIconFonts';
+  src:  url('fonts/SibMerIconFonts.eot?1lga2h');
+  src:  url('fonts/SibMerIconFonts.eot?1lga2h#iefix') format('embedded-opentype'),
+    url('fonts/SibMerIconFonts.ttf?1lga2h') format('truetype'),
+    url('fonts/SibMerIconFonts.woff?1lga2h') format('woff'),
+    url('fonts/SibMerIconFonts.svg?1lga2h#SibMerIconFonts') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -12,7 +12,7 @@
 
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'SibMerIconFont' !important;
+  font-family: 'SibMerIconFonts' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -97,69 +97,69 @@
 .icon-ground:before {
   content: "\e917";
 }
-.icon-kuda:before {
+.icon-gruz:before {
   content: "\e918";
 }
-.icon-max:before {
+.icon-kuda:before {
   content: "\e919";
 }
-.icon-max-glass:before {
+.icon-max:before {
   content: "\e91a";
-  color: rgba(255, 255, 255, 0.5);
 }
-.icon-minus:before {
+.icon-max-glass:before {
   content: "\e91b";
 }
-.icon-otkuda:before {
+.icon-minus:before {
   content: "\e91c";
 }
-.icon-person:before {
+.icon-otkuda:before {
   content: "\e91d";
 }
-.icon-phone:before {
+.icon-person:before {
   content: "\e91e";
 }
-.icon-plus:before {
+.icon-phone:before {
   content: "\e91f";
 }
-.icon-pochta:before {
+.icon-plus:before {
   content: "\e920";
 }
-.icon-presentation:before {
+.icon-pochta:before {
   content: "\e921";
 }
-.icon-refrigerated:before {
+.icon-presentation:before {
   content: "\e922";
 }
-.icon-rf:before {
+.icon-refrigerated:before {
   content: "\e923";
 }
-.icon-services-icon-air:before {
+.icon-rf:before {
   content: "\e924";
 }
-.icon-services-icon-country:before {
+.icon-services-icon-air:before {
   content: "\e925";
 }
-.icon-services-icon-ground:before {
+.icon-services-icon-country:before {
   content: "\e926";
 }
-.icon-tg:before {
+.icon-services-icon-ground:before {
   content: "\e927";
 }
-.icon-tg-glass:before {
+.icon-tg:before {
   content: "\e928";
-  color: rgba(255, 255, 255, 0.5);
 }
-.icon-triangle:before {
+.icon-tg-glass:before {
   content: "\e929";
 }
-.icon-unofficial:before {
+.icon-triangle:before {
   content: "\e92a";
 }
-.icon-wa:before {
+.icon-unofficial:before {
   content: "\e92b";
 }
-.icon-wa-glass:before {
+.icon-wa:before {
   content: "\e92c";
-  color: rgba(255, 255, 255, 0.5);
+}
+.icon-wa-glass:before {
+  content: "\e92d";
 }
