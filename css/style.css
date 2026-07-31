@@ -119,16 +119,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -191,16 +191,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Bold.woff2") format("woff2"), url("../fonts/RobotoCondensed-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
+  font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Black.woff2") format("woff2"), url("../fonts/RobotoCondensed-Black.woff") format("woff");
-  font-weight: 900;
+  src: url("../fonts/RobotoCondensed-Bold.woff2") format("woff2"), url("../fonts/RobotoCondensed-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -239,16 +239,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-Regular.woff2") format("woff2"), url("../fonts/RobotoCondensed-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -2439,6 +2439,7 @@ body {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
   text-transform: uppercase;
+  color: var(--accent);
   white-space: nowrap;
 }
 
@@ -2480,6 +2481,17 @@ body {
   z-index: 1;
 }
 
+.footer__mid-item.footer__mid-item--stuff {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 4rem;
+}
+
 .footer__mid-item.footer__mid-item--stuff li:last-child {
   margin-bottom: 0;
 }
@@ -2519,6 +2531,28 @@ body {
   font-size: 1.6rem;
   line-height: 100%;
   text-transform: uppercase;
+}
+
+.footer__mid-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 4rem;
+  font-size: 1.6rem;
+  line-height: 110%;
+  text-transform: uppercase;
+}
+
+.footer__mid-wrap--title {
+  font-weight: 700;
+}
+
+.footer__mid-wrap--text {
+  font-weight: 400;
 }
 
 .footer__bot {
@@ -5024,7 +5058,7 @@ canvas {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 3rem;
   color: var(--black-50);
 }
 
@@ -6691,10 +6725,6 @@ canvas {
     color: var(--accent);
   }
 
-  .footer__top-mail:hover {
-    color: var(--accent);
-  }
-
   .footer__mid-item a:hover {
     background-size: 100%;
   }
@@ -7587,6 +7617,10 @@ canvas {
     display: none;
   }
 
+  .footer__mid-item.footer__mid-item--stuff {
+    gap: 2rem;
+  }
+
   .footer__mid-item.footer__mid-item--stuff li {
     margin-bottom: 2rem;
   }
@@ -7600,6 +7634,11 @@ canvas {
   }
 
   .footer__mid-item a {
+    font-size: 1.4rem;
+  }
+
+  .footer__mid-wrap {
+    gap: 2rem;
     font-size: 1.4rem;
   }
 
@@ -8320,7 +8359,7 @@ canvas {
   }
 
   .faq__item-text {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .hero {
