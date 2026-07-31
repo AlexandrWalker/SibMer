@@ -2,6 +2,10 @@
 
 .opinions {
 
+  &.similar {
+    padding-top: 0;
+  }
+
   .general {
 
     &__btns {
@@ -21,6 +25,10 @@
         .btn--default {
           order: 3;
           margin-left: auto;
+
+          @include sm {
+            font-size: 1.4rem;
+          }
         }
       }
     }

@@ -42,12 +42,39 @@
     &-body {
 
       li {
-        // margin-bottom: 2rem;
+        margin-bottom: 3rem;
 
-        line-height: 250%;
+        @include sm {
+          margin-bottom: 2rem;
+        }
+
+        // line-height: 250%;
 
         &:last-child {
           margin-bottom: 0;
+        }
+
+        ul {
+          padding: 3rem 0 0 3rem;
+
+          @include sm {
+            padding: 2rem 0 0 2.5rem;
+          }
+
+          li {
+            list-style: disc;
+            margin-bottom: 2rem;
+            
+            color: var(--black-50);
+
+            @include sm {
+              margin-bottom: 1rem;
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
         }
       }
 

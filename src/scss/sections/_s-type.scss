@@ -25,6 +25,8 @@
     @include dosm {
       min-height: 47rem;
       padding: 5rem 3rem 3rem 3rem;
+
+      cursor: pointer;
     }
 
     @include sm {
@@ -48,6 +50,26 @@
 
           .GlassMaterial:after {
             background-color: var(--white);
+          }
+        }
+
+        .s-type__item-btn {
+
+          i {
+            color: var(--white);
+          }
+
+          .GlassMaterial:before {
+            opacity: 0;
+          }
+
+          .GlassMaterial:after {
+            background-color: var(--accent);
+          }
+
+          .header__mid-wrap {
+            opacity: 1;
+            visibility: visible;
           }
         }
       }
@@ -143,6 +165,8 @@
       width: 3.6rem;
       height: 3.6rem;
 
+      color: var(--accent);
+
       position: absolute;
       bottom: 2rem;
       left: 2rem;
@@ -153,6 +177,7 @@
         height: 5.6rem;
 
         right: 3rem;
+        left: unset;
         bottom: 3rem;
       }
 

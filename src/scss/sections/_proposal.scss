@@ -4,6 +4,10 @@
   background-color: var(--white);
   overflow: hidden;
 
+  .blog-page & {
+    background-color: var(--black);
+  }
+
   &::before {
     content: "";
     display: block;
@@ -32,6 +36,10 @@
 
       @include dosm {
         grid-column: 1 / 5;
+      }
+
+      .blog-page & {
+        color: var(--white);
       }
     }
 

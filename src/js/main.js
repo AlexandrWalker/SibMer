@@ -1023,6 +1023,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Один глобальный обработчик для закрытия при клике вне аккордеона
     document.addEventListener('click', (e) => {
+      // Если клик пришелся на тег A или BUTTON вне аккордеона, тоже не закрываем его принудительно
+      if (e.target.closest('a') || e.target.closest('button')) {
+        return;
+      }
+
       accordionContainers.forEach(container => {
         const items = container.querySelectorAll('.accordion-item');
         const activeClass = 'accordion-item--active';
@@ -1055,6 +1060,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // Закрытие при Escape
       accordionItems.forEach(item => {
         item.addEventListener('click', (e) => {
+
+          if (e.target.closest('a') || e.target.closest('button')) {
+            return;
+          }
+
           e.stopPropagation();
 
           // Закрываем другие открытые элементы
@@ -1077,6 +1087,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+  })();
+
+  (function () {
+    const advanItems = document.querySelectorAll('.advan__item--end');
+
+    if (advanItems.length > 0) {
+      advanItems.forEach(item => {
+
+        item.addEventListener('mouseenter', function () {
+          if (this.classList.contains('is-animated')) return;
+
+          const currentItem = this;
+
+          currentItem.classList.add('is-animated');
+
+          setTimeout(() => {
+            currentItem.classList.remove('is-animated');
+          }, 1100);
+        });
+
+      });
+    }
   })();
 
   /**
@@ -1129,7 +1161,7 @@ document.addEventListener('DOMContentLoaded', () => {
           navigator.clipboard.writeText(textToCopy).then(() => {
             setTimeout(() => copyButton.style.color = "", 1000);
             console.log('Скопировано:\n', textToCopy);
-            alert('Скопировано в буфер обмена');
+            alert('Скопировано');
           }).catch(err => console.error('Ошибка:', err));
         }
       });
@@ -1602,6 +1634,61 @@ document.addEventListener('DOMContentLoaded', () => {
         sliderSelector: '.opinions__slider',
         prevSelector: '.opinions-button-prev',
         nextSelector: '.opinions-button-next',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 2,
+          spaceBetween: 8,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: true,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: true,
+          touchMoveStopPropagation: true,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+
+          watchSlidesProgress: true,
+
+          freeMode: {
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.85,
+            momentumVelocityRatio: 1,
+            momentumBounce: false,
+            sticky: true,
+          },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+          breakpoints: {
+            380: {
+              slidesPerGroup: 1,
+              slidesPerView: 2,
+              spaceBetween: 8,
+            },
+            835: {
+              slidesPerGroup: 1,
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+          },
+        },
+      },
+      {
+        sliderSelector: '.similar__slider',
+        prevSelector: '.similar-button-prev',
+        nextSelector: '.similar-button-next',
         highlight: false,
         swiperOptions: {
           slidesPerGroup: 1,

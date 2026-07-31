@@ -2,6 +2,14 @@
 
 .sample {
 
+  .blog-page & {
+    padding: 1rem 0 7rem;
+
+    @include sm {
+      padding: 0 0 4rem;
+    }
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -114,9 +122,16 @@
     flex-wrap: wrap;
     gap: 1rem;
 
+    @include sm {
+      gap: 0.8rem;
+    }
+
     &-item {
-      height: 4rem;
-      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3.6rem;
+      padding: 0.5rem 1.5rem;
       border-radius: 10rem;
       background-color: var(--white);
 
@@ -125,6 +140,10 @@
       line-height: 143%;
       text-align: center;
       color: var(--black-50);
+
+      @include sm {
+        font-size: 1rem;
+      }
 
       &:hover {
         color: var(--black);

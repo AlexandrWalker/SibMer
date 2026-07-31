@@ -82,8 +82,31 @@
       transition: none;
       cursor: pointer;
 
+      transition: background-color 0.3s ease;
+
       @include sm {
         padding: 1rem 3rem 1.5rem 2rem;
+      }
+
+      &.is-animated {
+
+        @include dosm {
+
+          .advan__item-icon {
+            animation: arrow-wave 1s forwards;
+          }
+        }
+      }
+
+      &:hover {
+
+        @include dosm {
+          background-color: var(--accent);
+
+          .advan__item-icon {
+            color: var(--white);
+          }
+        }
       }
 
       .advan__item-icon {
@@ -150,5 +173,28 @@
         font-size: 1.2rem;
       }
     }
+  }
+}
+
+@keyframes arrow-wave {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(2rem);
+  }
+
+  50% {
+    transform: translateX(0);
+  }
+
+  75% {
+    transform: translateX(2rem);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }

@@ -40,6 +40,44 @@
       padding: 3rem 3rem 3rem 6.6rem;
     }
 
+    &--link {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4.8rem 7.3rem 4.2rem 3.8rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      color: var(--black);
+
+      &:hover {
+        background-color: var(--accent);
+        color: var(--white);
+
+        .contacts__item-cover {
+          background-image: url(./../../images/temp/contacts-requisite-cover-white.svg);
+        }
+      }
+
+      .contacts__item-text {
+        font-weight: 400;
+        font-size: 3rem;
+        line-height: 140%;
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+      }
+    }
+
+    &-cover {
+      display: block;
+      width: 8.7rem;
+      height: 8.7rem;
+
+      background-image: url(./../../images/temp/contacts-requisite-cover.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transition: background-image 0.3s ease;
+    }
+
     &-icon {
       display: flex;
       justify-content: center;

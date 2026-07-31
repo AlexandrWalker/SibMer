@@ -4,12 +4,14 @@
 
   @include dosm {
     --section-padding-top: 4rem !important;
+
+    overflow-x: clip;
   }
 
   .general {
 
     &__content {
-      gap: 5rem 2rem;
+      gap: 0 2rem;
 
       @include sm {
         gap: 2rem;
@@ -22,6 +24,8 @@
       gap: 1rem;
 
       @include dosm {
+        display: none;
+
         grid-column: 1/6;
         grid-row: 1/2;
 
@@ -30,7 +34,7 @@
     }
 
     &__title {
-      
+
       @include dosm {
         max-width: 58rem;
       }
@@ -43,9 +47,12 @@
       grid-row: 3/4;
 
       @include dosm {
-        gap: 4rem;
+        display: none;
+
         grid-column: 1/6;
         grid-row: 2/3;
+
+        gap: 4rem;
       }
 
       &-item {
@@ -72,6 +79,54 @@
           font-size: 1.6rem;
         }
       }
+    }
+  }
+
+  &__head {
+    display: none;
+
+    @include dosm {
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+      height: fit-content;
+
+      grid-column: 1/6;
+      grid-row: 1/13;
+
+      position: sticky;
+      top: 9.7rem;
+    }
+
+    .general {
+
+      &__head {
+
+        @include dosm {
+          display: flex;
+        }
+      }
+
+      &__feat {
+
+        @include dosm {
+          display: flex;
+        }
+      }
+    }
+
+    .details__btn {
+
+      @include dosm {
+        display: flex;
+      }
+    }
+  }
+
+  &__slider {
+
+    @include dosm {
+      margin-bottom: 5.2rem;
     }
   }
 
@@ -141,11 +196,15 @@
   &__btn {
     width: 100%;
 
-     grid-row: 5/6;
+    grid-row: 5/6;
 
     @include dosm {
+      display: none;
+
       grid-column: 1/5;
       grid-row: 3/4;
+
+      max-width: 49.3rem;
     }
   }
 }

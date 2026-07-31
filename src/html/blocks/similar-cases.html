@@ -1,0 +1,39 @@
+<section class="opinions similar">
+  <div class="container">
+    <div class="opinions__inner">
+
+      <div class="general__head">
+        <div class="general__title" data-split="lines">
+          <h2>
+            @@title
+          </h2>
+        </div>
+      </div>
+      <div class="general__body">
+        <div class="opinions__body">
+          <div class="swiper similar__slider anim-items">
+            <div class="swiper-wrapper">
+              @@loop('./../elements/case-slide-item.html', './data/case-items.json')
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="general__foot">
+        <div class="general__btns">
+          <div class="swiper-button-prev similar-button-prev">
+            <i class="icon-arrow-left-long"></i>
+          </div>
+          <a class="btn--default" href="/SibMer/case.html">
+            <span class="btn-text">
+              Все кейсы
+            </span>
+          </a>
+          <div class="swiper-button-next similar-button-next">
+            <i class="icon-arrow-right-long"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

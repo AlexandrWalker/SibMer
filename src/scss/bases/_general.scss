@@ -193,7 +193,7 @@
       &.tabs--active,
       &:hover {
         background-color: var(--black);
-        
+
         color: var(--white);
       }
 
@@ -226,13 +226,25 @@
 
       font-weight: 700;
       font-size: 1.2rem;
-      line-height: 20px;
       text-align: center;
       color: var(--white);
       cursor: pointer;
 
       &:hover {
         background-color: var(--black);
+      }
+
+      &.btn {
+        --btn-height: 3.6rem;
+
+        gap: 1rem;
+        padding: 0.8rem 2rem;
+
+        font-size: 1.2rem;
+
+        i {
+          --font-size: 1rem;
+        }
       }
     }
   }

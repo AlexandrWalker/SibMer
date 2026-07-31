@@ -87,12 +87,57 @@
     transform: translateY(20px);
     transition: background-color 0.3s ease, all 0.1s ease;
 
+    position: relative;
+
     &:hover {
       background-color: var(--accent);
+
+      .social__item-wrap {
+        opacity: 1;
+      }
     }
 
     i {
       --font-size: 3rem;
+    }
+
+    &-wrap {
+      width: fit-content;
+      height: 5.6rem;
+      padding: 1.8rem;
+      border-radius: 0.4rem;
+      background-color: #F1F3F7;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      // box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
+
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 143%;
+      color: var(--black);
+      white-space: nowrap;
+
+      position: absolute;
+      top: 0;
+      right: calc(100% + 1.8rem);
+
+      &::before {
+        content: "";
+        display: block;
+        width: 2.2rem;
+        height: 2.2rem;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxNiAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xNSA3LjkyOTYzQzE1LjY2NjcgOC4zMTQ1MyAxNS42NjY3IDkuMjc2NzggMTUgOS42NjE2OEwxLjUgMTcuNDU1OUMwLjgzMzMzMiAxNy44NDA4IC04LjU1MTcxZS0wNyAxNy4zNTk3IC04LjIxNTIyZS0wNyAxNi41ODk5TC0xLjQwMTI5ZS0wNyAxLjAwMTQyQy0xLjA2NDhlLTA3IDAuMjMxNjI0IDAuODMzMzMzIC0wLjI0OTUwMSAxLjUgMC4xMzU0TDE1IDcuOTI5NjNaIiBmaWxsPSIjRjFGM0Y3Ii8+DQo8L3N2Zz4NCg==);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+
+        position: absolute;
+        top: 50%;
+        right: -1.2rem;
+        z-index: 1;
+        transform: translateY(-50%);
+      }
     }
 
     &-btn {
