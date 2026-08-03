@@ -1498,6 +1498,109 @@ document.addEventListener('DOMContentLoaded', () => {
   // })();
 
   /**
+   * Функция открытия попапа при попытке учйти с вкладки
+   */
+  (function () {
+
+    const STORAGE_KEY = 'exit_popup_shown';
+
+    const POPUP_ID = 'popup-4';
+
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    let popupTriggered = false;
+
+    if (sessionStorage.getItem(STORAGE_KEY)) return;
+
+    function openExitPopup() {
+      if (popupTriggered || sessionStorage.getItem(STORAGE_KEY)) return;
+
+      if (typeof Fancybox === 'undefined' || !document.getElementById(POPUP_ID)) {
+        return;
+      }
+      popupTriggered = true;
+      sessionStorage.setItem(STORAGE_KEY, 'true');
+
+      removeListeners();
+
+      Fancybox.show([{
+        src: `#${POPUP_ID}`,
+        type: 'inline'
+      }], {
+        dragToClose: false,
+        closeExisting: true,
+        on: {
+          reveal: () => {
+            if (typeof lenis !== 'undefined') lenis.stop();
+          },
+          closing: () => {
+            if (typeof lenis !== 'undefined') lenis.start();
+          }
+        }
+      });
+    }
+
+    function handleMouseLeave(event) {
+      if (event.clientY <= 0) {
+        openExitPopup();
+      }
+    }
+
+    function handleMouseOut(event) {
+      if (!event.relatedTarget && event.clientY <= 0) {
+        openExitPopup();
+      }
+    }
+
+    let mobileTimer = null;
+
+    function removeListeners() {
+      document.documentElement.removeEventListener('mouseleave', handleMouseLeave);
+      document.documentElement.removeEventListener('mouseout', handleMouseOut);
+      if (mobileTimer) clearTimeout(mobileTimer);
+    }
+
+    if (isMobile) {
+      mobileTimer = setTimeout(openExitPopup, 5000);
+    } else {
+      document.documentElement.addEventListener('mouseleave', handleMouseLeave);
+      document.documentElement.addEventListener('mouseout', handleMouseOut);
+    }
+  })();
+
+  (function () {
+    const htmlTag = document.documentElement;
+    const unitBlock = document.getElementById('unit');
+    const closeButton = document.getElementById('unitCloseBtn');
+
+    const startUnitTimer = () => {
+      setTimeout(() => {
+        unitBlock.classList.remove('unit-hidden');
+      }, 3000);
+    };
+
+    if (!htmlTag.classList.contains('preloader--active')) {
+      startUnitTimer();
+    } else {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'class') {
+            const isPreloaderActive = htmlTag.classList.contains('preloader--active');
+            if (!isPreloaderActive) {
+              startUnitTimer();
+              observer.disconnect();
+            }
+          }
+        });
+      });
+      observer.observe(htmlTag, { attributes: true });
+    }
+    closeButton.addEventListener('click', () => {
+      unitBlock.classList.add('unit-hidden');
+    });
+  })();
+
+  /**
    * Инициализация слайдера
    */
   (function swiperWrapper() {
@@ -1837,6 +1940,41 @@ document.addEventListener('DOMContentLoaded', () => {
           //   momentumBounce: false,
           //   sticky: true,
           // },
+          mousewheel: {
+            forceToAxis: true,
+            sensitivity: 1,
+            releaseOnEdges: true,
+          },
+          navigation: false,
+        },
+      },
+      {
+        sliderSelector: '.unit__slider',
+        highlight: false,
+        swiperOptions: {
+          slidesPerGroup: 1,
+          slidesPerView: 1,
+          spaceBetween: 0,
+          speed: 500,
+          grabCursor: true,
+          loop: false,
+          touchRatio: 1.6,
+          resistance: true,
+          resistanceRatio: 0.4,
+          centeredSlides: false,
+          centeredSlidesBounds: false,
+          simulateTouch: true,
+          direction: 'horizontal',
+          touchStartPreventDefault: false,
+          touchMoveStopPropagation: false,
+          threshold: 8,
+          touchAngle: 25,
+          watchOverflow: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          freeMode: false,
           mousewheel: {
             forceToAxis: true,
             sensitivity: 1,
