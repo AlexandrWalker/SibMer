@@ -32,11 +32,19 @@
 
   &__close {
     color: var(--white);
+    cursor: pointer;
 
     position: absolute;
     top: 1rem;
     right: 1rem;
     z-index: 2;
+
+    &:hover {
+
+      @include dosm {
+        color: var(--accent);
+      }
+    }
 
     i {
       --font-size: 4.4rem;
@@ -114,6 +122,13 @@
       --btn-height: 4.6rem;
 
       box-shadow: 0px 13px 50.3px rgba(220, 35, 64, 0.35);
+
+      &:hover {
+
+        @include dosm {
+          --btn-padding-x: 3rem;
+        }
+      }
     }
 
     &-cover {

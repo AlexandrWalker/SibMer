@@ -358,7 +358,7 @@
     @include sm {
       padding: 2rem;
     }
-    
+
     &-title {
       font-weight: 700;
       font-size: 3.2rem;
@@ -372,6 +372,12 @@
 
     &-btn {
 
+      &:hover {
+
+        @include dosm {
+          --btn-padding-x: 3rem;
+        }
+      }
     }
   }
 

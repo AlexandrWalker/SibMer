@@ -41,6 +41,7 @@
   &__item {
     border-radius: 1rem;
     background-color: var(--gray);
+    overflow: hidden;
 
     cursor: pointer;
 
@@ -130,9 +131,14 @@
           padding: 0 0 0 2.5rem;
         }
 
+        .details__content & {
+          margin-bottom: 0;
+        }
+
         li {
           list-style: disc;
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
+          color: var(--black-50);
 
           @include sm {
             margin-bottom: 1rem;
@@ -140,6 +146,16 @@
 
           &:last-child {
             margin-bottom: 0;
+          }
+        }
+      }
+
+      .btn {
+
+        &:hover {
+
+          @include dosm {
+            --btn-padding-x: 3rem;
           }
         }
       }
@@ -156,6 +172,13 @@
         gap: 1.5rem;
 
         font-size: 1.2rem;
+      }
+
+      p {
+
+        .details__content & {
+          margin-bottom: 0;
+        }
       }
     }
   }

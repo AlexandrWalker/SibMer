@@ -135,14 +135,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
@@ -151,8 +143,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -161,6 +153,14 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
   font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -207,16 +207,16 @@ img {
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
-  font-weight: 800;
+  src: url("../fonts/RobotoCondensed-ExtraLight.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -1339,8 +1339,8 @@ body {
 
 .btn--white:hover {
   --btn-padding-x: 3rem;
-  --btn-background: var(--white);
-  --btn-color: var(--black);
+  --btn-background: var(--black);
+  --btn-color: var(--white);
 }
 
 .dropdown {
@@ -4060,6 +4060,7 @@ canvas {
 
 .unit__close {
   color: var(--white);
+  cursor: pointer;
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -5782,6 +5783,7 @@ canvas {
 .faq__item {
   border-radius: 1rem;
   background-color: var(--gray);
+  overflow: hidden;
   cursor: pointer;
   position: relative;
 }
@@ -5841,9 +5843,14 @@ canvas {
   padding: 0 0 0 3rem;
 }
 
+.details__content .faq__item-content ul {
+  margin-bottom: 0;
+}
+
 .faq__item-content ul li {
   list-style: disc;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--black-50);
 }
 
 .faq__item-content ul li:last-child {
@@ -5860,6 +5867,10 @@ canvas {
   flex-direction: column;
   gap: 3rem;
   color: var(--black-50);
+}
+
+.details__content .faq__item-text p {
+  margin-bottom: 0;
 }
 
 .hero {
@@ -7634,6 +7645,14 @@ canvas {
     pointer-events: none;
   }
 
+  .unit__close:hover {
+    color: var(--accent);
+  }
+
+  .unit__item-btn:hover {
+    --btn-padding-x: 3rem;
+  }
+
   .about {
     padding: 0;
     background: -webkit-gradient(linear, left top, right top, color-stop(0, var(--black)), color-stop(50%, var(--accent)));
@@ -8040,6 +8059,10 @@ canvas {
     border-bottom-style: solid;
   }
 
+  .details__download-btn:hover {
+    --btn-padding-x: 3rem;
+  }
+
   .details__btn {
     display: none;
     -ms-grid-column: 1;
@@ -8065,6 +8088,10 @@ canvas {
 
   .accordion-item--active .faq__item-title {
     font-weight: 700;
+  }
+
+  .faq__item-content .btn:hover {
+    --btn-padding-x: 3rem;
   }
 
   .manual {
