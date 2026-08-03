@@ -31,6 +31,13 @@
 
         gap: 4rem;
       }
+
+      .blog-page & {
+
+        @include dosm {
+          gap: 2rem;
+        }
+      }
     }
 
     &__title {
@@ -98,6 +105,13 @@
       top: 9.7rem;
     }
 
+    .blog-page & {
+
+      @include sm {
+        display: flex;
+      }
+    }
+
     .general {
 
       &__head {
@@ -145,6 +159,26 @@
     }
   }
 
+  &__table {
+    margin-bottom: 2rem;
+
+    @include sm {
+      margin-bottom: 1rem;
+      overflow-x: auto;
+      width: 100vw;
+      padding: 0 var(--container-padding);
+      margin-right: calc(var(--container-padding) * -1);
+      margin-left: calc(var(--container-padding) * -1);
+    }
+
+    table {
+
+      @include sm {
+        width: fit-content;
+      }
+    }
+  }
+
   &__content {
     grid-row: 4/5;
 
@@ -156,6 +190,7 @@
     }
 
     .blog-page & {
+      margin-top: 5.4rem;
 
       @include sm {
         grid-row: 3/4;
@@ -164,8 +199,9 @@
       }
     }
 
-    &-title {
-      margin-bottom: 1.5rem;
+    h2 {
+      padding-top: 1rem;
+      margin-bottom: 1rem;
 
       font-weight: 700;
       font-size: 2.2rem;
@@ -173,23 +209,169 @@
       text-transform: uppercase;
       color: var(--accent);
 
-      @include sm {
-        margin-bottom: 1rem;
+      @include dosm {
+        margin-bottom: 2rem;
 
-        font-size: 1.4rem;
+        font-size: 3.2rem;
       }
     }
 
-    &-text {
-      margin-bottom: 3rem;
+    h3 {
+      padding-top: 1rem;
+      margin-bottom: 1rem;
 
-      @include sm {
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: uppercase;
+
+      @include dosm {
+        margin-bottom: 2rem;
+
+        font-size: 2.2rem;
+      }
+
+      .case-details-page & {
+        color: var(--accent);
+      }
+    }
+
+    p {
+      margin-bottom: 1rem;
+
+      @include dosm {
         margin-bottom: 2rem;
       }
 
       &:last-child {
         margin-bottom: 0;
       }
+    }
+
+    ul {
+      padding: 0 0 0 2.4rem;
+      margin-bottom: 2rem;
+
+      @include sm {
+        padding: 0 0 0 2.4rem;
+      }
+
+      li {
+        list-style: disc;
+        margin-bottom: 2rem;
+
+        color: var(--blue-light);
+
+        @include sm {
+          margin-bottom: 1rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        a {
+          border-bottom: 0.1rem dotted var(--blue-light);
+
+          &:hover {
+
+            @include dosm {
+              border-bottom-style: solid;
+            }
+          }
+        }
+      }
+    }
+
+    table {
+      width: 100%;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 0.1rem solid var(--black-10);
+      border-spacing: 0;
+
+      thead {
+        background-color: var(--accent);
+
+        color: var(--white);
+
+        th {
+          font-weight: 700;
+        }
+      }
+
+      th,
+      td {
+        padding: 2rem 3rem;
+
+        text-align: left;
+
+        &:first-child {
+          width: 36.5%;
+        }
+      }
+
+      tbody {
+
+        tr {
+          background-color: var(--white);
+
+          &:nth-child(2n-2) {
+            background-color: var(--white-50);
+          }
+        }
+
+        td {
+
+          &:nth-child(2) {
+            min-width: 36rem;
+          }
+        }
+      }
+    }
+
+    .faq {
+
+      &__items {
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      &__item {
+        background-color: var(--white-50);
+      }
+    }
+  }
+
+  &__download {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem;
+    background-color: var(--accent);
+    border-radius: 1rem;
+
+    text-align: center;
+
+    @include sm {
+      padding: 2rem;
+    }
+    
+    &-title {
+      font-weight: 700;
+      font-size: 3.2rem;
+      line-height: 140%;
+      color: var(--white);
+
+      @include sm {
+        font-size: 2.2rem;
+      }
+    }
+
+    &-btn {
+
     }
   }
 

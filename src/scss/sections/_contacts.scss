@@ -44,16 +44,23 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 2rem;
       padding: 4.8rem 7.3rem 4.2rem 3.8rem;
       transition: background-color 0.3s ease, color 0.3s ease;
       color: var(--black);
+
+      @include sm {
+        padding: 2rem 2rem 2.5rem 1.5rem;
+      }
 
       &:hover {
         background-color: var(--accent);
         color: var(--white);
 
         .contacts__item-cover {
-          background-image: url(./../../images/temp/contacts-requisite-cover-white.svg);
+          // background-image: url(./../../images/temp/contacts-requisite-cover-white.svg);
+
+          color: var(--white);
         }
       }
 
@@ -63,19 +70,35 @@
         line-height: 140%;
         text-decoration: underline;
         text-decoration-skip-ink: none;
+
+        @include sm {
+          max-width: 21.6rem;
+
+          font-size: 2.2rem;
+        }
       }
     }
 
     &-cover {
-      display: block;
-      width: 8.7rem;
-      height: 8.7rem;
+      // display: block;
+      // width: 8.7rem;
+      // height: 8.7rem;
 
-      background-image: url(./../../images/temp/contacts-requisite-cover.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-      transition: background-image 0.3s ease;
+      // background-image: url(./../../images/temp/contacts-requisite-cover.svg);
+      // background-repeat: no-repeat;
+      // background-size: contain;
+      // background-position: center;
+      // transition: background-image 0.3s ease;
+
+      color: var(--accent);
+
+      i {
+        --font-size: 8.7rem;
+
+        @include sm {
+          --font-size: 3.6rem;
+        }
+      }
     }
 
     &-icon {

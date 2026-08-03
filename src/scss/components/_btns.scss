@@ -112,4 +112,21 @@
       background-color: var(--black);
     }
   }
+
+  &--white {
+    --btn-background: var(--white);
+    --btn-color: var(--black);
+
+    box-shadow: none;
+
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      --btn-padding-x: 3rem;
+      --btn-background: var(--white);
+      --btn-color: var(--black);
+    }
+  }
 }

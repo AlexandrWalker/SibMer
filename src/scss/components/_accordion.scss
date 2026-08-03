@@ -20,8 +20,9 @@
       .accordion-icon {
         transform: rotate(180deg);
 
+        // icon-minus
         i::before {
-          content: "\e91c";
+          content: "\e91e";
         }
       }
     }

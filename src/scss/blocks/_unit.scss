@@ -1,0 +1,138 @@
+@use './../mixins' as *;
+
+.unit {
+  width: fit-content;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 100;
+
+  &-hidden {
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__inner {
+    max-width: 54.5rem;
+    width: 100%;
+    height: fit-content;
+
+    position: relative;
+
+    @include sm {
+      max-width: var(--container-width);
+    }
+  }
+
+  &__close {
+    color: var(--white);
+
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+
+    i {
+      --font-size: 4.4rem;
+    }
+  }
+
+  &__slider {
+    border-radius: 1rem;
+    overflow: hidden;
+
+    .swiper-pagination {
+      display: flex;
+      width: 58.5%;
+
+      bottom: 2rem;
+
+      @include sm {
+        width: 50%;
+
+        bottom: 1rem;
+      }
+
+      &-bullet {
+        width: 1.2rem;
+        height: 1.2rem;
+        margin: 0 0.25rem;
+        background-color: var(--black);
+        border: none;
+        flex-shrink: 0;
+
+        &::before {
+          display: none;
+        }
+
+        &-active {
+          background-color: var(--accent);
+        }
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    height: 100%;
+    background-color: var(--gray);
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem 2rem 5.7rem;
+
+      @include sm {
+        padding: 1.5rem 1.5rem 3rem 1.5rem;
+      }
+    }
+
+    &-title {
+      font-family: var(--second-family);
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+      text-align: center;
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+
+    &-btn {
+      --btn-height: 4.6rem;
+
+      box-shadow: 0px 13px 50.3px rgba(220, 35, 64, 0.35);
+    }
+
+    &-cover {
+      max-width: 22.7rem;
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      @include sm {
+        max-width: 50%;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

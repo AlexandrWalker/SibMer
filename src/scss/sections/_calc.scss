@@ -43,6 +43,19 @@
     }
   }
 
+  .general {
+
+    &__title {
+
+      br {
+        
+        @include sm {
+          display: none;
+        }
+      }
+    }
+  }
+
   .form {
 
     &-body {

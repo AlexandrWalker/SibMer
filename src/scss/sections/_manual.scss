@@ -12,7 +12,7 @@
   &__items {
     display: grid;
     grid-template-columns: repeat(4, 3fr);
-    gap: 4rem 2rem;
+    gap: 4rem;
 
     @include sm {
       grid-template-columns: repeat(1, 1fr);

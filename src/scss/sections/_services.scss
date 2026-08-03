@@ -175,6 +175,9 @@
       @include sm {
         width: 4.6rem;
         height: 4.6rem;
+
+        right: 1.4rem;
+        bottom: 2rem;
       }
 
       // .services__item:hover & {
@@ -190,15 +193,30 @@
           opacity: 0;
         }
 
+        @include sm {
+          bottom: 1rem;
+        }
+
         i {
 
           @include sm {
 
+            // icon-minus
             &::before {
-              content: "\e91c";
+              content: "\e91e";
 
               transform: rotate(180deg);
             }
+          }
+        }
+      }
+
+      &::before {
+
+        .accordion-item--active & {
+
+          @include sm {
+            opacity: 0;
           }
         }
       }

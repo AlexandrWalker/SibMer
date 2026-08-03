@@ -25,6 +25,48 @@
       gap: 3rem;
       grid-column: 1/4;
     }
+
+    &-text {
+      color: var(--white-50);
+    }
+
+    &-nav {
+      margin-bottom: 2rem;
+
+      ul {
+        padding: 0 0 0 2.4rem;
+
+        @include sm {
+          padding: 0 0 0 2.4rem;
+        }
+
+        li {
+          list-style: disc;
+          margin-bottom: 2rem;
+
+          color: var(--blue-light);
+
+          @include sm {
+            margin-bottom: 1rem;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          a {
+            border-bottom: 0.1rem dotted var(--blue-light);
+
+            &:hover {
+
+              @include dosm {
+                border-bottom-style: solid;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   &__body {

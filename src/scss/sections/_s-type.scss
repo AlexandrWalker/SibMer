@@ -185,8 +185,9 @@
 
         i {
 
+          // icon-minus
           &::before {
-            content: "\e91c";
+            content: "\e91e";
 
             transform: rotate(180deg);
           }

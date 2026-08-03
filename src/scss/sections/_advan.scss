@@ -28,6 +28,13 @@
           color: var(--black);
         }
       }
+
+      br {
+
+        @include sm {
+          display: none;
+        }
+      }
     }
 
     &__text {
@@ -135,6 +142,7 @@
 
         @include sm {
           font-size: 1.2rem;
+          text-decoration: none;
         }
       }
     }
@@ -151,6 +159,17 @@
         height: 4rem;
       }
 
+      img {
+        max-width: 100%;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+
+        @include dosm {
+          display: none;
+        }
+      }
+
       i {
         --font-size: 10rem;
 
@@ -163,6 +182,10 @@
         width: 100%;
         height: 100%;
         border-radius: unset;
+
+        @include sm {
+          display: none;
+        }
       }
     }
 

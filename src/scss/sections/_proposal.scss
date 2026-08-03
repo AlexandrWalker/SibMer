@@ -80,18 +80,85 @@
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    padding: 6rem 6rem 5rem 6rem;
-    background-color: var(--gray);
-    border-radius: 1rem;
+    gap: 2rem;
+    padding: 0;
     overflow: hidden;
 
-    @include sm {
-      padding: 3rem 2rem;
+    @include dosm {
+      gap: 3rem;
+      padding: 6rem 6rem 5rem 6rem;
+      background-color: var(--gray);
+      border-radius: 1rem;
+    }
+
+    @include sm {}
+
+    .inner-page & {
+
+      @include sm {
+        color: var(--white);
+      }
+
+      .form-col-2.form-items {
+
+        @include sm {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+
+      .form-inner {
+
+        @include sm {
+          gap: 2rem;
+        }
+      }
+
+      .form-btn {
+
+        @include sm {
+          --btn-height: 5.6rem;
+        }
+      }
+
+      .form-checkbox-input:checked+.form-checkbox-item::before {
+
+        @include sm {
+          background-color: var(--accent);
+        }
+      }
+
+      .form-checkbox-text {
+
+        @include sm {
+          color: var(--white-50);
+        }
+      }
+
+      .form-checkbox-item {
+
+        @include sm {
+          background-color: var(--white-10);
+        }
+
+        &::before {
+
+          @include sm {
+            background-color: var(--gray-4);
+          }
+        }
+      }
     }
   }
 
   &__head {
+
+    .inner-page & {
+
+      @include sm {
+        display: none;
+      }
+    }
 
     &-title {
       font-family: var(--second-family);
@@ -102,7 +169,8 @@
       text-transform: uppercase;
 
       @include sm {
-        font-size: 3rem;
+        // font-size: 3rem;
+        font-size: 1.6rem;
       }
     }
   }

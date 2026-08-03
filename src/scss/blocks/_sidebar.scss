@@ -1,0 +1,78 @@
+@use './../mixins' as *;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @include dosm {
+    display: none;
+    gap: 3rem;
+  }
+
+  .details__head & {
+    display: none;
+
+    @include dosm {
+      display: flex;
+    }
+  }
+
+  &__head {
+
+    &-title {
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 140%;
+      text-transform: uppercase;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include dosm {
+      gap: 1.5rem;
+    }
+
+    &-date {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 140%;
+      color: var(--black-50);
+
+      @include dosm {
+        font-size: 1.6rem;
+      }
+    }
+
+    &-link {
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 140%;
+      text-decoration-line: underline;
+      text-decoration-skip-ink: none;
+      color: var(--blue);
+
+      &:hover {
+
+        @include dosm {
+          text-decoration: none;
+        }
+      }
+
+      @include dosm {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

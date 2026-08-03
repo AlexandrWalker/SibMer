@@ -128,8 +128,9 @@
         .cases__item-icon {
           transform: rotate(180deg);
 
+          // icon-minus
           i::before {
-            content: "\e91c";
+            content: "\e91e";
           }
         }
       }
@@ -162,7 +163,7 @@
         position: static;
 
         @include dosm {
-          gap: 5rem;
+          gap: 4rem;
         }
 
         @include sm {
@@ -194,6 +195,7 @@
         z-index: 2;
 
         @include sm {
+          display: none;
           flex-direction: column;
           flex-wrap: nowrap;
           gap: 2rem;
@@ -237,6 +239,41 @@
       }
     }
 
+    &-route {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 0;
+
+      color: var(--accent);
+
+      position: relative;
+      z-index: 2;
+
+      @include dosm {
+        margin-bottom: 4rem;
+
+        color: var(--white);
+      }
+
+      &--title {
+        font-weight: 700;
+        line-height: 100%;
+
+        @include sm {
+          display: none;
+        }
+      }
+
+      &--text {
+        line-height: 100%;
+
+        @include sm {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
     &-head {
 
       @include dosm {
@@ -274,7 +311,7 @@
         @include sm {
           display: flex;
           flex-direction: column;
-          gap: 2rem;
+          gap: 1.5rem;
           transition: all 0.3s ease;
         }
       }
