@@ -1,12 +1,14 @@
 @use './../mixins' as *;
 
 .cases {
-
+  background-color: var(--gray);
+  
   @include dosm {
     --section-padding-top: 0;
     --section-padding-bottom: 0;
-
-    background: linear-gradient(90deg, var(--black) 0 41%, transparent 41% 70%);
+    
+    background-color: var(--white);
+    // background: linear-gradient(90deg, var(--black) 0 41%, transparent 41% 70%);
   }
 
   .container--fluid {

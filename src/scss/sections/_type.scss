@@ -1,7 +1,6 @@
 @use './../mixins' as *;
 
 .type {
-  background-color: var(--white);
 
   .general__text {
 
@@ -76,7 +75,7 @@
     min-height: 31rem;
     padding: 3rem 3rem 3rem 3rem;
     border-radius: 1rem;
-    background-color: var(--gray);
+    background-color: var(--white);
 
     position: relative;
     z-index: 2;

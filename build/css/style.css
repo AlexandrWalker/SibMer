@@ -127,6 +127,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
@@ -143,8 +151,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -153,14 +161,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
   font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
   font-style: normal;
 }
 
@@ -5098,6 +5098,10 @@ canvas {
   font-size: 1.2rem;
 }
 
+.cases {
+  background-color: var(--gray);
+}
+
 .cases .general__title h2 {
   color: var(--accent);
 }
@@ -6193,6 +6197,61 @@ canvas {
   background-repeat: no-repeat;
 }
 
+.marking {
+  --section-padding-bottom: 12.8rem;
+  overflow: hidden;
+}
+
+.marking::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzkwIiBoZWlnaHQ9IjYwNyIgdmlld0JveD0iMCAwIDM5MCA2MDciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMjIwOS4yMSAtNS4wODg1OEMyMTU0LjkyIDIwNC42NzMgMTk0NC45NCA2MDUuNDEzIDE1MzkuMzMgNTMwLjI3N0MxNDQ2LjMgNTE1LjE5OSAxMzc5LjkxIDQ3Mi4wMTkgMTI0Ni42OSA1OTUuMzQ1QzEyMTMuMDYgNjE1LjU4NiAxMjAzLjg3IDY0OS4wMjEgMTAzOS42MSA1MzAuMTQ3Qzg3NS4zMzcgNDExLjI3MiA1MjAuNDIyIDI3Ni4wOTUgMTY3LjQ4NCA3MTkuNDg5Qy0xODUuNDU0IDExNjIuODggLTM0Ni43ODkgMjAxLjc5NyAtMTEuMDYxNiAxNjMuMjUyQzEwOC41NzUgMTQ0LjQ5OSAyNTIuOTE1IDIxMy40MTEgMzc0LjY3NiAxMzYuMTc2QzQzMS4yMDIgODEuNzMwOSA0NTYuNzg1IDE4LjIwOTcgNDYyLjUxIC02Ljc0NTE5IiBzdHJva2U9IiMxNDI2MzciIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPg0KPC9zdmc+DQo=);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.marking .general__suptitle p {
+  font-family: var(--font-family);
+  line-height: 140%;
+  color: var(--black-50);
+  text-transform: none;
+}
+
+.marking .form-body {
+  gap: 0.8rem;
+}
+
+.marking .form-foot {
+  gap: 1.5rem;
+}
+
+.marking__img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: auto;
+  height: 20.1rem;
+  position: absolute;
+  bottom: 0;
+  left: 19.3rem;
+}
+
+.marking__img img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
 .notfound {
   --section-padding-bottom: 0;
 }
@@ -7215,10 +7274,6 @@ canvas {
   color: var(--accent);
 }
 
-.type {
-  background-color: var(--white);
-}
-
 .type .general__text p {
   color: var(--black-50);
 }
@@ -7265,7 +7320,7 @@ canvas {
   min-height: 31rem;
   padding: 3rem 3rem 3rem 3rem;
   border-radius: 1rem;
-  background-color: var(--gray);
+  background-color: var(--white);
   position: relative;
   z-index: 2;
 }
@@ -7811,9 +7866,7 @@ canvas {
   .cases {
     --section-padding-top: 0;
     --section-padding-bottom: 0;
-    background: -webkit-gradient(linear, left top, right top, color-stop(0, var(--black)), color-stop(41%, transparent));
-    background: -o-linear-gradient(left, var(--black) 0 41%, transparent 41% 70%);
-    background: linear-gradient(90deg, var(--black) 0 41%, transparent 41% 70%);
+    background-color: var(--white);
   }
 
   .cases .general__head {
@@ -8101,6 +8154,35 @@ canvas {
   .manual__item-body a:hover {
     background-size: 100%;
     color: var(--accent);
+  }
+
+  .marking {
+    --section-padding-top: 7rem;
+    --section-padding-bottom: 9rem;
+  }
+
+  .marking::before {
+    display: none;
+  }
+
+  .marking .general__head {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 4;
+    grid-column: 1/5;
+  }
+
+  .marking .general__body {
+    -ms-grid-column: 7;
+    -ms-grid-column-span: 5;
+    grid-column: 7/12;
+  }
+
+  .marking .form-body {
+    gap: 1rem;
+  }
+
+  .marking .form-foot {
+    gap: 2rem;
   }
 
   .opinions__body {
@@ -9698,6 +9780,24 @@ canvas {
 
   .manual__item-body li ul li {
     margin-bottom: 1rem;
+  }
+
+  .marking {
+    background-color: var(--white);
+  }
+
+  .marking .general__suptitle p {
+    font-size: 1.4rem;
+  }
+
+  .marking .form-inner {
+    gap: 2rem;
+  }
+
+  .marking__img {
+    height: 10rem;
+    bottom: 2.8rem;
+    left: -0.7rem;
   }
 
   .notfound {
