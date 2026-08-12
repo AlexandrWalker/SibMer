@@ -67,13 +67,14 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
-      padding: 7.6rem 0 13.6rem;
+      padding: 6rem 0 6rem;
 
       position: relative;
 
       @include sm {
         grid-template-columns: repeat(1, 1fr);
-        padding: 3rem 0 2rem;
+        gap: 3rem;
+        padding: 3rem 0 2.2rem;
       }
 
       &::before {
@@ -192,6 +193,16 @@
           }
         }
       }
+
+      hr {
+        padding-top: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 0.1rem solid var(--black-10);
+
+        @include dosm {
+          display: none;
+        }
+      }
     }
 
     &-wrap {
@@ -228,7 +239,7 @@
 
     @include sm {
       grid-template-columns: repeat(1, 1fr);
-      padding: 0 0 3rem 0;
+      padding: 0 0 2rem 0;
     }
 
     &-copyright {
@@ -301,7 +312,7 @@
         text-align: left;
 
         grid-row: 2/3;
-        padding-top: 3rem;
+        padding-top: 2rem;
         margin-bottom: 1.5rem;
       }
 
