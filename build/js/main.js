@@ -1914,6 +1914,7 @@ document.addEventListener('DOMContentLoaded', () => {
           resistance: true,
           resistanceRatio: 0.4,
           centeredSlides: false,
+          autoHeight: true,
           // centeredSlidesBounds: true,
           centeredSlidesBounds: false,
           simulateTouch: true,

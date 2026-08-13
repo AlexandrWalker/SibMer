@@ -146,16 +146,24 @@
 
   &__cover,
   &__slider {
-    height: 27.1rem;
+    // height: 27.1rem;
+    height: auto;
     overflow: hidden;
 
     grid-row: 2/3;
 
     @include dosm {
-      height: 65.9rem;
+      width: 100%;
+      // height: 65.9rem;
 
       grid-column: 6/13;
       grid-row: 1/5;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
   }
 
