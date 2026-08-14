@@ -28,6 +28,24 @@
     }
   }
 
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include sm {
+      gap: 2rem;
+    }
+  }
+
+  &__btn {
+    --btn-padding-x: 4rem;
+
+    @include sm {
+      width: 100%;
+    }
+  }
+
   &__items {
     display: flex;
     flex-direction: column;
