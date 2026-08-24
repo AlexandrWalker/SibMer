@@ -230,10 +230,25 @@
 </div>
     <!-- Меню -->
     <div id="burger-menu" class="menu lenis" data-lenis-prevent>
-  <div class="menu__inner">
+  <div class="container">
+    <div class="menu__inner">
 
-    <div class="menu__nav">
-      <div class="container">
+      <div class="menu__contacts">
+        <div class="menu__contacts-inner">
+          <div class="menu__contacts-phone">
+            <a href="tel:+73832875087">
+              +7 (383) 287‒50‒87
+            </a>
+          </div>
+          <div class="menu__contacts-mail">
+            <a href="emailto:offer@sb-mer.ru">
+              offer@sb-mer.ru
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu__nav">
         <div class="menu__nav-inner">
           <ul>
             <li>
@@ -264,27 +279,21 @@
           </ul>
         </div>
       </div>
-    </div>
 
-    <div class="menu__contacts">
-      <div class="container">
-        <div class="menu__contacts-inner">
-          <div class="menu__contacts-phone">
-            <a href="tel:+73832875087">
-              +7 (383) 287‒50‒87
-            </a>
+      <div class="menu__social">
+        <div class="menu__address">
+          <div class="menu__address-title">
+            Наш адрес
           </div>
-          <div class="menu__contacts-mail">
-            <a href="emailto:offer@sb-mer.ru">
-              offer@sb-mer.ru
+          <div class="menu__address-text">
+            630005, Новосибирск, Некрасова, 48, офис 204/1
+          </div>
+          <div class="menu__address-link">
+            <a href="/" download="#">
+              Скачать презентацию
             </a>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="menu__social">
-      <div class="container">
         <div class="menu__social-inner">
           <a class="GlassContainer" href="/">
             <div class="GlassContent">
@@ -327,8 +336,8 @@
           </a>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>
     <main class="main">
@@ -1910,56 +1919,19 @@
                   подарок»
                 </p>
               </div>
+              <button class="btn">
+                <div class="btn-text">
+                  Рассчитать стоимость 
+                </div>
+              </button>
             </div>
 
             <div class="marking__img">
               <img src="./images/temp/marking-img.svg" alt="">
             </div>
 
-            <div class="general__body">
-              <form class="form-inner" action="#">
-                <div class="form-body">
-                  <div class="form-group">
-                    <div class="form-icon">
-                      <i class="icon-person"></i>
-                    </div>
-                    <input class="form-input" type="text" name="main_proposal_name" placeholder="Имя">
-                  </div>
-                  <div class="form-group">
-                    <div class="form-icon">
-                      <i class="icon-phone"></i>
-                    </div>
-                    <input class="form-input" type="tel" name="main_proposal_tel" placeholder="Телефон">
-                  </div>
-                </div>
-                <div class="form-foot">
-                  <button class="btn form-btn" data-fancybox data-close-existing="true" href="#popup-3">
-                    <span class="btn-text">
-                      Рассчитать стоимость
-                    </span>
-                  </button>
-                  <div class="form-privacy">
-                    <div class="form-group">
-                      <label class="form-checkbox-label">
-                        <input class="form-checkbox-input" name="main_proposal_privacy" type="checkbox">
-                        <span class="form-checkbox-item"></span>
-                        <span class="form-checkbox-text">
-                          Я согласен на обработку персональных данных
-                        </span>
-                      </label>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-checkbox-label">
-                        <input class="form-checkbox-input" name="main_proposal_ads" type="checkbox">
-                        <span class="form-checkbox-item"></span>
-                        <span class="form-checkbox-text">
-                          Я согласен на рекламные уведомления
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </form>
+            <div class="marking__cover">
+              <img src="./images/temp/marking-cover.png" alt="">
             </div>
 
           </div>
@@ -2069,8 +2041,43 @@
             <div class="general__head">
               <div class="general__title" data-split="lines">
                 <h2>
-                  ПОлучите груз в&nbsp;кратчайший срок <span>из&nbsp;китая</span>
+                  Маркировка &laquo;Честный знак&raquo; для импорта из&nbsp;Китая под <br> ключ
                 </h2>
+              </div>
+              <div class="general__head-text" data-split="text">
+                <p>
+                  Наносим коды Data Matrix на нашем складе в Хэйхэ — товар пересекает <br> границу уже маркированным.
+                  Регистрация в ЦРПТ, нанесение, таможенное <br> оформление и ввод в оборот в одном окне.
+                </p>
+              </div>
+            </div>
+
+            <div class="callback__side">
+              <div class="callback__side-items">
+                <div class="callback__side-item">
+                  <div class="callback__side-title">
+                    Собственный склад
+                  </div>
+                  <div class="callback__side-text">
+                    10 000 м² + площадка <br> 10 000м2 класса А
+                  </div>
+                </div>
+                <div class="callback__side-item">
+                  <div class="callback__side-title">
+                    Реестр ФТС
+                  </div>
+                  <div class="callback__side-text">
+                    Таможенный <br> представитель
+                  </div>
+                </div>
+                <div class="callback__side-item">
+                  <div class="callback__side-title">
+                    Без рисков задержки
+                  </div>
+                  <div class="callback__side-text">
+                    Маркировка до <br> пересечения границы РФ
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -2078,81 +2085,47 @@
               <div class="proposal__content anim-item">
                 <div class="proposal__head">
                   <div class="proposal__head-title">
-                    Отправьте заявку
+                    Рассчитать стоимость маркировки
                   </div>
                 </div>
                 <div class="proposal__body">
                   <form class="form-inner" action="#">
                     <div class="form-body">
-
-                      <div class="form-block">
-                        <div class="form-title">
-                          Ваши данные
+                      <div class="form-group">
+                        <div class="form-icon">
+                          <i class="icon-person"></i>
                         </div>
-                        <div class="form-content">
-                          <div class="form-group">
-                            <div class="form-icon">
-                              <i class="icon-person"></i>
-                            </div>
-                            <input class="form-input" type="text" name="main_proposal_name" placeholder="Имя">
-                          </div>
-                          <div class="form-group">
-                            <div class="form-icon">
-                              <i class="icon-phone"></i>
-                            </div>
-                            <input class="form-input" type="tel" name="main_proposal_tel" placeholder="Телефон">
-                          </div>
-                        </div>
+                        <input class="form-input" type="text" name="main_proposal_name" placeholder="Имя">
                       </div>
-
-                      <div class="form-block">
-                        <div class="form-title">
-                          Маршрут
+                      <div class="form-group">
+                        <div class="form-icon">
+                          <i class="icon-phone"></i>
                         </div>
-                        <div class="form-content">
-                          <div class="form-group">
-                            <div class="form-icon">
-                              <i class="icon-otkuda"></i>
-                            </div>
-                            <input class="form-input" type="text" name="main_proposal_otkuda" placeholder="Откуда">
-                          </div>
-                          <div class="form-group">
-                            <div class="form-icon">
-                              <i class="icon-kuda"></i>
-                            </div>
-                            <input class="form-input" type="text" name="main_proposal_kuda" placeholder="Куда">
-                          </div>
-                        </div>
-
-                        <div class="form-items form-col-2">
-                          <div class="form-item">
-                            <div class="form-group">
-                              <label class="form-label">
-                                Общий вес груза
-                              </label>
-                            </div>
-                            <div class="form-group form-total form-total-weight">
-                              <input class="form-input" type="text" name="main_proposal_weight" placeholder="0">
-                            </div>
-                          </div>
-                          <div class="form-item">
-                            <div class="form-group">
-                              <label class="form-label">
-                                Общий объём груза
-                              </label>
-                            </div>
-                            <div class="form-group form-total form-total-volume">
-                              <input class="form-input" type="text" name="main_proposal_volume" placeholder="0">
-                            </div>
-                          </div>
-                        </div>
+                        <input class="form-input" type="tel" name="main_proposal_tel" placeholder="Телефон">
                       </div>
-
+                      <div class="form-group">
+                        <div class="form-icon">
+                          <i class="icon-advan-1"></i>
+                        </div>
+                        <input class="form-input" type="text" name="main_proposal_tovarnaya_gruppa"
+                          placeholder="Товарная группа">
+                      </div>
+                    </div>
+                    <div class="form-mid">
+                      <div class="form-text">
+                        <p>
+                          Категория товара по «Честному знаку» - необязательна. Укажите, если знаете: например, обувь,
+                          одежда, парфюмерия, электроника, шины.
+                        </p>
+                      </div>
+                      <div class="form-captcha">
+                        <img src="./images/temp/captcha.png" alt="">
+                      </div>
                     </div>
                     <div class="form-foot">
                       <button class="btn form-btn" data-fancybox data-close-existing="true" href="#popup-3">
                         <span class="btn-text">
-                          Отправить
+                          Получить расчёт за 15 минут
                         </span>
                       </button>
                       <div class="form-privacy">
@@ -2161,7 +2134,8 @@
                             <input class="form-checkbox-input" name="main_proposal_privacy" type="checkbox">
                             <span class="form-checkbox-item"></span>
                             <span class="form-checkbox-text">
-                              Я согласен на обработку персональных данных
+                              Принимаю условия пользовательского соглашения и даю согласие на обработку моих
+                              персональных данных в соответствии с политикой облаботки персснальных данных
                             </span>
                           </label>
                         </div>
@@ -3289,10 +3263,8 @@
                     </div>
                   </div>
                 </div>
-                <button class="faq__btn btn">
-                  <div class="btn-text">
-                    Показать еще
-                  </div>
+                <button class="faq__btn">
+                  Показать еще
                 </button>
               </div>
             </div>
@@ -3306,7 +3278,7 @@
           <div class="callback__inner general__content">
 
             <div class="callback__cover svg-block">
-              <svg width="929" height="758" viewBox="0 0 929 758" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- <svg width="929" height="758" viewBox="0 0 929 758" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g opacity="0.05">
                   <path
                     d="M801.851 598.33C803.974 600.381 804.174 604.033 804.049 606.935C803.899 609.862 801.276 615.115 800.252 618.467C799.227 621.819 798.353 625.921 799.377 630.449C800.402 634.977 802.3 637.453 800.402 640.53C798.503 643.607 793.556 652.062 792.531 653.663C791.507 655.264 791.082 658.491 791.357 660.367C791.657 662.268 792.631 671.323 791.257 671.173C789.883 671.023 786.085 669.272 786.235 665.92C786.385 662.568 786.81 659.891 785.66 659.191C784.486 658.491 779.689 656.74 777.79 653.087C775.891 649.435 773.992 644.332 773.992 642.131C773.992 639.93 775.166 636.578 775.441 634.751C775.741 632.925 775.441 632.2 776.016 628.973C776.591 625.771 779.214 622.269 780.238 619.768C781.263 617.266 782.862 612.313 783.736 610.712C784.611 609.111 789.708 602.833 790.882 601.507C792.057 600.181 794.38 596.829 794.83 596.829C795.28 596.829 797.753 594.353 801.826 598.28L801.851 598.33Z"
@@ -3418,7 +3390,8 @@
                 <path class="svg-stroke" d="M433.114 689.512C432.448 602.679 337 104.5 846.5 110" stroke="#DC2340"
                   stroke-dasharray="2 2" />
                 <circle cx="435" cy="686" r="8" fill="white" />
-              </svg>
+              </svg> -->
+              <img src="./images/temp/map-cover.png" alt="">
             </div>
 
             <div class="general__head">
@@ -3579,25 +3552,18 @@
         <div class="footer__mid-menu">
           <div class="footer__mid-items">
             <div class="footer__mid-item footer__mid-item--menu">
+              <div class="footer__mid-wrap--title">
+                О нас
+              </div>
               <ul>
                 <li>
-                  <a href="/SibMer#about">
-                    О компании
-                  </a>
-                </li>
-                <li>
                   <a href="/SibMer#algorithm">
-                    Как мы работаем
-                  </a>
-                </li>
-                <li>
-                  <a href="/SibMer/services.html">
-                    Услуги
+                    Кейсы
                   </a>
                 </li>
                 <li>
                   <a href="/SibMer/case.html">
-                    Кейсы
+                    Блог
                   </a>
                 </li>
                 <li>
@@ -3606,31 +3572,39 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/SibMer/blog.html">
-                    Блог
+                  <a href="/SibMer/manual.html">
+                    Рассчитать доставку
+                  </a>
+                </li>
+                <li>
+                  <a href="/SibMer/site-map.html">
+                    Карта сайта
                   </a>
                 </li>
               </ul>
             </div>
             <div class="footer__mid-item footer__mid-item--services">
+              <div class="footer__mid-wrap--title">
+                Услуги
+              </div>
               <ul>
                 <li>
-                  <a href="/SibMer/404.html">
+                  <a href="/SibMer/inter.html">
                     Международные перевозки грузов
                   </a>
                 </li>
                 <li>
-                  <a href="/SibMer/404.html">
+                  <a href="/SibMer/inter.html">
                     Международные автоперевозки
                   </a>
                 </li>
                 <li>
-                  <a href="/SibMer/404.html">
+                  <a href="/SibMer/inter.html">
                     Международные авиаперевозки
                   </a>
                 </li>
                 <li>
-                  <a href="/SibMer/inter.html">
+                  <a href="/SibMer/services.html">
                     Доставка по странам
                   </a>
                 </li>
@@ -3643,7 +3617,7 @@
                 </div>
                 <div class="footer__mid-wrap--text">
                   <p>
-                    630005, Новосибирск, Некрасова, 48, офис 204/1
+                    630005, Новосибирск, Некрасова, 48, офис&nbsp;204/1
                   </p>
                 </div>
               </div>
@@ -3662,11 +3636,6 @@
               <hr>
               <ul>
                 <li>
-                  <a href="/SibMer/privacy.html">
-                    политика конфиденциальности
-                  </a>
-                </li>
-                <li>
                   <a href="/SibMer/404.html" download="#">
                     Скачать презентацию
                   </a>
@@ -3674,6 +3643,54 @@
                 <li>
                   <a href="/SibMer/404.html" download="#">
                     Скачать реквизиты
+                  </a>
+                </li>
+              </ul>
+              <!-- <hr> -->
+            </div>
+            <div class="footer__mid-item footer__mid-item--stuff footer__mid-item--docs">
+              <div class="footer__mid-wrap--title">
+                документы
+              </div>
+              <ul>
+                <li>
+                  <a href="/SibMer/404.html">
+                    Смотреть в 2Гис
+                  </a>
+                </li>
+                <li>
+                  <a href="/SibMer/404.html">
+                    Смотреть в Яндекс
+                  </a>
+                </li>
+                <li>
+                  <a href="/SibMer/404.html">
+                    Смотреть в Яндекс
+                  </a>
+                </li>
+                <li>
+                  <a href="/SibMer/404.html">
+                    Смотреть в Яндекс
+                  </a>
+                </li>
+                <li>
+                  <a href="/SibMer/404.html">
+                    Смотреть в Яндекс
+                  </a>
+                </li>
+                <li>
+                  <a href="/SibMer/404.html">
+                    Смотреть в Яндекс
+                  </a>
+                </li>
+                <li>
+                  <a href="/SibMer/404.html">
+                    Смотреть в Яндекс
+                  </a>
+                </li>
+                <li>
+                  <a href="/SibMer/404.html">
+                    Смотреть в Яндекс
                   </a>
                 </li>
               </ul>
@@ -4028,6 +4045,16 @@
         <img src="./images/temp/sale-cover.jpg" alt="">
       </div>
     </div>
+  </div>
+</div>
+<!-- Плашка -->
+<div class="plashka">
+  <div class="plashka__inner">
+    <button class="plashka__btn btn" data-fancybox href="#popup-1">
+      <div class="btn-text">
+        Получить быстрый расчет
+      </div>
+    </button>
   </div>
 </div>
 <!-- unit -->
