@@ -19,6 +19,18 @@
   left: 0;
   z-index: 900;
 
+  &::-webkit-scrollbar {
+    width: 0.1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--accent);
+  }
+
   .menu--open & {
     transform: translateY(0%);
   }
@@ -30,7 +42,7 @@
   }
 
   &__nav {
-    padding: 4rem 0;
+    padding: 2rem 0;
     border-bottom: 0.1rem solid var(--white-15);
 
     &-inner {
@@ -38,7 +50,7 @@
       ul {}
 
       li {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
 
         &:last-child {
           margin-bottom: 0;
@@ -47,7 +59,7 @@
 
       a {
         font-weight: 400;
-        font-size: 2.2rem;
+        font-size: 1.6rem;
         line-height: 130%;
         text-transform: uppercase;
       }
@@ -55,7 +67,7 @@
   }
 
   &__contacts {
-    padding: 4rem 0;
+    padding: 2.7rem 0 2.5rem 0;
     border-bottom: 0.1rem solid var(--white-15);
 
     &-inner {
@@ -67,9 +79,8 @@
     &-phone {
       width: fit-content;
 
-      font-family: var(--second-family);
-      font-weight: 700;
-      font-size: 2.2rem;
+      font-weight: 400;
+      font-size: 3rem;
       line-height: 130%;
       text-transform: uppercase;
     }
@@ -77,9 +88,8 @@
     &-mail {
       width: fit-content;
 
-      font-family: var(--second-family);
       font-weight: 400;
-      font-size: 2.2rem;
+      font-size: 3rem;
       line-height: 130%;
       text-decoration-line: underline;
       text-transform: uppercase;
@@ -88,7 +98,10 @@
   }
 
   &__social {
-    padding: 3.2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 0 3.5rem 0;
 
     &-inner {
       display: flex;
@@ -115,6 +128,41 @@
 
       .GlassMaterial .GlassBlur {
         backdrop-filter: unset;
+      }
+    }
+  }
+
+  &__address {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    color: var(--white-50);
+
+    &-title {
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 110%;
+      text-transform: uppercase;
+    }
+
+    &-text {
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 140%;
+      text-transform: uppercase;
+    }
+
+    &-link {
+
+      a {
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 100%;
+        text-decoration-line: underline;
+        text-transform: uppercase;
+        text-decoration-skip-ink: none;
+        color: var(--accent);
       }
     }
   }

@@ -12,6 +12,10 @@
   left: 2rem;
   z-index: 100;
 
+  @include sm {
+    display: none;
+  }
+
   &-hidden {
     pointer-events: none;
     opacity: 0;

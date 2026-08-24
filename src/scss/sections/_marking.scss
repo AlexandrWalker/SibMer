@@ -1,13 +1,12 @@
 @use './../mixins' as *;
 
 .marking {
-  --section-padding-bottom: 12.8rem;
+  --section-padding-bottom: 33.3rem;
 
   overflow: hidden;
 
   @include dosm {
-    --section-padding-top: 7rem;
-    --section-padding-bottom: 9rem;
+    --section-padding-bottom: 5.5rem;
   }
 
   @include sm {
@@ -40,6 +39,16 @@
       @include dosm {
         grid-column: 1/5;
       }
+
+      .btn {
+        --btn-width: 100%;
+
+        max-width: 36.3rem;
+
+        @include sm {
+          --btn-height: 5.6rem;
+        }
+      }
     }
 
     &__body {
@@ -64,51 +73,87 @@
     }
   }
 
-  .form-body {
-    gap: 0.8rem;
+  .form {
 
-    @include dosm {
-      gap: 1rem;
+    &-body {
+      gap: 0.8rem;
+
+      @include dosm {
+        gap: 1rem;
+      }
+    }
+
+    &-foot {
+      gap: 1.5rem;
+
+      @include dosm {
+        gap: 2rem;
+      }
+    }
+
+    &-inner {
+
+      @include sm {
+        gap: 2rem;
+      }
     }
   }
 
-  .form-foot {
-    gap: 1.5rem;
-
-    @include dosm {
-      gap: 2rem;
-    }
-  }
-
-  .form-inner {
-
-    @include sm {
-      gap: 2rem;
-    }
+  &__inner {
+    position: relative;
   }
 
   &__img {
     display: flex;
     justify-content: center;
-    // max-width: 74rem;
+    align-items: center;
     width: auto;
-    height: 20.1rem;
+    height: 23.7rem;
 
     position: absolute;
-    bottom: 0;
-    left: 19.3rem;
+    bottom: -1.8rem;
+    left: 48rem;
+    z-index: 1;
 
     @include sm {
-      height: 10rem;
-
-      bottom: 2.8rem;
-      left: -0.7rem;
+      display: none;
     }
 
     img {
       width: auto;
       height: 100%;
       object-fit: contain;
+      flex-shrink: 0;
+    }
+  }
+
+  &__cover {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+    height: 41.5rem;
+
+    position: absolute;
+    top: calc(100% + 1.8rem);
+    left: 0.4rem;
+
+    @include dosm {
+      grid-column: 9/13;
+      height: 60rem;
+
+      top: 50%;
+      right: 6.4rem;
+      z-index: 2;
+      transform: translateY(-50%);
+    }
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+      transform: rotate(30deg);
+      flex-shrink: 0;
     }
   }
 }

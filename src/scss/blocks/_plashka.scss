@@ -1,0 +1,34 @@
+@use './../mixins' as *;
+
+.plashka {
+  display: none;
+  flex-direction: row;
+  align-items: flex-end;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  transition: all 0.5s ease;
+  pointer-events: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 800;
+
+  @include sm {
+    display: flex;
+  }
+
+  &__inner {
+    width: 100%;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--black);
+  }
+
+  &__btn {
+    --btn-width: 100%;
+
+    pointer-events: all;
+    box-shadow: none;
+  }
+}

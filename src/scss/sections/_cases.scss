@@ -2,11 +2,11 @@
 
 .cases {
   background-color: var(--gray);
-  
+
   @include dosm {
     --section-padding-top: 0;
     --section-padding-bottom: 0;
-    
+
     background-color: var(--white);
     // background: linear-gradient(90deg, var(--black) 0 41%, transparent 41% 70%);
   }
@@ -47,6 +47,15 @@
 
     &__tabs {
       max-width: 68.5rem;
+
+      &-item {
+        background-color: var(--gray-5);
+
+        &.tabs--active,
+        &:hover {
+          background-color: var(--black);
+        }
+      }
     }
   }
 

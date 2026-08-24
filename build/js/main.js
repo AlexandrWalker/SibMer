@@ -564,14 +564,38 @@ document.addEventListener('DOMContentLoaded', () => {
   (function () {
     const social = document.querySelector('.social');
     const btn = document.querySelector('.social__item-btn');
+    const firstSection = document.querySelector('section');
 
-    btn.addEventListener('mouseenter', () => {
-      social.classList.add('active');
-    })
+    if (social && btn) {
+      btn.addEventListener('mouseenter', () => {
+        social.classList.add('active');
+      });
 
-    social.addEventListener('mouseleave', () => {
-      social.classList.remove('active');
-    })
+      social.addEventListener('mouseleave', () => {
+        social.classList.remove('active');
+      });
+    }
+
+    if (firstSection && social) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const isInnerPage = document.documentElement.classList.contains('inner-page');
+
+          if (entry.isIntersecting) {
+            social.classList.remove('social--show');
+          } else {
+            if (!isInnerPage) {
+              social.classList.add('social--show');
+            }
+          }
+        });
+      }, {
+        rootMargin: '0px 0px -100% 0px',
+        threshold: 0
+      });
+
+      observer.observe(firstSection);
+    }
   })();
 
   /**

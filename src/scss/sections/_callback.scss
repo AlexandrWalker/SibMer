@@ -3,12 +3,22 @@
 .callback {
   background-color: var(--black);
 
+  @include dosm {
+    --section-padding-bottom: 8rem;
+  }
+
+  @include sm {
+    --section-padding-top: 3rem;
+    --section-padding-bottom: 3rem;
+  }
+
   .general {
 
     &__content {
 
       @include dosm {
         grid-template-rows: auto 1fr;
+        row-gap: 3rem;
       }
     }
 
@@ -29,6 +39,7 @@
       @include dosm {
         grid-column: 8/13;
         grid-row: 1/3;
+        padding: 0 0 0 0.9rem;
       }
     }
   }
@@ -59,6 +70,10 @@
       }
     }
 
+    &-btn {
+      --btn-height: 5.6rem;
+    }
+
     &-checkbox-item {
 
       @include sm {
@@ -77,6 +92,27 @@
 
       @include sm {
         color: var(--white-50);
+      }
+    }
+
+    &-captcha {
+
+      @include sm {
+        display: block;
+      }
+    }
+
+    &-privacy {
+
+      @include dosm {
+        gap: 1.5rem;
+      }
+    }
+
+    &-text {
+
+      @include sm {
+        opacity: 0.5;
       }
     }
   }
@@ -115,6 +151,7 @@
       color: var(--white);
 
       @include dosm {
+        max-width: 29.3rem;
         gap: 2rem;
         padding: 3rem;
       }
@@ -152,8 +189,11 @@
   &__cover {
     width: 100%;
     height: auto;
+    padding: 0 7.5rem 0 4.8rem;
+    margin-top: -4.7rem;
 
-    grid-column: 4/8;
+    // grid-column: 4/8;
+    grid-column: 3/10;
     grid-row: 2/3;
 
     @include sm {
@@ -174,6 +214,7 @@
       z-index: 1;
     }
 
+    img,
     svg {
       max-width: 100%;
       width: 100%;
@@ -185,11 +226,12 @@
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
     overflow: hidden;
     height: 100%;
 
     @include dosm {
+      gap: 3rem;
       padding: 6rem 6rem 5rem 6rem;
       background-color: var(--white);
       border-radius: 1rem;
@@ -203,7 +245,7 @@
   &__head {
 
     @include sm {
-      display: none;
+      // display: none;
     }
 
     &-title {
@@ -215,7 +257,7 @@
       text-transform: uppercase;
 
       @include sm {
-        font-size: 3rem;
+        font-size: 2rem;
       }
     }
   }

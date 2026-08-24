@@ -5,6 +5,10 @@
 
   position: relative;
 
+  @include sm {
+    padding-bottom: 6rem;
+  }
+
   &__inner {
     display: flex;
     flex-direction: column;
@@ -15,7 +19,7 @@
     flex-direction: row;
     align-items: center;
     gap: 7.4rem;
-    padding: 6rem 0;
+    padding: 3.7rem 0 3rem 0;
 
     @include sm {
       flex-direction: column;
@@ -67,7 +71,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
-      padding: 6rem 0 6rem;
+      padding: 7.6rem 0 4.8rem;
 
       position: relative;
 
@@ -105,6 +109,9 @@
     }
 
     &-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
 
       &.footer__mid-item--menu {
 
@@ -118,13 +125,15 @@
 
         @include sm {
           display: none;
+          padding-bottom: 3rem;
+          border-bottom: 0.1rem solid var(--black-10);
         }
       }
 
       &.footer__mid-item--stuff {
         display: flex;
         flex-direction: column;
-        gap: 4rem;
+        gap: 3rem;
 
         @include sm {
           gap: 2rem;
@@ -157,12 +166,16 @@
         }
       }
 
-      li {
-        margin-bottom: 4rem;
+      &.footer__mid-item--docs {
 
         @include sm {
-          margin-bottom: 3rem;
+          display: none;
+          margin-top: -1rem;
         }
+      }
+
+      li {
+        margin-bottom: 3rem;
 
         &:last-child {
           margin-bottom: 0;
@@ -208,25 +221,34 @@
     &-wrap {
       display: flex;
       flex-direction: column;
-      gap: 4rem;
+      gap: 2rem;
 
       font-size: 1.6rem;
       line-height: 110%;
       text-transform: uppercase;
 
       @include sm {
-        gap: 2rem;
-
         font-size: 1.4rem;
       }
 
       &--title {
         font-weight: 700;
+        text-transform: uppercase;
 
+        .footer__mid-item--menu & {
+
+          @include sm {
+            display: none;
+          }
+        }
       }
 
       &--text {
         font-weight: 400;
+
+        * {
+          line-height: 140%;
+        }
       }
     }
   }
@@ -235,7 +257,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    padding: 6rem 0;
+    padding: 6rem 0 11.6rem 0;
 
     @include sm {
       grid-template-columns: repeat(1, 1fr);

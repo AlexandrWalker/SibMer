@@ -1,9 +1,10 @@
 @use './../mixins' as *;
 
 .social {
-  display: none;
+  display: block;
   opacity: 0;
-  transition: 0.3s ease;
+  visibility: hidden;
+  transition: all 0.3s ease;
 
   padding-bottom: 6.1rem;
 
@@ -12,9 +13,16 @@
   right: 6rem;
   z-index: 20;
 
-  @include dosm {
-    display: block;
+  @include sm {
+    top: 50%;
+    right: 1.5rem;
+    // transform: translateY(-50%);
+  }
+
+  .inner-page &,
+  &.social--show {
     opacity: 1;
+    visibility: visible;
     pointer-events: none;
   }
 
@@ -24,6 +32,10 @@
 
     .social__item-btn {
       top: 24.4rem;
+
+      @include sm {
+        top: 16.4rem;
+      }
 
       &::before,
       &::after {
@@ -89,6 +101,11 @@
 
     position: relative;
 
+    @include sm {
+      width: 3.6rem;
+      height: 3.6rem;
+    }
+
     &:hover {
       background-color: var(--accent);
 
@@ -99,6 +116,10 @@
 
     i {
       --font-size: 3rem;
+
+      @include sm {
+        --font-size: 1.9rem;
+      }
     }
 
     &-wrap {
@@ -121,6 +142,10 @@
       position: absolute;
       top: 0;
       right: calc(100% + 1.8rem);
+
+      @include sm {
+        display: none;
+      }
 
       &::before {
         content: "";
@@ -166,6 +191,11 @@
         top: 0;
         left: 0;
         z-index: 1;
+
+        @include sm {
+          width: 3.6rem;
+          height: 3.6rem;
+        }
       }
 
       &::after {
@@ -183,6 +213,11 @@
         top: 0;
         left: 0;
         z-index: 2;
+
+        @include sm {
+          width: 3.6rem;
+          height: 3.6rem;
+        }
       }
     }
   }
