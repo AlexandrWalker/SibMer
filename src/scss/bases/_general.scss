@@ -50,6 +50,14 @@
             margin-bottom: 1rem;
           }
 
+          &.general-nav-active {
+            color: var(--accent);
+
+            a {
+              border-color: var(--accent);
+            }
+          }
+
           &:last-child {
             margin-bottom: 0;
           }

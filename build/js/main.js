@@ -636,6 +636,23 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Функция для проигрывания видео-иконки при наведении у блока advan
    */
+  // (function () {
+  //   const advanItems = document.querySelectorAll('.advan__item');
+
+  //   if (!advanItems.length) return;
+
+  //   advanItems.forEach(advanItem => {
+  //     const icon = advanItem.querySelector('.icon-video');
+
+  //     if (!icon) return;
+
+  //     // Запуск при наведении
+  //     advanItem.addEventListener('mouseenter', () => {
+  //       icon.play();
+  //     });
+  //   });
+  // })();
+
   (function () {
     const advanItems = document.querySelectorAll('.advan__item');
 
@@ -646,9 +663,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!icon) return;
 
-      // Запуск при наведении
+      let isPlaying = false;
+
       advanItem.addEventListener('mouseenter', () => {
-        icon.play();
+        if (isPlaying) return;
+
+        isPlaying = true;
+        icon.currentTime = 0;
+
+        const playPromise = icon.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log("Автовоспроизведение заблокировано:", error);
+            isPlaying = false;
+          });
+        }
+      });
+
+      icon.addEventListener('ended', () => {
+        isPlaying = false;
       });
     });
   })();
@@ -760,6 +793,52 @@ document.addEventListener('DOMContentLoaded', () => {
       resizeObserver.observe(casesHead);
     }
 
+  })();
+
+  (function () {
+    // Находим все формы на странице
+    const forms = document.querySelectorAll('form');
+
+    forms.forEach(form => {
+      // Находим кнопку отправки внутри подвала конкретной формы
+      const submitBtn = form.querySelector('.form-foot button');
+
+      // Если кнопки или обязательных полей в форме нет — пропускаем её
+      if (!submitBtn) return;
+
+      // Функция проверки всех обязательных полей в текущей форме
+      const checkRequiredFields = () => {
+        // Находим ВСЕ обязательные поля в этой форме
+        const requiredInputs = form.querySelectorAll('[required]');
+
+        // Если обязательных полей нет, кнопка всегда активна
+        if (requiredInputs.length === 0) {
+          submitBtn.removeAttribute('disabled');
+          return;
+        }
+
+        // Проверяем, есть ли хотя бы одно незаполненное обязательное поле.
+        // Метод checkValidity() встроен в браузер и идеально проверяет заполненность,
+        // тип email, состояние чекбоксов required и т.д.
+        const hasInvalidField = Array.from(requiredInputs).some(input => !input.checkValidity());
+
+        if (hasInvalidField) {
+          submitBtn.setAttribute('disabled', 'disabled');
+        } else {
+          submitBtn.removeAttribute('disabled');
+        }
+      };
+
+      // Запускаем проверку один раз при загрузке страницы, 
+      // чтобы сразу заблокировать кнопку, если поля пустые
+      checkRequiredFields();
+
+      // Следим за вводом данных во всей форме (событие всплывает от инпутов к форме)
+      form.addEventListener('input', checkRequiredFields);
+
+      // Дополнительно следим за изменением (полезно для селектов, радиокнопок и чекбоксов)
+      form.addEventListener('change', checkRequiredFields);
+    });
   })();
 
   /**
@@ -1585,7 +1664,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (isMobile) {
-      mobileTimer = setTimeout(openExitPopup, 5000);
+      mobileTimer = setTimeout(openExitPopup, 60000);
     } else {
       document.documentElement.addEventListener('mouseleave', handleMouseLeave);
       document.documentElement.addEventListener('mouseout', handleMouseOut);
@@ -1597,31 +1676,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const unitBlock = document.getElementById('unit');
     const closeButton = document.getElementById('unitCloseBtn');
 
+    let isTimerStarted = false;
+
     const startUnitTimer = () => {
+      if (isTimerStarted) return;
+      isTimerStarted = true;
+
       setTimeout(() => {
-        unitBlock.classList.remove('unit-hidden');
-      }, 3000);
+        if (!htmlTag.classList.contains('preloader--active')) {
+          unitBlock.classList.remove('unit-hidden');
+        } else {
+          isTimerStarted = false;
+          startUnitTimer();
+        }
+      }, 7000);
     };
 
     if (!htmlTag.classList.contains('preloader--active')) {
-      startUnitTimer();
-    } else {
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.attributeName === 'class') {
-            const isPreloaderActive = htmlTag.classList.contains('preloader--active');
-            if (!isPreloaderActive) {
-              startUnitTimer();
-              observer.disconnect();
-            }
-          }
-        });
-      });
-      observer.observe(htmlTag, { attributes: true });
+      setTimeout(() => {
+        if (!htmlTag.classList.contains('preloader--active')) {
+          startUnitTimer();
+        }
+      }, 50);
     }
-    closeButton.addEventListener('click', () => {
-      unitBlock.classList.add('unit-hidden');
+
+    const observer = new MutationObserver(() => {
+      const isPreloaderActive = htmlTag.classList.contains('preloader--active');
+      if (!isPreloaderActive) {
+        startUnitTimer();
+        observer.disconnect();
+      }
     });
+
+    observer.observe(htmlTag, { attributes: true, attributeFilter: ['class'] });
+
+    if (closeButton && unitBlock) {
+      closeButton.addEventListener('click', () => {
+        unitBlock.classList.add('unit-hidden');
+      });
+    }
   })();
 
   /**

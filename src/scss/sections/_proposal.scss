@@ -9,6 +9,72 @@
     --section-padding-bottom: 3rem;
   }
 
+  &.proposal--old {
+
+    @include sm {
+      --section-padding-top: 4rem;
+      --section-padding-bottom: 4rem;
+    }
+
+    .general__head {
+
+      @include dosm {
+        grid-column: 1 / 5;
+        max-width: 39.2rem;
+      }
+    }
+
+    .proposal__cover {
+
+      @include dosm {
+        max-width: 92.7rem;
+        padding: 0;
+        margin-top: -7.4rem;
+        margin-left: -7.3rem;
+        grid-column: 1/9;
+      }
+    }
+
+    .form {
+
+      &-body {
+        gap: 2rem;
+      }
+
+      &-block {
+
+        @include sm {
+          gap: 1rem;
+        }
+      }
+
+      &-item {
+
+        @include sm {
+          gap: 1rem;
+        }
+      }
+
+      &-foot {
+
+        @include sm {
+          margin-top: 0;
+        }
+      }
+
+      &-label {
+
+        @include sm {
+          font-size: 1.4rem;
+        }
+      }
+
+      &-col-2 {
+        gap: 1rem;
+      }
+    }
+  }
+
   .blog-page & {
     background-color: var(--black);
   }
@@ -92,7 +158,7 @@
     &-foot {
       gap: 1.5rem;
       margin-top: 1.2rem;
-      
+
       @include dosm {
         gap: 2.5rem;
         margin-top: 1rem;
@@ -135,6 +201,10 @@
       display: none;
     }
 
+    .proposal--old & {
+      margin-top: 0;
+    }
+
     img {
       max-width: 100%;
       // width: auto;
@@ -151,7 +221,7 @@
     gap: 2rem;
     padding: 0;
     height: 100%;
-    
+
     @include dosm {
       gap: 3rem;
       padding: 6rem 6rem 5rem 6rem;
@@ -239,7 +309,8 @@
 
       @include sm {
         // font-size: 3rem;
-        font-size: 1.6rem;
+        // font-size: 1.6rem;
+        font-size: 2rem;
       }
     }
   }

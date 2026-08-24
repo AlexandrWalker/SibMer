@@ -43,6 +43,7 @@
 
         @include sm {
           padding: 1rem 1.5rem 3rem 1.5rem;
+          grid-row: 2/3;
         }
       }
 
@@ -78,6 +79,7 @@
 
         @include sm {
           grid-row: 1/2;
+          height: 22rem;
         }
       }
     }

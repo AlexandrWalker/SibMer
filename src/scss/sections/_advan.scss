@@ -179,8 +179,10 @@
       }
 
       video {
-        width: 100%;
+        display: block;
+        width: auto;
         height: 100%;
+        object-fit: contain;
         border-radius: unset;
 
         @include sm {
