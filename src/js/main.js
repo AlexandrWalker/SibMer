@@ -563,20 +563,50 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   (function () {
     const social = document.querySelector('.social');
-    const btn = document.querySelector('.social__item-btn');
-    const firstSection = document.querySelector('section');
+    if (!social) return;
 
-    if (social && btn) {
-      btn.addEventListener('mouseenter', () => {
-        social.classList.add('active');
+    const btn = social.querySelector('.social__item-btn');
+    const firstSection = document.querySelector('section');
+    const mediaQuery = window.matchMedia('(max-width: 600px)');
+
+    if (btn) {
+      const handleMouseEnter = () => {
+        if (!mediaQuery.matches) {
+          social.classList.add('active');
+        }
+      };
+
+      const handleMouseLeave = () => {
+        if (!mediaQuery.matches) {
+          social.classList.remove('active');
+        }
+      };
+
+      const handleClick = (e) => {
+        if (mediaQuery.matches) {
+          e.preventDefault();
+          social.classList.toggle('active');
+        }
+      };
+
+      social.addEventListener('mouseenter', handleMouseEnter);
+      social.addEventListener('mouseleave', handleMouseLeave);
+      btn.addEventListener('click', handleClick);
+
+      social.addEventListener('click', (e) => {
+        if (mediaQuery.matches && e.target.closest('a:not(.social__item-btn)')) {
+          social.classList.remove('active');
+        }
       });
 
-      social.addEventListener('mouseleave', () => {
-        social.classList.remove('active');
+      document.addEventListener('click', (e) => {
+        if (mediaQuery.matches && social.classList.contains('active') && !social.contains(e.target)) {
+          social.classList.remove('active');
+        }
       });
     }
 
-    if (firstSection && social) {
+    if (firstSection) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const isInnerPage = document.documentElement.classList.contains('inner-page');
@@ -1601,21 +1631,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // })();
 
   /**
-   * Функция открытия попапа при попытке учйти с вкладки
+   * Функция открытия попапа при попытке уйти с вкладки
    */
   (function () {
-
     const STORAGE_KEY = 'exit_popup_shown';
-
     const POPUP_ID = 'popup-4';
-
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
     let popupTriggered = false;
 
     if (sessionStorage.getItem(STORAGE_KEY)) return;
 
     function openExitPopup() {
+      if (document.documentElement.classList.contains('preloader--active')) return;
       if (popupTriggered || sessionStorage.getItem(STORAGE_KEY)) return;
 
       if (typeof Fancybox === 'undefined' || !document.getElementById(POPUP_ID)) {

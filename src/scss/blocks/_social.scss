@@ -27,7 +27,7 @@
   }
 
   &.active {
-    pointer-events: all;
+    pointer-events: all !important;
     transform: translateY(-50%);
 
     .social__item-btn {
