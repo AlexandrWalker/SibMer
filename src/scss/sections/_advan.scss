@@ -160,6 +160,7 @@
       }
 
       img {
+        display: block;
         max-width: 100%;
         width: auto;
         height: 100%;
@@ -184,6 +185,8 @@
         height: 100%;
         object-fit: contain;
         border-radius: unset;
+        transform: translateZ(0);
+        will-change: transform;
 
         @include sm {
           display: none;

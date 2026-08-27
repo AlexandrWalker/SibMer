@@ -82,6 +82,8 @@
       width: 100%;
       height: auto;
       object-fit: contain;
+      transform: translateZ(0);
+      will-change: transform;
     }
   }
 }
