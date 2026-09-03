@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'SibMerIconFont';
-  src:  url('fonts/SibMerIconFont.eot?2kwza3');
-  src:  url('fonts/SibMerIconFont.eot?2kwza3#iefix') format('embedded-opentype'),
-    url('fonts/SibMerIconFont.ttf?2kwza3') format('truetype'),
-    url('fonts/SibMerIconFont.woff?2kwza3') format('woff'),
-    url('fonts/SibMerIconFont.svg?2kwza3#SibMerIconFont') format('svg');
+  src:  url('fonts/SibMerIconFont.eot?jqcja7');
+  src:  url('fonts/SibMerIconFont.eot?jqcja7#iefix') format('embedded-opentype'),
+    url('fonts/SibMerIconFont.ttf?jqcja7') format('truetype'),
+    url('fonts/SibMerIconFont.woff?jqcja7') format('woff'),
+    url('fonts/SibMerIconFont.svg?jqcja7#SibMerIconFont') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,156 +25,219 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-advan-1:before {
+.icon-gis-maps:before {
   content: "\e900";
 }
-.icon-advan-2:before {
+.icon-advan-1 .path1:before {
   content: "\e901";
+  color: rgb(20, 38, 55);
 }
-.icon-advan-3:before {
+.icon-advan-1 .path2:before {
   content: "\e902";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
 }
-.icon-advan-4:before {
+.icon-advan-1-1:before {
   content: "\e903";
 }
-.icon-advan-5:before {
+.icon-advan-2:before {
   content: "\e904";
 }
-.icon-air:before {
+.icon-advan-3:before {
   content: "\e905";
 }
-.icon-arrow-left-big:before {
+.icon-advan-4:before {
   content: "\e906";
 }
-.icon-arrow-left-long:before {
+.icon-advan-5:before {
   content: "\e907";
 }
-.icon-arrow-right-big:before {
+.icon-air:before {
   content: "\e908";
 }
-.icon-arrow-right-long:before {
+.icon-arrow-left-big:before {
   content: "\e909";
 }
-.icon-arrow-right-thin:before {
+.icon-arrow-left-long:before {
   content: "\e90a";
 }
-.icon-cases:before {
+.icon-arrow-right-big:before {
   content: "\e90b";
 }
-.icon-close:before {
+.icon-arrow-right-long:before {
   content: "\e90c";
 }
-.icon-close-circle-inside:before {
+.icon-arrow-right-thin:before {
   content: "\e90d";
 }
-.icon-contacts:before {
+.icon-auto-icon-1:before {
   content: "\e90e";
 }
-.icon-contacts-icon-1:before {
+.icon-auto-icon-2:before {
   content: "\e90f";
 }
-.icon-contacts-icon-2:before {
+.icon-auto-icon-3:before {
   content: "\e910";
 }
-.icon-contacts-icon-3:before {
+.icon-auto-icon-4:before {
   content: "\e911";
 }
-.icon-copy:before {
+.icon-auto-icon-5:before {
   content: "\e912";
 }
-.icon-danger:before {
+.icon-auto-icon-6:before {
   content: "\e913";
 }
-.icon-down:before {
+.icon-avia-icon-1:before {
   content: "\e914";
 }
-.icon-download:before {
+.icon-avia-icon-2:before {
   content: "\e915";
 }
-.icon-eaeu:before {
+.icon-avia-icon-3:before {
   content: "\e916";
 }
-.icon-exit:before {
+.icon-avia-icon-4:before {
   content: "\e917";
 }
-.icon-ground:before {
+.icon-avia-icon-5:before {
   content: "\e918";
 }
-.icon-gruz:before {
+.icon-avia-icon-6:before {
   content: "\e919";
 }
-.icon-kuda:before {
+.icon-cases:before {
   content: "\e91a";
 }
-.icon-lightning:before {
+.icon-close:before {
   content: "\e91b";
 }
-.icon-max:before {
+.icon-close-circle-inside:before {
   content: "\e91c";
 }
-.icon-max-glass:before {
+.icon-contacts:before {
   content: "\e91d";
 }
-.icon-minus:before {
+.icon-contacts-icon-1:before {
   content: "\e91e";
 }
-.icon-otkuda:before {
+.icon-contacts-icon-2:before {
   content: "\e91f";
 }
-.icon-person:before {
+.icon-contacts-icon-3:before {
   content: "\e920";
 }
-.icon-phone:before {
+.icon-copy:before {
   content: "\e921";
 }
-.icon-plus:before {
+.icon-danger:before {
   content: "\e922";
 }
-.icon-pochta:before {
+.icon-down:before {
   content: "\e923";
 }
-.icon-presentation:before {
+.icon-download:before {
   content: "\e924";
 }
-.icon-raketa:before {
+.icon-eaeu:before {
   content: "\e925";
 }
-.icon-refrigerated:before {
+.icon-exit:before {
   content: "\e926";
 }
-.icon-requisite:before {
-  content: "\e927";
-}
-.icon-rf:before {
-  content: "\e928";
-}
-.icon-services-icon-air:before {
+.icon-ground:before {
   content: "\e929";
 }
-.icon-services-icon-country:before {
+.icon-gruz:before {
   content: "\e92a";
 }
-.icon-services-icon-ground:before {
+.icon-inter-icon-1:before {
   content: "\e92b";
 }
-.icon-tg:before {
+.icon-inter-icon-2:before {
   content: "\e92c";
 }
-.icon-tg-glass:before {
+.icon-inter-icon-3:before {
   content: "\e92d";
 }
-.icon-triangle:before {
+.icon-inter-icon-4:before {
   content: "\e92e";
 }
-.icon-unofficial:before {
+.icon-inter-icon-5:before {
   content: "\e92f";
 }
-.icon-wa:before {
+.icon-kuda:before {
   content: "\e930";
 }
-.icon-wa-glass:before {
+.icon-lightning:before {
   content: "\e931";
 }
-.icon-yandex-maps:before {
+.icon-max:before {
   content: "\e932";
+}
+.icon-max-glass:before {
+  content: "\e933";
+}
+.icon-minus:before {
+  content: "\e934";
+}
+.icon-otkuda:before {
+  content: "\e935";
+}
+.icon-person:before {
+  content: "\e936";
+}
+.icon-phone:before {
+  content: "\e937";
+}
+.icon-plus:before {
+  content: "\e938";
+}
+.icon-pochta:before {
+  content: "\e939";
+}
+.icon-presentation:before {
+  content: "\e93a";
+}
+.icon-raketa:before {
+  content: "\e93b";
+}
+.icon-refrigerated:before {
+  content: "\e93c";
+}
+.icon-requisite:before {
+  content: "\e93d";
+}
+.icon-rf:before {
+  content: "\e93e";
+}
+.icon-services-icon-air:before {
+  content: "\e93f";
+}
+.icon-services-icon-country:before {
+  content: "\e940";
+}
+.icon-services-icon-ground:before {
+  content: "\e941";
+}
+.icon-tg:before {
+  content: "\e942";
+}
+.icon-tg-glass:before {
+  content: "\e943";
+}
+.icon-triangle:before {
+  content: "\e944";
+}
+.icon-unofficial:before {
+  content: "\e945";
+}
+.icon-wa:before {
+  content: "\e946";
+}
+.icon-wa-glass:before {
+  content: "\e947";
+}
+.icon-yandex-maps:before {
+  content: "\e948";
 }
