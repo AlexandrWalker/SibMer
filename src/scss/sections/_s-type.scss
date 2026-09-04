@@ -87,23 +87,23 @@
       }
     }
 
-    &:first-child {
+    // &:first-child {
 
-      .s-type__item-icon {
+    //   .s-type__item-icon {
 
-        @include sm {
-          width: 13rem;
-          height: 13rem;
-        }
+    //     @include sm {
+    //       width: 13rem;
+    //       height: 13rem;
+    //     }
 
-        i {
+    //     i {
 
-          @include sm {
-            --font-size: 13rem;
-          }
-        }
-      }
-    }
+    //       @include sm {
+    //         --font-size: 13rem;
+    //       }
+    //     }
+    //   }
+    // }
 
     &-title {
       max-width: 27rem;
