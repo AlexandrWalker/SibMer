@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'SibMerIconFont';
-  src:  url('fonts/SibMerIconFont.eot?jqcja7');
-  src:  url('fonts/SibMerIconFont.eot?jqcja7#iefix') format('embedded-opentype'),
-    url('fonts/SibMerIconFont.ttf?jqcja7') format('truetype'),
-    url('fonts/SibMerIconFont.woff?jqcja7') format('woff'),
-    url('fonts/SibMerIconFont.svg?jqcja7#SibMerIconFont') format('svg');
+  src:  url('fonts/SibMerIconFont.eot?t214ci');
+  src:  url('fonts/SibMerIconFont.eot?t214ci#iefix') format('embedded-opentype'),
+    url('fonts/SibMerIconFont.ttf?t214ci') format('truetype'),
+    url('fonts/SibMerIconFont.woff?t214ci') format('woff'),
+    url('fonts/SibMerIconFont.svg?t214ci#SibMerIconFont') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,219 +25,231 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-gis-maps:before {
+.icon-included-icon-5:before {
   content: "\e900";
 }
-.icon-advan-1 .path1:before {
+.icon-included-icon-6:before {
   content: "\e901";
+}
+.icon-included-icon-4:before {
+  content: "\e902";
+}
+.icon-included-icon-3:before {
+  content: "\e903";
+}
+.icon-included-icon-2:before {
+  content: "\e904";
+}
+.icon-included-icon-1:before {
+  content: "\e905";
+}
+.icon-inter-icon-2:before {
+  content: "\e906";
+}
+.icon-inter-icon-3:before {
+  content: "\e907";
+}
+.icon-inter-icon-4:before {
+  content: "\e908";
+}
+.icon-inter-icon-5:before {
+  content: "\e909";
+}
+.icon-inter-icon-1:before {
+  content: "\e90a";
+}
+.icon-auto-icon-1:before {
+  content: "\e90b";
+}
+.icon-auto-icon-2:before {
+  content: "\e90c";
+}
+.icon-auto-icon-3:before {
+  content: "\e90d";
+}
+.icon-auto-icon-4:before {
+  content: "\e90e";
+}
+.icon-auto-icon-5:before {
+  content: "\e90f";
+}
+.icon-auto-icon-6:before {
+  content: "\e910";
+}
+.icon-avia-icon-2:before {
+  content: "\e911";
+}
+.icon-avia-icon-3:before {
+  content: "\e912";
+}
+.icon-avia-icon-4:before {
+  content: "\e913";
+}
+.icon-avia-icon-5:before {
+  content: "\e914";
+}
+.icon-avia-icon-6:before {
+  content: "\e915";
+}
+.icon-avia-icon-1:before {
+  content: "\e916";
+}
+.icon-advan-1-1:before {
+  content: "\e917";
+}
+.icon-advan-4:before {
+  content: "\e918";
+}
+.icon-advan-1 .path1:before {
+  content: "\e919";
   color: rgb(20, 38, 55);
 }
 .icon-advan-1 .path2:before {
-  content: "\e902";
+  content: "\e91a";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-.icon-advan-1-1:before {
-  content: "\e903";
-}
-.icon-advan-2:before {
-  content: "\e904";
-}
-.icon-advan-3:before {
-  content: "\e905";
-}
-.icon-advan-4:before {
-  content: "\e906";
-}
-.icon-advan-5:before {
-  content: "\e907";
-}
-.icon-air:before {
-  content: "\e908";
-}
-.icon-arrow-left-big:before {
-  content: "\e909";
-}
-.icon-arrow-left-long:before {
-  content: "\e90a";
-}
-.icon-arrow-right-big:before {
-  content: "\e90b";
-}
-.icon-arrow-right-long:before {
-  content: "\e90c";
-}
-.icon-arrow-right-thin:before {
-  content: "\e90d";
-}
-.icon-auto-icon-1:before {
-  content: "\e90e";
-}
-.icon-auto-icon-2:before {
-  content: "\e90f";
-}
-.icon-auto-icon-3:before {
-  content: "\e910";
-}
-.icon-auto-icon-4:before {
-  content: "\e911";
-}
-.icon-auto-icon-5:before {
-  content: "\e912";
-}
-.icon-auto-icon-6:before {
-  content: "\e913";
-}
-.icon-avia-icon-1:before {
-  content: "\e914";
-}
-.icon-avia-icon-2:before {
-  content: "\e915";
-}
-.icon-avia-icon-3:before {
-  content: "\e916";
-}
-.icon-avia-icon-4:before {
-  content: "\e917";
-}
-.icon-avia-icon-5:before {
-  content: "\e918";
-}
-.icon-avia-icon-6:before {
-  content: "\e919";
-}
-.icon-cases:before {
-  content: "\e91a";
-}
-.icon-close:before {
+.icon-close-circle-inside:before {
   content: "\e91b";
 }
-.icon-close-circle-inside:before {
+.icon-requisite:before {
   content: "\e91c";
 }
-.icon-contacts:before {
+.icon-raketa:before {
   content: "\e91d";
 }
-.icon-contacts-icon-1:before {
+.icon-lightning:before {
   content: "\e91e";
 }
-.icon-contacts-icon-2:before {
+.icon-gruz:before {
   content: "\e91f";
 }
-.icon-contacts-icon-3:before {
+.icon-wa-glass:before {
   content: "\e920";
 }
-.icon-copy:before {
+.icon-tg-glass:before {
   content: "\e921";
 }
-.icon-danger:before {
+.icon-max-glass:before {
   content: "\e922";
 }
-.icon-down:before {
+.icon-exit:before {
   content: "\e923";
 }
-.icon-download:before {
+.icon-services-icon-ground:before {
   content: "\e924";
 }
-.icon-eaeu:before {
+.icon-services-icon-air:before {
   content: "\e925";
 }
-.icon-exit:before {
+.icon-services-icon-country:before {
   content: "\e926";
 }
-.icon-ground:before {
+.icon-triangle:before {
+  content: "\e927";
+}
+.icon-copy:before {
+  content: "\e928";
+}
+.icon-contacts-icon-3:before {
   content: "\e929";
 }
-.icon-gruz:before {
+.icon-contacts-icon-2:before {
   content: "\e92a";
 }
-.icon-inter-icon-1:before {
+.icon-contacts-icon-1:before {
   content: "\e92b";
 }
-.icon-inter-icon-2:before {
-  content: "\e92c";
-}
-.icon-inter-icon-3:before {
-  content: "\e92d";
-}
-.icon-inter-icon-4:before {
-  content: "\e92e";
-}
-.icon-inter-icon-5:before {
-  content: "\e92f";
-}
-.icon-kuda:before {
-  content: "\e930";
-}
-.icon-lightning:before {
-  content: "\e931";
-}
-.icon-max:before {
-  content: "\e932";
-}
-.icon-max-glass:before {
-  content: "\e933";
-}
-.icon-minus:before {
-  content: "\e934";
-}
-.icon-otkuda:before {
-  content: "\e935";
-}
-.icon-person:before {
-  content: "\e936";
-}
-.icon-phone:before {
-  content: "\e937";
-}
-.icon-plus:before {
+.icon-arrow-right-thin:before {
   content: "\e938";
 }
-.icon-pochta:before {
+.icon-presentation:before {
   content: "\e939";
 }
-.icon-presentation:before {
+.icon-cases:before {
   content: "\e93a";
 }
-.icon-raketa:before {
+.icon-advan-5:before {
   content: "\e93b";
 }
-.icon-refrigerated:before {
+.icon-advan-3:before {
   content: "\e93c";
 }
-.icon-requisite:before {
+.icon-advan-2:before {
   content: "\e93d";
 }
-.icon-rf:before {
+.icon-unofficial:before {
   content: "\e93e";
 }
-.icon-services-icon-air:before {
+.icon-rf:before {
   content: "\e93f";
 }
-.icon-services-icon-country:before {
+.icon-eaeu:before {
   content: "\e940";
 }
-.icon-services-icon-ground:before {
+.icon-refrigerated:before {
   content: "\e941";
 }
-.icon-tg:before {
+.icon-danger:before {
   content: "\e942";
 }
-.icon-tg-glass:before {
+.icon-ground:before {
   content: "\e943";
 }
-.icon-triangle:before {
+.icon-air:before {
   content: "\e944";
 }
-.icon-unofficial:before {
+.icon-arrow-left-big:before {
   content: "\e945";
 }
-.icon-wa:before {
+.icon-arrow-right-big:before {
   content: "\e946";
 }
-.icon-wa-glass:before {
+.icon-arrow-left-long:before {
   content: "\e947";
 }
-.icon-yandex-maps:before {
+.icon-arrow-right-long:before {
   content: "\e948";
+}
+.icon-down:before {
+  content: "\e949";
+}
+.icon-download:before {
+  content: "\e94a";
+}
+.icon-kuda:before {
+  content: "\e94b";
+}
+.icon-otkuda:before {
+  content: "\e94c";
+}
+.icon-phone:before {
+  content: "\e94d";
+}
+.icon-person:before {
+  content: "\e94e";
+}
+.icon-close:before {
+  content: "\e94f";
+}
+.icon-plus:before {
+  content: "\e950";
+}
+.icon-minus:before {
+  content: "\e951";
+}
+.icon-contacts:before {
+  content: "\e952";
+}
+.icon-pochta:before {
+  content: "\e953";
+}
+.icon-max:before {
+  content: "\e954";
+}
+.icon-tg:before {
+  content: "\e955";
+}
+.icon-wa:before {
+  content: "\e956";
 }

@@ -611,7 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
           const isInnerPage = document.documentElement.classList.contains('inner-page');
 
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             social.classList.remove('social--show');
           } else {
             if (!isInnerPage) {
@@ -620,8 +620,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }, {
-        rootMargin: '0px 0px -100% 0px',
-        threshold: 0
+        rootMargin: '0px 0px 0px 0px',
+        threshold: 0.5
       });
 
       observer.observe(firstSection);
@@ -1312,9 +1312,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const icon = filter.querySelector('.general__filter-icon');
 
     const states = [
-      { text: 'по умолчанию', class: 'icon--down' },
-      { text: 'по убыванию', class: 'icon--down' },
-      { text: 'по возрастанию', class: 'icon--up' }
+      { text: 'по умолчанию', class: 'icons--down' },
+      { text: 'по убыванию', class: 'icons--down' },
+      { text: 'по возрастанию', class: 'icons--up' }
     ];
 
     let currentStateIndex = 0;
@@ -1328,7 +1328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         span.innerText = state.text;
       }
 
-      icon.classList.remove('icon--up', 'icon--down');
+      icon.classList.remove('icons--up', 'icons--down');
       icon.classList.add(state.class);
     });
   })();

@@ -19,6 +19,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="SM" />
   <link rel="manifest" href="./images/favicon/site.webmanifest" />
+  <!-- Marquiz script start -->
+  <script> (function (w, d, s, o) { var j = d.createElement(s); j.async = true; j.src = '//script.marquiz.ru/v2.js'; j.onload = function () { if (document.readyState !== 'loading') Marquiz.init(o); else document.addEventListener("DOMContentLoaded", function () { Marquiz.init(o); }); }; d.head.insertBefore(j, d.head.firstElementChild); })(window, document, 'script', { host: '//quiz.marquiz.ru', region: 'ru', id: '6a952dc72973890019227782', autoOpen: false, autoOpenFreq: 'once', openOnExit: false, disableOnMobile: false }); </script>
+  <!-- Marquiz script end -->
   <!-- title -->
   <title>Siberian Merchant Lines</title>
   <!-- icons -->
@@ -28,6 +31,14 @@
   <link rel="stylesheet" href="./libs/lenis/lenis.min.css">
   <link rel="stylesheet" href="./libs/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="./css/style.css">
+  <style>
+    @media (max-width:600px) {
+      .b24-widget-button-position-bottom-right {
+        right: 10px;
+        bottom: 70px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -457,21 +468,58 @@
             </div>
             <div class="general__body">
               <div class="included__items anim-items">
+
                 <div class="included__item anim-item">
-                  <div class="included__item-title">
-                    Международная автодоставка
+                  <div class="included__item-count">
+                    1
+                  </div>
+                  <div class="included__item-icon">
+                    <i class="icon-included-icon-1"></i>
+                  </div>
+                  <div class="included__item-content">
+                    <div class="included__item-title">
+                      Оплата за товар
+                    </div>
+                    <div class="included__item-text">
+                      Примерный текст под заголовком в две строки для примера
+                    </div>
                   </div>
                 </div>
+
                 <div class="included__item anim-item">
-                  <div class="included__item-title">
-                    Международная автодоставка
+                  <div class="included__item-count">
+                    2
+                  </div>
+                  <div class="included__item-icon">
+                    <i class="icon-included-icon-2"></i>
+                  </div>
+                  <div class="included__item-content">
+                    <div class="included__item-title">
+                      таможенное оформление
+                    </div>
+                    <div class="included__item-text">
+                      Примерный текст под заголовком в две строки для примера
+                    </div>
                   </div>
                 </div>
+
                 <div class="included__item anim-item">
-                  <div class="included__item-title">
-                    Международная автодоставка
+                  <div class="included__item-count">
+                    3
+                  </div>
+                  <div class="included__item-icon">
+                    <i class="icon-included-icon-3"></i>
+                  </div>
+                  <div class="included__item-content">
+                    <div class="included__item-title">
+                      доставка «дверь – дверь»
+                    </div>
+                    <div class="included__item-text">
+                      Примерный текст под заголовком в две строки для примера
+                    </div>
                   </div>
                 </div>
+
               </div>
             </div>
 
@@ -2549,18 +2597,18 @@
               <div class="callback__side-items">
                 <div class="callback__side-item">
                   <div class="callback__side-title">
-                    Собственный склад
+                    Склад
                   </div>
                   <div class="callback__side-text">
-                    10 000 м² + площадка <br> 10 000м2 класса А
+                    6 000 м² + площадка 3 000 м²
                   </div>
                 </div>
                 <div class="callback__side-item">
                   <div class="callback__side-title">
-                    Реестр ФТС
+                    EX в Китае
                   </div>
                   <div class="callback__side-text">
-                    Таможенный <br> представитель
+                    Оформление экспортных деклараций в Китае
                   </div>
                 </div>
                 <div class="callback__side-item">
@@ -2568,7 +2616,7 @@
                     Без рисков задержки
                   </div>
                   <div class="callback__side-text">
-                    Маркировка до <br> пересечения границы РФ
+                    Маркировка до пересечения границы РФ
                   </div>
                 </div>
               </div>
@@ -2598,7 +2646,7 @@
                       </div>
                       <div class="form-group">
                         <div class="form-icon">
-                          <i class="icon-advan-1"></i>
+                          <i class="icon-advan-1-1"></i>
                         </div>
                         <input class="form-input" type="text" name="main_callback_tovarnaya_gruppa"
                           placeholder="Товарная группа">

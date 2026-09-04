@@ -119,14 +119,6 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
   src: url("../fonts/Roboto-Black.woff2") format("woff2"), url("../fonts/Roboto-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
@@ -151,6 +143,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
@@ -167,16 +167,8 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-SemiBold.woff2") format("woff2"), url("../fonts/Roboto-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -189,10 +181,10 @@ img {
 }
 
 @font-face {
-  font-family: Roboto;
+  font-family: RobotoCondensed;
   font-display: swap;
-  src: url("../fonts/Roboto-Thin.woff2") format("woff2"), url("../fonts/Roboto-Thin.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
+  font-weight: 800;
   font-style: normal;
 }
 
@@ -201,14 +193,6 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Bold.woff2") format("woff2"), url("../fonts/RobotoCondensed-Bold.woff") format("woff");
   font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
-  src: url("../fonts/RobotoCondensed-ExtraBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-ExtraBold.woff") format("woff");
-  font-weight: 800;
   font-style: normal;
 }
 
@@ -229,10 +213,34 @@ img {
 }
 
 @font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
   font-family: RobotoCondensed;
   font-display: swap;
   src: url("../fonts/RobotoCondensed-Medium.woff2") format("woff2"), url("../fonts/RobotoCondensed-Medium.woff") format("woff");
   font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoCondensed;
+  font-display: swap;
+  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -249,14 +257,6 @@ img {
   font-display: swap;
   src: url("../fonts/RobotoCondensed-SemiBold.woff2") format("woff2"), url("../fonts/RobotoCondensed-SemiBold.woff") format("woff");
   font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: RobotoCondensed;
-  font-display: swap;
-  src: url("../fonts/RobotoCondensed-Thin.woff2") format("woff2"), url("../fonts/RobotoCondensed-Thin.woff") format("woff");
-  font-weight: 100;
   font-style: normal;
 }
 
@@ -435,8 +435,8 @@ img {
   -o-transition: color 0.3s ease, background-color 0.3s ease;
   transition: color 0.3s ease, background-color 0.3s ease;
   font-weight: 700;
-  font-size: 1.2rem;
-  line-height: 20px;
+  font-size: 1.4rem;
+  line-height: 143%;
   text-align: center;
   color: var(--black-50);
   cursor: pointer;
@@ -553,7 +553,7 @@ img {
   background-size: 100% 100%;
 }
 
-.general__filter-icon.icon--up {
+.general__filter-icon.icons--up {
   -webkit-transform: scale(-1, -1);
   -ms-transform: scale(-1, -1);
   transform: scale(-1, -1);
@@ -1058,7 +1058,7 @@ body {
 }
 
 .accordion-item--active .accordion-icon i::before {
-  content: "\e934";
+  content: "\e951";
 }
 
 .accordion-icon {
@@ -3473,7 +3473,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 800;
+  z-index: 10200;
 }
 
 .plate.plate--active {
@@ -3767,10 +3767,9 @@ canvas {
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  padding-bottom: 6.1rem;
   position: fixed;
-  top: 59.8rem;
-  right: 6rem;
+  bottom: 21.6rem;
+  right: 5.5rem;
   z-index: 20;
 }
 
@@ -3783,13 +3782,6 @@ canvas {
 
 .social.active {
   pointer-events: all !important;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.social.active .social__item-btn {
-  top: 24.4rem;
 }
 
 .social.active .social__item-btn::before,
@@ -3812,22 +3804,14 @@ canvas {
 }
 
 .social.active .social__item:nth-child(1) {
-  -webkit-transition: opacity 0.3s ease, background-color 0.3s ease, -webkit-transform 0.3s ease;
-  transition: opacity 0.3s ease, background-color 0.3s ease, -webkit-transform 0.3s ease;
-  -o-transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
-  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
-  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, -webkit-transform 0.3s ease;
+  -webkit-transition: opacity 0.3s ease 0.15s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.15s;
+  transition: opacity 0.3s ease 0.15s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.15s;
+  -o-transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease;
+  transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease;
+  transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.15s;
 }
 
 .social.active .social__item:nth-child(2) {
-  -webkit-transition: opacity 0.3s ease 0.05s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.05s;
-  transition: opacity 0.3s ease 0.05s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.05s;
-  -o-transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease;
-  transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease;
-  transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.05s;
-}
-
-.social.active .social__item:nth-child(3) {
   -webkit-transition: opacity 0.3s ease 0.1s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.1s;
   transition: opacity 0.3s ease 0.1s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.1s;
   -o-transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s, background-color 0.3s ease;
@@ -3835,12 +3819,20 @@ canvas {
   transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.1s;
 }
 
+.social.active .social__item:nth-child(3) {
+  -webkit-transition: opacity 0.3s ease 0.05s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.05s;
+  transition: opacity 0.3s ease 0.05s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.05s;
+  -o-transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease;
+  transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease;
+  transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.05s;
+}
+
 .social.active .social__item:nth-child(4) {
-  -webkit-transition: opacity 0.3s ease 0.15s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.15s;
-  transition: opacity 0.3s ease 0.15s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.15s;
-  -o-transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease;
-  transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease;
-  transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease, -webkit-transform 0.3s ease 0.15s;
+  -webkit-transition: opacity 0.3s ease, background-color 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, background-color 0.3s ease, -webkit-transform 0.3s ease;
+  -o-transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, -webkit-transform 0.3s ease;
 }
 
 .menu--open .social {
@@ -3954,8 +3946,6 @@ canvas {
   cursor: pointer;
   -webkit-box-shadow: 0px 0px 3px 0px var(--white-50);
   box-shadow: 0px 0px 3px 0px var(--white-50);
-  position: absolute;
-  top: 0;
 }
 
 .social__item-btn::before {
@@ -4894,6 +4884,8 @@ canvas {
   height: 28.9rem;
   border-radius: 0.6rem;
   overflow: hidden;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .blog__item-img img {
@@ -4915,6 +4907,7 @@ canvas {
   -ms-flex-align: end;
   align-items: flex-end;
   padding: 0 2rem;
+  height: 100%;
 }
 
 .blog__item-title {
@@ -4943,6 +4936,10 @@ canvas {
   overflow: hidden;
   line-height: 140%;
   color: var(--black-50);
+}
+
+.blog__item-btn {
+  margin-top: auto;
 }
 
 .blog__item .btn--default {
@@ -6311,23 +6308,101 @@ canvas {
 }
 
 .included__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  min-height: 47rem;
-  padding: 5rem 3rem;
+  min-height: 25rem;
+  padding: 3rem;
   background-color: var(--black);
   border-radius: 1rem;
   overflow: hidden;
+  -webkit-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
   color: var(--white);
+  position: relative;
+}
+
+.included__item-count {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 6.6rem;
+  height: 6.6rem;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 0.1rem solid var(--white-10);
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  font-size: 4rem;
+  line-height: 130%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.included__item-icon {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  opacity: 0.1;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  z-index: 1;
+}
+
+.included__item-icon i {
+  --font-size: 6.6rem;
+}
+
+.included__item-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .included__item-title {
   font-family: var(--second-family);
-  font-weight: 400;
-  font-size: 2.2rem;
+  font-weight: 700;
+  font-size: 1.6rem;
   line-height: 140%;
   text-transform: uppercase;
+}
+
+.included__item-text {
+  opacity: 0.5;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 140%;
 }
 
 .manual {
@@ -7239,7 +7314,7 @@ canvas {
 }
 
 .accordion-item--active .s-type__item-btn i::before {
-  content: "\e934";
+  content: "\e951";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -8462,6 +8537,22 @@ canvas {
     --btn-padding-x: 3rem;
   }
 
+  .included__item:hover {
+    background-color: var(--accent);
+  }
+
+  .included__item:hover .included__item-count {
+    border-color: var(--white-50);
+  }
+
+  .included__item:hover .included__item-icon {
+    opacity: 1;
+  }
+
+  .included__item:hover .included__item-text {
+    opacity: 1;
+  }
+
   .manual {
     --section-padding-top: 4rem !important;
   }
@@ -8953,6 +9044,11 @@ canvas {
     gap: 0.8rem;
   }
 
+  .general__tabs-item {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
   .cases .general__tabs-item {
     display: none;
   }
@@ -9363,12 +9459,8 @@ canvas {
   }
 
   .social {
-    top: 50%;
-    right: 1.5rem;
-  }
-
-  .social.active .social__item-btn {
-    top: 16.4rem;
+    right: 2.5rem;
+    bottom: 15rem;
   }
 
   .social__item {
@@ -9860,7 +9952,7 @@ canvas {
   }
 
   .cases__item.cases-item--active .cases__item-icon i::before {
-    content: "\e934";
+    content: "\e951";
   }
 
   .cases__item .general__head {
@@ -10246,10 +10338,28 @@ canvas {
   .included__items {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .included__item {
     min-height: unset;
+    padding: 2rem;
+    gap: 3rem;
+  }
+
+  .included__item-count {
+    width: 5rem;
+    height: 5rem;
+    font-size: 3rem;
+  }
+
+  .included__item-icon {
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .included__item-text {
+    font-size: 1.4rem;
   }
 
   .manual__items {
@@ -10550,6 +10660,7 @@ canvas {
   .s-advan__items {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .s-type__items {
@@ -10695,7 +10806,7 @@ canvas {
   }
 
   .accordion-item--active .services__item-btn i::before {
-    content: "\e934";
+    content: "\e951";
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
