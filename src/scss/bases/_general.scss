@@ -234,11 +234,17 @@
       transition: color 0.3s ease, background-color 0.3s ease;
 
       font-weight: 700;
-      font-size: 1.2rem;
-      line-height: 20px;
+      font-size: 1.4rem;
+      line-height: 143%;
       text-align: center;
       color: var(--black-50);
       cursor: pointer;
+
+      @include sm {
+        padding: 0.8rem 1.5rem;
+
+        font-size: 1rem;
+      }
 
       &.tabs--active,
       &:hover {
@@ -338,7 +344,7 @@
       background-repeat: no-repeat;
       background-size: 100% 100%;
 
-      &.icon--up {
+      &.icons--up {
         transform: scale(-1, -1);
       }
     }

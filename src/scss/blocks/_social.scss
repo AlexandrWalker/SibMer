@@ -6,17 +6,14 @@
   visibility: hidden;
   transition: all 0.3s ease;
 
-  padding-bottom: 6.1rem;
-
   position: fixed;
-  top: 59.8rem;
-  right: 6rem;
+  bottom: calc(5rem + 6.6rem + 10rem);
+  right: 5.5rem;
   z-index: 20;
 
   @include sm {
-    top: 50%;
-    right: 1.5rem;
-    // transform: translateY(-50%);
+    right: 2.5rem;
+    bottom: 15rem;
   }
 
   .inner-page &,
@@ -28,14 +25,8 @@
 
   &.active {
     pointer-events: all !important;
-    transform: translateY(-50%);
 
     .social__item-btn {
-      top: 24.4rem;
-
-      @include sm {
-        top: 16.4rem;
-      }
 
       &::before,
       &::after {
@@ -53,19 +44,20 @@
       }
 
       &:nth-child(1) {
-        transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+        transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease;
+
       }
 
       &:nth-child(2) {
-        transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease;
-      }
-
-      &:nth-child(3) {
         transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s, background-color 0.3s ease;
       }
 
+      &:nth-child(3) {
+        transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease;
+      }
+
       &:nth-child(4) {
-        transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
       }
     }
   }
@@ -131,7 +123,6 @@
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.3s ease;
-      // box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.6);
 
       font-weight: 700;
       font-size: 1.4rem;
@@ -173,9 +164,6 @@
       transform: translateY(0);
       cursor: pointer;
       box-shadow: 0px 0px 3px 0px var(--white-50);
-
-      position: absolute;
-      top: 0;
 
       &::before {
         content: "";

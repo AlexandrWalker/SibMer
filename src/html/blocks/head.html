@@ -17,6 +17,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="SM" />
   <link rel="manifest" href="./images/favicon/site.webmanifest" />
+  <!-- Marquiz script start -->
+  <script> (function (w, d, s, o) { var j = d.createElement(s); j.async = true; j.src = '//script.marquiz.ru/v2.js'; j.onload = function () { if (document.readyState !== 'loading') Marquiz.init(o); else document.addEventListener("DOMContentLoaded", function () { Marquiz.init(o); }); }; d.head.insertBefore(j, d.head.firstElementChild); })(window, document, 'script', { host: '//quiz.marquiz.ru', region: 'ru', id: '6a952dc72973890019227782', autoOpen: false, autoOpenFreq: 'once', openOnExit: false, disableOnMobile: false }); </script>
+  <!-- Marquiz script end -->
   <!-- title -->
   <title>@@title</title>
   <!-- icons -->
@@ -26,4 +29,12 @@
   <link rel="stylesheet" href="./libs/lenis/lenis.min.css">
   <link rel="stylesheet" href="./libs/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="./css/style.css">
+  <style>
+    @media (max-width:600px) {
+      .b24-widget-button-position-bottom-right {
+        right: 10px;
+        bottom: 70px;
+      }
+    }
+  </style>
 </head>
