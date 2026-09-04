@@ -38,6 +38,20 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    &.desktop-block {
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    &.mob-block {
+
+      @include dosm {
+        display: none;
+      }
+    }
   }
 
   &-wrap {
@@ -111,6 +125,10 @@
 
   &-group {
     position: relative;
+
+    &:has(.dropdown) {
+      width: 100%;
+    }
   }
 
   &-input {

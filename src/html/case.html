@@ -147,7 +147,7 @@
                       </div>
                     </div>
 
-                    <div class="form-block">
+                    <div class="form-block desktop-block">
                       <div class="form-title">
                         Тип груза
                       </div>
@@ -155,7 +155,7 @@
                         <div class="form-wrap">
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Оборудование
@@ -164,7 +164,7 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Сырье
@@ -173,7 +173,7 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Электроника
@@ -182,7 +182,7 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Насосы
@@ -191,7 +191,7 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Сухопутная техника
@@ -200,7 +200,7 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Строительная техника
@@ -209,7 +209,7 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Автомобили
@@ -218,7 +218,7 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Химия
@@ -227,7 +227,7 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Крепеж
@@ -236,12 +236,111 @@
                           </div>
                           <div class="form-group">
                             <label class="form-radio-label">
-                              <input class="form-radio-input" type="radio" name="case_calc_type">
+                              <input class="form-radio-input" type="radio" name="main_calc_type">
                               <span class="form-radio-item"></span>
                               <span class="form-radio-text">
                                 Батареи и аккумуляторы
                               </span>
                             </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-block mob-block">
+                      <div class="form-title">
+                        Тип груза
+                      </div>
+                      <div class="form-content">
+                        <div class="form-wrap">
+                          <div class="form-group">
+                            <div class="dropdown dropdown--js">
+                              <div class="dropdown__selected dropdown__selected--js">
+                                <div class="form-icon">
+                                  <i class="icon-advan-1-1"></i>
+                                </div>
+                                <input class="dropdown__input dropdown__selected-input--js" type="hidden" value="">
+                                <label class="dropdown__label dropdown__selected-label--js">Выбрать</label>
+                                <div class="dropdown__icon">
+                                  <i class="icon-triangle"></i>
+                                </div>
+                              </div>
+                              <div class="dropdown__container">
+                                <div class="dropdown__content">
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Оборудование" data-city="Оборудование">
+                                      Оборудование
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Сырье" data-city="Сырье">
+                                      Сырье
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Электроника" data-city="Электроника">
+                                      Электроника
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Насосы" data-city="Насосы">
+                                      Насосы
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Сухопутная техника" data-city="Сухопутная техника">
+                                      Сухопутная техника
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Строительная техника" data-city="Строительная техника">
+                                      Строительная техника
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Автомобили" data-city="Автомобили">
+                                      Автомобили
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Химия" data-city="Химия">
+                                      Химия
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Крепеж" data-city="Крепеж">
+                                      Крепеж
+                                    </label>
+                                  </div>
+                                  <div class="dropdown__option">
+                                    <label class="dropdown__label">
+                                      <input class="dropdown__radio" name="main_calc_type_dropdown" type="radio"
+                                        value="Батареи и аккумуляторы" data-city="Батареи и аккумуляторы">
+                                      Батареи и аккумуляторы
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                              <input class="dropdown__value" type="hidden">
+                            </div>
                           </div>
                         </div>
                       </div>
