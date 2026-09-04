@@ -127,6 +127,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
@@ -135,16 +143,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -161,14 +169,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
   font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
   font-style: normal;
 }
 
@@ -1432,7 +1432,7 @@ body {
 }
 
 .dropdown__container {
-  max-height: 30rem;
+  max-height: 23.2rem;
   overflow: hidden;
   pointer-events: none;
   border-radius: 0 0 1.8rem 1.8rem;
@@ -1463,6 +1463,10 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   border-bottom-width: 0.1rem;
+  border-color: var(--black-10);
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+     transition-delay: 0.3s;
 }
 
 .dropdown__container::-webkit-scrollbar {
@@ -1481,7 +1485,7 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 0 2rem 1.6rem 5.4rem;
   border: 0.1rem solid var(--black-10);
   border-top: 0;
@@ -9731,8 +9735,12 @@ canvas {
   }
 
   .calc__item-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 1.4rem;
+  }
+
+  .calc__item-price {
+    margin-bottom: 0.5rem;
   }
 
   .calc .general__title br {
@@ -9740,15 +9748,23 @@ canvas {
   }
 
   .calc .form-body {
-    gap: 2.5rem;
+    gap: 1.5rem;
   }
 
   .calc .form-block {
     gap: 1rem;
   }
 
+  .calc .form-block.form-col-9 {
+    gap: 1.5rem;
+  }
+
   .calc .form-item {
     gap: 1rem;
+  }
+
+  .calc .form-privacy {
+    margin-top: 0.5rem;
   }
 
   .callback {
