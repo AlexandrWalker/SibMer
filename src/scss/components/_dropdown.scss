@@ -84,7 +84,7 @@
   }
 
   &__container {
-    max-height: 30rem;
+    max-height: 23.2rem;
     overflow: hidden;
     pointer-events: none;
     border-radius: 0 0 1.8rem 1.8rem;
@@ -110,6 +110,8 @@
       overflow-x: hidden;
       overflow-y: auto;
       border-bottom-width: 0.1rem;
+      border-color: var(--black-10);
+      transition-delay: 0.3s;
     }
 
     &::-webkit-scrollbar {
@@ -124,7 +126,7 @@
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 0 2rem 1.6rem 5.4rem;
     border: 0.1rem solid var(--black-10);
     border-top: 0;
