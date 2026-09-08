@@ -184,6 +184,7 @@
 
       &::before {
         content: "";
+        display: none;
         // width: 5.6rem;
         width: 56px;
         // height: 5.6rem;
@@ -192,7 +193,7 @@
         border-radius: 50%;
         transition: all 0.3s ease;
         pointer-events: none;
-        animation: pulseBefore 2s linear infinite;
+        // animation: pulseBefore 2s linear infinite;
 
         position: absolute;
         top: 0;
@@ -207,6 +208,7 @@
 
       &::after {
         content: "";
+        display: none;
         // width: 5.6rem;
         width: 56px;
         // height: 5.6rem;
@@ -215,7 +217,7 @@
         border-radius: 50%;
         transition: all 0.3s ease;
         pointer-events: none;
-        animation: pulseAfter 2s linear infinite;
+        // animation: pulseAfter 2s linear infinite;
         animation-delay: 1s;
 
         position: absolute;

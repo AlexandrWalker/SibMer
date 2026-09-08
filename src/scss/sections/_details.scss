@@ -95,7 +95,7 @@
     @include dosm {
       display: flex;
       flex-direction: column;
-      gap: 5rem;
+      gap: 4rem;
       height: fit-content;
 
       grid-column: 1/6;
@@ -203,7 +203,8 @@
       @include sm {
         grid-row: 3/4;
 
-        margin-top: 1rem;
+        // margin-top: 1rem;
+        margin-top: 0;
       }
     }
 
@@ -268,7 +269,34 @@
         list-style: disc;
         margin-bottom: 2rem;
 
-        color: var(--blue-light);
+        @include sm {
+          margin-bottom: 1rem;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        a {
+          color: var(--blue-light);
+          border-bottom: 0.1rem dotted var(--blue-light);
+
+          &:hover {
+
+            @include dosm {
+              border-bottom-style: solid;
+            }
+          }
+        }
+      }
+    }
+
+    ol {
+      padding: 0 0 0 2.4rem;
+      margin-bottom: 2rem;
+
+      li {
+        margin-bottom: 2rem;
 
         @include sm {
           margin-bottom: 1rem;
@@ -279,6 +307,7 @@
         }
 
         a {
+          color: var(--blue-light);
           border-bottom: 0.1rem dotted var(--blue-light);
 
           &:hover {
@@ -348,6 +377,20 @@
       &__item {
         background-color: var(--white-50);
       }
+    }
+  }
+
+  &__img {
+    margin: 2rem 0 1rem 0;
+
+    @include dosm {
+      margin: 3rem 0 2rem 0;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
   }
 
