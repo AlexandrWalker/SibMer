@@ -8,7 +8,6 @@
     --section-padding-bottom: 0;
 
     background-color: var(--white);
-    // background: linear-gradient(90deg, var(--black) 0 41%, transparent 41% 70%);
   }
 
   .container--fluid {
@@ -74,8 +73,6 @@
       justify-content: space-between;
     }
   }
-
-  &__body {}
 
   &__items {
     display: grid;
@@ -156,16 +153,6 @@
           transform: scale(1);
         }
       }
-    }
-
-    &.cases-item--prev {
-
-      .cases__item-head {}
-    }
-
-    &.cases-item--next {
-
-      .cases__item-head {}
     }
 
     .general {
@@ -402,8 +389,6 @@
       grid-column: 6/13;
 
       padding: 24.8rem 0 6rem;
-      // padding: calc(var(--cases-padding) + 5.6rem + 3rem + 1rem) 0 6rem;
-      // padding: calc(var(--cases-padding) + 3rem) 0 6rem;
       padding: calc(var(--cases-padding) + 3rem) var(--container-padding) 6rem 2rem;
 
       @include sm {
