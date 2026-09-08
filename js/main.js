@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
       lenis.scrollTo(target, {
         offset: -60,
         duration: 1.5,
+
+        syncTouch: true, // Синхронизирует тач-события с нативным скроллом, убирая "желе"
+        syncTouchMove: true, // Предотвращает рассинхрон при движении пальца
+        touchInertiaMultiplier: 1 // Сглаживает инерцию на смартфонах
       });
     }
 
@@ -719,42 +723,150 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Функция для блока кейсов
    */
+  // (function () {
+  //   const mobileBreakpoint = 600;
+  //   const casesJs = document.querySelector('.cases--js');
+  //   if (!casesJs) return;
+
+  //   const casesTabsJs = document.querySelector('.cases-tabs--js');
+  //   const casesTabsItemsJs = casesTabsJs.querySelectorAll('.general__tabs-item');
+  //   const casesItemsJs = document.querySelectorAll('.cases-item--js');
+
+  //   // Новая функция для расстановки классов соседям (prev / next)
+  //   function updateNeighborClasses() {
+  //     // Сначала очищаем старые классы у всех элементов
+  //     casesItemsJs.forEach(i => {
+  //       i.classList.remove('cases-item--prev', 'cases-item--next');
+  //     });
+
+  //     // Находим индекс текущего активного элемента в массиве (NodeList)
+  //     const activeIndex = Array.from(casesItemsJs).findIndex(i =>
+  //       i.classList.contains('cases-item--active')
+  //     );
+
+  //     // Если активный элемент найден (индекс не равен -1)
+  //     if (activeIndex !== -1) {
+  //       // Проверяем существование элемента ПЕРЕД активным
+  //       if (activeIndex > 0) {
+  //         casesItemsJs[activeIndex - 1].classList.add('cases-item--prev');
+  //       }
+
+  //       // Проверяем существование элемента ПОСЛЕ активного
+  //       if (activeIndex < casesItemsJs.length - 1) {
+  //         casesItemsJs[activeIndex + 1].classList.add('cases-item--next');
+  //       }
+  //     }
+  //   }
+
+  //   // Первоначальный запуск при загрузке страницы, чтобы разметить соседей стартового активного таба
+  //   updateNeighborClasses();
+
+  //   if (casesTabsItemsJs.length) {
+  //     casesTabsItemsJs.forEach(tab => {
+  //       tab.addEventListener('click', () => {
+  //         casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
+  //         tab.classList.add('tabs--active');
+
+  //         const data = tab.dataset.value;
+  //         const casesItem = document.querySelector(`[data-cases="${data}"]`);
+
+  //         casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+  //         if (casesItem) {
+  //           casesItem.classList.add('cases-item--active');
+  //         }
+
+  //         // Обновляем соседние классы после смены активного элемента
+  //         updateNeighborClasses();
+
+  //         ScrollTrigger.update();
+  //       });
+  //     });
+  //   }
+
+  //   if (casesItemsJs.length) {
+  //     casesItemsJs.forEach((item, index) => {
+  //       item.style.zIndex = 100 - index;
+  //     });
+
+  //     const isMobile = () => window.innerWidth < mobileBreakpoint;
+
+  //     if (isMobile()) {
+  //       casesItemsJs.forEach(item => {
+  //         item.addEventListener('click', () => {
+  //           const isActive = item.classList.contains('cases-item--active');
+
+  //           casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+
+  //           if (!isActive) {
+  //             item.classList.add('cases-item--active');
+  //           }
+
+  //           // Обновляем соседние классы после клика по карточке на мобилке
+  //           updateNeighborClasses();
+
+  //           ScrollTrigger.update();
+  //         });
+  //       });
+  //     }
+  //   }
+
+  //   const cases = document.querySelector('.cases');
+  //   const casesHead = cases ? cases.querySelector('.cases__head') : null;
+
+  //   if (cases && casesHead) {
+  //     const updateCasesPadding = () => {
+  //       const h = casesHead.offsetHeight;
+  //       console.log(h);
+  //       document.documentElement.style.setProperty('--cases-padding', `${h}px`);
+  //     };
+
+  //     const resizeObserver = new ResizeObserver(() => {
+  //       updateCasesPadding();
+  //     });
+
+  //     resizeObserver.observe(casesHead);
+  //   }
+
+  // })();
+
   (function () {
     const mobileBreakpoint = 600;
     const casesJs = document.querySelector('.cases--js');
     if (!casesJs) return;
 
     const casesTabsJs = document.querySelector('.cases-tabs--js');
-    const casesTabsItemsJs = casesTabsJs.querySelectorAll('.general__tabs-item');
+    const casesTabsItemsJs = casesTabsJs ? casesTabsJs.querySelectorAll('.general__tabs-item') : [];
     const casesItemsJs = document.querySelectorAll('.cases-item--js');
 
-    // Новая функция для расстановки классов соседям (prev / next)
+    const isMobile = () => window.innerWidth < mobileBreakpoint;
+
+    const syncScrollTrigger = () => {
+      if (typeof window.ScrollTrigger !== 'undefined') {
+        setTimeout(() => {
+          window.ScrollTrigger.refresh();
+        }, 310);
+      }
+    };
+
     function updateNeighborClasses() {
-      // Сначала очищаем старые классы у всех элементов
       casesItemsJs.forEach(i => {
         i.classList.remove('cases-item--prev', 'cases-item--next');
       });
 
-      // Находим индекс текущего активного элемента в массиве (NodeList)
       const activeIndex = Array.from(casesItemsJs).findIndex(i =>
         i.classList.contains('cases-item--active')
       );
 
-      // Если активный элемент найден (индекс не равен -1)
       if (activeIndex !== -1) {
-        // Проверяем существование элемента ПЕРЕД активным
         if (activeIndex > 0) {
           casesItemsJs[activeIndex - 1].classList.add('cases-item--prev');
         }
-
-        // Проверяем существование элемента ПОСЛЕ активного
         if (activeIndex < casesItemsJs.length - 1) {
           casesItemsJs[activeIndex + 1].classList.add('cases-item--next');
         }
       }
     }
 
-    // Первоначальный запуск при загрузке страницы, чтобы разметить соседей стартового активного таба
     updateNeighborClasses();
 
     if (casesTabsItemsJs.length) {
@@ -771,10 +883,8 @@ document.addEventListener('DOMContentLoaded', () => {
             casesItem.classList.add('cases-item--active');
           }
 
-          // Обновляем соседние классы после смены активного элемента
           updateNeighborClasses();
-
-          ScrollTrigger.update();
+          syncScrollTrigger();
         });
       });
     }
@@ -784,26 +894,67 @@ document.addEventListener('DOMContentLoaded', () => {
         item.style.zIndex = 100 - index;
       });
 
-      const isMobile = () => window.innerWidth < mobileBreakpoint;
+      casesItemsJs.forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (!isMobile() || e.target.closest('a') || e.target.closest('button')) return;
 
-      if (isMobile()) {
-        casesItemsJs.forEach(item => {
-          item.addEventListener('click', () => {
-            const isActive = item.classList.contains('cases-item--active');
+          e.stopPropagation();
 
-            casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+          const isActive = item.classList.contains('cases-item--active');
+          const trigger = item.querySelector('.general__title') || item;
 
-            if (!isActive) {
-              item.classList.add('cases-item--active');
+          const initialTriggerPageTop = trigger.getBoundingClientRect().top + window.scrollY;
+
+          if (typeof lenis !== 'undefined') {
+            lenis.stop();
+          }
+
+          casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+
+          // Заменяем блок расчета дельты внутри обработчика клика:
+          if (!isActive) {
+            item.classList.add('cases-item--active');
+
+            // Даем карточке 20-30мс на старт открытия, чтобы Lenis замерил актуальную координату
+            setTimeout(() => {
+              if (typeof lenis !== 'undefined') {
+                lenis.scrollTo(trigger, {
+                  offset: -100,      // Делаем отступ сверху (например, чтобы шапка сайта не перекрыла заголовок)
+                  duration: 0.8,     // Тягучая премиальная скорость доскролла
+                  ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Плавное замедление
+                });
+              } else {
+                trigger.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 30);
+          }
+
+          updateNeighborClasses();
+
+          setTimeout(() => {
+            const currentTriggerPageTop = trigger.getBoundingClientRect().top + window.scrollY;
+            const delta = currentTriggerPageTop - initialTriggerPageTop;
+
+            if (Math.abs(delta) > 0.5) {
+              const targetScrollY = window.scrollY - delta;
+
+              if (typeof lenis !== 'undefined') {
+                lenis.scrollTo(targetScrollY, {
+                  immediate: true,
+                  force: true
+                });
+                lenis.start();
+              } else {
+                window.scrollTo(0, targetScrollY);
+              }
+            } else if (typeof lenis !== 'undefined') {
+              lenis.start();
             }
 
-            // Обновляем соседние классы после клика по карточке на мобилке
-            updateNeighborClasses();
-
-            ScrollTrigger.update();
-          });
+            syncScrollTrigger();
+          }, 30);
         });
-      }
+      });
     }
 
     const cases = document.querySelector('.cases');
@@ -811,9 +962,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cases && casesHead) {
       const updateCasesPadding = () => {
-        const h = casesHead.offsetHeight;
-        console.log(h);
-        document.documentElement.style.setProperty('--cases-padding', `${h}px`);
+        const h = casesHead.offsetHeight / 10;
+        document.documentElement.style.setProperty('--cases-padding', `${h}rem`);
       };
 
       const resizeObserver = new ResizeObserver(() => {
@@ -822,7 +972,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       resizeObserver.observe(casesHead);
     }
-
   })();
 
   (function () {
@@ -1150,76 +1299,178 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Функция аккордиона
    */
+  // (function accordionFunc() {
+  //   const accordionContainers = document.querySelectorAll('.accordion-items');
+  //   if (!accordionContainers.length) return;
+
+  //   // Один глобальный обработчик для закрытия при клике вне аккордеона
+  //   document.addEventListener('click', (e) => {
+  //     // Если клик пришелся на тег A или BUTTON вне аккордеона, тоже не закрываем его принудительно
+  //     if (e.target.closest('a') || e.target.closest('button')) {
+  //       return;
+  //     }
+
+  //     accordionContainers.forEach(container => {
+  //       const items = container.querySelectorAll('.accordion-item');
+  //       const activeClass = 'accordion-item--active';
+  //       items.forEach(item => {
+  //         if (!e.composedPath().includes(item)) {
+  //           item.classList.remove(activeClass);
+  //           container.classList.remove('activated');
+  //         }
+  //       });
+  //     });
+  //     ScrollTrigger.update();
+  //   });
+
+  //   // Один глобальный обработчик Escape для всех аккордеонов
+  //   window.addEventListener('keydown', (e) => {
+  //     if (e.key !== 'Escape') return;
+  //     accordionContainers.forEach(container => {
+  //       container.querySelectorAll('.accordion-item').forEach(item => {
+  //         item.classList.remove('accordion-item--active');
+  //       });
+  //       container.classList.remove('activated');
+  //     });
+  //     ScrollTrigger.update();
+  //   });
+
+  //   accordionContainers.forEach(accordionContainer => {
+  //     const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
+  //     const activeClass = 'accordion-item--active';
+
+  //     // Закрытие при Escape
+  //     accordionItems.forEach(item => {
+  //       item.addEventListener('click', (e) => {
+
+  //         if (e.target.closest('a') || e.target.closest('button')) {
+  //           return;
+  //         }
+
+  //         e.stopPropagation();
+
+  //         // Закрываем другие открытые элементы
+  //         accordionItems.forEach(i => {
+  //           if (i !== item) i.classList.remove(activeClass);
+  //         });
+
+  //         // Переключаем текущий
+  //         item.classList.toggle(activeClass);
+
+  //         // Управляем классом контейнера
+  //         if (item.classList.contains(activeClass)) {
+  //           accordionContainer.classList.add('activated');
+  //         } else {
+  //           accordionContainer.classList.remove('activated');
+  //         }
+
+  //         ScrollTrigger.update();
+  //       });
+  //     });
+  //   });
+
+  // })();
+
   (function accordionFunc() {
     const accordionContainers = document.querySelectorAll('.accordion-items');
     if (!accordionContainers.length) return;
 
-    // Один глобальный обработчик для закрытия при клике вне аккордеона
-    document.addEventListener('click', (e) => {
-      // Если клик пришелся на тег A или BUTTON вне аккордеона, тоже не закрываем его принудительно
-      if (e.target.closest('a') || e.target.closest('button')) {
-        return;
+    const activeClass = 'accordion-item--active';
+
+    const syncScrollTrigger = () => {
+      if (typeof window.ScrollTrigger !== 'undefined') {
+        setTimeout(() => {
+          window.ScrollTrigger.refresh();
+        }, 400);
       }
+    };
+
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('a') || e.target.closest('button')) return;
 
       accordionContainers.forEach(container => {
         const items = container.querySelectorAll('.accordion-item');
-        const activeClass = 'accordion-item--active';
+        let hasActive = false;
+
         items.forEach(item => {
           if (!e.composedPath().includes(item)) {
             item.classList.remove(activeClass);
-            container.classList.remove('activated');
+          } else if (item.classList.contains(activeClass)) {
+            hasActive = true;
           }
         });
+
+        if (!hasActive) {
+          container.classList.remove('activated');
+        }
       });
-      ScrollTrigger.update();
+
+      syncScrollTrigger();
     });
 
-    // Один глобальный обработчик Escape для всех аккордеонов
     window.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape') return;
+
       accordionContainers.forEach(container => {
         container.querySelectorAll('.accordion-item').forEach(item => {
-          item.classList.remove('accordion-item--active');
+          item.classList.remove(activeClass);
         });
         container.classList.remove('activated');
       });
-      ScrollTrigger.update();
+
+      syncScrollTrigger();
     });
 
     accordionContainers.forEach(accordionContainer => {
-      const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
-      const activeClass = 'accordion-item--active';
+      accordionContainer.addEventListener('click', (e) => {
+        const trigger = e.target.closest('.accordion-head');
+        if (!trigger) return;
 
-      // Закрытие при Escape
-      accordionItems.forEach(item => {
-        item.addEventListener('click', (e) => {
+        const item = trigger.closest('.accordion-item');
+        if (!item || !accordionContainer.contains(item)) return;
 
-          if (e.target.closest('a') || e.target.closest('button')) {
-            return;
-          }
+        if (e.target.closest('a') || e.target.closest('button')) return;
 
-          e.stopPropagation();
+        e.stopPropagation();
 
-          // Закрываем другие открытые элементы
-          accordionItems.forEach(i => {
-            if (i !== item) i.classList.remove(activeClass);
-          });
+        const isCurrentActive = item.classList.contains(activeClass);
+        const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
 
-          // Переключаем текущий
-          item.classList.toggle(activeClass);
+        const initialTriggerTop = trigger.getBoundingClientRect().top;
 
-          // Управляем классом контейнера
-          if (item.classList.contains(activeClass)) {
-            accordionContainer.classList.add('activated');
-          } else {
-            accordionContainer.classList.remove('activated');
-          }
-
-          ScrollTrigger.update();
+        accordionItems.forEach(i => {
+          if (i !== item) i.classList.remove(activeClass);
         });
+
+        if (!isCurrentActive) {
+          item.classList.add(activeClass);
+          accordionContainer.classList.add('activated');
+        } else {
+          item.classList.remove(activeClass);
+          accordionContainer.classList.remove('activated');
+        }
+
+        const currentTriggerTop = trigger.getBoundingClientRect().top;
+        const delta = currentTriggerTop - initialTriggerTop;
+
+        if (Math.abs(delta) > 0.5) {
+          const targetScrollY = window.scrollY + delta;
+
+          if (typeof lenis !== 'undefined') {
+            lenis.stop();
+            lenis.scrollTo(targetScrollY, {
+              immediate: true,
+              force: true
+            });
+            lenis.start();
+          } else {
+            window.scrollTo(0, targetScrollY);
+          }
+        }
+
+        syncScrollTrigger();
       });
     });
-
   })();
 
   (function () {
