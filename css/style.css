@@ -3503,7 +3503,7 @@ body {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   pointer-events: none;
-  margin: 0 4rem calc(2rem + env(safe-area-inset-bottom, 20px)) auto;
+  margin: 0 55px calc(150px + env(safe-area-inset-bottom, 20px)) auto;
 }
 
 .plate--active .plate__inner {
@@ -5781,6 +5781,7 @@ canvas {
   height: auto;
   -o-object-fit: contain;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .details__table {
@@ -9621,6 +9622,7 @@ canvas {
   .advan__item {
     padding: 1rem 2rem 1.5rem 1rem;
     min-height: 13.4rem;
+    height: 100%;
   }
 
   .advan__item--end {
