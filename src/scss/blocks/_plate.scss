@@ -34,8 +34,8 @@
     transition: all 0.5s ease;
     pointer-events: none;
 
-    margin: 0 4rem calc(2rem + env(safe-area-inset-bottom, 20px)) auto;
-
+    // margin: 0 4rem calc(2rem + env(safe-area-inset-bottom, 20px)) auto;
+    margin: 0 55px calc(150px + env(safe-area-inset-bottom, 20px)) auto;
     // position: sticky;
     // right: 4rem;
     // left: auto;

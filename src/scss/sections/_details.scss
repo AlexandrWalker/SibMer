@@ -144,6 +144,11 @@
     }
   }
 
+  &__slide {
+
+
+  }
+
   &__cover,
   &__slider {
     // height: 27.1rem;
@@ -164,6 +169,7 @@
       width: 100%;
       height: auto;
       object-fit: contain;
+      pointer-events: none;
     }
   }
 
