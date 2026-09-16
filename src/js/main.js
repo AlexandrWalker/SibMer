@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // })();
 
   (function () {
-    const advanItems = document.querySelectorAll('.advan__item');
+    const advanItems = document.querySelectorAll('.advan__item, .s-advan__item');
 
     if (!advanItems.length) return;
 

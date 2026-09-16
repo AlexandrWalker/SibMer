@@ -27,6 +27,12 @@
     position: relative;
 
     &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 7rem;
+      height: 7rem;
+
       color: var(--accent);
 
       position: absolute;
@@ -36,6 +42,32 @@
       i {
         --font-size: 7rem;
       }
+
+      img {
+        display: block;
+        max-width: 100%;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+
+        @include dosm {
+          display: none;
+        }
+      }
+
+      video {
+        display: block;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+        border-radius: unset;
+        transform: translateZ(0);
+        will-change: transform;
+
+        @include sm {
+          display: none;
+        }
+      }
     }
 
     &-count {
@@ -44,8 +76,6 @@
       line-height: 140%;
     }
 
-    &-title {
-
-    }
+    &-title {}
   }
 }
