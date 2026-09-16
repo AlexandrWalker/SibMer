@@ -127,6 +127,14 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-display: swap;
   src: url("../fonts/Roboto-ExtraBold.woff2") format("woff2"), url("../fonts/Roboto-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
@@ -137,14 +145,6 @@ img {
   font-display: swap;
   src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
   font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Roboto;
-  font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
   font-style: normal;
 }
 
@@ -7277,6 +7277,17 @@ canvas {
 }
 
 .s-advan__item-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 7rem;
+  height: 7rem;
   color: var(--accent);
   position: absolute;
   top: 2rem;
@@ -7285,6 +7296,27 @@ canvas {
 
 .s-advan__item-icon i {
   --font-size: 7rem;
+}
+
+.s-advan__item-icon img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.s-advan__item-icon video {
+  display: block;
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  border-radius: unset;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .s-advan__item-count {
@@ -8898,6 +8930,10 @@ canvas {
     background-color: var(--gray);
     border-radius: 1rem;
     overflow: hidden;
+  }
+
+  .s-advan__item-icon img {
+    display: none;
   }
 
   .s-type__item {
@@ -10676,6 +10712,10 @@ canvas {
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .s-advan__item-icon video {
+    display: none;
   }
 
   .s-type__items {
