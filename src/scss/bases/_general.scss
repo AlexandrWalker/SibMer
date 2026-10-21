@@ -210,6 +210,37 @@
     }
   }
 
+  &__route {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include sm {
+      gap: 1rem;
+    }
+
+    &-title {
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 100%;
+      text-transform: uppercase;
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+
+    &-text {
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 100%;
+
+      @include sm {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
   &__tabs {
 
     &-items {

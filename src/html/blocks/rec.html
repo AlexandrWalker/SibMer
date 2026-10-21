@@ -1,0 +1,47 @@
+<section class="rec">
+  <div class="container">
+    <div class="rec__inner">
+
+      <div class="general__head">
+        <div class="general__title" data-split="lines">
+          <h2>
+            @@title
+          </h2>
+        </div>
+      </div>
+      <div class="general__body">
+        <div class="general__tabs general__tabs--alt">
+          <div class="general__tabs-items">
+            <div class="general__tabs-item">
+              Все
+            </div>
+            <div class="general__tabs-item tabs--active">
+              Новости компании
+            </div>
+            <div class="general__tabs-item">
+              Статьи
+            </div>
+          </div>
+        </div>
+        <div class="opinions__body">
+          <div class="swiper articles__slider anim-items">
+            <div class="swiper-wrapper">
+              @@loop('./../elements/blog-slide-item.html', './data/blog-items.json')
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="general__foot">
+        <div class="general__btns">
+          <div class="swiper-button-prev articles-button-prev">
+            <i class="icon-arrow-left-long"></i>
+          </div>
+          <div class="swiper-button-next articles-button-next">
+            <i class="icon-arrow-right-long"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -129,4 +129,14 @@
       --btn-color: var(--white);
     }
   }
+
+  &--accent {
+    --btn-background: var(--accent);
+
+    box-shadow: none;
+
+    &::after {
+      display: none;
+    }
+  }
 }

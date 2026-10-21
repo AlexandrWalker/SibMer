@@ -1,0 +1,38 @@
+@use './../mixins' as *;
+
+.rec {
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include sm {
+      gap: 2rem;
+    }
+  }
+
+  .general {
+
+    &__foot {
+      display: flex;
+      margin-top: -3rem;
+
+      @include dosm {
+        justify-content: center;
+        margin-top: -4rem;
+      }
+    }
+  }
+
+  .opinions {
+
+    &__body {
+      padding: 2rem 2rem 4rem 2rem;
+
+      @include dosm {
+        padding: 3rem 2rem 4rem 2rem;
+      }
+    }
+  }
+}
