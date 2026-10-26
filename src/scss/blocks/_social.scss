@@ -1,4 +1,4 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 .social {
   display: block;
@@ -7,16 +7,12 @@
   transition: all 0.3s ease;
 
   position: fixed;
-  // bottom: calc(5rem + 6.6rem + 5rem);
   bottom: 150px;
-  // right: 5.5rem;
   right: 55px;
   z-index: 20;
 
   @include sm {
-    // right: 2.5rem;
-    right: 15px;
-    // bottom: 15rem;
+    right: 10px;
     bottom: 150px;
   }
 
@@ -31,7 +27,6 @@
     pointer-events: all !important;
 
     .social__item-btn {
-
       &::before,
       &::after {
         visibility: hidden;
@@ -45,23 +40,38 @@
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
+
+        @include sm {
+          transform: translateY(0) scale(0.85);
+        }
       }
 
       &:nth-child(1) {
-        transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s, background-color 0.3s ease;
-
+        transition:
+          transform 0.3s ease 0.15s,
+          opacity 0.3s ease 0.15s,
+          background-color 0.3s ease;
       }
 
       &:nth-child(2) {
-        transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s, background-color 0.3s ease;
+        transition:
+          transform 0.3s ease 0.1s,
+          opacity 0.3s ease 0.1s,
+          background-color 0.3s ease;
       }
 
       &:nth-child(3) {
-        transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, background-color 0.3s ease;
+        transition:
+          transform 0.3s ease 0.05s,
+          opacity 0.3s ease 0.05s,
+          background-color 0.3s ease;
       }
 
       &:nth-child(4) {
-        transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease,
+          background-color 0.3s ease;
       }
     }
   }
@@ -77,15 +87,17 @@
     flex-direction: column;
     gap: 0.5rem;
     position: relative;
+
+    @include sm {
+      gap: 0;
+    }
   }
 
   &__item {
     display: flex;
     justify-content: center;
     align-items: center;
-    // width: 5.6rem;
     width: 56px;
-    // height: 5.6rem;
     height: 56px;
     background-color: var(--black);
     border-radius: 50%;
@@ -95,13 +107,16 @@
     opacity: 0;
     pointer-events: none;
     transform: translateY(20px);
-    transition: background-color 0.3s ease, all 0.1s ease;
+    transition:
+      background-color 0.3s ease,
+      all 0.1s ease;
 
     position: relative;
 
     @include sm {
-      // width: 3.6rem;
-      // height: 3.6rem;
+      width: 66px;
+      height: 66px;
+      transform: scale(0.85);
     }
 
     &:hover {
@@ -114,10 +129,6 @@
 
     i {
       --font-size: 30px;
-
-      @include sm {
-        // --font-size: 1.9rem;
-      }
     }
 
     &-wrap {
@@ -129,7 +140,7 @@
       padding: 18px;
       // border-radius: 0.4rem;
       border-radius: 4px;
-      background-color: #F1F3F7;
+      background-color: #f1f3f7;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.3s ease;
@@ -182,28 +193,25 @@
       cursor: pointer;
       box-shadow: 0px 0px 3px 0px var(--white-50);
 
+      @include sm {
+        width: 66px;
+        height: 66px;
+      }
+
       &::before {
         content: "";
         display: none;
-        // width: 5.6rem;
         width: 56px;
-        // height: 5.6rem;
         height: 56px;
         border: 0.1rem solid var(--accent);
         border-radius: 50%;
         transition: all 0.3s ease;
         pointer-events: none;
-        // animation: pulseBefore 2s linear infinite;
 
         position: absolute;
         top: 0;
         left: 0;
         z-index: 1;
-
-        @include sm {
-          // width: 3.6rem;
-          // height: 3.6rem;
-        }
       }
 
       &::after {
@@ -211,24 +219,17 @@
         display: none;
         // width: 5.6rem;
         width: 56px;
-        // height: 5.6rem;
         height: 56px;
         border: 0.1rem solid var(--accent);
         border-radius: 50%;
         transition: all 0.3s ease;
         pointer-events: none;
-        // animation: pulseAfter 2s linear infinite;
         animation-delay: 1s;
 
         position: absolute;
         top: 0;
         left: 0;
         z-index: 2;
-
-        @include sm {
-          // width: 3.6rem;
-          // height: 3.6rem;
-        }
       }
     }
   }

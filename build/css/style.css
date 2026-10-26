@@ -134,16 +134,16 @@ img {
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Roboto;
   font-display: swap;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Roboto-ExtraLight.woff2") format("woff2"), url("../fonts/Roboto-ExtraLight.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -3850,7 +3850,7 @@ canvas {
   height: fit-content;
   padding: 18px;
   border-radius: 4px;
-  background-color: #F1F3F7;
+  background-color: #f1f3f7;
   pointer-events: none;
   opacity: 0;
   -webkit-transition: opacity 0.3s ease;
@@ -9442,12 +9442,35 @@ canvas {
   }
 
   .social {
-    right: 15px;
+    right: 10px;
     bottom: 150px;
+  }
+
+  .social.active .social__item:not(.social__item-btn) {
+    -webkit-transform: translateY(0) scale(0.85);
+    -ms-transform: translateY(0) scale(0.85);
+    transform: translateY(0) scale(0.85);
+  }
+
+  .social__items {
+    gap: 0;
+  }
+
+  .social__item {
+    width: 66px;
+    height: 66px;
+    -webkit-transform: scale(0.85);
+    -ms-transform: scale(0.85);
+    transform: scale(0.85);
   }
 
   .social__item-wrap {
     display: none;
+  }
+
+  .social__item-btn {
+    width: 66px;
+    height: 66px;
   }
 
   .template__inner {
