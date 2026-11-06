@@ -829,150 +829,157 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // })();
 
-  (function () {
-    const mobileBreakpoint = 600;
-    const casesJs = document.querySelector('.cases--js');
-    if (!casesJs) return;
+(function () {
+  const mobileBreakpoint = 600;
+  const casesJs = document.querySelector('.cases--js');
+  if (!casesJs) return;
 
-    const casesTabsJs = document.querySelector('.cases-tabs--js');
-    const casesTabsItemsJs = casesTabsJs ? casesTabsJs.querySelectorAll('.general__tabs-item') : [];
-    const casesItemsJs = document.querySelectorAll('.cases-item--js');
+  const casesTabsJs = document.querySelector('.cases-tabs--js');
+  const casesTabsItemsJs = casesTabsJs ? casesTabsJs.querySelectorAll('.general__tabs-item') : [];
+  const casesItemsJs = document.querySelectorAll('.cases-item--js');
 
-    const isMobile = () => window.innerWidth < mobileBreakpoint;
+  const isMobile = () => window.innerWidth < mobileBreakpoint;
 
-    const syncScrollTrigger = () => {
-      if (typeof window.ScrollTrigger !== 'undefined') {
-        setTimeout(() => {
-          window.ScrollTrigger.refresh();
-        }, 310);
+  const syncScrollTrigger = () => {
+    if (typeof window.ScrollTrigger !== 'undefined') {
+      setTimeout(() => {
+        window.ScrollTrigger.refresh();
+      }, 310);
+    }
+  };
+
+  function updateNeighborClasses() {
+    casesItemsJs.forEach(i => {
+      i.classList.remove('cases-item--prev', 'cases-item--next');
+    });
+
+    const activeIndex = Array.from(casesItemsJs).findIndex(i =>
+      i.classList.contains('cases-item--active')
+    );
+
+    if (activeIndex !== -1) {
+      if (activeIndex > 0) {
+        casesItemsJs[activeIndex - 1].classList.add('cases-item--prev');
       }
+      if (activeIndex < casesItemsJs.length - 1) {
+        casesItemsJs[activeIndex + 1].classList.add('cases-item--next');
+      }
+    }
+  }
+
+  updateNeighborClasses();
+
+  if (casesTabsItemsJs.length) {
+    casesTabsItemsJs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
+        tab.classList.add('tabs--active');
+
+        const data = tab.dataset.value;
+        const casesItem = document.querySelector(`[data-cases="${data}"]`);
+
+        casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+        if (casesItem) {
+          casesItem.classList.add('cases-item--active');
+        }
+
+        updateNeighborClasses();
+        syncScrollTrigger();
+      });
+    });
+  }
+
+  if (casesItemsJs.length) {
+    casesItemsJs.forEach((item, index) => {
+      item.style.zIndex = 100 - index;
+    });
+
+    casesItemsJs.forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (!isMobile() || e.target.closest('a') || e.target.closest('button')) return;
+
+        e.stopPropagation();
+
+        const isActive = item.classList.contains('cases-item--active');
+        const trigger = item.querySelector('.general__title') || item;
+
+        const initialTriggerPageTop = trigger.getBoundingClientRect().top + window.scrollY;
+
+        if (typeof lenis !== 'undefined') {
+          lenis.stop();
+        }
+
+        casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
+
+        // Заменяем блок расчета дельты внутри обработчика клика:
+        if (!isActive) {
+          item.classList.add('cases-item--active');
+
+          // Даем карточке 20-30мс на старт открытия, чтобы Lenis замерил актуальную координату
+          setTimeout(() => {
+            if (typeof lenis !== 'undefined') {
+              lenis.scrollTo(trigger, {
+                offset: -100,      // Делаем отступ сверху (например, чтобы шапка сайта не перекрыла заголовок)
+                duration: 0.8,     // Тягучая премиальная скорость доскролла
+                ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Плавное замедление
+              });
+            } else {
+              trigger.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 30);
+        }
+
+        updateNeighborClasses();
+
+        setTimeout(() => {
+          const currentTriggerPageTop = trigger.getBoundingClientRect().top + window.scrollY;
+          const delta = currentTriggerPageTop - initialTriggerPageTop;
+
+          if (Math.abs(delta) > 0.5) {
+            const targetScrollY = window.scrollY - delta;
+
+            if (typeof lenis !== 'undefined') {
+              lenis.scrollTo(targetScrollY, {
+                immediate: true,
+                force: true
+              });
+              lenis.start();
+            } else {
+              window.scrollTo(0, targetScrollY);
+            }
+          } else if (typeof lenis !== 'undefined') {
+            lenis.start();
+          }
+
+          syncScrollTrigger();
+        }, 30);
+      });
+    });
+  }
+
+  const cases = document.querySelector('.cases');
+  const casesHead = cases ? cases.querySelector('.cases__head') : null;
+
+  if (cases && casesHead) {
+    const updateCasesPadding = () => {
+      // const h = casesHead.offsetHeight / 10;
+      const h = casesHead.offsetHeight;
+      // document.documentElement.style.setProperty('--cases-padding', `${h}rem`);
+      document.documentElement.style.setProperty('--cases-padding', `${h}px`);
     };
 
-    function updateNeighborClasses() {
-      casesItemsJs.forEach(i => {
-        i.classList.remove('cases-item--prev', 'cases-item--next');
-      });
+    updateCasesPadding();
 
-      const activeIndex = Array.from(casesItemsJs).findIndex(i =>
-        i.classList.contains('cases-item--active')
-      );
+    window.addEventListener('resize', updateCasesPadding);
 
-      if (activeIndex !== -1) {
-        if (activeIndex > 0) {
-          casesItemsJs[activeIndex - 1].classList.add('cases-item--prev');
-        }
-        if (activeIndex < casesItemsJs.length - 1) {
-          casesItemsJs[activeIndex + 1].classList.add('cases-item--next');
-        }
-      }
-    }
+    const resizeObserver = new ResizeObserver(() => {
+      updateCasesPadding();
+    });
 
-    updateNeighborClasses();
+    resizeObserver.observe(casesHead);
+  }
 
-    if (casesTabsItemsJs.length) {
-      casesTabsItemsJs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          casesTabsItemsJs.forEach(i => i.classList.remove('tabs--active'));
-          tab.classList.add('tabs--active');
-
-          const data = tab.dataset.value;
-          const casesItem = document.querySelector(`[data-cases="${data}"]`);
-
-          casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
-          if (casesItem) {
-            casesItem.classList.add('cases-item--active');
-          }
-
-          updateNeighborClasses();
-          syncScrollTrigger();
-        });
-      });
-    }
-
-    if (casesItemsJs.length) {
-      casesItemsJs.forEach((item, index) => {
-        item.style.zIndex = 100 - index;
-      });
-
-      casesItemsJs.forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (!isMobile() || e.target.closest('a') || e.target.closest('button')) return;
-
-          e.stopPropagation();
-
-          const isActive = item.classList.contains('cases-item--active');
-          const trigger = item.querySelector('.general__title') || item;
-
-          const initialTriggerPageTop = trigger.getBoundingClientRect().top + window.scrollY;
-
-          if (typeof lenis !== 'undefined') {
-            lenis.stop();
-          }
-
-          casesItemsJs.forEach(i => i.classList.remove('cases-item--active'));
-
-          // Заменяем блок расчета дельты внутри обработчика клика:
-          if (!isActive) {
-            item.classList.add('cases-item--active');
-
-            // Даем карточке 20-30мс на старт открытия, чтобы Lenis замерил актуальную координату
-            setTimeout(() => {
-              if (typeof lenis !== 'undefined') {
-                lenis.scrollTo(trigger, {
-                  offset: -100,      // Делаем отступ сверху (например, чтобы шапка сайта не перекрыла заголовок)
-                  duration: 0.8,     // Тягучая премиальная скорость доскролла
-                  ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Плавное замедление
-                });
-              } else {
-                trigger.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }, 30);
-          }
-
-          updateNeighborClasses();
-
-          setTimeout(() => {
-            const currentTriggerPageTop = trigger.getBoundingClientRect().top + window.scrollY;
-            const delta = currentTriggerPageTop - initialTriggerPageTop;
-
-            if (Math.abs(delta) > 0.5) {
-              const targetScrollY = window.scrollY - delta;
-
-              if (typeof lenis !== 'undefined') {
-                lenis.scrollTo(targetScrollY, {
-                  immediate: true,
-                  force: true
-                });
-                lenis.start();
-              } else {
-                window.scrollTo(0, targetScrollY);
-              }
-            } else if (typeof lenis !== 'undefined') {
-              lenis.start();
-            }
-
-            syncScrollTrigger();
-          }, 30);
-        });
-      });
-    }
-
-    const cases = document.querySelector('.cases');
-    const casesHead = cases ? cases.querySelector('.cases__head') : null;
-
-    if (cases && casesHead) {
-      const updateCasesPadding = () => {
-        const h = casesHead.offsetHeight / 10;
-        document.documentElement.style.setProperty('--cases-padding', `${h}rem`);
-      };
-
-      const resizeObserver = new ResizeObserver(() => {
-        updateCasesPadding();
-      });
-
-      resizeObserver.observe(casesHead);
-    }
-  })();
+})();
 
   (function () {
     // Находим все формы на странице

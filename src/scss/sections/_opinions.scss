@@ -1,13 +1,11 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 .opinions {
-
   &.similar {
     padding-top: 0;
   }
 
   .general {
-
     &__btns {
       justify-content: center;
 
@@ -50,16 +48,20 @@
     @include dosm {
       padding: 4rem 2rem;
 
-      -webkit-mask-image: linear-gradient(to right,
-          transparent 0%,
-          black 1.5rem,
-          black calc(100% - 1.5rem),
-          transparent 100%);
-      mask-image: linear-gradient(to right,
-          transparent 0%,
-          black 1.5rem,
-          black calc(100% - 1.5rem),
-          transparent 100%);
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 1.5rem,
+        black calc(100% - 1.5rem),
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 1.5rem,
+        black calc(100% - 1.5rem),
+        transparent 100%
+      );
       -webkit-mask-clip: no-clip;
       mask-clip: no-clip;
 
@@ -69,9 +71,7 @@
   }
 
   &__slider {
-
     @include dosm {
-
       .swiper-slide {
         // opacity: 0;
         // visibility: hidden;
@@ -91,7 +91,7 @@
     gap: 3rem;
     height: 100%;
     min-height: 60rem;
-    padding: 5rem 3rem 4rem 3rem;
+    padding: 5rem 3rem 3.4rem 3rem;
     border-radius: 1rem;
     background: var(--white);
     box-shadow: 0px 15px 20px rgba(36, 93, 157, 0.06);
@@ -100,7 +100,7 @@
       gap: 1.5rem;
       // min-height: 37.2rem;
       min-height: unset;
-      padding: 1.5rem 1.5rem 3rem 1.5rem;
+      padding: 1.5rem 1.5rem 1.5rem 1.5rem;
     }
 
     &-head {
@@ -118,6 +118,7 @@
       max-width: 5.6rem;
       width: auto;
       height: 5.6rem;
+      flex-shrink: 0;
 
       @include sm {
         max-width: 3.6rem;
@@ -134,7 +135,8 @@
     &-wrap {
       display: flex;
       flex-direction: column;
-      gap: 1.3rem;
+      gap: 1.5rem;
+      max-width: 27rem;
 
       @include sm {
         gap: 1rem;
@@ -144,7 +146,7 @@
     &-name {
       font-weight: 700;
       font-size: 2.2rem;
-      line-height: 110%;
+      line-height: 140%;
 
       @include sm {
         font-size: 1.4rem;
@@ -153,9 +155,20 @@
 
     &-date {
       font-weight: 400;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       line-height: 120%;
       color: var(--black-50);
+
+      @include sm {
+        font-size: 1rem;
+      }
+    }
+
+    &-subtext {
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 140%;
+      color: var(--red);
 
       @include sm {
         font-size: 1rem;
@@ -165,26 +178,26 @@
     &-body {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem;
 
       @include dosm {
-        gap: 2rem;
+        gap: 2.4rem;
         padding-left: 9.6rem;
       }
     }
 
     &-text {
-      color: var(--black-50);
+      -webkit-line-clamp: 10;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -o-text-overflow: clip;
+      text-overflow: clip;
+      overflow: hidden;
 
       @include sm {
         font-size: 1.2rem;
 
         -webkit-line-clamp: 5;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -o-text-overflow: clip;
-        text-overflow: clip;
-        overflow: hidden;
       }
     }
 
@@ -210,13 +223,14 @@
     &-foot {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
-      margin-top: 1.5rem;
+      gap: 1rem;
+      margin-top: auto;
 
       @include dosm {
         gap: 2rem;
         padding-left: 9.6rem;
-        margin-top: auto;
+
+        transform: translateY(-0.6rem);
       }
     }
 
@@ -225,7 +239,7 @@
       color: var(--black-50);
 
       @include sm {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
     }
 
@@ -233,11 +247,12 @@
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
+      max-width: 28rem;
     }
 
     &-tag {
       font-weight: 400;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       line-height: 110%;
 
       @include sm {

@@ -40,8 +40,10 @@
   --blue-light: #4285F4;
 
   --accent: #DC2340;
-  --accent-10: rgba(220, 35, 64, 0.1);
+  --accent-10: rgba(22, 10, 12, 0.1);
   --accent-50: #DC234080;
+
+  --red: #D92542;
 
   @include md {
     // --container-padding: 1.5rem;
