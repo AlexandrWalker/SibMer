@@ -6,6 +6,22 @@
   }
 
   .general {
+    &__head {
+      gap: 1.5rem;
+      @include dosm {
+        gap: 2rem;
+      }
+    }
+    &__suptitle {
+      p {
+        color: var(--black-50);
+        text-transform: none;
+
+        @include sm {
+          font-size: 1.4rem;
+        }
+      }
+    }
     &__btns {
       justify-content: center;
 
@@ -29,6 +45,9 @@
           }
         }
       }
+    }
+    &__body {
+      margin-top: -1rem;
     }
   }
 
@@ -95,6 +114,7 @@
     border-radius: 1rem;
     background: var(--white);
     box-shadow: 0px 15px 20px rgba(36, 93, 157, 0.06);
+    transition: 0s;
 
     @include sm {
       gap: 1.5rem;
@@ -193,30 +213,17 @@
       -o-text-overflow: clip;
       text-overflow: clip;
       overflow: hidden;
+      padding-right: 2.4rem;
 
       @include sm {
-        font-size: 1.2rem;
-
+        padding-right: 0;
         -webkit-line-clamp: 5;
-      }
-    }
 
-    &-btn {
-      width: fit-content;
-
-      font-weight: 400;
-      font-size: 1.2rem;
-      line-height: 120%;
-      text-decoration: underline;
-      color: var(--accent);
-
-      @include sm {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
 
-      &:link,
-      &:visited {
-        text-decoration: underline;
+      * {
+        line-height: 140%;
       }
     }
 

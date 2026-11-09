@@ -1,4 +1,4 @@
-@use './../mixins' as *;
+@use "./../mixins" as *;
 
 .algorithm {
   --section-padding-top: 7rem;
@@ -12,16 +12,13 @@
   }
 
   .general {
-
     &__content {
-
       @include sm {
         gap: 3rem;
       }
     }
 
     &__head {
-
       @include dosm {
         gap: 2rem;
         grid-column: 1/6;
@@ -32,7 +29,6 @@
       color: var(--white);
 
       span {
-
         @include sm {
           display: block;
         }
@@ -40,14 +36,12 @@
     }
 
     &__suptitle {
-
       @include sm {
         display: none;
       }
     }
 
     &__body {
-
       @include dosm {
         grid-column: 6/13;
       }
@@ -110,7 +104,7 @@
   &__items {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(5, auto);
     gap: 2rem 5rem;
 
     @include dosm {
@@ -137,22 +131,20 @@
     }
 
     &:last-child {
-
       @include sm {
         padding-bottom: 0;
         border-bottom: 0;
       }
     }
 
-    &:nth-child(4) {
-
+    &:nth-child(5) {
       @include dosm {
         padding-bottom: 0;
         border-bottom: 0;
       }
     }
 
-    &:nth-child(7) {
+    &:nth-child(9) {
       border-bottom: 0;
     }
 
@@ -181,13 +173,17 @@
   }
 
   &__btn {
-
-
     @include sm {
       --btn-width: 100%;
       --btn-height: 5.6rem;
 
       font-size: 1.6rem;
+    }
+
+    &.btn:hover {
+      @include dosm {
+        --btn-padding-x: 3rem;
+      }
     }
   }
 }

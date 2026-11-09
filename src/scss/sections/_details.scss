@@ -1,6 +1,7 @@
 @use './../mixins' as *;
 
 .details {
+  overflow: visible;
 
   @include dosm {
     --section-padding-top: 4rem !important;
